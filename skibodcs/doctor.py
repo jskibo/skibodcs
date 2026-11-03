@@ -24,6 +24,12 @@ def diagnose(dcs_dir: Path | None, lines: int = 12, export_port: int = 14500, ho
     if dcs_dir is None:
         out.append("No Saved Games\\DCS folder found; pass --dcs-dir to read dcs.log.")
         return "\n".join(out)
+    beacon = Path(dcs_dir) / "skibodcs" / "export_loaded.txt"
+    if beacon.exists():
+        tail = beacon.read_text(encoding="utf-8", errors="replace").splitlines()[-4:]
+        out.append("Export module beacon (skibodcs/export_loaded.txt), newest last: " + " | ".join(tail))
+    else:
+        out.append("Export module beacon: NONE - Export.lua never ran skibodcs_export.lua (check Scripts\\Export.lua for an error or an early return above our block).")
     log = Path(dcs_dir) / "Logs" / "dcs.log"
     if not log.exists():
         out.append(f"No log yet: {log}")

@@ -305,6 +305,11 @@ def test_doctor_reports_each_half_of_the_link(tmp_path):
     s.close()
     assert f"TCP {down}: DOWN" in rep and f"TCP {up}: UP" in rep and "Export DOWN" in rep and "Hook DOWN" not in rep
     assert "hook registered" in rep and "export: ready" in rep and "noise" not in rep
+    assert "beacon: NONE" in rep
+    (tmp_path / "skibodcs").mkdir()
+    (tmp_path / "skibodcs" / "export_loaded.txt").write_text("2026-11-03 11:00:00 module loaded\n2026-11-03 11:00:01 LuaExportStart\n")
+    rep2 = diagnose(tmp_path, 5, export_port=down, hook_port=up)
+    assert "beacon (skibodcs/export_loaded.txt)" in rep2 and "LuaExportStart" in rep2 and "NONE" not in rep2
     assert "never loaded" in diagnose(tmp_path / "missing_log_dir_but_exists" if False else tmp_path, 5, export_port=down, hook_port=down) or True
     (tmp_path / "Logs" / "dcs.log").write_text("nothing relevant\n")
     assert "never loaded" in diagnose(tmp_path, 5, export_port=down, hook_port=down)

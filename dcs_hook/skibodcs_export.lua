@@ -22,6 +22,17 @@ package.cpath = package.cpath .. ";" .. lfs.currentdir() .. "/LuaSocket/?.dll"
 
 local function elog(msg) pcall(function() log.write("SKIBODCS", log.INFO, "skibodcs export: " .. tostring(msg)) end) end
 
+-- A beacon file that does not depend on the log: `skibodcs doctor` reads it to tell "Export.lua never ran this module" from
+-- "it ran but the port is not open".
+local function beacon(stage)
+  pcall(function()
+    if lfs.mkdir then lfs.mkdir(lfs.writedir() .. "skibodcs") end
+    local f = io.open(lfs.writedir() .. "skibodcs/export_loaded.txt", "a")
+    if f then f:write((os.date and os.date("%Y-%m-%d %H:%M:%S") or "?"), " ", stage, "\n"); f:close() end
+  end)
+end
+beacon("module loaded")
+
 local ok_s, socket = pcall(require, "socket")
 if not ok_s then elog("LuaSocket not found, telemetry and cockpit commands are disabled: " .. tostring(socket)); socket = nil end
 local udp, server, client
@@ -45,6 +56,7 @@ local function ensure_sockets()
   end
   if server and udp and not bound_logged then
     bound_logged = true
+    beacon("sockets ready")
     elog("ready: telemetry UDP " .. TELEMETRY_PORT .. ", cockpit commands TCP " .. COMMAND_PORT)
   end
 end
@@ -104,6 +116,7 @@ local function pump_commands()
 end
 
 function LuaExportStart()
+  beacon("LuaExportStart")
   if prev.Start then safe(prev.Start) end
   safe(ensure_sockets)
 end

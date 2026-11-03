@@ -1,7 +1,9 @@
 -- Export module: argument read-back + cockpit click, with mocked Export API
 package.path = "tests/lua/?.lua;" .. package.path
 local replies, lines, clicks = {}, {}, {}
-lfs = { writedir = function() return "tests/lua/wd/" end, currentdir = function() return "." end }
+os.execute("rm -rf tests/lua/wd && mkdir -p tests/lua/wd")
+lfs = { writedir = function() return "tests/lua/wd/" end, currentdir = function() return "." end,
+        mkdir = function(p) os.execute("mkdir -p " .. p) end }
 local client = { settimeout = function() end, close = function() end,
                  send = function(_, s) replies[#replies + 1] = s end }
 function client:receive() if #lines > 0 then return table.remove(lines, 1) end return nil, "timeout" end
@@ -50,4 +52,8 @@ do
   LuaExportStart()
   assert(table.concat(logged, "\n"):find("ready: telemetry UDP 14501, cockpit commands TCP 14500"), table.concat(logged, "\n"))
 end
+local bf = io.open("tests/lua/wd/skibodcs/export_loaded.txt")
+assert(bf, "beacon file written")
+local btxt = bf:read("*a"); bf:close()
+assert(btxt:find("module loaded") and btxt:find("LuaExportStart") and btxt:find("sockets ready"), btxt)
 print("EXPORT LUA OK")
