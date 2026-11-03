@@ -141,6 +141,6 @@ class Router:
                 r.cockpit += self.table.resolve(c.action, c.value)
                 r.speech.append(f"{c.action.replace('_', ' ')} {c.value}")
                 if not self.table.actions[c.action].verified:
-                    r.notes.append(f"action '{c.action}' is UNVERIFIED (placeholder ids)")
+                    r.notes.append(f"action '{c.action}' is UNVERIFIED (ids come from the game files; value polarity not yet confirmed in the sim)")
             except KeyError as e:
                 r.notes.append(str(e).strip("'\""))

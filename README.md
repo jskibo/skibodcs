@@ -1,4 +1,4 @@
-# skibodcs v0.3
+# skibodcs v0.4
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -36,6 +36,19 @@ NOT implemented (the sim answers "not implemented" and the app says "unable", ne
 formation, cover_me, rejoin, rtb, cleared_hot, break_left/right. Formation needs the real AI
 option values; the rest need route/task injection. Add them one at a time against a live sim.
 
+## Cockpit tables: generated from your own DCS files (new in v0.4)
+    skibodcs find --devices D --commands C --clickable K "master arm"      # look up any control
+    skibodcs extract --devices D --commands C --clickable K --aircraft F-16C_50 --out airframes\f-16c.toml
+where D/C/K are the module's devices.lua, command_defs.lua, clickabledata.lua (see
+Mods\aircraft\<module>\Cockpit\Scripts on your install). The extractor runs ED's own definition files
+under stubs, so device ids, command ids (3000+position) and cockpit arg numbers are READ, not guessed.
+Needs LuaJIT/Lua 5.1 on PATH (or LUAJIT=path) or `pip install lupa`. Add controls by extending WISHLIST in
+skibodcs\extract.py. After a DCS update: re-run, `git diff airframes/` shows exactly which ids moved.
+Do not commit ED's .lua files; commit only the generated TOMLs. Shipped: airframes\f-16c.toml, fa-18c.toml
+(gear, hook, master arm, plus F-16 ICP COM1/COM2 and Hornet master-mode buttons).
+What is still a guess: the VALUE meaning (is gear "down" 1.0 or 0.0? arm = 1.0?). The files do not say.
+Each action carries its cockpit `arg` number so a future read-back step can confirm the result.
+
 ## UNVERIFIED (verify in this order)
 1. Hook loads: DCS log should show "skibodcs: hook registered" then "mission module loaded".
    If LuaSocket is missing the log says so and the Hook idles.
@@ -44,7 +57,7 @@ option values; the rest need route/task injection. Add them one at a time agains
    Object:getID() in the mission state (otherwise engage_my_target says "target not found").
 4. Pushing tasks/options onto AI wingmen inside a player's group behaves as expected.
 5. net.dostring_in return order: code tolerates either (result, ok) or (ok, result).
-6. airframes\f-16c.toml ids are placeholders; no F/A-18C table yet. Extract from clickabledata.lua.
+6. Action VALUE polarity in airframes\*.toml (ids are real; test each action once in the sim, then set verified = true). The lupa fallback in extract.py never ran (LuaJIT path is tested).
 7. Ollama accepting the generated schemas; Whisper/Piper/PTT never ran.
 8. Whether DCS can be started with a mission chosen by the app: NOT built. The mission lands in
    Missions\skibodcs\; you still pick it in DCS.

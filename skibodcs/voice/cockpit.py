@@ -14,6 +14,7 @@ class Action:
     values: dict[str, float]
     momentary: bool = False         # send value then release (0.0) shortly after
     verified: bool = False
+    arg: int = 0                    # cockpit argument number (for read-back verification)
 
 
 @dataclass
@@ -46,5 +47,6 @@ def load_table(path: str | Path) -> AirframeTable:
     for name, a in d.get("actions", {}).items():
         t.actions[name] = Action(name, int(a["device"]), int(a["command"]),
                                  {k: float(v) for k, v in a["values"].items()},
-                                 bool(a.get("momentary", False)), bool(a.get("verified", False)))
+                                 bool(a.get("momentary", False)), bool(a.get("verified", False)),
+                                 int(a.get("arg", 0)))
     return t

@@ -86,7 +86,7 @@ def test_compound_cockpit_commands_resolve_to_ids():
         {"domain": "cockpit", "intent": "", "action": "master_arm", "value": "safe", "addressed_to": "", "emergency": False}]})
     r = Router(FakeLLM(reply), load_table(AF), world())
     res = r.handle("drop the wheels and safe the master arm")
-    assert res.cockpit == [(0, 3001, 1.0), (0, 3002, 0.0)]
+    assert res.cockpit == [(7, 3001, 1.0), (19, 3002, 0.0)]      # real ids from ED's files
     assert any("UNVERIFIED" in n for n in res.notes)
 
 
@@ -111,7 +111,7 @@ def test_garbage_llm_output_is_safe():
 
 def test_momentary_sends_release():
     t = load_table(AF)
-    assert t.resolve("comm1_preset_next", "press") == [(0, 3003, 1.0), (0, 3003, 0.0)]
+    assert t.resolve("ufc_com1", "press") == [(17, 3012, 1.0), (17, 3012, 0.0)]
 
 
 def test_emergency_inbound():
