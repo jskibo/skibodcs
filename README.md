@@ -1,26 +1,40 @@
-# skibodcs v0.1 — step 1: scenario spec -> validate -> .miz
+# skibodcs v0.2
+
+Two tracks, one codebase. Everything below marked UNVERIFIED could not be run in the build
+sandbox (no DCS, no Ollama, no Whisper/Piper there). All logic with fakes is covered by `pytest`.
 
 ## Setup (sim PC, Windows)
     py -m venv .venv && .venv\Scripts\activate
     pip install pydcs pyproj "pydantic>=2" pytest
-    pip install -e .
-
-## Use
-    skibodcs catalog Caucasus                      # real names to paste into the LLM prompt
-    skibodcs validate examples\iron_lantern.json   # LLM-readable errors, with suggestions
-    skibodcs compile  examples\iron_lantern.json out\iron_lantern.miz
+    pip install -e .[voice]
     pytest
 
-Copy the .miz into  Saved Games\DCS\Missions  and open it in the Mission Editor.
+## A. Mission generator (Ollama, schema-constrained)
+    skibodcs catalog Caucasus
+    skibodcs generate "SEAD strike on a SA-6 near Kutaisi, dawn" --theater Caucasus ^
+        --model qwen3:14b --host http://MAC_STUDIO_IP:11434 --out out\m1.miz
+Flow: schema (enums = real airbases/aircraft/tasks) -> Ollama `format` -> validate() ->
+on errors the exact messages go back to the model (max 3 tries) -> briefing pass -> pydcs .miz.
+UNVERIFIED: that Ollama accepts the generated schema ($defs/$ref) as-is on your version. If it
+rejects it, tell me the error and I will inline the refs.
 
-## First things to check on the real machine
-1. Player F-16 pylons: default loadouts come from your DCS install via pydcs.
-   (My sandbox had no DCS, so loadouts were empty there and the compiler warns.)
-2. Mission opens in the editor without errors; SA-6 site + armor sit ~22 nm north of Kutaisi.
-3. AWACS/tanker orbits, frequencies, TACAN 40X.
+## B. Voice (natural speech, no exact phrases)
+    copy skibodcs.example.toml skibodcs.toml   (edit host, model, piper path, joystick button)
+    skibodcs-voice --text          # type instead of speak: safe way to test everything
+    skibodcs-voice                 # PTT -> Whisper -> intent -> action -> Piper -> headset
+Install the DCS side by appending ONE line to Saved Games\DCS\Scripts\Export.lua:
+    pcall(dofile, lfs.writedir() .. [[Scripts\skibodcs_export.lua]])
+and copying dcs_hook\skibodcs_export.lua to Saved Games\DCS\Scripts\.
 
-## Not compiled yet (kept in out\*.scenario.json, listed as notes)
-dynamic_rules, objectives scoring, conditional red air, JTAC -> need runtime.lua (step 2).
+Design rules: the LLM only picks an intent and action/value NAMES (enums). Code computes every
+number (BRAA, bullseye, runway) and owns device/command ids (airframes\*.toml, in git).
+Crisp calls like "bogey dope" skip the LLM entirely.
 
-## Spec change vs. my earlier sketch
-Anchors are {near: <airbase>, bearing, distance_nm}. Player flights are a list.
+## UNVERIFIED / TODO
+- airframes\f-16c.toml ids are PLACEHOLDERS. Extract real ones from clickabledata.lua; the
+  app flags unverified actions.
+- skibodcs_export.lua field names (Coalition, Type.level1, LoGetWorldObjects) are from the Export
+  API as I know it; confirm in a live cockpit.
+- FasterWhisperSTT/PiperTTS/PTTRecorder never ran. Piper is called via its CLI on purpose.
+- Magnetic variation defaults to 0 (set magvar_east per theater). Aspect bands are simple.
+- Not yet: JTAC 9-line, AI wingman orders, campaign DB (SQLite), mission-side Hook, kneeboards.

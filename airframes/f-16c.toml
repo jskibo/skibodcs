@@ -1,0 +1,25 @@
+# Action table for F-16C_50.
+# !!! device/command numbers below are PLACEHOLDERS, not extracted from DCS. !!!
+# Real values come from the module's clickabledata.lua (Mods/aircraft/<module>/Cockpit/...).
+# Flip `verified = true` only after testing the action in the sim; the app warns on unverified ones.
+[aircraft]
+id = "F-16C_50"
+
+[actions.gear]
+device = 0
+command = 3001
+verified = false
+values = { down = 1.0, up = 0.0 }
+
+[actions.master_arm]
+device = 0
+command = 3002
+verified = false
+values = { arm = 1.0, safe = 0.0 }
+
+[actions.comm1_preset_next]
+device = 0
+command = 3003
+momentary = true
+verified = false
+values = { press = 1.0 }

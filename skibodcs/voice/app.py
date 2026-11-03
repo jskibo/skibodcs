@@ -1,0 +1,62 @@
+"""One entry point: `python -m skibodcs.voice.app`.
+  --text    type what you'd say (no audio needed; good for testing anywhere)
+  default   joystick PTT -> Whisper -> Router -> Piper -> headset"""
+from __future__ import annotations
+import argparse
+import tomllib
+from pathlib import Path
+
+from ..llm import OllamaClient
+from .cockpit import load_table
+from .link import DCSLink
+from .router import Router
+from .state import World
+
+
+def build(cfg: dict):
+    world = World(magvar_east=cfg.get("magvar_east", 0.0))
+    if "theater" in cfg:
+        from .theater import load_theater
+        load_theater(world, cfg["theater"], cfg.get("wind_from"))
+    table = load_table(cfg["airframe_table"])
+    llm = OllamaClient(cfg["ollama"]["model"], cfg["ollama"]["host"]) if "ollama" in cfg else None
+    router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"))
+    return world, router
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="skibodcs.toml")
+    ap.add_argument("--text", action="store_true")
+    a = ap.parse_args(argv)
+    cfg = tomllib.loads(Path(a.config).read_text())
+    world, router = build(cfg)
+    link = DCSLink(world, cfg.get("telemetry_port", 14501), cfg.get("command_port", 14500))
+    link.start()
+
+    if a.text:
+        print("type what you'd say; blank line quits")
+        while (line := input("> ").strip()):
+            r = router.handle(line)
+            print(f"[{r.source}]", *r.speech, *(f"(note: {n})" for n in r.notes))
+            if r.cockpit and not link.send_all(r.cockpit):
+                print("(DCS not reachable: cockpit commands not sent)")
+        return 0
+
+    from .audio import FasterWhisperSTT, PiperTTS, PTTRecorder, play_wav, radio_fx
+    stt = FasterWhisperSTT(**cfg.get("stt", {}))
+    tts = PiperTTS(cfg["tts"]["model"])
+    ptt = PTTRecorder(**cfg.get("ptt", {}))
+    while True:
+        wav = ptt.record_while_held()
+        if not wav:
+            continue
+        r = router.handle(stt.transcribe(wav))
+        if r.cockpit:
+            link.send_all(r.cockpit)
+        for line in r.speech:
+            play_wav(radio_fx(tts.synthesize(line)))
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

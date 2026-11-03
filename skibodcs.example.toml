@@ -1,0 +1,22 @@
+callsign = "Viper 1-1"
+awacs = "Magic"
+theater = "Caucasus"           # loads airfields, runways, ATC freqs, bullseye
+wind_from = 310              # optional, degrees; picks active runway
+airframe_table = "airframes/f-16c.toml"
+magvar_east = 0.0            # set per theater; brevity bearings are magnetic
+
+[ollama]
+host = "http://MAC_STUDIO_IP:11434"
+model = "qwen3:14b"
+
+[stt]
+model = "small.en"
+device = "cpu"
+compute_type = "int8"
+
+[tts]
+model = "C:/piper/en_US-lessac-medium.onnx"
+
+[ptt]
+joystick_index = 0
+button = 0

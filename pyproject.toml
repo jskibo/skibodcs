@@ -1,16 +1,20 @@
 [project]
 name = "skibodcs"
-version = "0.1.0"
+version = "0.2.0"
 description = "Local-LLM scenario builder for DCS World (step 1: spec -> validate -> .miz)"
 requires-python = ">=3.11"
 dependencies = ["pydcs", "pydantic>=2", "pyproj"]
 
+[project.optional-dependencies]
+voice = ["faster-whisper", "sounddevice", "soundfile", "numpy", "pygame"]
+
 [project.scripts]
 skibodcs = "skibodcs.cli:main"
+skibodcs-voice = "skibodcs.voice.app:main"
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["skibodcs"]
+packages = ["skibodcs", "skibodcs.voice"]
