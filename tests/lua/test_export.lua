@@ -56,4 +56,23 @@ local bf = io.open("tests/lua/wd/skibodcs/export_loaded.txt")
 assert(bf, "beacon file written")
 local btxt = bf:read("*a"); bf:close()
 assert(btxt:find("module loaded") and btxt:find("LuaExportStart") and btxt:find("sockets ready"), btxt)
+-- the line `skibodcs install` appends to Export.lua must work when `lfs` is NOT a global (stock Export.lua uses `local lfs = require('lfs')`)
+do
+  local f = io.open("skibodcs/deploy.py"); local py = f:read("*a"); f:close()
+  local line = py:match("EXPORT_LINE = '(.-)'\n")
+  assert(line and line:find('require("lfs")', 1, true), "managed block must bring its own lfs: " .. tostring(line))
+  os.execute("mkdir -p tests/lua/wd/Scripts && cp dcs_hook/skibodcs_export.lua tests/lua/wd/Scripts/")
+  local mock_lfs = lfs
+  lfs = nil
+  package.loaded["lfs"] = nil
+  package.preload["lfs"] = function() return mock_lfs end
+  package.loaded["socket"] = nil
+  package.preload["socket"] = function() return { bind = function() return server end, udp = function() return udp end } end
+  LuaExportStart = nil
+  local chunk = assert(loadstring(line))
+  chunk()                                                  -- no global lfs here: must not throw, must load the module
+  assert(LuaExportStart, "module loaded through the managed block")
+  LuaExportStart()
+  lfs = mock_lfs
+end
 print("EXPORT LUA OK")

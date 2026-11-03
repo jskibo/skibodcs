@@ -1,8 +1,10 @@
 -- skibodcs_export.lua  (UNTESTED against a live DCS; field names follow the Export API as documented)
 -- Load from your EXISTING Saved Games\DCS\Scripts\Export.lua by appending ONE line:
---   pcall(dofile, lfs.writedir() .. [[Scripts\skibodcs_export.lua]])
+--   pcall(function() local lfs = require("lfs"); dofile(lfs.writedir() .. "Scripts/skibodcs_export.lua") end)
 -- It chains any callbacks already defined (DCS-BIOS, Tacview, SRS...) instead of replacing them,
 -- and every call is wrapped in pcall so a bug here can never take DCS down.
+
+local lfs = rawget(_G, "lfs") or require("lfs")          -- not a global in the Export state on every install
 
 local prev = {
   Start    = LuaExportStart,

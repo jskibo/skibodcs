@@ -7,7 +7,9 @@ from pathlib import Path
 
 LUA_DIR = Path(__file__).resolve().parent.parent / "dcs_hook"
 BEGIN, END = "-- >>> skibodcs (managed block; `skibodcs uninstall` removes it)", "-- <<< skibodcs"
-EXPORT_LINE = 'pcall(dofile, lfs.writedir() .. "Scripts/skibodcs_export.lua")'
+# `lfs` is NOT a global in the Export state (stock Export.lua does `local lfs = require('lfs')`); using it bare raised an error before
+# pcall ran, so the module never loaded. This line brings its own lfs and cannot break the rest of Export.lua.
+EXPORT_LINE = 'pcall(function() local lfs = require("lfs"); dofile(lfs.writedir() .. "Scripts/skibodcs_export.lua") end)'
 BACKUP = "Export.lua.skibodcs.bak"
 
 
