@@ -94,5 +94,5 @@ def test_shipped_controls_files(name, aircraft, gear_query, expect):
     assert ac == aircraft and len(cs) > 200 and len({c.id for c in cs}) == len(cs)
     idx = C.ControlIndex(cs)
     assert idx.search(gear_query, 3)[0].id == expect
-    assert any(c.danger for c in cs) and all(c.verified is False for c in cs)
+    assert any(c.danger for c in cs) and any(c.verified for c in cs) and any(not c.verified for c in cs)
     assert sum(c.kind in ("switch", "button", "multi", "axis") for c in cs) / len(cs) > 0.9

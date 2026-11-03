@@ -25,7 +25,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_option_select_pushbutton_2",
@@ -48,7 +51,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_option_select_pushbutton_3",
@@ -71,7 +77,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_option_select_pushbutton_4",
@@ -94,7 +103,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_option_select_pushbutton_5",
@@ -117,7 +129,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_adf_function_select_switch",
@@ -142,7 +157,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "ufc_comm_1_volume_control_knob",
@@ -163,7 +183,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_brightness_control_knob",
@@ -184,7 +207,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_engine_amad_fire_warning_extinguisher_light",
@@ -207,7 +233,10 @@
    "verified": false,
    "fn": "default_double_tumb",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_emission_control_pushbutton",
@@ -230,7 +259,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton",
@@ -253,7 +285,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_112",
@@ -276,7 +311,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_113",
@@ -299,7 +337,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_114",
@@ -322,7 +363,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_115",
@@ -345,7 +389,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_116",
@@ -368,7 +415,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_117",
@@ -391,7 +441,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_118",
@@ -414,7 +467,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_119",
@@ -437,7 +493,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_120",
@@ -460,7 +519,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_comm_2_volume_control_knob",
@@ -481,7 +543,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_comm_1_channel_selector_knob",
@@ -504,7 +569,10 @@
    "verified": false,
    "fn": "default_button_axis_tumb",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_comm_2_channel_selector_knob",
@@ -527,7 +595,10 @@
    "verified": false,
    "fn": "default_button_axis_tumb",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton",
@@ -550,7 +621,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_129",
@@ -573,7 +647,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_130",
@@ -596,7 +673,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_131",
@@ -619,7 +699,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_132",
@@ -642,7 +725,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_133",
@@ -665,7 +751,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_function_selector_pushbutton_134",
@@ -688,7 +777,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ir_cooling_switch",
@@ -706,14 +798,19 @@
    "positions": {
     "oride": -1.0,
     "norm": 0.0,
-    "off": 1.0
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "hmd_off_brt_knob",
@@ -734,7 +831,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "spin_recovery_switch",
@@ -758,7 +858,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "spin_recovery_switch_cover",
@@ -782,7 +885,10 @@
    "verified": false,
    "fn": "default_red_cover",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "master_caution_reset_button_press_to_reset",
@@ -805,7 +911,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hud_symbology_reject_switch",
@@ -830,7 +939,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hud_symbology_brightness_control_knob",
@@ -851,7 +963,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hud_symbology_brightness_selector_knob",
@@ -875,7 +990,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "black_level_control_knob",
@@ -896,7 +1014,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hud_video_control_switch",
@@ -921,7 +1042,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "balance_control_knob",
@@ -942,7 +1066,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "aoa_indexer_control_knob",
@@ -963,7 +1090,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "altitude_switch",
@@ -987,7 +1117,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "attitude_selector_switch",
@@ -1003,21 +1136,29 @@
    ],
    "arg": 148,
    "positions": {
-    "ins": -1.0,
+    "ins": 1.0,
     "auto": 0.0,
-    "stby": 1.0
+    "stby": -1.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "auto",
+    "stby"
+   ],
+   "inferred": [
+    "ins"
+   ]
   },
   {
    "id": "station_jettison_select_button",
    "name": "Station Jettison Select Button",
-   "kind": "other",
+   "kind": "button",
    "device": 23,
    "device_name": "SMS",
    "commands": [
@@ -1027,18 +1168,23 @@
     "SMS_commands.JettStationCntrBtn"
    ],
    "arg": 153,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "station_jettison_select_button_155",
    "name": "Station Jettison Select Button",
-   "kind": "other",
+   "kind": "button",
    "device": 23,
    "device_name": "SMS",
    "commands": [
@@ -1048,18 +1194,23 @@
     "SMS_commands.JettStationLIBtn"
    ],
    "arg": 155,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "station_jettison_select_button_157",
    "name": "Station Jettison Select Button",
-   "kind": "other",
+   "kind": "button",
    "device": 23,
    "device_name": "SMS",
    "commands": [
@@ -1069,18 +1220,23 @@
     "SMS_commands.JettStationLOBtn"
    ],
    "arg": 157,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "station_jettison_select_button_159",
    "name": "Station Jettison Select Button",
-   "kind": "other",
+   "kind": "button",
    "device": 23,
    "device_name": "SMS",
    "commands": [
@@ -1090,18 +1246,23 @@
     "SMS_commands.JettStationRIBtn"
    ],
    "arg": 159,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "station_jettison_select_button_161",
    "name": "Station Jettison Select Button",
-   "kind": "other",
+   "kind": "button",
    "device": 23,
    "device_name": "SMS",
    "commands": [
@@ -1111,13 +1272,18 @@
     "SMS_commands.JettStationROBtn"
    ],
    "arg": 161,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_mode_button",
@@ -1140,7 +1306,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_qty_button",
@@ -1163,7 +1332,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_up_arrow_button",
@@ -1186,7 +1358,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_down_arrow_button",
@@ -1209,7 +1384,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_zone_button",
@@ -1232,7 +1410,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_et_button",
@@ -1255,7 +1436,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ifei_brightness_control_knob",
@@ -1276,7 +1460,218 @@
    "verified": false,
    "fn": "default_axis",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_night_day_brightness_selector",
+   "name": "AMPCD Night/Day Brightness Selector",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_nite_day_NGT"
+   ],
+   "arg": 177,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_negative",
+   "note": "negative (down/decrease) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_night_day_brightness_selector_177",
+   "name": "AMPCD Night/Day Brightness Selector",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_nite_day_DAY"
+   ],
+   "arg": 177,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_positive",
+   "note": "positive (up/increase) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_symbology_control_switch",
+   "name": "AMPCD Symbology Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_symbology_DOWN"
+   ],
+   "arg": 179,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_negative",
+   "note": "negative (down/decrease) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_symbology_control_switch_179",
+   "name": "AMPCD Symbology Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_symbology_UP"
+   ],
+   "arg": 179,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_positive",
+   "note": "positive (up/increase) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_gain_control_switch",
+   "name": "AMPCD Gain Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_gain_DOWN"
+   ],
+   "arg": 180,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_negative",
+   "note": "negative (down/decrease) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_gain_control_switch_180",
+   "name": "AMPCD Gain Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_gain_UP"
+   ],
+   "arg": 180,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_positive",
+   "note": "positive (up/increase) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_contrast_control_switch",
+   "name": "AMPCD Contrast Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_contrast_DOWN"
+   ],
+   "arg": 182,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_negative",
+   "note": "negative (down/decrease) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "ampcd_contrast_control_switch_182",
+   "name": "AMPCD Contrast Control Switch",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_contrast_UP"
+   ],
+   "arg": 182,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "AMPCD_switch_positive",
+   "note": "positive (up/increase) side of a rocker",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_1",
@@ -1299,7 +1694,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_2",
@@ -1322,7 +1720,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_3",
@@ -1345,7 +1746,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_4",
@@ -1368,7 +1772,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_5",
@@ -1391,7 +1798,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_6",
@@ -1414,7 +1824,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_7",
@@ -1437,7 +1850,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_8",
@@ -1460,7 +1876,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_9",
@@ -1483,7 +1902,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_10",
@@ -1506,7 +1928,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_11",
@@ -1529,7 +1954,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_12",
@@ -1552,7 +1980,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_13",
@@ -1575,7 +2006,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_14",
@@ -1598,7 +2032,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_15",
@@ -1621,7 +2058,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_16",
@@ -1644,7 +2084,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_17",
@@ -1667,7 +2110,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_18",
@@ -1690,7 +2136,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_19",
@@ -1713,7 +2162,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_pb_20",
@@ -1736,7 +2188,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ampcd_off_brightness_control_knob",
@@ -1757,7 +2212,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "sai_cage_knob",
@@ -1780,7 +2238,10 @@
    "verified": false,
    "fn": "custom:class_type.BTN,class_type.LEV",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "sai_test_button_push_to_test",
@@ -1803,7 +2264,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "rwr_intensity_knob",
@@ -1824,7 +2288,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "aau_52_altimeter_pressure_setting_knob",
@@ -1845,7 +2312,10 @@
    "verified": false,
    "fn": "default_axis",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "landing_gear_control_handle",
@@ -1868,7 +2338,10 @@
    "verified": false,
    "fn": "LDG_Gear_Control_Handle",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "down_lock_override_button_push_to_unlock",
@@ -1891,7 +2364,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "warning_tone_silence_button_push_to_silence",
@@ -1914,7 +2390,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "launch_bar_control_switch",
@@ -1937,7 +2416,10 @@
    "verified": false,
    "fn": "default_button2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "flap_switch",
@@ -1953,16 +2435,23 @@
    ],
    "arg": 234,
    "positions": {
-    "auto": -1.0,
+    "auto": 1.0,
     "half": 0.0,
-    "full": 1.0
+    "full": -1.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "auto",
+    "full",
+    "half"
+   ],
+   "inferred": []
   },
   {
    "id": "selective_jettison_pushbutton",
@@ -1985,7 +2474,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "selective_jettison_knob",
@@ -2012,7 +2504,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ldg_taxi_light_switch",
@@ -2028,15 +2523,22 @@
    ],
    "arg": 237,
    "positions": {
-    "on": 0.0,
-    "off": 1.0
+    "on": 1.0,
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": [
+    "on"
+   ]
   },
   {
    "id": "anti_skid_switch",
@@ -2052,15 +2554,22 @@
    ],
    "arg": 238,
    "positions": {
-    "on": 0.0,
-    "off": 1.0
+    "on": 1.0,
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "on"
+   ],
+   "inferred": [
+    "off"
+   ]
   },
   {
    "id": "hook_bypass_switch",
@@ -2084,7 +2593,10 @@
    "verified": false,
    "fn": "springloaded_2_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "emergency_parking_brake_handle",
@@ -2109,7 +2621,10 @@
    "verified": false,
    "fn": "custom:class_type.BTN,class_type.TUMB,class_type.LEV",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ecm_mode_switch",
@@ -2136,7 +2651,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "auxiliary_release_switch",
@@ -2152,15 +2670,22 @@
    ],
    "arg": 258,
    "positions": {
-    "enable": 0.0,
-    "norm": 1.0
+    "enable": 1.0,
+    "norm": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "enable"
+   ]
   },
   {
    "id": "rudder_pedal_adjust_lever",
@@ -2183,7 +2708,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_dis_type_switch",
@@ -2210,7 +2738,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_dmr_control_knob",
@@ -2231,7 +2762,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_bit_pushbutton",
@@ -2254,7 +2788,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_offset_pushbutton",
@@ -2277,7 +2814,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_engine_amad_fire_warning_extinguisher_ligh",
@@ -2300,7 +2840,10 @@
    "verified": false,
    "fn": "default_double_tumb",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_special_pushbutton",
@@ -2323,7 +2866,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_display_pushbutton",
@@ -2346,7 +2892,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "alr_67_power_pushbutton",
@@ -2370,7 +2919,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "push_to_test_switch",
@@ -2393,7 +2945,10 @@
    "verified": false,
    "fn": "default_button_axis_extended",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "arresting_hook_handle",
@@ -2409,15 +2964,22 @@
    ],
    "arg": 293,
    "positions": {
-    "up": 0.0,
-    "down": 1.0
+    "up": 1.0,
+    "down": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "up"
+   ],
+   "inferred": [
+    "down"
+   ]
   },
   {
    "id": "wing_fold_control_handle",
@@ -2440,7 +3002,10 @@
    "verified": false,
    "fn": "custom:class_type.TUMB,class_type.TUMB,class_type.LEV",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "av_cool_switch",
@@ -2463,12 +3028,15 @@
    "verified": false,
    "fn": "default_button2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "apu_fire_warning_extinguisher_light",
    "name": "APU Fire Warning/Extinguisher Light",
-   "kind": "other",
+   "kind": "button",
    "device": 12,
    "device_name": "ENGINES_INTERFACE",
    "commands": [
@@ -2478,13 +3046,18 @@
     "engines_commands.APU_FireSw"
    ],
    "arg": 30,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "heading_set_switch",
@@ -2510,7 +3083,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "course_set_switch",
@@ -2536,7 +3112,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "fire_and_bleed_air_test_switch",
@@ -2562,7 +3141,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ground_power_switch_1",
@@ -2588,7 +3170,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ground_power_switch_2",
@@ -2614,7 +3199,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ground_power_switch_3",
@@ -2640,7 +3228,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ground_power_switch_4",
@@ -2666,7 +3257,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "external_power_switch",
@@ -2689,7 +3283,10 @@
    "verified": false,
    "fn": "default_button_tumb_v2",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "formation_lights_dimmer_control",
@@ -2710,7 +3307,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "position_lights_dimmer_control",
@@ -2731,7 +3331,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "strobe_lights_switch",
@@ -2756,7 +3359,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "internal_wing_tank_fuel_control_switch",
@@ -2772,15 +3380,22 @@
    ],
    "arg": 340,
    "positions": {
-    "inhibit": 0.0,
-    "norm": 1.0
+    "inhibit": 1.0,
+    "norm": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "inhibit"
+   ]
   },
   {
    "id": "probe_control_switch",
@@ -2805,7 +3420,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "retract"
+   ],
+   "inferred": []
   },
   {
    "id": "external_wing_tanks_fuel_control_switch",
@@ -2830,7 +3450,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": []
   },
   {
    "id": "external_centerline_tank_fuel_control_switch",
@@ -2855,7 +3480,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": []
   },
   {
    "id": "fuel_dump_switch",
@@ -2878,7 +3508,10 @@
    "verified": false,
    "fn": "default_button2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "rud_trim_control",
@@ -2899,7 +3532,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "t_o_trim_button",
@@ -2922,7 +3558,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "gain_switch",
@@ -2943,10 +3582,17 @@
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "oride"
+   ]
   },
   {
    "id": "gain_switch_cover",
@@ -2970,7 +3616,10 @@
    "verified": false,
    "fn": "default_red_cover",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "fcs_reset_button",
@@ -2993,7 +3642,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "comm_relay_switch",
@@ -3018,7 +3670,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "comm_g_xmt_switch",
@@ -3043,7 +3700,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "ils_channel_selector_switch",
@@ -3085,7 +3747,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ils_ufc_man_switch",
@@ -3101,15 +3766,22 @@
    ],
    "arg": 353,
    "positions": {
-    "ufc": 0.0,
-    "man": 1.0
+    "ufc": 1.0,
+    "man": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "ufc"
+   ],
+   "inferred": [
+    "man"
+   ]
   },
   {
    "id": "crypto_switch",
@@ -3135,7 +3807,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "iff_mode_4_switch",
@@ -3160,7 +3835,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "iff_master_switch",
@@ -3176,15 +3854,22 @@
    ],
    "arg": 356,
    "positions": {
-    "emer": 0.0,
-    "norm": 1.0
+    "emer": 1.0,
+    "norm": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "emer"
+   ]
   },
   {
    "id": "vox_volume_control_knob",
@@ -3205,7 +3890,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ics_volume_control_knob",
@@ -3226,7 +3914,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "rwr_volume_control_knob",
@@ -3247,7 +3938,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "wpn_volume_control_knob",
@@ -3268,7 +3962,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "mids_b_volume_control_knob",
@@ -3289,7 +3986,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "mids_a_volume_control_knob",
@@ -3310,7 +4010,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "tacan_volume_control_knob",
@@ -3331,7 +4034,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "aux_volume_control_knob",
@@ -3352,7 +4058,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "obogs_control_switch",
@@ -3368,15 +4077,21 @@
    ],
    "arg": 365,
    "positions": {
-    "on": 0.0,
-    "off": 1.0
+    "on": 1.0,
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off",
+    "on"
+   ],
+   "inferred": []
   },
   {
    "id": "oxy_flow_knob",
@@ -3397,7 +4112,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "mc_switch",
@@ -3423,7 +4141,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hydraulic_isolate_override_switch",
@@ -3444,10 +4165,17 @@
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "oride"
+   ]
   },
   {
    "id": "comm_1_antenna_selector_switch",
@@ -3472,7 +4200,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "auto"
+   ],
+   "inferred": []
   },
   {
    "id": "iff_antenna_selector_switch",
@@ -3497,7 +4230,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "apu_control_switch",
@@ -3520,7 +4256,10 @@
    "verified": false,
    "fn": "default_button2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "engine_crank_switch",
@@ -3546,7 +4285,10 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb2",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "generator_tie_control_switch",
@@ -3567,10 +4309,17 @@
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "reset"
+   ]
   },
   {
    "id": "generator_tie_control_switch_cover",
@@ -3594,7 +4343,10 @@
    "verified": false,
    "fn": "default_red_cover",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "dispense_button_push_to_dispense_flares_and_chaf",
@@ -3617,7 +4369,114 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_fcs_chan_1",
+   "name": "CB FCS CHAN 1",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "elec_commands.CB_FCS_CHAN1"
+   ],
+   "arg": 381,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_fcs_chan_2",
+   "name": "CB FCS CHAN 2",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "elec_commands.CB_FCS_CHAN2"
+   ],
+   "arg": 382,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_spd_brk",
+   "name": "CB SPD BRK",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "elec_commands.CB_SPD_BRK"
+   ],
+   "arg": 383,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_launch_bar",
+   "name": "CB LAUNCH BAR",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "elec_commands.CB_LAUNCH_BAR"
+   ],
+   "arg": 384,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_generator_control_switch",
@@ -3633,15 +4492,22 @@
    ],
    "arg": 402,
    "positions": {
-    "norm": 0.0,
-    "off": 1.0
+    "norm": 1.0,
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "off"
+   ]
   },
   {
    "id": "right_generator_control_switch",
@@ -3657,15 +4523,22 @@
    ],
    "arg": 403,
    "positions": {
-    "norm": 0.0,
-    "off": 1.0
+    "norm": 1.0,
+    "off": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": [
+    "off"
+   ]
   },
   {
    "id": "battery_switch",
@@ -3681,16 +4554,24 @@
    ],
    "arg": 404,
    "positions": {
-    "on": -1.0,
+    "on": 1.0,
     "off": 0.0,
-    "oride": 1.0
+    "oride": -1.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off",
+    "on"
+   ],
+   "inferred": [
+    "oride"
+   ]
   },
   {
    "id": "ecs_mode_switch",
@@ -3715,7 +4596,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "suit_temperature_knob",
@@ -3736,7 +4620,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "cabin_temperature_knob",
@@ -3757,7 +4644,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "cabin_pressure_switch",
@@ -3782,7 +4672,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "pitot_heater_switch",
@@ -3798,15 +4691,22 @@
    ],
    "arg": 409,
    "positions": {
-    "on": 0.0,
-    "auto": 1.0
+    "on": 1.0,
+    "auto": 0.0
    },
    "momentary": true,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "springloaded_2_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "auto"
+   ],
+   "inferred": [
+    "on"
+   ]
   },
   {
    "id": "engine_anti_ice_switch",
@@ -3831,7 +4731,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "bleed_air_knob",
@@ -3848,7 +4753,7 @@
    "arg": 411,
    "positions": {
     "r off": 0.0,
-    "norm": 0.1,
+    "norm": 0.2,
     "l off": 0.2,
     "off": 0.3
    },
@@ -3857,7 +4762,12 @@
    "verified": false,
    "fn": "multiposition_switch_cl",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "norm"
+   ],
+   "inferred": []
   },
   {
    "id": "bleed_air_knob_412",
@@ -3880,7 +4790,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "consoles_lights_dimmer_control",
@@ -3901,7 +4814,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "inst_pnl_dimmer_control",
@@ -3922,7 +4838,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "flood_light_dimmer_control",
@@ -3943,7 +4862,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "lights_test_switch",
@@ -3959,15 +4881,22 @@
    ],
    "arg": 416,
    "positions": {
-    "test": 0.0,
-    "off": 1.0
+    "test": 1.0,
+    "off": 0.0
    },
    "momentary": true,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "springloaded_2_pos_tumb2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "test"
+   ],
+   "inferred": [
+    "off"
+   ]
   },
   {
    "id": "warn_caution_dimmer_control",
@@ -3988,7 +4917,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "chart_light_dimmer_control",
@@ -4009,7 +4941,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "mode_switch",
@@ -4034,7 +4969,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "canopy_jettison_handle_pull_to_jettison",
@@ -4058,7 +4996,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "canopy_jettison_handle_unlock_button_press_to_un",
@@ -4081,7 +5022,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "flir_switch",
@@ -4106,7 +5050,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "radar_switch_mw_to_pull",
@@ -4129,7 +5076,10 @@
    "verified": false,
    "fn": "multiposition_switch_with_pull",
    "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ltd_r_switch",
@@ -4153,7 +5103,10 @@
    "verified": false,
    "fn": "springloaded_2_pos_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "lst_nflr_switch",
@@ -4177,7 +5130,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ins_switch",
@@ -4207,7 +5163,13 @@
    "verified": false,
    "fn": "multiposition_switch_cl",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "nav",
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "ky_58_mode_select_knob",
@@ -4233,7 +5195,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ky_58_volume_control_knob",
@@ -4254,7 +5219,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ky_58_fill_select_knob",
@@ -4284,7 +5252,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ky_58_power_select_knob",
@@ -4309,7 +5280,10 @@
    "verified": false,
    "fn": "multiposition_switch",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "defog_handle",
@@ -4330,7 +5304,10 @@
    "verified": false,
    "fn": "default_movable_axis",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "windshield_anti_ice_rain_switch",
@@ -4355,7 +5332,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "canopy_control_switch",
@@ -4381,7 +5363,114 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_fcs_chan_3",
+   "name": "CB FCS CHAN 3",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "elec_commands.CB_FCS_CHAN3"
+   ],
+   "arg": 454,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_fcs_chan_4",
+   "name": "CB FCS CHAN 4",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "elec_commands.CB_FCS_CHAN4"
+   ],
+   "arg": 455,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_hook",
+   "name": "CB HOOK",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "elec_commands.CB_HOOK"
+   ],
+   "arg": 456,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
+  },
+  {
+   "id": "cb_lg",
+   "name": "CB LG",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "elec_commands.CB_LG"
+   ],
+   "arg": 457,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_CB_button",
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "master_mode_button",
@@ -4404,7 +5493,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "master_mode_button_459",
@@ -4427,7 +5519,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "fire_extinguisher_pushbutton",
@@ -4450,7 +5545,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "fcs_bit_switch",
@@ -4473,7 +5571,10 @@
    "verified": false,
    "fn": "default_button2",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "weapon_release_button",
@@ -4496,7 +5597,10 @@
    "verified": false,
    "fn": "limit_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "recce_event_mark_switch",
@@ -4519,7 +5623,10 @@
    "verified": false,
    "fn": "limit_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_121",
@@ -4542,7 +5649,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_keyboard_pushbutton_122",
@@ -4565,7 +5675,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "undesignate_nose_wheel_steer_switch",
@@ -4588,7 +5701,10 @@
    "verified": false,
    "fn": "limit_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "autopilot_nosewheel_steering_disengage_paddle_sw",
@@ -4611,7 +5727,10 @@
    "verified": false,
    "fn": "limit_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "master_arm_switch",
@@ -4627,15 +5746,22 @@
    ],
    "arg": 49,
    "positions": {
-    "arm": 0.0,
-    "safe": 1.0
+    "arm": 1.0,
+    "safe": 0.0
    },
    "momentary": false,
    "danger": false,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "safe"
+   ],
+   "inferred": [
+    "arm"
+   ]
   },
   {
    "id": "exterior_lights_switch",
@@ -4659,7 +5785,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "emergency_jettison_button",
@@ -4682,7 +5811,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "throttles_friction_adjusting_lever",
@@ -4703,7 +5835,10 @@
    "verified": false,
    "fn": "default_movable_axis",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_louver",
@@ -4724,7 +5859,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_louver",
@@ -4745,7 +5883,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_brightness_selector_knob",
@@ -4761,7 +5902,7 @@
    ],
    "arg": 51,
    "positions": {
-    "off": -1.0,
+    "off": 0.0,
     "night": 0.0,
     "day": 1.0
    },
@@ -4770,7 +5911,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "ejection_control_handle_3_times",
@@ -4793,7 +5939,10 @@
    "verified": false,
    "fn": "default_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ejection_seat_safe_armed_handle",
@@ -4809,15 +5958,21 @@
    ],
    "arg": 511,
    "positions": {
-    "safe": 0.0,
-    "armed": 1.0
+    "safe": 1.0,
+    "armed": 0.0
    },
    "momentary": false,
    "danger": true,
-   "verified": false,
+   "verified": true,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "armed",
+    "safe"
+   ],
+   "inferred": []
   },
   {
    "id": "ejection_seat_manual_override_handle",
@@ -4841,7 +5996,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "shoulder_harness_control_handle",
@@ -4865,7 +6023,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "seat_height_adjustment_switch",
@@ -4891,12 +6052,15 @@
    "verified": false,
    "fn": "springloaded_3_pos_tumb",
    "note": "two-command spring switch; direction naming unverified",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ecm_jett_jett_sel_button_push_to_jettison",
    "name": "ECM JETT JETT SEL Button - Push to jettison",
-   "kind": "other",
+   "kind": "button",
    "device": 54,
    "device_name": "CMDS",
    "commands": [
@@ -4906,13 +6070,18 @@
     "cmds_commands.EcmJett"
    ],
    "arg": 515,
-   "positions": {},
-   "momentary": false,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
    "danger": true,
    "verified": false,
    "fn": "push_button_tumb",
-   "note": "composite control; not exposed to voice yet",
-   "aliases": []
+   "note": "",
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "dispenser_switch",
@@ -4937,7 +6106,10 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_brightness_control_knob",
@@ -4958,7 +6130,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_contrast_control_knob",
@@ -4979,7 +6154,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_1",
@@ -5002,7 +6180,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_2",
@@ -5025,7 +6206,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_3",
@@ -5048,7 +6232,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_4",
@@ -5071,7 +6258,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "hide_stick_toggle",
@@ -5095,7 +6285,10 @@
    "verified": false,
    "fn": "default_2_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_5",
@@ -5118,7 +6311,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_6",
@@ -5141,7 +6337,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_7",
@@ -5164,7 +6363,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_8",
@@ -5187,7 +6389,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_9",
@@ -5210,7 +6415,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_10",
@@ -5233,7 +6441,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_11",
@@ -5256,7 +6467,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_12",
@@ -5279,7 +6493,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_13",
@@ -5302,7 +6519,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_14",
@@ -5325,7 +6545,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_15",
@@ -5348,7 +6571,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_16",
@@ -5371,7 +6597,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_17",
@@ -5394,7 +6623,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_18",
@@ -5417,7 +6649,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_19",
@@ -5440,7 +6675,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "left_mdi_pb_20",
@@ -5463,7 +6701,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_brightness_selector_knob",
@@ -5479,7 +6720,7 @@
    ],
    "arg": 76,
    "positions": {
-    "off": -1.0,
+    "off": 0.0,
     "night": 0.0,
     "day": 1.0
    },
@@ -5488,7 +6729,12 @@
    "verified": false,
    "fn": "default_3_position_tumb",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [
+    "off"
+   ],
+   "inferred": []
   },
   {
    "id": "right_mdi_brightness_control_knob",
@@ -5509,7 +6755,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_contrast_control_knob",
@@ -5530,7 +6779,10 @@
    "verified": false,
    "fn": "default_axis_limited",
    "note": "continuous 0..1; say a percentage",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_1",
@@ -5553,7 +6805,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_2",
@@ -5576,7 +6831,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_3",
@@ -5599,7 +6857,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_4",
@@ -5622,7 +6883,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_5",
@@ -5645,7 +6909,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_6",
@@ -5668,7 +6935,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_7",
@@ -5691,7 +6961,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_8",
@@ -5714,7 +6987,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_9",
@@ -5737,7 +7013,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_10",
@@ -5760,7 +7039,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_11",
@@ -5783,7 +7065,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_12",
@@ -5806,7 +7091,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_13",
@@ -5829,7 +7117,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_14",
@@ -5852,7 +7143,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_15",
@@ -5875,7 +7169,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_16",
@@ -5898,7 +7195,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_17",
@@ -5921,7 +7221,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_18",
@@ -5944,7 +7247,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_19",
@@ -5967,7 +7273,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "right_mdi_pb_20",
@@ -5990,7 +7299,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   },
   {
    "id": "ufc_i_p_pushbutton",
@@ -6013,7 +7325,10 @@
    "verified": false,
    "fn": "short_way_button",
    "note": "",
-   "aliases": []
+   "aliases": [],
+   "crew": "",
+   "confirmed": [],
+   "inferred": []
   }
  ]
 }

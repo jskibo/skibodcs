@@ -32,6 +32,9 @@ class Control:
     fn: str = ""
     note: str = ""
     aliases: list[str] = field(default_factory=list)
+    crew: str = ""                 # AH-64D: PLT or CPG ('' = single-seat / shared)
+    confirmed: list[str] = field(default_factory=list)   # positions with a value taken from ED's autostart data
+    inferred: list[str] = field(default_factory=list)    # positions deduced from a confirmed one (2/3-position switches)
 
     def to_json(self) -> dict:
         return asdict(self)
@@ -64,8 +67,17 @@ def classify(e: dict) -> Control | None:
     p = e.get("params") or []
     arg = int(p[0]) if p else (e["args"][0] if e.get("args") else 0)
     c = Control(id="", name=name or hint, kind="other", device=int(e["device"]), device_name=e.get("device_name", ""),
-                commands=[int(x["id"]) for x in cmds], command_names=[x["name"] for x in cmds], arg=arg, fn=fn)
+                commands=[int(x["id"]) for x in cmds], command_names=[x["name"] for x in cmds], arg=arg, fn=fn,
+                crew=(e.get("crew") or ""))
     l = fn.lower()
+    if "rocker_switch" in l or l.endswith("_switch_negative") or l.endswith("_switch_positive") \
+            or "push_button" in l or "pushbutton" in l:
+        c.kind, c.positions, c.momentary = "button", {"press": 1.0}, True
+        if l.endswith("negative"):
+            c.note = "negative (down/decrease) side of a rocker"
+        elif l.endswith("positive"):
+            c.note = "positive (up/increase) side of a rocker"
+        return _finish(c)
     if fn.startswith("custom:") or any(k in l for k in ("double_tumb", "tumb_button", "button_knob", "button_axis",
                                                           "button_tumb", "pull", "gear_control")):
         c.note = "composite control; not exposed to voice yet"
@@ -76,7 +88,7 @@ def classify(e: dict) -> Control | None:
         mn = float(p[3]) if len(p) > 3 else 0.0
         names = _names(toks, count)
         c.kind, c.positions = "multi", {n: round(mn + i * delta, 4) for i, n in enumerate(names)}
-    elif "axis" in l:
+    elif "axis" in l or "rheostat" in l or l == "default_lever":
         c.kind, c.positions = "axis", {}
         c.note = "continuous 0..1; say a percentage"
     elif "button" in l:
@@ -111,7 +123,7 @@ def classify(e: dict) -> Control | None:
 
 def _finish(c: Control) -> Control:
     c.danger = bool(DANGER.search(c.name + " " + " ".join(c.positions)))
-    c.id = _slug(c.name) or f"ctl_{c.device}_{c.commands[0]}"
+    c.id = _slug((c.crew + " " if c.crew else "") + c.name) or f"ctl_{c.device}_{c.commands[0]}"
     return c
 
 
@@ -130,6 +142,24 @@ def build_controls(elements: list[dict]) -> list[Control]:
         seen[c.id] = 1
         out.append(c)
     return out
+
+
+def apply_macros(controls: list[Control], observed: dict) -> int:
+    """Pin position values to what ED's autostart uses. Returns how many controls got at least one confirmed position."""
+    from .macros import apply_observed
+    n = 0
+    for c in controls:
+        if c.kind not in ("switch", "multi") or len(c.commands) != 1 or not c.positions:
+            continue
+        obs = observed.get((c.device, c.commands[0]))
+        if not obs:
+            continue
+        pos, conf, inf = apply_observed(c.positions, obs)
+        if conf:
+            c.positions, c.confirmed, c.inferred = pos, sorted(conf), sorted(inf)
+            c.verified = set(pos) <= (conf | inf)
+            n += 1
+    return n
 
 
 def save(controls: list[Control], aircraft: str, path: str | Path, source: str = ""):
@@ -204,8 +234,9 @@ def doc_tokens(text: str) -> list[str]:
 
 
 class ControlIndex:
-    def __init__(self, controls: list[Control]):
-        self.controls = [c for c in controls if c.kind != "other"]
+    def __init__(self, controls: list[Control], crew: str = ""):
+        self.crew = crew
+        self.controls = [c for c in controls if c.kind != "other" and (not crew or not c.crew or c.crew == crew)]
         self.by_id = {c.id: c for c in self.controls}
         self._docs = [doc_tokens(c.name + " " + " ".join(c.positions) + " " + c.device_name.replace("_", " ")
                                  + " " + " ".join(getattr(c, "aliases", []) or []))
@@ -227,7 +258,7 @@ class ControlIndex:
                                          device=a.device, device_name="", commands=[a.command], command_names=[],
                                          arg=a.arg, positions=dict(a.values), momentary=a.momentary, verified=a.verified,
                                          aliases=aliases.get(name, [])))
-        self.__init__(self.controls)
+        self.__init__(self.controls, self.crew)
 
     def search(self, text: str, k: int = 12) -> list[Control]:
         q = tokens(text)

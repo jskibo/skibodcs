@@ -48,14 +48,9 @@ local function recorder(fname, ...)
   return el
 end
 
-setmetatable(_G, { __index = function(_, k)
-  if k:match("^[a-z_0-9]+$") and (k:match("^default_") or k:match("^springloaded_") or k:match("_switch")
-      or k:match("_tumb") or k:match("_button") or k:match("_handle") or k:match("_lever") or k:match("^LDG_")
-      or k:match("^short_way") or k:match("^multi") or k:match("axis")) or k:match("^LDG_") then
-    return any_obj(k, recorder)
-  end
-  return any_obj(k)
-end })
+-- Every unknown global is callable AND records the call: ED's helper names vary per module
+-- (default_*, springloaded_*, mpd_button, lighted_pushbutton...), constants are simply never called.
+setmetatable(_G, { __index = function(_, k) return any_obj(k, recorder) end })
 
 local loaded = {}
 dofile = function(path)
@@ -106,12 +101,17 @@ table.sort(keys)
 for _, key in ipairs(keys) do
   local el = elements[key]
   local fn, hint, device, cmds, nums, params = "", "", nil, {}, {}, {}
+  local crew = nil
   if records[el] then                              -- helper-built element
     fn = el.fn
     local a = el.args
-    hint = type(a[1]) == "string" and a[1] or ""
-    if type(a[2]) == "number" then device = a[2] end
-    for i = 3, #a do
+    -- AH-64D helpers take a crew selector first (CREW.PLT / CREW.CPG); others start with the hint string
+    if is_any(a[1]) and tostring(rawget(a[1], "__any")):match("^CREW%.") then crew = tostring(rawget(a[1], "__any")):gsub("^CREW%.", "") end
+    local hi = 1
+    while a[hi] ~= nil and type(a[hi]) ~= "string" and hi < 3 do hi = hi + 1 end
+    hint = type(a[hi]) == "string" and a[hi] or ""
+    if type(a[hi + 1]) == "number" then device = a[hi + 1] end
+    for i = hi + 2, #a do
       local v = a[i]
       if is_tag(v) then cmds[#cmds + 1] = v
       elseif type(v) == "number" and v >= 1 and v < 3000 and #nums < 3 and math.floor(v) == v then nums[#nums + 1] = v end
@@ -135,8 +135,8 @@ for _, key in ipairs(keys) do
   local nj, pj = {}, {}
   for _, n in ipairs(nums) do nj[#nj + 1] = jnum(n) end
   for _, n in ipairs(params) do pj[#pj + 1] = jnum(n) end
-  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s],"params":[%s]}',
+  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s],"params":[%s],"crew":%s}',
     jstr(key), jstr(fn), jstr(hint), device and jnum(device) or "null",
-    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","), table.concat(pj, ","))
+    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","), table.concat(pj, ","), crew and jstr(crew) or "null")
 end
 io.write("[", table.concat(out, ",\n"), "]\n")

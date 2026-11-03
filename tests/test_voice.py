@@ -86,8 +86,8 @@ def test_compound_cockpit_commands_resolve_to_ids():
         {"domain": "cockpit", "intent": "", "action": "master_arm", "value": "safe", "addressed_to": "", "emergency": False}]})
     r = Router(FakeLLM(reply), load_table(AF), world())
     res = r.handle("drop the wheels and safe the master arm")
-    assert res.cockpit == [(7, 3001, 1.0), (19, 3002, 0.0)]      # real ids from ED's files
-    assert any("UNVERIFIED" in n for n in res.notes)
+    assert res.cockpit == [(7, 3001, 0.0), (19, 3002, 0.0)]      # ids AND values from ED's files (gear DN = 0.0)
+    assert res.notes == []                                          # both values are in ED's autostart data: no warning
 
 
 def test_invalid_action_rejected_not_executed():
@@ -117,3 +117,10 @@ def test_momentary_sends_release():
 def test_emergency_inbound():
     s = comms.atc_inbound(world(), "Viper 1-1", emergency=True)
     assert "cleared to land" in s and "number one" in s and "three one" in s
+
+
+def test_unconfirmed_value_still_warns():
+    reply = json.dumps({"commands": [{"domain": "cockpit", "intent": "", "action": "master_arm", "value": "arm",
+                                      "addressed_to": "", "emergency": False}]})
+    res = Router(FakeLLM(reply), load_table(AF), world()).handle("arm the jet")
+    assert res.cockpit == [(19, 3002, 1.0)] and any("UNVERIFIED" in n for n in res.notes)    # F-16 'arm' is a guess

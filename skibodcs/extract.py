@@ -10,23 +10,33 @@ import subprocess
 from pathlib import Path
 
 EXTRACTOR = Path(__file__).resolve().parent.parent / "tools" / "extract_clickables.lua"
+MACRO_EXTRACTOR = Path(__file__).resolve().parent.parent / "tools" / "extract_macros.lua"
 
-# (command name as it appears in command_defs, values, momentary).  Values are PROVISIONAL:
-# which arg value means "down"/"arm" is not stated in these files; verify in the sim (verified=false).
-WISHLIST: dict[str, dict[str, tuple[str, dict[str, float], bool]]] = {
+# action -> (command name in command_defs, {position: PROVISIONAL value}, momentary, {position: label ED uses in its autostart text})
+# Provisional values are only a starting point: positions that ED's own Macro_sequencies.lua exercises are overwritten
+# with the game's real values (and recorded as `confirmed`). Hint order carries NO reliable polarity (checked).
+WISHLIST: dict[str, dict[str, tuple]] = {
     "F-16C_50": {
-        "gear":        ("gear_commands.LGHandle",   {"down": 1.0, "up": 0.0}, False),
-        "hook":        ("gear_commands.HookSw",     {"down": 1.0, "up": 0.0}, False),
-        "master_arm":  ("mmc_commands.MasterArmSw", {"arm": 1.0, "safe": 0.0, "simulate": -1.0}, False),
-        "ufc_com1":    ("ufc_commands.COM1",        {"press": 1.0}, True),
-        "ufc_com2":    ("ufc_commands.COM2",        {"press": 1.0}, True),
+        "gear":        ("gear_commands.LGHandle",   {"down": 0.0, "up": 1.0}, False, {}),
+        "hook":        ("gear_commands.HookSw",     {"down": 0.0, "up": 1.0}, False, {}),
+        "master_arm":  ("mmc_commands.MasterArmSw", {"arm": 1.0, "safe": 0.0, "simulate": -1.0}, False, {"safe": "off", "arm": "master arm"}),
+        "ufc_com1":    ("ufc_commands.COM1",        {"press": 1.0}, True, {}),
+        "ufc_com2":    ("ufc_commands.COM2",        {"press": 1.0}, True, {}),
     },
     "FA-18C_hornet": {
-        "gear":           ("gear_commands.GearHandle",     {"down": 1.0, "up": 0.0}, False),
-        "hook":           ("gear_commands.HookHandle",     {"down": 1.0, "up": 0.0}, False),
-        "master_arm":     ("SMS_commands.MasterArmSw",     {"arm": 1.0, "safe": 0.0}, False),
-        "master_mode_aa": ("SMS_commands.AA_MasterModeSw", {"press": 1.0}, True),
-        "master_mode_ag": ("SMS_commands.AG_MasterModeSw", {"press": 1.0}, True),
+        "gear":           ("gear_commands.GearHandle",     {"down": 0.0, "up": 1.0}, False, {}),
+        "hook":           ("gear_commands.HookHandle",     {"down": 0.0, "up": 1.0}, False, {}),
+        "master_arm":     ("SMS_commands.MasterArmSw",     {"arm": 1.0, "safe": 0.0}, False, {}),
+        "master_mode_aa": ("SMS_commands.AA_MasterModeSw", {"press": 1.0}, True, {}),
+        "master_mode_ag": ("SMS_commands.AG_MasterModeSw", {"press": 1.0}, True, {}),
+    },
+    "AH-64D_BLK_II": {
+        "parking_brake":   ("gear_commands.AH64_ParkingBrake",     {"set": 1.0, "release": 0.0}, False, {}),
+        "rotor_brake":     ("hydraulic_commands.Rotor_Brake",      {"off": 1.0, "brk": 0.0, "lock": -1.0}, False, {}),
+        "master_ignition": ("electric_commands.MIK",               {"off": 0.0, "batt": 0.5, "ext pwr": 1.0}, False, {}),
+        "apu_start":       ("engine_commands.APU_StartBtn",        {"press": 1.0}, True, {}),
+        "engine1_start":   ("engine_commands.Eng1StartSw",         {"press": 1.0}, True, {}),
+        "engine2_start":   ("engine_commands.Eng2StartSw",         {"press": 1.0}, True, {}),
     },
 }
 
@@ -38,14 +48,15 @@ def _find_lua() -> str | None:
     return None
 
 
-def run_extractor(devices: Path, commands: Path, clickable: Path) -> list[dict]:
+def run_lua_script(script: Path, files: tuple) -> str:
+    """Run one of tools/*.lua over (devices, commands, third) files; returns its stdout."""
     lua = _find_lua()
-    args = [str(Path(p).resolve()) for p in (devices, commands, clickable)]
+    args = [str(Path(p).resolve()) for p in files]
     if lua:
-        r = subprocess.run([lua, str(EXTRACTOR), *args], capture_output=True, text=True)
+        r = subprocess.run([lua, str(script), *args], capture_output=True, text=True)
         if r.returncode != 0:
-            raise RuntimeError(f"extractor failed: {r.stderr.strip()[:500]}")
-        return json.loads(r.stdout)
+            raise RuntimeError(f"{script.name} failed: {r.stderr.strip()[:500]}")
+        return r.stdout
     try:                                                    # fallback: pip install lupa
         import lupa
     except ImportError as e:
@@ -53,8 +64,16 @@ def run_extractor(devices: Path, commands: Path, clickable: Path) -> list[dict]:
     rt = lupa.LuaRuntime(unpack_returned_tuples=True)
     rt.execute("__out = {}; io.write = function(...) for _, v in ipairs({...}) do __out[#__out+1] = tostring(v) end end")
     rt.globals().arg = rt.table_from(args)
-    rt.execute(EXTRACTOR.read_text(encoding="utf-8"))
-    return json.loads(rt.eval("table.concat(__out)"))
+    rt.execute(script.read_text(encoding="utf-8"))
+    return rt.eval("table.concat(__out)")
+
+
+def run_extractor(devices: Path, commands: Path, clickable: Path) -> list[dict]:
+    return json.loads(run_lua_script(EXTRACTOR, (devices, commands, clickable)))
+
+
+def run_macro_extractor(devices: Path, commands: Path, macros: Path) -> dict:
+    return json.loads(run_lua_script(MACRO_EXTRACTOR, (devices, commands, macros)))
 
 
 def find(elements: list[dict], text: str) -> list[dict]:
@@ -62,24 +81,37 @@ def find(elements: list[dict], text: str) -> list[dict]:
     return [e for e in elements if t in e["hint"].lower() or any(t in c["name"].lower() for c in e["commands"])]
 
 
-def build_table(elements: list[dict], aircraft: str, source: str = "") -> tuple[str, list[str]]:
-    """Returns (toml text, problems)."""
+def _key(k: str) -> str:
+    import re
+    return k if re.fullmatch(r"[A-Za-z0-9_-]+", k) else '"' + k.replace('"', '') + '"'
+
+
+def build_table(elements: list[dict], aircraft: str, source: str = "", observed: dict | None = None) -> tuple[str, list[str]]:
+    """Returns (toml text, problems). `observed` = macros.observed_values(...) pins values to ED's own."""
+    from .macros import apply_observed
     by_cmd = {c["name"]: e for e in elements for c in e["commands"]}
     ids = {c["name"]: c["id"] for e in elements for c in e["commands"]}
     lines = [f"# GENERATED by `skibodcs extract` from ED's cockpit definition files{' (' + source + ')' if source else ''}.",
-             "# device/command/arg are read from the game files. `values` are PROVISIONAL (polarity not stated there);",
-             "# flip verified = true only after you have seen the action behave correctly in the sim.",
+             "# device/command/arg are read from the game files. `confirmed` positions carry the value ED's own autostart uses",
+             "# (or that follows from it); anything not listed there is a PROVISIONAL guess - test it in the sim.",
              "[aircraft]", f'id = "{aircraft}"', ""]
     problems: list[str] = []
-    for action, (cmd_name, values, momentary) in WISHLIST[aircraft].items():
+    for action, spec in WISHLIST[aircraft].items():
+        cmd_name, values, momentary = spec[0], dict(spec[1]), spec[2]
+        synonyms = spec[3] if len(spec) > 3 else {}
         e = by_cmd.get(cmd_name)
         if e is None or e["device"] is None:
             problems.append(f"{action}: {cmd_name} not found in clickabledata"); continue
-        vals = ", ".join(f"{k} = {v}" for k, v in values.items())
+        obs = (observed or {}).get((e["device"], ids[cmd_name]), {})
+        values, confirmed, inferred = apply_observed(values, obs, synonyms)
+        vals = ", ".join(f"{_key(k)} = {v}" for k, v in values.items())
+        conf = ", ".join(f'"{k}"' for k in sorted(confirmed | inferred))
         lines += [f"# {e['hint']}  [{e['fn']}, device {e['device_name']}]",
                   f"[actions.{action}]", f"device = {e['device']}", f"command = {ids[cmd_name]}",
                   f"arg = {e['args'][0] if e['args'] else 0}"]
         if momentary:
             lines.append("momentary = true")
-        lines += ["verified = false", f"values = {{ {vals} }}", ""]
+        all_ok = bool(values) and set(values) <= (confirmed | inferred) and not momentary
+        lines += [f"verified = {'true' if all_ok else 'false'}", f"confirmed = [{conf}]",
+                  f"values = {{ {vals} }}", ""]
     return "\n".join(lines), problems

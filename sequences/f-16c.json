@@ -1,0 +1,1735 @@
+{
+ "aircraft": "F-16C_50",
+ "source": "Macro_sequencies.lua (ED)",
+ "note": "Timeline replayed from ED's own autostart. check_condition entries that ask the pilot to move a physical lever become spoken prompts; ED's internal verification checks are not replayed.",
+ "sequences": {
+  "autostart": [
+   {
+    "delay": 2.0,
+    "message": "AUTOSTART SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SAFETY LEVER - SAFE (UP)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3009,
+    "value": 0.0,
+    "note": "cpt_commands.EjectionSafetyLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY JETTISON T-HANDLE - SECURE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3005,
+    "value": 0.0,
+    "note": "cpt_commands.CanopyTHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "MAIN PWR SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": -1.0,
+    "note": "elec_commands.MainPwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SPD BRK SWITCH - CENTER",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 16,
+    "command": 3031,
+    "value": 0.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 0.2,
+    "message": "FUEL MASTER SWITCH - MASTER (GUARD DOWN)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3002,
+    "value": 1.0,
+    "note": "fuel_commands.FuelMasterSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3001,
+    "value": 0.0,
+    "note": "fuel_commands.FuelMasterSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3002,
+    "value": 0.0,
+    "note": "fuel_commands.FuelMasterSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "message": "ENG CONT SWITCH - PRI (GUARD DOWN)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3007,
+    "value": 1.0,
+    "note": "engine_commands.EngContSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3008,
+    "value": 0.0,
+    "note": "engine_commands.EngContSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3007,
+    "value": 0.0,
+    "note": "engine_commands.EngContSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 1 MODE KNOB - SQL",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3002,
+    "value": 0.5,
+    "note": "intercom_commands.COM1_ModeKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 2 MODE KNOB - SQL",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3004,
+    "value": 0.5,
+    "note": "intercom_commands.COM2_ModeKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "ALT GEAR HANDLE - IN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3008,
+    "value": 0.0,
+    "note": "gear_commands.AltGearHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "ALT FLAPS SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3002,
+    "value": 0.0,
+    "note": "control_commands.AltFlaps"
+   },
+   {
+    "delay": 0.2,
+    "message": "GND JETT ENABLE SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3004,
+    "value": 0.0,
+    "note": "mmc_commands.GroundJett"
+   },
+   {
+    "delay": 0.2,
+    "message": "HOOK SWITCH - UP",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3006,
+    "value": 1.0,
+    "note": "gear_commands.HookSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "OXYGEN REGULATOR - ON AND NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3001,
+    "value": 0.5,
+    "note": "oxygen_commands.SupplyLever"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3002,
+    "value": 0.0,
+    "note": "oxygen_commands.DiluterLever"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3003,
+    "value": 0.0,
+    "note": "oxygen_commands.EmergencyLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "PROBE HEAT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3006,
+    "value": 0.0,
+    "note": "elec_commands.ProbeHeatSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLCS PWR TEST SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3003,
+    "value": 0.0,
+    "note": "elec_commands.FlcsPwrTestSwMAINT"
+   },
+   {
+    "delay": 0.2,
+    "message": "DEFOG LEVER - MIDRANGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3003,
+    "value": 0.5,
+    "note": "ecs_commands.DefogLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "DIGITAL BACKUP SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3001,
+    "value": 0.0,
+    "note": "control_commands.DigitalBackup"
+   },
+   {
+    "delay": 0.2,
+    "message": "MANUAL TF FLY UP SWITCH - ENABLE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3016,
+    "value": 1.0,
+    "note": "control_commands.ManualTfFlyup"
+   },
+   {
+    "delay": 0.2,
+    "message": "LE FLAPS SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3005,
+    "value": 0.0,
+    "note": "control_commands.LeFlaps"
+   },
+   {
+    "delay": 0.2,
+    "message": "BIT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 0.0,
+    "note": "control_commands.BitSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "TRIM/AP DISC SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3006,
+    "value": 1.0,
+    "note": "control_commands.TrimApDisc"
+   },
+   {
+    "delay": 0.2,
+    "message": "ROLL, YAW, AND PITCH TRIM - CENTER",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": 0.0,
+    "note": "control_commands.RollTrim"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3009,
+    "value": 0.0,
+    "note": "control_commands.YawTrim"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3008,
+    "value": 0.0,
+    "note": "control_commands.PitchTrim"
+   },
+   {
+    "delay": 0.2,
+    "message": "TANK INERTING SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3007,
+    "value": 0.0,
+    "note": "fuel_commands.TankInertingSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ENG FEED KNOB - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3004,
+    "value": 0.1,
+    "note": "fuel_commands.EngineFeedSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "AIR REFUEL SWITCH - CLOSE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3008,
+    "value": 0.0,
+    "note": "fuel_commands.AirRefuelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "IFF MASTER KNOB - STBY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3002,
+    "value": 0.1,
+    "note": "iff_commands.MasterKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "C&I KNOB - BACKUP",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 0.0,
+    "note": "iff_commands.CNI_Knob"
+   },
+   {
+    "delay": 0.2,
+    "message": "MASTER LIGHT SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3006,
+    "value": 0.4,
+    "note": "extlights_commands.Master"
+   },
+   {
+    "delay": 0.2,
+    "message": "EPU SWITCH - NORM (GUARD DOWN)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3001,
+    "value": 1.0,
+    "note": "engine_commands.EpuSwCvrOn"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3002,
+    "value": 1.0,
+    "note": "engine_commands.EpuSwCvrOff"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3003,
+    "value": 0.0,
+    "note": "engine_commands.EpuSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3001,
+    "value": 0.0,
+    "note": "engine_commands.EpuSwCvrOn"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3002,
+    "value": 0.0,
+    "note": "engine_commands.EpuSwCvrOff"
+   },
+   {
+    "delay": 0.2,
+    "message": "AB RESET SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3011,
+    "value": 0.0,
+    "note": "engine_commands.ABResetSwEngData"
+   },
+   {
+    "delay": 0.2,
+    "message": "JFS SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3006,
+    "value": 0.0,
+    "note": "engine_commands.JfsSwStart2"
+   },
+   {
+    "delay": 0.2,
+    "message": "UHF RADIO BACKUP CONTROL PANEL: FUNCTION KNOB - BOTH",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 37,
+    "command": 3008,
+    "value": 0.2,
+    "note": "uhf_commands.FunctionKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLE - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "message": "THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 1.2,
+    "message": "CMDS SWITCHES - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3005,
+    "value": 0.0,
+    "note": "cmds_commands.O1Exp"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3006,
+    "value": 0.0,
+    "note": "cmds_commands.O2Exp"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3007,
+    "value": 0.0,
+    "note": "cmds_commands.ChExp"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3008,
+    "value": 0.0,
+    "note": "cmds_commands.FlExp"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3001,
+    "value": 0.0,
+    "note": "cmds_commands.RwrSrc"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3002,
+    "value": 0.0,
+    "note": "cmds_commands.JmrSrc"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3003,
+    "value": 0.0,
+    "note": "cmds_commands.MwsSrc"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3004,
+    "value": 0.0,
+    "note": "cmds_commands.Jett"
+   },
+   {
+    "delay": 0.2,
+    "message": "HMCS SYMBOLOGY INT POWER KNOB - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 30,
+    "command": 3001,
+    "value": 0.0,
+    "note": "hmcs_commands.IntKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "LANDING TAXI LIGHTS SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3008,
+    "value": 0.0,
+    "note": "extlights_commands.LandingTaxi"
+   },
+   {
+    "delay": 0.2,
+    "message": "LG HANDLE - DN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3001,
+    "value": 0.0,
+    "note": "gear_commands.LGHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "BRAKES CHANNEL SWITCH - CHAN 1",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3005,
+    "value": 1.0,
+    "note": "gear_commands.BrakesChannelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ANTI-SKID SWITCH - ANTI-SKID",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3004,
+    "value": 0.0,
+    "note": "gear_commands.AntiSkidSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "STORES CONFIG Switch, CAT III/CAT I",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3011,
+    "value": 1.0,
+    "note": "control_commands.StoresConfig"
+   },
+   {
+    "delay": 0.2,
+    "message": "ROLL SWITCH - ATT HOLD",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3014,
+    "value": 0.0,
+    "note": "control_commands.ApRoll"
+   },
+   {
+    "delay": 0.2,
+    "message": "PITCH SWITCH - A/P OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3012,
+    "value": 0.0,
+    "note": "control_commands.ApPitchAtt"
+   },
+   {
+    "delay": 0.2,
+    "message": "MASTER ARM SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3002,
+    "value": 0.0,
+    "note": "mmc_commands.MasterArmSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "LASER ARM SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3004,
+    "value": 0.0,
+    "note": "sms_commands.LaserSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "RF SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3038,
+    "value": 1.0,
+    "note": "ufc_commands.RF_Sw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FUEL QTY SEL KNOB - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3005,
+    "value": 0.1,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "EXT FUEL TRANS SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3003,
+    "value": 1.0,
+    "note": "fuel_commands.ExtFuelTransferSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SNSR PWR SWITCHES - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3002,
+    "value": 0.0,
+    "note": "sms_commands.LeftHDPT"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3003,
+    "value": 0.0,
+    "note": "sms_commands.RightHDPT"
+   },
+   {
+    "delay": 0.2,
+    "device": 31,
+    "command": 3001,
+    "value": 0.0,
+    "note": "fcr_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 15,
+    "command": 3001,
+    "value": -1.0,
+    "note": "ralt_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "PLAIN CIPHER SWITCH - PLAIN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3016,
+    "value": 0.0,
+    "note": "intercom_commands.PlainCipherSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ZEROIZE SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3017,
+    "value": 1.0,
+    "note": "intercom_commands.ZeroizeSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3018,
+    "value": 0.0,
+    "note": "intercom_commands.ZeroizeSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3017,
+    "value": 0.0,
+    "note": "intercom_commands.ZeroizeSwCvr"
+   },
+   {
+    "delay": 0.2,
+    "message": "VOICE MESSAGE SWITCH - VOICE MESSAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3015,
+    "value": 1.0,
+    "note": "intercom_commands.VMS_InhibitSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "TEMP KNOB - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3002,
+    "value": 0.2,
+    "note": "ecs_commands.TempKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "AIR SOURCE KNOB - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3001,
+    "value": 0.1,
+    "note": "ecs_commands.AirSourceKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "AVIONICS POWER SWITCHES - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ecs_commands.AirSourceKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3001,
+    "value": 0.0,
+    "note": "sms_commands.StStaSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3014,
+    "value": 0.0,
+    "note": "mmc_commands.MFD"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ufc_commands.UFC_Sw"
+   },
+   {
+    "delay": 0.2,
+    "device": 61,
+    "command": 3001,
+    "value": 0.0,
+    "note": "map_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 59,
+    "command": 3001,
+    "value": 0.0,
+    "note": "gps_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 60,
+    "command": 3001,
+    "value": 0.0,
+    "note": "idm_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 14,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ins_commands.ModeKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 41,
+    "command": 3001,
+    "value": 0.1,
+    "note": "mids_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ANTI ICE SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3004,
+    "value": 0.0,
+    "note": "engine_commands.EngAntiIceSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "IFF ANT SEL SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3013,
+    "value": 0.0,
+    "note": "intercom_commands.IFF_AntSelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "UHF ANT SEL SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3014,
+    "value": 0.0,
+    "note": "intercom_commands.UHF_AntSelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SAI - CAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 47,
+    "command": 3003,
+    "value": 0.5,
+    "note": "sai_commands.reference"
+   },
+   {
+    "delay": 0.2,
+    "device": 47,
+    "command": 3002,
+    "value": 1.0,
+    "note": "sai_commands.cage"
+   },
+   {
+    "delay": 0.2,
+    "device": 47,
+    "command": 3003,
+    "value": 0.625,
+    "note": "sai_commands.reference"
+   },
+   {
+    "delay": 0.2,
+    "device": 47,
+    "command": 3002,
+    "value": 0.0,
+    "note": "sai_commands.cage"
+   },
+   {
+    "delay": 0.2,
+    "message": "MAIN PWR SWITCH - BATT",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": 0.0,
+    "note": "elec_commands.MainPwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLCS PWR TEST SWITCH - TEST, CHECK, RELEASE",
+    "speak": false
+   },
+   {
+    "delay": 1.0,
+    "device": 3,
+    "command": 3003,
+    "value": 1.0,
+    "note": "elec_commands.FlcsPwrTestSwMAINT"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3003,
+    "value": 0.0,
+    "note": "elec_commands.FlcsPwrTestSwMAINT"
+   },
+   {
+    "delay": 0.2,
+    "message": "MAIN PWR SWITCH - MAIN PWR",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": 1.0,
+    "note": "elec_commands.MainPwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "JFS SWITCH - START 2",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3006,
+    "value": -1.0,
+    "note": "engine_commands.JfsSwStart2"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3006,
+    "value": 0.0,
+    "note": "engine_commands.JfsSwStart2"
+   },
+   {
+    "delay": 17.0,
+    "message": "JFS RUN LIGHT - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 3.0,
+    "message": "THROTTLE - IDLE (20% RPM MINIMUM)",
+    "speak": false
+   },
+   {
+    "delay": 1.0,
+    "message": "THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 35.2,
+    "message": "JFS SWITCH - CONFIRM OFF",
+    "speak": false
+   },
+   {
+    "delay": 5.0,
+    "message": "ENGINE WARNING LIGHT - CONFIRM OFF",
+    "speak": false
+   },
+   {
+    "delay": 5.0,
+    "message": "ENGINE AT IDLE - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "MAL & IND LTS BUTTON - TEST",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3002,
+    "value": 1.0,
+    "note": "cptlights_commands.MalIndLtsTest"
+   },
+   {
+    "delay": 1.0,
+    "device": 12,
+    "command": 3002,
+    "value": 0.0,
+    "note": "cptlights_commands.MalIndLtsTest"
+   },
+   {
+    "delay": 0.2,
+    "message": "AVIONICS POWER PANEL - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3001,
+    "value": 1.0,
+    "note": "ecs_commands.AirSourceKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3001,
+    "value": 1.0,
+    "note": "sms_commands.StStaSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3014,
+    "value": 1.0,
+    "note": "mmc_commands.MFD"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3001,
+    "value": 1.0,
+    "note": "ufc_commands.UFC_Sw"
+   },
+   {
+    "delay": 0.2,
+    "message": "WAITING FOR GPS WARMING",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "device": 59,
+    "command": 3001,
+    "value": 1.0,
+    "note": "gps_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 60,
+    "command": 3001,
+    "value": 1.0,
+    "note": "idm_commands.PwrSw"
+   },
+   {
+    "delay": 0.4,
+    "message": "INS - ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 14,
+    "command": 3001,
+    "value": 0.2,
+    "note": "ins_commands.ModeKnob"
+   },
+   {
+    "delay": 5.0,
+    "message": "INS - CONFIRM COORDINATES",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3016,
+    "value": 1.0,
+    "note": "ufc_commands.ENTR"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3016,
+    "value": 0.0,
+    "note": "ufc_commands.ENTR"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3035,
+    "value": -1.0,
+    "note": "ufc_commands.DCS_DOWN"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3035,
+    "value": 0.0,
+    "note": "ufc_commands.DCS_DOWN"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3016,
+    "value": 1.0,
+    "note": "ufc_commands.ENTR"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3016,
+    "value": 0.0,
+    "note": "ufc_commands.ENTR"
+   },
+   {
+    "delay": 0.2,
+    "message": "SNSR PWR PANEL - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.6,
+    "device": 31,
+    "command": 3001,
+    "value": 1.0,
+    "note": "fcr_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 15,
+    "command": 3001,
+    "value": 1.0,
+    "note": "ralt_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "HMCS SYMBOLOGY INT POWER KNOB - INT",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 30,
+    "command": 3001,
+    "value": 0.8,
+    "note": "hmcs_commands.IntKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "HUD",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3022,
+    "value": 0.8,
+    "note": "ufc_commands.SYM_Knob"
+   },
+   {
+    "delay": 0.2,
+    "message": "C&I KNOB - UFC",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 1.0,
+    "note": "iff_commands.CNI_Knob"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLCS BIT - START",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 1.0,
+    "note": "control_commands.BitSw"
+   },
+   {
+    "delay": 50.0,
+    "device": 2,
+    "command": 3003,
+    "value": 0.0,
+    "note": "control_commands.BitSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLCS BIT - FINISHED",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "SAI - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 47,
+    "command": 3003,
+    "value": 0.5,
+    "note": "sai_commands.reference"
+   },
+   {
+    "delay": 0.2,
+    "message": "FUEL QTY SEL KNOB - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3005,
+    "value": 0.0,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.1,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.2,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.3,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.4,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.5,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 1.0,
+    "device": 4,
+    "command": 3005,
+    "value": 0.1,
+    "note": "fuel_commands.FuelQtySelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY - CLOSE AND LOCK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3004,
+    "value": 0.0,
+    "note": "cpt_commands.CanopyHandle"
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3003,
+    "value": -1.0,
+    "note": "cpt_commands.CanopySwitchClose"
+   },
+   {
+    "delay": 8.0,
+    "device": 10,
+    "command": 3003,
+    "value": 0.0,
+    "note": "cpt_commands.CanopySwitchClose"
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3004,
+    "value": 1.0,
+    "note": "cpt_commands.CanopyHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "HMCS - ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 1.2,
+    "message": "EJECTION SAFETY LEVER - ARM (DOWN)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3009,
+    "value": 1.0,
+    "note": "cpt_commands.EjectionSafetyLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "WAITING FOR INS ALIGN",
+    "speak": true
+   },
+   {
+    "delay": 70.0,
+    "message": "CHECK INS ALIGNMENT - READY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "MAV - ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 4.0,
+    "message": "AUTOSTART COMPLETE",
+    "speak": true
+   }
+  ],
+  "autostop": [
+   {
+    "delay": 2.0,
+    "message": "AUTOSTOP SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "PROBE HEAT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3006,
+    "value": 0.0,
+    "note": "elec_commands.ProbeHeatSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SPEEDBRAKES - CLOSE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 16,
+    "command": 3031,
+    "value": 1.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 1.5,
+    "device": 16,
+    "command": 3031,
+    "value": 0.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SAFETY LEVER - SAFE (UP)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3009,
+    "value": 0.0,
+    "note": "cpt_commands.EjectionSafetyLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "IFF MASTER KNOB - STBY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3002,
+    "value": 0.1,
+    "note": "iff_commands.MasterKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "IFF M-4 CODE SWITCH - HOLD",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3003,
+    "value": -1.0,
+    "note": "iff_commands.M4CodeSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY HANDLE - UP",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3004,
+    "value": 0.0,
+    "note": "cpt_commands.CanopyHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "ARMAMENT SWITCH - OFF, SAFE OR NORMAL",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3002,
+    "value": 0.0,
+    "note": "mmc_commands.MasterArmSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3004,
+    "value": 0.0,
+    "note": "sms_commands.LaserSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "EPU SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3002,
+    "value": 1.0,
+    "note": "engine_commands.EpuSwCvrOff"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3003,
+    "value": -1.0,
+    "note": "engine_commands.EpuSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "C&I KNOB - BACKUP",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 0.0,
+    "note": "iff_commands.CNI_Knob"
+   },
+   {
+    "delay": 5.0,
+    "message": "INS KNOB - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 14,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ins_commands.ModeKnob"
+   },
+   {
+    "delay": 0.2,
+    "message": "AVIONICS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3022,
+    "value": 0.0,
+    "note": "ufc_commands.SYM_Knob"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3002,
+    "value": 0.0,
+    "note": "sms_commands.LeftHDPT"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3003,
+    "value": 0.0,
+    "note": "sms_commands.RightHDPT"
+   },
+   {
+    "delay": 0.2,
+    "device": 31,
+    "command": 3001,
+    "value": 0.0,
+    "note": "fcr_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 15,
+    "command": 3001,
+    "value": -1.0,
+    "note": "ralt_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ecs_commands.AirSourceKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 22,
+    "command": 3001,
+    "value": 0.0,
+    "note": "sms_commands.StStaSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 19,
+    "command": 3014,
+    "value": 0.0,
+    "note": "mmc_commands.MFD"
+   },
+   {
+    "delay": 0.2,
+    "device": 17,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ufc_commands.UFC_Sw"
+   },
+   {
+    "delay": 0.2,
+    "device": 61,
+    "command": 3001,
+    "value": 0.0,
+    "note": "map_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 59,
+    "command": 3001,
+    "value": 0.0,
+    "note": "gps_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 60,
+    "command": 3001,
+    "value": 0.0,
+    "note": "idm_commands.PwrSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 30,
+    "command": 3001,
+    "value": 0.0,
+    "note": "hmcs_commands.IntKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3002,
+    "value": 0.0,
+    "note": "intercom_commands.COM1_ModeKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 39,
+    "command": 3004,
+    "value": 0.0,
+    "note": "intercom_commands.COM2_ModeKnob"
+   },
+   {
+    "delay": 8.0,
+    "message": "THROTTLE - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "message": "THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 21.0,
+    "message": "MAIN PWR SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": -1.0,
+    "note": "elec_commands.MainPwrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "OXYGEN REGULATOR - ON AND NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3001,
+    "value": 0.5,
+    "note": "oxygen_commands.SupplyLever"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3002,
+    "value": 0.0,
+    "note": "oxygen_commands.DiluterLever"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3003,
+    "value": 0.0,
+    "note": "oxygen_commands.EmergencyLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY - OPEN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3002,
+    "value": 1.0,
+    "note": "cpt_commands.CanopySwitchOpen"
+   },
+   {
+    "delay": 14.0,
+    "device": 10,
+    "command": 3002,
+    "value": 0.0,
+    "note": "cpt_commands.CanopySwitchOpen"
+   },
+   {
+    "delay": 3.0,
+    "message": "AUTOSTOP COMPLETE",
+    "speak": true
+   }
+  ]
+ }
+}

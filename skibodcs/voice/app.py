@@ -28,7 +28,7 @@ def build(cfg: dict):
     if cfg.get("controls_file") and Path(cfg["controls_file"]).exists():
         from .. import controls as cl
         _, cs = cl.load(cfg["controls_file"])
-        index = cl.ControlIndex(cs)
+        index = cl.ControlIndex(cs, crew=cfg.get("crew", ""))
         index.merge_curated(table, GEAR_ALIASES)
     router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"),
                     cfg.get("wingman", "Viper 1-2"), index=index)
@@ -68,9 +68,11 @@ def main(argv=None):
         from ..sequence import SequenceRunner, load_sequences
         f = cfg.get("sequence_file")
         seqs = load_sequences(f) if f and Path(f).exists() else {}
-        steps = seqs.get(name)
+        steps = seqs.get(name) or (seqs.get("autostart") if name == "ready_to_taxi" else None)   # ED's autostart ends ready to taxi
         if not steps:
             say(f"No {name.replace('_', ' ')} sequence available for this aircraft yet."); return
+        if seq_runner["cur"] is not None:
+            seq_runner["cur"].abort()                       # never run two sequences at once
         runner = SequenceRunner(lambda d, c, v: link.send(d, c, v), say)
         seq_runner["cur"] = runner
         threading.Thread(target=lambda: runner.run(steps), daemon=True).start()

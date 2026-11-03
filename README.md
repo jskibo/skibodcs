@@ -1,4 +1,4 @@
-# skibodcs v0.5
+# skibodcs v0.6
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -46,8 +46,11 @@ Needs LuaJIT/Lua 5.1 on PATH (or LUAJIT=path) or `pip install lupa`. Add control
 skibodcs\extract.py. After a DCS update: re-run, `git diff airframes/` shows exactly which ids moved.
 Do not commit ED's .lua files; commit only the generated TOMLs. Shipped: airframes\f-16c.toml, fa-18c.toml
 (gear, hook, master arm, plus F-16 ICP COM1/COM2 and Hornet master-mode buttons).
-What is still a guess: the VALUE meaning (is gear "down" 1.0 or 0.0? arm = 1.0?). The files do not say.
-Each action carries its cockpit `arg` number so a future read-back step can confirm the result.
+VALUES (corrected in v0.6): hint order carries NO reliable polarity, and v0.4/v0.5 shipped gear/hook tables with
+up and down INVERTED (F-16C and Hornet: gear DN = 0.0, UP = 1.0). Values are now pinned to ED's own autostart data
+(`Macro_sequencies.lua`, via `--macros`): positions the game itself uses are `confirmed`; 2/3-position partners are
+`inferred` only when exactly one ordering fits; everything else stays PROVISIONAL and triggers an UNVERIFIED note.
+Each action carries its cockpit `arg` number so the read-back step can confirm the result.
 
 ## Every control by voice, wingman/element orders, autostart (new in v0.5)
 **All controls.** `skibodcs controls --devices D --commands C --clickable K --aircraft F-16C_50 --out airframes\\f-16c.controls.json`
@@ -73,6 +76,20 @@ items, so these are behavioural equivalents, not the literal menu entries; compa
 autostop / ready_to_taxi, "abort the start"). The sequences themselves are DATA in sequences\<aircraft>.json and are
 meant to be generated from ED's own `Macro_sequencies.lua` (the game's autostart: device, command, value, delay).
 That file has not been parsed yet (not supplied), so nothing ships in sequences\ and the app says "no sequence available".
+
+## v0.6: AH-64D, ED's own autostart, value pinning
+Modules shipped: F-16C (288 controls), F/A-18C (274), AH-64D (478: PLT 220 / CPG 258; set `crew = "PLT"` or `"CPG"`).
+**F-14: not included** (no files received; Heatblur's module does not use the standard clickabledata/devices/command_defs layout
+in the folder searched).
+    skibodcs sequences --devices D --commands C --macros M --aircraft F-16C_50 --out sequences\\f-16c.json
+    skibodcs controls  --devices D --commands C --clickable K --macros M --aircraft F-16C_50 --out airframes\\f-16c.controls.json
+    skibodcs extract   --devices D --commands C --clickable K --macros M --aircraft F-16C_50 --out airframes\\f-16c.toml
+**Autostart / "cold and dark to ready to taxi"** = replay of ED's own timeline (device, command, value, delay) through the
+same Export link as every other click. Say "autostart" or "cold and dark to ready to taxi" (same sequence: ED's autostart
+ends ready to taxi), "autostop", "abort the start". Spoken: section headings, prompts, completion. Where ED asks the PILOT
+to move a physical lever (throttle / power levers) it is spoken as a prompt; the sim cannot move your HOTAS.
+Not replayed: ED's internal verification checks (engine RPM, INS ready...) - the timeline just continues.
+Untested against a live sim: that replaying these through performClickableAction behaves like ED's internal runner.
 
 ## UNVERIFIED (verify in this order)
 1. Hook loads: DCS log should show "skibodcs: hook registered" then "mission module loaded".

@@ -1,0 +1,3881 @@
+{
+ "aircraft": "FA-18C_hornet",
+ "source": "Macro_sequencies.lua (ED)",
+ "note": "Timeline replayed from ED's own autostart. check_condition entries that ask the pilot to move a physical lever become spoken prompts; ED's internal verification checks are not replayed.",
+ "sequences": {
+  "autostart": [
+   {
+    "delay": 0.2,
+    "message": "AUTOSTART SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SEAT SAFE/ARM HANDLE - SAFE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3006,
+    "value": 1.0,
+    "note": "cpt_commands.EjectionSeatSafeArmedHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SEAT MANUAL OVERRIDE HANDLE - FULL DOWN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3007,
+    "value": 0.0,
+    "note": "cpt_commands.EjectionSeatManualOverrideHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "HARNESS AND RUDDER PEDALS - SECURE/ADJUST",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "device": 7,
+    "command": 3012,
+    "value": 0.0,
+    "note": "cpt_commands.RudderPedalAdjustLever"
+   },
+   {
+    "delay": 0.2,
+    "message": "LEFT CONSOLE",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "CIRCUIT BREAKERS - IN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3017,
+    "value": 0.0,
+    "note": "elec_commands.CB_FCS_CHAN1"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3018,
+    "value": 0.0,
+    "note": "elec_commands.CB_FCS_CHAN2"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3019,
+    "value": 0.0,
+    "note": "elec_commands.CB_SPD_BRK"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3020,
+    "value": 0.0,
+    "note": "elec_commands.CB_LAUNCH_BAR"
+   },
+   {
+    "delay": 0.2,
+    "message": "MC AND HYD ISOL SWITCHES - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3025,
+    "value": 0.0,
+    "note": "elec_commands.MC1OffSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3026,
+    "value": 0.0,
+    "note": "elec_commands.MC2OffSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 4,
+    "command": 3001,
+    "value": 0.0,
+    "note": "hydro_commands.HydIsolSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "OBOGS CONTROL SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3001,
+    "value": 0.0,
+    "note": "oxygen_commands.OBOGS_ControlSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "OXY FLOW KNOB - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3002,
+    "value": 1.0,
+    "note": "oxygen_commands.OxyFlowControlValve"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 1/IFF ANT SEL SWITCHES - AUTO/BOTH",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 50,
+    "command": 3001,
+    "value": 0.0,
+    "note": "antsel_commands.Comm1AntSelSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 50,
+    "command": 3002,
+    "value": 0.0,
+    "note": "antsel_commands.AntSelIFFSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM PANEL - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "RELAY, GUARD - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3010,
+    "value": 0.0,
+    "note": "intercom_commands.COMM_RLY_Sw"
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3011,
+    "value": 0.0,
+    "note": "intercom_commands.G_XMT_Sw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ILS - UFC",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3016,
+    "value": 1.0,
+    "note": "intercom_commands.ILS_UFC_MAN_Sw"
+   },
+   {
+    "delay": 0.2,
+    "message": "MASTER, MODE 4 AND CRYPTO SWITCHES - NORM/OFF/NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3012,
+    "value": 0.0,
+    "note": "intercom_commands.IFF_MasterSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3013,
+    "value": -1.0,
+    "note": "intercom_commands.IFF_Mode4Sw"
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3014,
+    "value": 0.0,
+    "note": "intercom_commands.IFF_CryptoSw_Zero"
+   },
+   {
+    "delay": 0.2,
+    "device": 40,
+    "command": 3015,
+    "value": 0.0,
+    "note": "intercom_commands.IFF_CryptoSw_Hold"
+   },
+   {
+    "delay": 0.2,
+    "message": "GEN TIE CONTROL SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3007,
+    "value": 1.0,
+    "note": "elec_commands.GenTieControlSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3006,
+    "value": 0.0,
+    "note": "elec_commands.GenTieControlSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3007,
+    "value": 0.0,
+    "note": "elec_commands.GenTieControlSwCover"
+   },
+   {
+    "delay": 0.2,
+    "message": "FCS GAIN SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3005,
+    "value": 1.0,
+    "note": "ctrl_commands.GainSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3006,
+    "value": 0.0,
+    "note": "ctrl_commands.GainSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3005,
+    "value": 0.0,
+    "note": "ctrl_commands.GainSwCover"
+   },
+   {
+    "delay": 0.2,
+    "message": "PROBE SWITCH - RETRACT",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3002,
+    "value": 0.0,
+    "note": "fuel_commands.ProbeControlSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "EXT TANK SWITCHES - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3005,
+    "value": 0.0,
+    "note": "fuel_commands.ExtTanksWingSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3004,
+    "value": 0.0,
+    "note": "fuel_commands.ExtTanksCtrSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "DUMP SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3003,
+    "value": 0.0,
+    "note": "fuel_commands.DumpSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "INTR WING SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3001,
+    "value": 0.0,
+    "note": "fuel_commands.IntrWingInhibitSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLES - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "message": "LEFT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "LEFT THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "RIGHT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "RIGHT THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "PARK BRK HANDLE - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.333,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.0,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3005,
+    "value": 0.1,
+    "note": "gear_commands.EmergParkHandleOnOff"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.333,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.0,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3005,
+    "value": -0.1,
+    "note": "gear_commands.EmergParkHandleOnOff"
+   },
+   {
+    "delay": 0.2,
+    "message": "LDG/TAXI LIGHT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3004,
+    "value": 0.0,
+    "note": "extlights_commands.LdgTaxi"
+   },
+   {
+    "delay": 0.2,
+    "message": "ANTI SKID SWITCH - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3004,
+    "value": 1.0,
+    "note": "gear_commands.AntiSkidSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLAP SWITCH - FULL",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": -1.0,
+    "note": "ctrl_commands.FlapSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SELECT JETT KNOB - SAFE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 23,
+    "command": 3011,
+    "value": 0.0,
+    "note": "SMS_commands.SelJettLvr"
+   },
+   {
+    "delay": 0.2,
+    "message": "LDG GEAR HANDLE - DN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3001,
+    "value": 0.0,
+    "note": "gear_commands.GearHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY JETT HANDLE - FORWARD",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3004,
+    "value": 1.0,
+    "note": "cpt_commands.CanopyJettLeverButton"
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3003,
+    "value": 0.0,
+    "note": "cpt_commands.CanopyJettLever"
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3004,
+    "value": 0.0,
+    "note": "cpt_commands.CanopyJettLeverButton"
+   },
+   {
+    "delay": 0.2,
+    "message": "INSTRUMENT PANEL",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "MASTER ARM SWITCH - SAFE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 23,
+    "command": 3003,
+    "value": 0.0,
+    "note": "SMS_commands.MasterArmSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FIRE AND APU FIRE WARNING LIGHTS - NOT PRESSED IN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3012,
+    "value": 1.0,
+    "note": "engines_commands.LENG_FireSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3010,
+    "value": 0.0,
+    "note": "engines_commands.LENG_FireSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3012,
+    "value": 0.0,
+    "note": "engines_commands.LENG_FireSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3013,
+    "value": 1.0,
+    "note": "engines_commands.RENG_FireSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3011,
+    "value": 0.0,
+    "note": "engines_commands.RENG_FireSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3013,
+    "value": 0.0,
+    "note": "engines_commands.RENG_FireSwCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3009,
+    "value": 0.0,
+    "note": "engines_commands.APU_FireSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "L(R) DDI, AMPCD, AND HUD KNOBS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 0.0,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 36,
+    "command": 3001,
+    "value": 0.0,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3002,
+    "value": 0.0,
+    "note": "HUD_commands.HUD_SymbBrightCtrl"
+   },
+   {
+    "delay": 0.2,
+    "device": 37,
+    "command": 3001,
+    "value": 0.0,
+    "note": "AMPCD_commands.AMPCD_off_brightness"
+   },
+   {
+    "delay": 0.2,
+    "message": "ALTITUDE SOURCE - SELECT",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3008,
+    "value": 0.0,
+    "note": "HUD_commands.HUD_AltitudeSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ATT SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3009,
+    "value": 0.0,
+    "note": "HUD_commands.HUD_AttitudeSelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 1 AND 2 KNOBS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3030,
+    "value": 0.0,
+    "note": "UFC_commands.Comm1Vol"
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3031,
+    "value": 0.0,
+    "note": "UFC_commands.Comm2Vol"
+   },
+   {
+    "delay": 0.2,
+    "message": "ADF SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3016,
+    "value": 0.0,
+    "note": "UFC_commands.SwADF"
+   },
+   {
+    "delay": 0.2,
+    "message": "AUX REL SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 23,
+    "command": 3012,
+    "value": 0.0,
+    "note": "SMS_commands.AuxRelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "STANDBY ATTITUDE REFERENCE INDICATOR - CAGE/LOCK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3002,
+    "value": 1.0,
+    "note": "sai_commands.SAI_pull"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3003,
+    "value": 0.01,
+    "note": "sai_commands.SAI_rotate"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3002,
+    "value": 0.0,
+    "note": "sai_commands.SAI_pull"
+   },
+   {
+    "delay": 0.2,
+    "message": "IR COOL SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 23,
+    "command": 3013,
+    "value": 0.0,
+    "note": "SMS_commands.IRCoolingSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SPIN SWITCH - GUARD DOWN/OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3008,
+    "value": 1.0,
+    "note": "ctrl_commands.SpinRecCover"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3009,
+    "value": 0.0,
+    "note": "ctrl_commands.SpinRec"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3008,
+    "value": 0.0,
+    "note": "ctrl_commands.SpinRecCover"
+   },
+   {
+    "delay": 0.2,
+    "message": "RIGHT CONSOLE",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "CIRCUIT BREAKERS - IN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3021,
+    "value": 0.0,
+    "note": "elec_commands.CB_FCS_CHAN3"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3022,
+    "value": 0.0,
+    "note": "elec_commands.CB_FCS_CHAN4"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3023,
+    "value": 0.0,
+    "note": "elec_commands.CB_HOOK"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3024,
+    "value": 0.0,
+    "note": "elec_commands.CB_LG"
+   },
+   {
+    "delay": 0.2,
+    "message": "HOOK HANDLE - UP",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3009,
+    "value": 1.0,
+    "note": "gear_commands.HookHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "WING FOLD HANDLE - SAME AS WING POSITION",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3010,
+    "value": 1.0,
+    "note": "ctrl_commands.WingFoldPull"
+   },
+   {
+    "delay": 0.4,
+    "device": 2,
+    "command": 3010,
+    "value": 0.0,
+    "note": "ctrl_commands.WingFoldPull"
+   },
+   {
+    "delay": 0.2,
+    "message": "AV COOL SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3008,
+    "value": 0.0,
+    "note": "ECS_commands.AV_COOL_Sw"
+   },
+   {
+    "delay": 0.2,
+    "message": "RADAR ALTIMETER - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": -0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.2,
+    "message": "GEN SWITCHES - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3002,
+    "value": 1.0,
+    "note": "elec_commands.LGenSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3003,
+    "value": 1.0,
+    "note": "elec_commands.RGenSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "BATT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": 0.0,
+    "note": "elec_commands.BattSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ECS PANEL - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "MODE SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3003,
+    "value": 1.0,
+    "note": "ECS_commands.ECSModeSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "CABIN TEMP KNOB - 10 O'CLOCK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3006,
+    "value": 0.285,
+    "note": "ECS_commands.CabinTemperatureRst"
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3007,
+    "value": 0.285,
+    "note": "ECS_commands.SuitTemperatureRst"
+   },
+   {
+    "delay": 0.2,
+    "message": "CABIN PRESS SWITCH - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3004,
+    "value": 1.0,
+    "note": "ECS_commands.CabinPressSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "BLEED AIR KNOB - NORM AND DOWN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3001,
+    "value": 0.2,
+    "note": "ECS_commands.BleedAirSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3002,
+    "value": 0.0,
+    "note": "ECS_commands.BleedAirSwAugPull"
+   },
+   {
+    "delay": 0.2,
+    "message": "ENG ANTI ICE SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3014,
+    "value": 0.0,
+    "note": "engines_commands.AntiIceSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "PITOT ANTI ICE SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3016,
+    "value": 0.0,
+    "note": "elec_commands.PitotHeater"
+   },
+   {
+    "delay": 0.2,
+    "message": "DEFOG HANDLE - MID RANGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3005,
+    "value": 0.0,
+    "note": "ECS_commands.DefogHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "WINDSHIELD SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3009,
+    "value": 0.0,
+    "note": "ECS_commands.WindshieldSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "SENSORS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 42,
+    "command": 3001,
+    "value": 0.0,
+    "note": "RADAR_commands.RADAR_SwitchChange"
+   },
+   {
+    "delay": 0.2,
+    "device": 44,
+    "command": 3001,
+    "value": 0.0,
+    "note": "INS_commands.INS_SwitchChange"
+   },
+   {
+    "delay": 0.2,
+    "message": "ENGINE START",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "BATT SWITCH - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": 1.0,
+    "note": "elec_commands.BattSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "APU SWITCH - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3001,
+    "value": 1.0,
+    "note": "engines_commands.APU_ControlSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3001,
+    "value": 0.0,
+    "note": "engines_commands.APU_ControlSw"
+   },
+   {
+    "delay": 30.0,
+    "message": "READY LIGHT - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "ENG CRANK SWITCH - R",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "device": 12,
+    "command": 3003,
+    "value": 1.0,
+    "note": "engines_commands.EngineCrankRSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3003,
+    "value": 0.0,
+    "note": "engines_commands.EngineCrankRSw"
+   },
+   {
+    "delay": 3.0,
+    "message": "RIGHT THROTTLE - IDLE (15% RPM MINIMUM)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "RIGHT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 50.2,
+    "message": "L(R) DDI, AMPCD, HUD, AND UFC AVIONICS, AND RADAR ALTIMETER - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 0.2,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 36,
+    "command": 3001,
+    "value": 0.2,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3002,
+    "value": 0.85,
+    "note": "HUD_commands.HUD_SymbBrightCtrl"
+   },
+   {
+    "delay": 0.2,
+    "device": 37,
+    "command": 3001,
+    "value": 0.85,
+    "note": "AMPCD_commands.AMPCD_off_brightness"
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3032,
+    "value": 0.85,
+    "note": "UFC_commands.BrtDim"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.01,
+    "device": 30,
+    "command": 3002,
+    "value": 0.05,
+    "note": "id2163a_commands.ID2163A_SetMinAlt"
+   },
+   {
+    "delay": 0.2,
+    "message": "HMD SWITCH - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.7,
+    "message": "IFEI - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "message": "BLEED AIR KNOB - CYCLE THRU OFF TO NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3001,
+    "value": 0.3,
+    "note": "ECS_commands.BleedAirSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3001,
+    "value": 0.0,
+    "note": "ECS_commands.BleedAirSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3001,
+    "value": 0.1,
+    "note": "ECS_commands.BleedAirSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 11,
+    "command": 3001,
+    "value": 0.2,
+    "note": "ECS_commands.BleedAirSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "WARNING AND CAUTION LIGHTS - TEST",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3007,
+    "value": 1.0,
+    "note": "cptlights_commands.LtTestSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3007,
+    "value": 0.0,
+    "note": "cptlights_commands.LtTestSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ENG CRANK SWITCH - L",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "device": 12,
+    "command": 3002,
+    "value": -1.0,
+    "note": "engines_commands.EngineCrankLSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 12,
+    "command": 3002,
+    "value": 0.0,
+    "note": "engines_commands.EngineCrankLSw"
+   },
+   {
+    "delay": 3.0,
+    "message": "LEFT THROTTLE - IDLE (15% RPM MINIMUM)",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "LEFT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 50.2,
+    "message": "ENG CRANK SWITCH - CHECK OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "message": "IFEI - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "message": "BEFORE TAXI",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "INS KNOB - ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 1.2,
+    "message": "INS - SELECT STOR HDG ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 2.6,
+    "message": "RADAR KNOB - OPR",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 42,
+    "command": 3001,
+    "value": 0.2,
+    "note": "RADAR_commands.RADAR_SwitchChange"
+   },
+   {
+    "delay": 0.2,
+    "message": "FCS RESET BUTTON - PUSH",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 1.0,
+    "note": "ctrl_commands.ResetSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 0.0,
+    "note": "ctrl_commands.ResetSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLAP SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": 1.0,
+    "note": "ctrl_commands.FlapSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FCS RESET BUTTON AND PADDLE SWITCH - ACTUATE SIMULTANEOUSLY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3018,
+    "value": 1.0,
+    "note": "hotas_commands.STICK_PADDLE"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 1.0,
+    "note": "ctrl_commands.ResetSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3003,
+    "value": 0.0,
+    "note": "ctrl_commands.ResetSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3018,
+    "value": 0.0,
+    "note": "hotas_commands.STICK_PADDLE"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLAP SWITCH - HALF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": 0.0,
+    "note": "ctrl_commands.FlapSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "FCS INITIATED BIT - PERFORM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "TRIM - CHECK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "T/O TRIM BUTTON - PRESS UNTIL TRIM ADVISORY DISPLAYED",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3002,
+    "value": 1.0,
+    "note": "ctrl_commands.TOTrimSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3002,
+    "value": 0.0,
+    "note": "ctrl_commands.TOTrimSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "PROBE, SPEEDBRAKE, LAUNCH BAR SWITCHES, HOOK HANDLE AND PITOT HEAT - CYCLE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 6,
+    "command": 3002,
+    "value": 1.0,
+    "note": "fuel_commands.ProbeControlSw"
+   },
+   {
+    "delay": 6.0,
+    "device": 6,
+    "command": 3002,
+    "value": 0.0,
+    "note": "fuel_commands.ProbeControlSw"
+   },
+   {
+    "delay": 6.0,
+    "device": 13,
+    "command": 3035,
+    "value": -1.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 3.0,
+    "device": 13,
+    "command": 3035,
+    "value": 1.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 3.0,
+    "device": 13,
+    "command": 3035,
+    "value": 0.0,
+    "note": "hotas_commands.THROTTLE_SPEED_BRAKE"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3008,
+    "value": 1.0,
+    "note": "gear_commands.LaunchBarSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3008,
+    "value": 0.0,
+    "note": "gear_commands.LaunchBarSw"
+   },
+   {
+    "delay": 3.0,
+    "device": 5,
+    "command": 3008,
+    "value": 1.0,
+    "note": "gear_commands.LaunchBarSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3008,
+    "value": 0.0,
+    "note": "gear_commands.LaunchBarSw"
+   },
+   {
+    "delay": 3.0,
+    "device": 5,
+    "command": 3009,
+    "value": 0.0,
+    "note": "gear_commands.HookHandle"
+   },
+   {
+    "delay": 4.0,
+    "device": 5,
+    "command": 3009,
+    "value": 1.0,
+    "note": "gear_commands.HookHandle"
+   },
+   {
+    "delay": 5.0,
+    "device": 3,
+    "command": 3016,
+    "value": 1.0,
+    "note": "elec_commands.PitotHeater"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3016,
+    "value": 0.0,
+    "note": "elec_commands.PitotHeater"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3016,
+    "value": 1.0,
+    "note": "elec_commands.PitotHeater"
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3016,
+    "value": 0.0,
+    "note": "elec_commands.PitotHeater"
+   },
+   {
+    "delay": 20.0,
+    "message": "APU - VERIFY OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.4,
+    "message": "STANDBY ATTITUDE REFERENCE INDICATOR - UNCAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3003,
+    "value": -0.01,
+    "note": "sai_commands.SAI_rotate"
+   },
+   {
+    "delay": 0.2,
+    "message": "ATT SWITCH - STBY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3009,
+    "value": -1.0,
+    "note": "HUD_commands.HUD_AttitudeSelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "ATT SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3009,
+    "value": 0.0,
+    "note": "HUD_commands.HUD_AttitudeSelSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "OBOGS CONTROL SWITCH - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 10,
+    "command": 3001,
+    "value": 1.0,
+    "note": "oxygen_commands.OBOGS_ControlSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY - CLOSE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3002,
+    "value": -1.0,
+    "note": "cpt_commands.CanopySwitchClose"
+   },
+   {
+    "delay": 8.0,
+    "device": 7,
+    "command": 3002,
+    "value": 0.0,
+    "note": "cpt_commands.CanopySwitchClose"
+   },
+   {
+    "delay": 0.2,
+    "message": "HMD - ALIGN",
+    "speak": false
+   },
+   {
+    "delay": 1.2,
+    "message": "WAITING FOR INS ALIGN",
+    "speak": true
+   },
+   {
+    "delay": 67.5,
+    "message": "CHECK INS ALIGNMENT - READY",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "message": "PARK BRK HANDLE - FULLY STOWED",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.333,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.0,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3007,
+    "value": -0.666,
+    "note": "gear_commands.EmergParkHandleSelectEmerg"
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SEAT SAFE/ARM HANDLE - ARM",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3006,
+    "value": 0.0,
+    "note": "cpt_commands.EjectionSeatSafeArmedHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 1 AND 2 KNOBS - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3030,
+    "value": 0.8,
+    "note": "UFC_commands.Comm1Vol"
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3031,
+    "value": 0.8,
+    "note": "UFC_commands.Comm2Vol"
+   },
+   {
+    "delay": 0.2,
+    "message": "INS KNOB - NAV",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 44,
+    "command": 3001,
+    "value": 0.3,
+    "note": "INS_commands.INS_SwitchChange"
+   },
+   {
+    "delay": 3.0,
+    "message": "AUTOSTART COMPLETE",
+    "speak": true
+   }
+  ],
+  "autostop": [
+   {
+    "delay": 2.0,
+    "message": "AUTOSTOP SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "EJECTION SEAT SAFE/ARM HANDLE - SAFE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3006,
+    "value": 1.0,
+    "note": "cpt_commands.EjectionSeatSafeArmedHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "LDG GEAR HANDLE - DN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3001,
+    "value": 0.0,
+    "note": "gear_commands.GearHandle"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLAP SWITCH - AUTO",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": 1.0,
+    "note": "ctrl_commands.FlapSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "T/O TRIM BUTTON - PRESS UNTIL TRIM ADVISORY DISPLAYED",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3002,
+    "value": 1.0,
+    "note": "ctrl_commands.TOTrimSw"
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3002,
+    "value": 0.0,
+    "note": "ctrl_commands.TOTrimSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "PARK BRK HANDLE - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.333,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.0,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3005,
+    "value": 0.1,
+    "note": "gear_commands.EmergParkHandleOnOff"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.333,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3006,
+    "value": 0.0,
+    "note": "gear_commands.EmergParkHandleSelectPark"
+   },
+   {
+    "delay": 0.2,
+    "device": 5,
+    "command": 3005,
+    "value": -0.1,
+    "note": "gear_commands.EmergParkHandleOnOff"
+   },
+   {
+    "delay": 0.2,
+    "message": "INS KNOB - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 44,
+    "command": 3001,
+    "value": 0.0,
+    "note": "INS_commands.INS_SwitchChange"
+   },
+   {
+    "delay": 0.2,
+    "message": "STANDBY ATTITUDE REFERENCE INDICATOR - CAGE/LOCK",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3002,
+    "value": 1.0,
+    "note": "sai_commands.SAI_pull"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3003,
+    "value": 0.01,
+    "note": "sai_commands.SAI_rotate"
+   },
+   {
+    "delay": 0.2,
+    "device": 32,
+    "command": 3002,
+    "value": 0.0,
+    "note": "sai_commands.SAI_pull"
+   },
+   {
+    "delay": 0.2,
+    "message": "SENSORS, RADAR, AVIONICS AND VTRS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 42,
+    "command": 3001,
+    "value": 0.0,
+    "note": "RADAR_commands.RADAR_SwitchChange"
+   },
+   {
+    "delay": 0.2,
+    "message": "COMM 1 AND 2 KNOBS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3030,
+    "value": 0.0,
+    "note": "UFC_commands.Comm1Vol"
+   },
+   {
+    "delay": 0.2,
+    "device": 25,
+    "command": 3031,
+    "value": 0.0,
+    "note": "UFC_commands.Comm2Vol"
+   },
+   {
+    "delay": 0.2,
+    "message": "EXT AND INT LT KNOBS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3002,
+    "value": 0.0,
+    "note": "extlights_commands.Formation"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3001,
+    "value": 0.0,
+    "note": "extlights_commands.Position"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3003,
+    "value": 0.0,
+    "note": "extlights_commands.Strobe"
+   },
+   {
+    "delay": 0.2,
+    "device": 8,
+    "command": 3004,
+    "value": 0.0,
+    "note": "extlights_commands.LdgTaxi"
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3001,
+    "value": 0.0,
+    "note": "cptlights_commands.Consoles"
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3002,
+    "value": 0.0,
+    "note": "cptlights_commands.InstPnl"
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3003,
+    "value": 0.0,
+    "note": "cptlights_commands.Flood"
+   },
+   {
+    "delay": 0.2,
+    "device": 9,
+    "command": 3005,
+    "value": 0.0,
+    "note": "cptlights_commands.Chart"
+   },
+   {
+    "delay": 0.2,
+    "message": "CANOPY - OPEN",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3001,
+    "value": 1.0,
+    "note": "cpt_commands.CanopySwitchOpen"
+   },
+   {
+    "delay": 0.2,
+    "device": 7,
+    "command": 3001,
+    "value": 0.0,
+    "note": "cpt_commands.CanopySwitchOpen"
+   },
+   {
+    "delay": 0.2,
+    "message": "NOSEWHEEL STEERING - DISENGAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3018,
+    "value": 1.0,
+    "note": "hotas_commands.STICK_PADDLE"
+   },
+   {
+    "delay": 0.2,
+    "device": 13,
+    "command": 3018,
+    "value": 0.0,
+    "note": "hotas_commands.STICK_PADDLE"
+   },
+   {
+    "delay": 0.2,
+    "message": "FLAP SWITCH - FULL",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 2,
+    "command": 3007,
+    "value": -1.0,
+    "note": "ctrl_commands.FlapSw"
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLE - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "message": "LEFT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "LEFT THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "L(R) DDI, AMPCD, HUD AND HMD KNOBS - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 35,
+    "command": 3001,
+    "value": 0.0,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 36,
+    "command": 3001,
+    "value": 0.0,
+    "note": "MDI_commands.MDI_off_night_day"
+   },
+   {
+    "delay": 0.2,
+    "device": 34,
+    "command": 3002,
+    "value": 0.0,
+    "note": "HUD_commands.HUD_SymbBrightCtrl"
+   },
+   {
+    "delay": 0.2,
+    "device": 58,
+    "command": 3001,
+    "value": 0.0,
+    "note": "hmd_commands.BrtKnob"
+   },
+   {
+    "delay": 0.2,
+    "device": 37,
+    "command": 3001,
+    "value": 0.0,
+    "note": "AMPCD_commands.AMPCD_off_brightness"
+   },
+   {
+    "delay": 0.2,
+    "message": "THROTTLE - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "message": "RIGHT THROTTLE - TO IDLE",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "RIGHT THROTTLE - TO OFF",
+    "prompt": true,
+    "speak": true
+   },
+   {
+    "delay": 0.2,
+    "message": "BATT SWITCH - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.2,
+    "device": 3,
+    "command": 3001,
+    "value": 0.0,
+    "note": "elec_commands.BattSw"
+   },
+   {
+    "delay": 3.0,
+    "message": "AUTOSTOP COMPLETE",
+    "speak": true
+   }
+  ]
+ }
+}

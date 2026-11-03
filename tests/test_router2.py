@@ -119,17 +119,34 @@ def test_sequence_intent_and_abort_phrase():
 
 
 # ---------------- sequence engine
-def test_runner_waits_sends_in_order_and_speaks_messages():
-    slept, sent, said = [], [], []
-    steps = [Step(0.5, 1, 3001, 1.0), Step(2.0, message="AUTOSTART COMPLETE"), Step(0.0, 2, 3002, 0.0)]
-    res = SequenceRunner(lambda d, c, v: sent.append((d, c, v)) or True, said.append, sleep=slept.append).run(steps)
-    assert sent == [(1, 3001, 1.0), (2, 3002, 0.0)] and said == ["AUTOSTART COMPLETE"]
-    assert abs(sum(slept) - 2.5) < 1e-9 and res.ok and res.sent == 2
+def fake_clock():
+    t = [0.0]
+    return (lambda: t[0]), (lambda dt: t.__setitem__(0, t[0] + dt)), t
+
+
+def test_runner_uses_absolute_timeline_and_speaks_only_flagged_messages():
+    clock, sleep, t = fake_clock()
+    sent, said = [], []
+    steps = [Step(0.5, 1, 3001, 1.0), Step(2.0, message="detail line"), Step(0.0, message="HEADING", speak=True),
+             Step(1.0, message="Throttle to idle", prompt=True), Step(0.0, 2, 3002, 0.0)]
+    res = SequenceRunner(lambda d, c, v: sent.append((d, c, v, round(t[0], 3))) or True, said.append,
+                         sleep=sleep, clock=clock).run(steps)
+    assert sent == [(1, 3001, 1.0, 0.5), (2, 3002, 0.0, 3.5)]            # clicks land at their ED timestamps
+    assert said == ["HEADING", "Throttle to idle"] and "detail line" in res.messages and res.ok
+
+
+def test_runner_has_no_drift_with_many_tiny_steps():
+    clock, sleep, t = fake_clock()
+    stamps = []
+    steps = [Step(0.01, 1, 1, 1.0) for _ in range(250)]
+    SequenceRunner(lambda d, c, v: stamps.append(t[0]) or True, sleep=sleep, clock=clock).run(steps)
+    assert abs(stamps[-1] - 2.5) < 0.01 and abs(stamps[99] - 1.0) < 0.01
 
 
 def test_runner_abort_stops_midway():
     sent = []
-    runner = SequenceRunner(lambda d, c, v: sent.append(c) or True, sleep=lambda s: None)
+    clock, sleep, _ = fake_clock()
+    runner = SequenceRunner(lambda d, c, v: sent.append(c) or True, sleep=sleep, clock=clock)
     steps = [Step(0, 1, 1, 1.0), Step(0, 1, 2, 1.0), Step(0, 1, 3, 1.0)]
     first = steps[0]
     orig = runner.send
@@ -140,7 +157,8 @@ def test_runner_abort_stops_midway():
 
 def test_runner_gives_up_when_link_down():
     said = []
-    res = SequenceRunner(lambda d, c, v: False, said.append, sleep=lambda s: None).run([Step(0, 1, i, 1.0) for i in range(10)])
+    clock, sleep, _ = fake_clock()
+    res = SequenceRunner(lambda d, c, v: False, said.append, sleep=sleep, clock=clock).run([Step(0, 1, i, 1.0) for i in range(10)])
     assert res.failed == 3 and "Lost the link" in said[-1]
 
 

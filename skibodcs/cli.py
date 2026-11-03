@@ -32,9 +32,13 @@ def main(argv=None):
         x.add_argument("--devices", required=True); x.add_argument("--commands", required=True)
         x.add_argument("--clickable", required=True)
         if name in ("extract", "controls"):
+            x.add_argument("--macros", help="Macro_sequencies.lua: pin switch values to ED's own autostart data")
             x.add_argument("--aircraft", required=True, help="F-16C_50 or FA-18C_hornet"); x.add_argument("--out", required=True)
         else:
             x.add_argument("text")
+    q = sub.add_parser("sequences", help="build sequences/<aircraft>.json (autostart/autostop) from ED's Macro_sequencies.lua")
+    q.add_argument("--devices", required=True); q.add_argument("--commands", required=True)
+    q.add_argument("--macros", required=True); q.add_argument("--aircraft", required=True); q.add_argument("--out", required=True)
     a = ap.parse_args(argv)
 
     if a.cmd in ("install", "uninstall", "deploy") or getattr(a, "deploy", False):
@@ -54,23 +58,37 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
+    if a.cmd == "sequences":
+        from . import extract as ex, macros as mc
+        raw = ex.run_macro_extractor(Path(a.devices), Path(a.commands), Path(a.macros))
+        seq = mc.to_sequences(raw, a.aircraft)
+        mc.save_sequences(seq, a.out)
+        print("wrote", a.out, {k: len(v) for k, v in seq["sequences"].items()},
+              "| autostart ~%.0f s" % sum(st.get("delay", 0) for st in seq["sequences"]["autostart"]))
+        return 0
     if a.cmd in ("extract", "find", "controls"):
         from . import extract as ex
         els = ex.run_extractor(Path(a.devices), Path(a.commands), Path(a.clickable))
+        observed = None
+        if getattr(a, "macros", None):
+            from . import macros as mc
+            observed = mc.observed_values(ex.run_macro_extractor(Path(a.devices), Path(a.commands), Path(a.macros)))
         if a.cmd == "controls":
             from . import controls as cl
             cs = cl.build_controls(els)
+            pinned = cl.apply_macros(cs, observed) if observed else 0
             cl.save(cs, a.aircraft, a.out)
             kinds = {}
             for c in cs: kinds[c.kind] = kinds.get(c.kind, 0) + 1
-            print("wrote", a.out, len(cs), "controls", kinds, "| confirm-required:", sum(c.danger for c in cs))
+            print("wrote", a.out, len(cs), "controls", kinds, "| confirm-required:", sum(c.danger for c in cs),
+                  "| pinned to ED's autostart values:", pinned)
             return 0
         if a.cmd == "find":
             for e in ex.find(els, a.text):
                 print(f"{e['hint']}  | dev {e['device']} {e['device_name']} | "
                       f"{[(c['name'], c['id']) for c in e['commands']]} | arg {e['args']}")
             return 0
-        text, problems = ex.build_table(els, a.aircraft)
+        text, problems = ex.build_table(els, a.aircraft, observed=observed)
         Path(a.out).parent.mkdir(parents=True, exist_ok=True); Path(a.out).write_text(text)
         print("wrote", a.out); [print("  PROBLEM:", p) for p in problems]
         return 1 if problems else 0

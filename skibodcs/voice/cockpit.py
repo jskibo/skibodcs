@@ -15,6 +15,7 @@ class Action:
     momentary: bool = False         # send value then release (0.0) shortly after
     verified: bool = False
     arg: int = 0                    # cockpit argument number (for read-back verification)
+    confirmed: list[str] = field(default_factory=list)   # positions whose value is confirmed (ED's autostart data)
 
 
 @dataclass
@@ -48,5 +49,5 @@ def load_table(path: str | Path) -> AirframeTable:
         t.actions[name] = Action(name, int(a["device"]), int(a["command"]),
                                  {k: float(v) for k, v in a["values"].items()},
                                  bool(a.get("momentary", False)), bool(a.get("verified", False)),
-                                 int(a.get("arg", 0)))
+                                 int(a.get("arg", 0)), list(a.get("confirmed", [])))
     return t

@@ -17,10 +17,13 @@ class Step:
     command: int | None = None
     value: float | None = None
     message: str | None = None         # spoken/printed progress text instead of a click
+    speak: bool = False                # worth saying aloud (headings, prompts) vs. log only
+    prompt: bool = False               # ED asks the PILOT to do something (e.g. move the throttle)
 
     @staticmethod
     def from_dict(d: dict) -> "Step":
-        return Step(float(d.get("delay", 0)), d.get("device"), d.get("command"), d.get("value"), d.get("message"))
+        return Step(float(d.get("delay", 0)), d.get("device"), d.get("command"), d.get("value"), d.get("message"),
+                    bool(d.get("speak", False)), bool(d.get("prompt", False)))
 
 
 @dataclass
@@ -41,9 +44,11 @@ def load_sequences(path: str | Path) -> dict[str, list[Step]]:
 
 
 class SequenceRunner:
+    """Replays steps on an absolute timeline (no cumulative drift from many tiny delays)."""
     def __init__(self, send: Callable[[int, int, float], bool], say: Callable[[str], None] = lambda s: None,
-                 sleep: Callable[[float], None] = time.sleep, speed: float = 1.0):
-        self.send, self.say, self.sleep, self.speed = send, say, sleep, speed
+                 sleep: Callable[[float], None] = time.sleep, speed: float = 1.0,
+                 clock: Callable[[], float] = time.monotonic):
+        self.send, self.say, self.sleep, self.speed, self.clock = send, say, sleep, speed, clock
         self.cancel = threading.Event()
 
     def abort(self):
@@ -51,19 +56,22 @@ class SequenceRunner:
 
     def run(self, steps: list[Step]) -> RunResult:
         res = RunResult()
+        start, due = self.clock(), 0.0
         for st in steps:
-            if st.delay > 0:
-                # sleep in slices so an abort is honoured within ~0.25 s
-                left = st.delay / max(self.speed, 1e-6)
-                while left > 0 and not self.cancel.is_set():
-                    chunk = min(0.25, left)
-                    self.sleep(chunk); left -= chunk
+            due += st.delay / max(self.speed, 1e-6)
+            while not self.cancel.is_set():                     # sleep in slices so an abort lands within ~0.25 s
+                left = due - (self.clock() - start)
+                if left <= 0:
+                    break
+                self.sleep(min(0.25, left))
             if self.cancel.is_set():
                 res.cancelled = True
                 self.say("Sequence aborted.")
                 return res
             if st.message:
-                res.messages.append(st.message); self.say(st.message)
+                res.messages.append(st.message)
+                if st.speak or st.prompt:
+                    self.say(st.message)
             if st.device is not None and st.command is not None:
                 if self.send(st.device, st.command, float(st.value if st.value is not None else 1.0)):
                     res.sent += 1

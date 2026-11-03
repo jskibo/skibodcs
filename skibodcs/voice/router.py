@@ -190,8 +190,8 @@ class Router:
                 a = self.table.actions[c.action]
                 if a.arg and not a.momentary:
                     r.checks.append((a.arg, c.action.replace("_", " ")))
-                if not a.verified:
-                    r.notes.append(f"action '{c.action}' is UNVERIFIED (ids come from the game files; value polarity not yet confirmed in the sim)")
+                if c.value not in a.confirmed:
+                    r.notes.append(f"action '{c.action}' value '{c.value}' is UNVERIFIED (ids come from the game files; this value is not in ED's autostart data)")
             except KeyError as e:
                 r.notes.append(str(e).strip("'\""))
 
@@ -217,8 +217,8 @@ class Router:
         r.speech.append(label)
         if not k.momentary and k.kind != "button":
             r.checks.append((k.arg, k.name))
-        if not k.verified:
-            r.notes.append(f"control '{k.id}' value meaning is UNVERIFIED")
+        if c.position not in k.confirmed and c.position not in k.inferred and k.kind != "axis":
+            r.notes.append(f"control '{k.id}' position '{c.position}' is UNVERIFIED")
 
     def _wingman(self, c: Command, r: Result):
         if c.intent not in WINGMAN_INTENTS:
