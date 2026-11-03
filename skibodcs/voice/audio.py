@@ -52,6 +52,16 @@ class PiperTTS:
             os.unlink(out)
 
 
+def _http_error(e: Exception) -> str:
+    import json, urllib.error
+    if isinstance(e, urllib.error.HTTPError):
+        try:
+            return f"HTTP {e.code}: {json.loads(e.read()).get('error', '')}"
+        except Exception:                                            # noqa: BLE001
+            return f"HTTP {e.code}"
+    return str(e)
+
+
 class RemoteSTT:
     """Whisper running on another machine (see voice/server.py). Raises RuntimeError with the reason on failure."""
     def __init__(self, url: str, timeout: float = 15.0):
