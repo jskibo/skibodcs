@@ -8,7 +8,7 @@ from pathlib import Path
 
 from ..llm import OllamaClient
 from .cockpit import load_table
-from .link import DCSLink
+from .link import DCSLink, HookClient, HookStatus
 from .router import Router
 from .state import World
 
@@ -20,7 +20,8 @@ def build(cfg: dict):
         load_theater(world, cfg["theater"], cfg.get("wind_from"))
     table = load_table(cfg["airframe_table"])
     llm = OllamaClient(cfg["ollama"]["model"], cfg["ollama"]["host"]) if "ollama" in cfg else None
-    router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"))
+    router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"),
+                    cfg.get("wingman", "Viper 1-2"))
     return world, router
 
 
@@ -33,6 +34,18 @@ def main(argv=None):
     world, router = build(cfg)
     link = DCSLink(world, cfg.get("telemetry_port", 14501), cfg.get("command_port", 14500))
     link.start()
+    hook = HookClient(port=cfg.get("hook_command_port", 14510))
+    HookStatus(world, cfg.get("hook_status_port", 14511)).start()
+
+    def run_wingman(r) -> list[str]:
+        """Send each wingman command; speak only what the sim confirmed."""
+        from . import brevity as bv
+        out = []
+        wcs = bv.callsign_speech(cfg.get("wingman", "Viper 1-2"))
+        for cmd in r.wingman:
+            ok, detail = hook.request(cmd)
+            out.append(f"{wcs}, {detail}." if ok else f"{wcs}, unable, {detail}.")
+        return out
 
     if a.text:
         print("type what you'd say; blank line quits")
@@ -41,6 +54,8 @@ def main(argv=None):
             print(f"[{r.source}]", *r.speech, *(f"(note: {n})" for n in r.notes))
             if r.cockpit and not link.send_all(r.cockpit):
                 print("(DCS not reachable: cockpit commands not sent)")
+            for line in run_wingman(r):
+                print("  wingman:", line)
         return 0
 
     from .audio import FasterWhisperSTT, PiperTTS, PTTRecorder, play_wav, radio_fx
@@ -54,7 +69,7 @@ def main(argv=None):
         r = router.handle(stt.transcribe(wav))
         if r.cockpit:
             link.send_all(r.cockpit)
-        for line in r.speech:
+        for line in r.speech + run_wingman(r):
             play_wav(radio_fx(tts.synthesize(line)))
 
 

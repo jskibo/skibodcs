@@ -1,40 +1,51 @@
-# skibodcs v0.2
+# skibodcs v0.3
 
-Two tracks, one codebase. Everything below marked UNVERIFIED could not be run in the build
-sandbox (no DCS, no Ollama, no Whisper/Piper there). All logic with fakes is covered by `pytest`.
+Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
+and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
+Piper in the build sandbox. Python is tested with fakes; the Lua is tested under LuaJIT (Lua 5.1
+semantics, like DCS) against mocked DCS APIs (tests/lua).
 
 ## Setup (sim PC, Windows)
     py -m venv .venv && .venv\Scripts\activate
     pip install pydcs pyproj "pydantic>=2" pytest
     pip install -e .[voice]
-    pytest
+    pytest                         (Lua tests are skipped unless LUAJIT=path\to\luajit.exe is set)
+    skibodcs install               (add --dcs-dir "C:\Users\you\Saved Games\DCS.openbeta" if both exist)
+`install` copies the Hook, mission module and Export module into Saved Games\DCS\Scripts and adds
+ONE managed block to your existing Export.lua (original backed up once; `skibodcs uninstall`
+removes everything cleanly).
 
-## A. Mission generator (Ollama, schema-constrained)
-    skibodcs catalog Caucasus
-    skibodcs generate "SEAD strike on a SA-6 near Kutaisi, dawn" --theater Caucasus ^
-        --model qwen3:14b --host http://MAC_STUDIO_IP:11434 --out out\m1.miz
-Flow: schema (enums = real airbases/aircraft/tasks) -> Ollama `format` -> validate() ->
-on errors the exact messages go back to the model (max 3 tries) -> briefing pass -> pydcs .miz.
-UNVERIFIED: that Ollama accepts the generated schema ($defs/$ref) as-is on your version. If it
-rejects it, tell me the error and I will inline the refs.
+## Three Lua states, one bridge (this is why there are three files)
+| file | runs in | job |
+|---|---|---|
+| skibodcs_export.lua | Export (cockpit) | telemetry, locked target, cockpit clicks (UDP 14501 / TCP 14500) |
+| Hooks/skibodcs_hook.lua | Hook (GUI) | sockets + files; reaches the mission via net.dostring_in (TCP 14510 / UDP 14511) |
+| skibodcs_mission.lua | Mission | wingman tasking, event buffer; no sockets/io (sanitized) |
+The PC app is the bridge: it takes your locked target id from Export and puts it in the wingman
+command it sends to the Hook.
 
-## B. Voice (natural speech, no exact phrases)
-    copy skibodcs.example.toml skibodcs.toml   (edit host, model, piper path, joystick button)
-    skibodcs-voice --text          # type instead of speak: safe way to test everything
-    skibodcs-voice                 # PTT -> Whisper -> intent -> action -> Piper -> headset
-Install the DCS side by appending ONE line to Saved Games\DCS\Scripts\Export.lua:
-    pcall(dofile, lfs.writedir() .. [[Scripts\skibodcs_export.lua]])
-and copying dcs_hook\skibodcs_export.lua to Saved Games\DCS\Scripts\.
+## Use
+    skibodcs generate "SEAD on an SA-6 near Kutaisi" --host http://MAC:11434 --deploy
+    skibodcs deploy out\m1.miz --kneeboard F-16C_50=route.png      (kneeboard PNG generation not built yet)
+    copy skibodcs.example.toml skibodcs.toml ; skibodcs-voice --text      # type instead of speak
+Wingman examples: "weapons free", "attack my target", "go wedge", "how's your fuel".
 
-Design rules: the LLM only picks an intent and action/value NAMES (enums). Code computes every
-number (BRAA, bullseye, runway) and owns device/command ids (airframes\*.toml, in git).
-Crisp calls like "bogey dope" skip the LLM entirely.
+## Honest status of wingman intents
+IMPLEMENTED in the mission module: weapons_free, weapons_hold, engage_my_target, engage_nearest, status.
+NOT implemented (the sim answers "not implemented" and the app says "unable", never a fake "roger"):
+formation, cover_me, rejoin, rtb, cleared_hot, break_left/right. Formation needs the real AI
+option values; the rest need route/task injection. Add them one at a time against a live sim.
 
-## UNVERIFIED / TODO
-- airframes\f-16c.toml ids are PLACEHOLDERS. Extract real ones from clickabledata.lua; the
-  app flags unverified actions.
-- skibodcs_export.lua field names (Coalition, Type.level1, LoGetWorldObjects) are from the Export
-  API as I know it; confirm in a live cockpit.
-- FasterWhisperSTT/PiperTTS/PTTRecorder never ran. Piper is called via its CLI on purpose.
-- Magnetic variation defaults to 0 (set magvar_east per theater). Aspect bands are simple.
-- Not yet: JTAC 9-line, AI wingman orders, campaign DB (SQLite), mission-side Hook, kneeboards.
+## UNVERIFIED (verify in this order)
+1. Hook loads: DCS log should show "skibodcs: hook registered" then "mission module loaded".
+   If LuaSocket is missing the log says so and the Hook idles.
+2. getPlayerName() identifies you in single player; wingmen = other units in your group.
+3. Export locked-target field (LoGetLockedTargetInformation()[1].ID) and whether that id equals
+   Object:getID() in the mission state (otherwise engage_my_target says "target not found").
+4. Pushing tasks/options onto AI wingmen inside a player's group behaves as expected.
+5. net.dostring_in return order: code tolerates either (result, ok) or (ok, result).
+6. airframes\f-16c.toml ids are placeholders; no F/A-18C table yet. Extract from clickabledata.lua.
+7. Ollama accepting the generated schemas; Whisper/Piper/PTT never ran.
+8. Whether DCS can be started with a mission chosen by the app: NOT built. The mission lands in
+   Missions\skibodcs\; you still pick it in DCS.
+Mission events are appended to Saved Games\DCS\skibodcs\events.jsonl for the campaign step.

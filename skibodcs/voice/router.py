@@ -6,15 +6,18 @@ import re
 from dataclasses import dataclass, field
 
 from ..llm import LLM
+from . import brevity as bv
 from . import comms
 from .cockpit import AirframeTable
-from .intents import COMMS_INTENTS, Command, Parsed, intent_schema
+from .intents import COMMS_INTENTS, WINGMAN_INTENTS, Command, Parsed, intent_schema
 from .state import World
 
 FAST = [
-    (re.compile(r"^(?:\w+,?\s+)?(?:bogey dope|bogie dope)\.?$"), "bogey_dope"),
-    (re.compile(r"^(?:\w+,?\s+)?(?:picture|request picture)\.?$"), "picture"),
-    (re.compile(r"^(?:\w+,?\s+)?radio check\.?$"), "radio_check"),
+    (re.compile(r"^(?:\w+,?\s+)?(?:bogey dope|bogie dope)\.?$"), ("comms", "bogey_dope")),
+    (re.compile(r"^(?:\w+,?\s+)?(?:picture|request picture)\.?$"), ("comms", "picture")),
+    (re.compile(r"^(?:\w+,?\s+)?radio check\.?$"), ("comms", "radio_check")),
+    (re.compile(r"^(?:\w+,?\s+)?weapons free\.?$"), ("wingman", "weapons_free")),
+    (re.compile(r"^(?:\w+,?\s+)?(?:weapons hold|hold fire)\.?$"), ("wingman", "weapons_hold")),
 ]
 
 PROMPT = """You convert a pilot's spoken words (already transcribed, may be messy) into commands.
@@ -22,6 +25,8 @@ Return JSON only. Several commands are allowed (max 4) for compound requests.
 
 COMMS intents (domain "comms"):
 {comms}
+WINGMAN intents (domain "wingman"; set mode for formation, weapon only if the pilot names one):
+{wingman}
 COCKPIT actions (domain "cockpit"), with allowed values:
 {cockpit}
 
@@ -37,23 +42,25 @@ Context: {ctx}"""
 class Result:
     speech: list[str] = field(default_factory=list)
     cockpit: list[tuple[int, int, float]] = field(default_factory=list)
+    wingman: list[dict] = field(default_factory=list)      # JSON-ready commands for the Hook
     source: str = "none"                 # fast | llm | none
     notes: list[str] = field(default_factory=list)
 
 
 class Router:
     def __init__(self, llm: LLM | None, table: AirframeTable, world: World,
-                 callsign: str = "Viper 1-1", awacs: str = "Magic"):
+                 callsign: str = "Viper 1-1", awacs: str = "Magic", wingman: str = "Viper 1-2"):
         self.llm, self.table, self.world = llm, table, world
-        self.callsign, self.awacs = callsign, awacs
+        self.callsign, self.awacs, self.wingman = callsign, awacs, wingman
+        self._seq = 0
         self.schema = intent_schema(table.action_names(), table.all_values())
 
     # -- parse
     def _fast(self, text: str) -> Parsed | None:
         t = re.sub(r"[^\w\s,.]", "", text.lower()).strip()
-        for rx, intent in FAST:
+        for rx, (domain, intent) in FAST:
             if rx.match(t):
-                return Parsed(commands=[Command(domain="comms", intent=intent)])
+                return Parsed(commands=[Command(domain=domain, intent=intent)])
         return None
 
     def _context(self) -> str:
@@ -67,6 +74,7 @@ class Router:
             return None
         cockpit = "\n".join(f"- {n}: {sorted(a.values)}" for n, a in sorted(self.table.actions.items()))
         sys_msg = PROMPT.format(comms="\n".join(f"- {k}: {v}" for k, v in COMMS_INTENTS.items()),
+                                wingman="\n".join(f"- {k}: {v}" for k, v in WINGMAN_INTENTS.items()),
                                 cockpit=cockpit or "- (none)", ctx=self._context())
         out = self.llm.chat([{"role": "system", "content": sys_msg},
                              {"role": "user", "content": text}], self.schema)
@@ -90,7 +98,7 @@ class Router:
                 return r
         for c in parsed.commands:
             self._exec(c, r)
-        if not r.speech and not r.cockpit and r.source == "llm":
+        if not r.speech and not r.cockpit and not r.wingman and r.source == "llm":
             r.source = "none"
         return r
 
@@ -110,6 +118,23 @@ class Router:
                 r.speech.append(h())
             else:
                 r.notes.append(f"unknown comms intent '{c.intent}'")
+            return
+        if c.domain == "wingman":
+            if c.intent not in WINGMAN_INTENTS:
+                r.notes.append(f"unknown wingman intent '{c.intent}'")
+                return
+            params: dict = {}
+            if c.intent == "engage_my_target":
+                if not w.own.lock_id:
+                    r.speech.append(f"{bv.callsign_speech(self.callsign)}, unable, no target locked.")
+                    return
+                params["target_id"] = w.own.lock_id
+            if c.intent == "formation":
+                params["mode"] = c.mode or "spread"
+            if c.weapon:
+                params["weapon"] = c.weapon
+            self._seq += 1
+            r.wingman.append({"id": f"w{self._seq}", "type": "wingman", "intent": c.intent, "params": params})
             return
         if c.domain == "cockpit":
             try:

@@ -12,6 +12,7 @@ class Ownship:
     alt_ft: float = 0.0
     heading: float = 0.0          # true degrees
     gs_kt: float = 0.0
+    lock_id: str = ""          # id of the target locked in the cockpit (from Export)
 
 
 @dataclass
@@ -47,6 +48,8 @@ class World:
     wind_from: float | None = None
     own_side: str = "blue"
     updated: float = 0.0
+    hook_seen: float = 0.0          # last Hook heartbeat (time.time())
+    events: list = field(default_factory=list)   # mission events from the Hook
     lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def hostiles(self, air_only=True) -> list[Contact]:
@@ -58,7 +61,8 @@ class World:
         o = p.get("own") or {}
         with self.lock:
             self.own = Ownship(o.get("model", ""), o.get("lat", 0), o.get("lon", 0),
-                               o.get("alt_ft", 0), o.get("hdg", 0), o.get("gs_kt", 0))
+                               o.get("alt_ft", 0), o.get("hdg", 0), o.get("gs_kt", 0),
+                               str(o.get("lock", "") or ""))
             self.contacts = [Contact(str(c["id"]), c["lat"], c["lon"], c.get("alt_ft", 0),
                                      c.get("hdg", 0), c.get("spd_kt", 0), c.get("coal", "neutral"),
                                      c.get("type", ""), c.get("air", True))

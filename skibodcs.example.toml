@@ -1,5 +1,6 @@
 callsign = "Viper 1-1"
 awacs = "Magic"
+wingman = "Viper 1-2"
 theater = "Caucasus"           # loads airfields, runways, ATC freqs, bullseye
 wind_from = 310              # optional, degrees; picks active runway
 airframe_table = "airframes/f-16c.toml"

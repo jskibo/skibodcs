@@ -81,3 +81,89 @@ class DCSLink:
             if i < len(cmds) - 1:
                 time.sleep(gap)
         return ok
+
+
+class HookClient:
+    """Wingman/mission commands -> Hook (TCP, JSON lines). Waits for the matching reply so the app
+    only announces what the sim confirmed. Never raises: failures come back as ok=False."""
+    def __init__(self, host: str = "127.0.0.1", port: int = 14510, timeout: float = 2.0):
+        self.host, self.port, self.timeout = host, port, timeout
+        self._s: socket.socket | None = None
+        self._buf = b""
+        self._lock = threading.Lock()
+
+    def _connect(self) -> bool:
+        try:
+            self._s = socket.create_connection((self.host, self.port), timeout=self.timeout)
+            self._s.settimeout(self.timeout)
+            self._buf = b""
+            return True
+        except OSError:
+            self._s = None
+            return False
+
+    def request(self, cmd: dict) -> tuple[bool, str]:
+        with self._lock:
+            for attempt in (1, 2):
+                if self._s is None and not self._connect():
+                    return False, "DCS hook unreachable"
+                try:
+                    self._s.sendall((json.dumps(cmd) + "\n").encode())
+                    deadline = time.time() + self.timeout
+                    while time.time() < deadline:
+                        while b"\n" in self._buf:
+                            line, self._buf = self._buf.split(b"\n", 1)
+                            try:
+                                rep = json.loads(line)
+                            except ValueError:
+                                continue
+                            if rep.get("id") == cmd.get("id"):          # ignore stale replies
+                                return bool(rep.get("ok")), str(rep.get("detail", ""))
+                        chunk = self._s.recv(4096)
+                        if not chunk:
+                            raise OSError("closed")
+                        self._buf += chunk
+                    return False, "no reply from DCS"
+                except socket.timeout:
+                    return False, "no reply from DCS"
+                except OSError:
+                    self._s = None                                       # reconnect once, then give up
+            return False, "DCS hook unreachable"
+
+
+class HookStatus:
+    """UDP listener for Hook heartbeats and mission events (kills, deaths, landings)."""
+    def __init__(self, world: World, port: int = 14511, host: str = "127.0.0.1"):
+        self.world, self.host, self.port = world, host, port
+        self._sock: socket.socket | None = None
+        self._stop = threading.Event()
+        self.bound_port = port
+
+    def start(self):
+        self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self._sock.bind((self.host, self.port)); self._sock.settimeout(0.25)
+        self.bound_port = self._sock.getsockname()[1]
+        threading.Thread(target=self._rx, daemon=True).start()
+
+    def _rx(self):
+        while not self._stop.is_set():
+            try:
+                data, _ = self._sock.recvfrom(65535)
+                msg = json.loads(data)
+            except (socket.timeout, OSError, ValueError):
+                continue
+            if msg.get("type") == "heartbeat":
+                self.world.hook_seen = time.time()
+            elif msg.get("type") == "event":
+                self.world.events.append(msg)
+
+    def stop(self):
+        self._stop.set()
+        try:
+            self._sock and self._sock.close()
+        except OSError:
+            pass
+
+    @property
+    def hook_alive(self) -> bool:
+        return time.time() - self.world.hook_seen < 3.0

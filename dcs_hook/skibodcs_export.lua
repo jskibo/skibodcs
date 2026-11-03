@@ -34,10 +34,15 @@ local function num(v) return string.format("%.6f", v or 0) end
 local function snapshot()
   local me = LoGetSelfData(); if not me or not me.LatLongAlt then return nil end
   local gs = (LoGetTrueAirSpeed() or 0) * MS2KT
+  -- Locked target id (UNVERIFIED field name: LoGetLockedTargetInformation()[1].ID)
+  local lock = safe(function()
+    local t = LoGetLockedTargetInformation and LoGetLockedTargetInformation()
+    if t and t[1] and t[1].ID then return tostring(t[1].ID):gsub('[^%w]', '') end
+  end) or ""
   local parts = { string.format(
-    '{"own":{"model":"%s","lat":%s,"lon":%s,"alt_ft":%.0f,"hdg":%.1f,"gs_kt":%.0f},"objs":[',
+    '{"own":{"model":"%s","lat":%s,"lon":%s,"alt_ft":%.0f,"hdg":%.1f,"gs_kt":%.0f,"lock":"%s"},"objs":[',
     tostring(me.Name or ""):gsub('[^%w%-_ ]', ''), num(me.LatLongAlt.Lat), num(me.LatLongAlt.Long),
-    (me.LatLongAlt.Alt or 0) * M2FT, (me.Heading or 0) * RAD2DEG, gs) }
+    (me.LatLongAlt.Alt or 0) * M2FT, (me.Heading or 0) * RAD2DEG, gs, lock) }
   local objs, n = LoGetWorldObjects() or {}, 0
   for id, o in pairs(objs) do
     if n >= MAX_OBJS then break end
