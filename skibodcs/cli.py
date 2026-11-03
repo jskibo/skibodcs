@@ -37,6 +37,9 @@ def main(argv=None):
     cp.add_argument("--model", default="qwen3:30b-a3b"); cp.add_argument("--host", default="http://localhost:11434")
     dr = sub.add_parser("doctor", help="check the DCS link: Export (14500) and Hook (14510) ports, and the skibodcs lines in dcs.log")
     dr.add_argument("--dcs-dir"); dr.add_argument("--lines", type=int, default=12)
+    bt = sub.add_parser("buttons", help="show joystick buttons as you press them (find your push-to-talk button number)")
+    bt.add_argument("--seconds", type=float, default=30.0)
+    au = sub.add_parser("audio", help="list microphones / speakers and the defaults sounddevice will use")
     la = sub.add_parser("launch", help="ask the running DCS (via the Hook) to load a .miz from Saved Games\\DCS\\Missions")
     la.add_argument("miz"); la.add_argument("--port", type=int, default=14510)
     k = sub.add_parser("kneeboard", help="spec.json -> kneeboard PNG pages (mission, route, briefing, threats, map, data card)")
@@ -84,6 +87,27 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
+    if a.cmd == "buttons":
+        import time
+        import pygame
+        pygame.init(); pygame.joystick.init()
+        js = [pygame.joystick.Joystick(i) for i in range(pygame.joystick.get_count())]
+        if not js:
+            print("No joysticks found."); return 1
+        for i, j in enumerate(js):
+            j.init(); print(f"[{i}] {j.get_name()}  ({j.get_numbuttons()} buttons)")
+        print(f"Press buttons now ({a.seconds:.0f} s)...")
+        end = time.time() + a.seconds
+        while time.time() < end:
+            for e in pygame.event.get():
+                if e.type == pygame.JOYBUTTONDOWN:
+                    print(f"joystick_index = {e.joy}   button = {e.button}   ({js[e.joy].get_name()})")
+            time.sleep(0.01)
+        return 0
+    if a.cmd == "audio":
+        import sounddevice as sd
+        print(sd.query_devices()); print("defaults (input, output):", sd.default.device)
+        return 0
     if a.cmd == "doctor":
         from . import deploy as dp
         from .doctor import diagnose

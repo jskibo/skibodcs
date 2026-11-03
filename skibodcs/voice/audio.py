@@ -28,31 +28,28 @@ class FasterWhisperSTT:
 
 
 class PiperTTS:
-    """Uses the piper CLI (`piper --model X.onnx --output_file`), which is stable across
-    piper-tts versions, instead of the Python API which has changed between releases."""
-    def __init__(self, model_path: str, piper_exe: str = "piper"):
+    """Runs Piper as `python -m piper -m MODEL -f out.wav` (the pip package `piper-tts`; works inside the venv with no PATH setup).
+    `-m` / `-f` are accepted by both the current Python CLI and the old C++ binary, unlike --output_file vs --output-file.
+    Pass piper_exe to use a standalone piper.exe instead."""
+    def __init__(self, model_path: str, piper_exe: str | None = None):
         self.model, self.exe = model_path, piper_exe
+
+    def command(self, out_path: str) -> list[str]:
+        import sys
+        base = [self.exe] if self.exe else [sys.executable, "-m", "piper"]
+        return base + ["-m", self.model, "-f", out_path]
 
     def synthesize(self, text: str) -> bytes:
         import os, subprocess, tempfile
         fd, out = tempfile.mkstemp(suffix=".wav"); os.close(fd)
         try:
-            subprocess.run([self.exe, "--model", self.model, "--output_file", out],
-                           input=text.encode(), check=True, capture_output=True)
+            r = subprocess.run(self.command(out), input=text.encode(), capture_output=True)
+            if r.returncode != 0:
+                raise RuntimeError("piper failed: " + r.stderr.decode(errors="replace")[-300:])
             with open(out, "rb") as f:
                 return f.read()
         finally:
             os.unlink(out)
-
-
-def _http_error(e: Exception) -> str:
-    import json, urllib.error
-    if isinstance(e, urllib.error.HTTPError):
-        try:
-            return f"HTTP {e.code}: {json.loads(e.read()).get('error', '')}"
-        except Exception:                                            # noqa: BLE001
-            return f"HTTP {e.code}"
-    return str(e)
 
 
 class RemoteSTT:

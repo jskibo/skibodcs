@@ -324,3 +324,22 @@ def test_doctor_flags_a_broken_export_lua_line(tmp_path):
     rep = diagnose(tmp_path, 5, export_port=1, hook_port=1)
     assert "EXPORT.LUA ERROR" in rep and "rkApps_Export.lua" in rep
     assert "EXPORT.LUA ERROR" not in diagnose(tmp_path / "nonexistent", 5, export_port=1, hook_port=1)
+
+
+def test_piper_command_line_uses_flags_both_piper_generations_accept(tmp_path):
+    import subprocess, sys
+    from unittest import mock
+    from skibodcs.voice.audio import PiperTTS
+    t = PiperTTS("C:/piper/en_US-lessac-medium.onnx")
+    assert t.command("o.wav") == [sys.executable, "-m", "piper", "-m", "C:/piper/en_US-lessac-medium.onnx", "-f", "o.wav"]
+    assert PiperTTS("m.onnx", "C:/p/piper.exe").command("o.wav") == ["C:/p/piper.exe", "-m", "m.onnx", "-f", "o.wav"]
+
+    def fake_run(cmd, input=None, capture_output=None):
+        open(cmd[cmd.index("-f") + 1], "wb").write(b"RIFFwav:" + input)
+        return subprocess.CompletedProcess(cmd, 0, b"", b"")
+    with mock.patch("subprocess.run", fake_run):
+        assert t.synthesize("roger") == b"RIFFwav:roger"
+    with mock.patch("subprocess.run", lambda *a, **k: subprocess.CompletedProcess(a[0], 1, b"", b"no such voice")):
+        import pytest as _p
+        with _p.raises(RuntimeError, match="no such voice"):
+            t.synthesize("x")
