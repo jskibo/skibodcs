@@ -25,12 +25,13 @@ def main(argv=None):
     d.add_argument("miz"); d.add_argument("--dcs-dir")
     d.add_argument("--kneeboard", action="append", default=[], metavar="AIRCRAFT=PNG")
     g.add_argument("--deploy", action="store_true", help="also copy the result into DCS Missions")
-    for name, hlp in (("extract", "build airframes/*.toml from ED cockpit definition files"),
+    for name, hlp in (("controls", "export EVERY clickable control of a module as airframes/*.controls.json"),
+                      ("extract", "build airframes/*.toml from ED cockpit definition files"),
                       ("find", "search controls by name in ED cockpit definition files")):
         x = sub.add_parser(name, help=hlp)
         x.add_argument("--devices", required=True); x.add_argument("--commands", required=True)
         x.add_argument("--clickable", required=True)
-        if name == "extract":
+        if name in ("extract", "controls"):
             x.add_argument("--aircraft", required=True, help="F-16C_50 or FA-18C_hornet"); x.add_argument("--out", required=True)
         else:
             x.add_argument("text")
@@ -53,9 +54,17 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
-    if a.cmd in ("extract", "find"):
+    if a.cmd in ("extract", "find", "controls"):
         from . import extract as ex
         els = ex.run_extractor(Path(a.devices), Path(a.commands), Path(a.clickable))
+        if a.cmd == "controls":
+            from . import controls as cl
+            cs = cl.build_controls(els)
+            cl.save(cs, a.aircraft, a.out)
+            kinds = {}
+            for c in cs: kinds[c.kind] = kinds.get(c.kind, 0) + 1
+            print("wrote", a.out, len(cs), "controls", kinds, "| confirm-required:", sum(c.danger for c in cs))
+            return 0
         if a.cmd == "find":
             for e in ex.find(els, a.text):
                 print(f"{e['hint']}  | dev {e['device']} {e['device_name']} | "

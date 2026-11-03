@@ -30,12 +30,12 @@ end
 
 function S.wingmen()
   local p, g, side = S.find_player()
-  if not p then return nil, {}, nil end
+  if not p then return nil, {}, nil, nil end
   local out, pid = {}, p:getID()
   for _, u in ipairs(g:getUnits() or {}) do
     if u:getID() ~= pid and u:isExist() then out[#out + 1] = u end
   end
-  return p, out, side
+  return p, out, side, g
 end
 
 function S.find_unit_by_id(id)
@@ -70,63 +70,145 @@ local function nearest_hostile_air(p, my_side)
 end
 
 -- ---------- tasking
-local function each_controller(ws, fn)
+-- Option ids/values follow the DCS scripting API as used by MOOSE (Controllable.lua, Enums.lua);
+-- task ids/params follow pydcs (dcs/task.py). Not yet exercised against a live sim.
+local OPT = AI.Option.Air
+local ROE_MAP   = { free = OPT.val.ROE.WEAPON_FREE, hold = OPT.val.ROE.WEAPON_HOLD,
+                    return_fire = OPT.val.ROE.RETURN_FIRE, open_fire = OPT.val.ROE.OPEN_FIRE }
+local ROT_MAP   = { none = OPT.val.REACTION_ON_THREAT.NO_REACTION, passive = OPT.val.REACTION_ON_THREAT.PASSIVE_DEFENCE,
+                    evade = OPT.val.REACTION_ON_THREAT.EVADE_FIRE, escape = OPT.val.REACTION_ON_THREAT.BYPASS_AND_ESCAPE }
+local RADAR_MAP = { off = 0, attack_only = 1, search = 2, continuous = 3 }   -- RADAR_USING
+local ECM_MAP   = { off = 0, lock = 1, detected = 2, always = 3 }            -- ECM_USING
+-- FORMATION values (MOOSE ENUMS.Formation.FixedWing): shape -> { close, open, group }
+local FORM = {
+  line_abreast = { 65537, 65538, 65539 },  trail        = { 131073, 131074, 131075 },
+  wedge        = { 196609, 196610, 196611 }, echelon_right = { 262145, 262146, 262147 },
+  echelon_left = { 327681, 327682, 327683 }, finger_four  = { 393217, 393218, 393219 },
+  spread       = { 458753, 458754, 458755 }, vic          = { 917505, 917506, nil },
+}
+local SPACING = { close = 1, open = 2, group = 3 }
+
+local function parse(ps)
+  local t = {}
+  for k, v in tostring(ps or ""):gmatch("([%w_]+)=([^;]*)") do t[k] = v end
+  return t
+end
+
+-- who: flight (all AI in the player's group) | wingman (#2) | element (#3,#4) | "2" "3" "4"
+local function select_units(ws, who)
+  who = (who == nil or who == "") and "flight" or who
+  if who == "flight" then return ws end
+  if who == "wingman" then return { ws[1] } end
+  if who == "element" then local t = {}; if ws[2] then t[#t + 1] = ws[2] end; if ws[3] then t[#t + 1] = ws[3] end; return t end
+  local n = tonumber(who)
+  if n and n >= 2 and ws[n - 1] then return { ws[n - 1] } end
+  return {}
+end
+
+local function each_controller(units, fn)
   local n = 0
-  for _, w in ipairs(ws) do
+  for _, w in ipairs(units) do
     local c = w:getController()
     if c then fn(c, w); n = n + 1 end
   end
   return n
 end
 
-local function push_engage(ws, tgt)
+local function set_option(units, id, val)
+  return each_controller(units, function(c) c:setOption(id, val) end)
+end
+
+local function push_engage_unit(units, tgt)
   local cat = tgt:getDesc().category          -- 0 airplane, 1 helicopter, 2 ground, 3 ship
   local id = (cat == 0 or cat == 1) and "EngageUnit" or "AttackUnit"
-  return each_controller(ws, function(c)
-    c:pushTask({ id = id, params = { unitId = tgt:getID() } })
+  return each_controller(units, function(c) c:pushTask({ id = id, params = { unitId = tgt:getID() } }) end)
+end
+
+local function push_engage_types(units, types)
+  return each_controller(units, function(c)
+    c:pushTask({ id = "EngageTargets", params = { targetTypes = types, priority = 0 } })
   end)
 end
 
--- Intents that have a handler below. Everything else must answer "err:not implemented"
+-- Intents with a handler below. Everything else must answer "err:not implemented"
 -- (never a fake success: the app would announce an action that did not happen).
-S.IMPLEMENTED = { weapons_free = true, weapons_hold = true, engage_my_target = true,
-                  engage_nearest = true, status = true }
+S.IMPLEMENTED = { weapons_free = true, weapons_hold = true, roe = true, radar = true, ecm = true, reaction = true,
+                  formation = true, engage_my_target = true, engage_nearest = true, engage_bandits = true,
+                  engage_ground = true, engage_sead = true, cover_me = true, rejoin = true, status = true }
 
-function S._cmd(intent, mode, weapon, target_id)
-  local p, ws, side = S.wingmen()
+function S._cmd(intent, ps)
+  local P = parse(ps)
+  local p, ws, side, pg = S.wingmen()
   if not p then return "err:no player unit found" end
   if not S.IMPLEMENTED[intent] then return "err:not implemented: " .. tostring(intent) end
   if #ws == 0 then return "err:no wingman" end
+  local us = select_units(ws, P.who)
+  if #us == 0 then return "err:no such flight member" end
 
-  if intent == "weapons_free" or intent == "weapons_hold" then
-    local val = (intent == "weapons_free") and AI.Option.Air.val.ROE.WEAPON_FREE
-                                             or AI.Option.Air.val.ROE.WEAPON_HOLD
-    each_controller(ws, function(c) c:setOption(AI.Option.Air.id.ROE, val) end)
-    return "ok:" .. (intent == "weapons_free" and "weapons free" or "weapons hold")
+  if intent == "weapons_free" or intent == "weapons_hold" or intent == "roe" then
+    local level = (intent == "weapons_free") and "free" or (intent == "weapons_hold") and "hold" or P.level
+    local v = ROE_MAP[level or ""]
+    if not v then return "err:unknown ROE '" .. tostring(level) .. "'" end
+    set_option(us, OPT.id.ROE, v)
+    return "ok:" .. (level == "free" and "weapons free" or level == "hold" and "weapons hold" or level:gsub("_", " "))
+
+  elseif intent == "radar" or intent == "ecm" or intent == "reaction" then
+    local map, id = ({ radar = RADAR_MAP, ecm = ECM_MAP, reaction = ROT_MAP })[intent],
+                    ({ radar = OPT.id.RADAR_USING, ecm = OPT.id.ECM_USING, reaction = OPT.id.REACTION_ON_THREAT })[intent]
+    local v = map[P.level or ""]
+    if v == nil then return "err:unknown " .. intent .. " level '" .. tostring(P.level) .. "'" end
+    set_option(us, id, v)
+    return "ok:" .. intent .. " " .. P.level:gsub("_", " ")
+
+  elseif intent == "formation" then
+    local f = FORM[P.shape or ""]
+    local sp = SPACING[P.spacing or "open"]
+    if not f or not sp or not f[sp] then return "err:unknown formation '" .. tostring(P.shape) .. "/" .. tostring(P.spacing) .. "'" end
+    set_option(us, OPT.id.FORMATION, f[sp])
+    return "ok:" .. P.shape:gsub("_", " ") .. " " .. (P.spacing or "open")
 
   elseif intent == "engage_my_target" then
-    if not target_id or target_id == "" then return "err:no target locked" end
-    local tgt = S.find_unit_by_id(target_id)
+    if not P.target_id or P.target_id == "" then return "err:no target locked" end
+    local tgt = S.find_unit_by_id(P.target_id)
     if not tgt then return "err:target not found" end
-    local n = push_engage(ws, tgt)
+    local n = push_engage_unit(us, tgt)
     return n > 0 and ("ok:engaging " .. tostring(tgt:getTypeName())) or "err:no controller"
 
   elseif intent == "engage_nearest" then
     local tgt, d = nearest_hostile_air(p, side)
     if not tgt then return "err:no hostile contacts" end
-    local n = push_engage(ws, tgt)
+    local n = push_engage_unit(us, tgt)
     return n > 0 and string.format("ok:engaging nearest, %d miles", math.floor(d / 1852 + 0.5)) or "err:no controller"
+
+  elseif intent == "engage_bandits" or intent == "engage_ground" or intent == "engage_sead" then
+    local types = ({ engage_bandits = { "Air" }, engage_ground = { "Ground Units" }, engage_sead = { "Air Defence" } })[intent]
+    local n = push_engage_types(us, types)
+    return n > 0 and ("ok:" .. intent:gsub("_", " ")) or "err:no controller"
+
+  elseif intent == "cover_me" then
+    local n = each_controller(us, function(c)
+      c:pushTask({ id = "Escort", params = { groupId = pg:getID(), engagementDistMax = 60000,
+                                              targetTypes = { "Air" }, pos = { x = -200, y = -100, z = -500 } } })
+    end)
+    return n > 0 and "ok:covering you" or "err:no controller"
+
+  elseif intent == "rejoin" then
+    local n = each_controller(us, function(c)
+      c:resetTask()
+      c:pushTask({ id = "Follow", params = { groupId = pg:getID(), pos = { x = -150, y = 0, z = 150 } } })
+    end)
+    return n > 0 and "ok:rejoining" or "err:no controller"
 
   elseif intent == "status" then
     local parts = {}
-    for _, w in ipairs(ws) do parts[#parts + 1] = string.format("%d%%", math.floor((w:getFuel() or 0) * 100 + 0.5)) end
-    return string.format("ok:%d wingman, fuel %s", #ws, table.concat(parts, ", "))
+    for _, w in ipairs(us) do parts[#parts + 1] = string.format("%d%%", math.floor((w:getFuel() or 0) * 100 + 0.5)) end
+    return string.format("ok:%d aircraft, fuel %s", #us, table.concat(parts, ", "))
   end
   return "err:unknown intent"
 end
 
-function S.cmd(intent, mode, weapon, target_id)
-  local ok, r = pcall(S._cmd, intent, mode, weapon, target_id)
+function S.cmd(intent, ps)
+  local ok, r = pcall(S._cmd, intent, ps)
   if ok then return r end
   return "err:" .. tostring(r)
 end

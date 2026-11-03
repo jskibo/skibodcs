@@ -105,7 +105,7 @@ for k in pairs(elements or {}) do keys[#keys + 1] = k end
 table.sort(keys)
 for _, key in ipairs(keys) do
   local el = elements[key]
-  local fn, hint, device, cmds, nums = "", "", nil, {}, {}
+  local fn, hint, device, cmds, nums, params = "", "", nil, {}, {}, {}
   if records[el] then                              -- helper-built element
     fn = el.fn
     local a = el.args
@@ -115,6 +115,7 @@ for _, key in ipairs(keys) do
       local v = a[i]
       if is_tag(v) then cmds[#cmds + 1] = v
       elseif type(v) == "number" and v >= 1 and v < 3000 and #nums < 3 and math.floor(v) == v then nums[#nums + 1] = v end
+      if type(v) == "number" then params[#params + 1] = v end
     end
   else                                             -- hand-written table (class/action/arg...)
     fn = "custom:" .. (type(el.class) == "table" and table.concat((function() local t = {} for _, c in ipairs(el.class) do t[#t+1] = tostring(is_any(c) and rawget(c, "__any") or c) end return t end)(), ",") or "")
@@ -123,7 +124,7 @@ for _, key in ipairs(keys) do
     local act = el.action
     if is_tag(act) then act = { act } end
     for _, v in ipairs(act or {}) do if is_tag(v) then cmds[#cmds + 1] = v end end
-    for _, v in ipairs(el.arg or {}) do if type(v) == "number" then nums[#nums + 1] = v end end
+    for _, v in ipairs(el.arg or {}) do if type(v) == "number" then nums[#nums + 1] = v; params[#params + 1] = v end end
   end
   local cj = {}
   local seen = {}
@@ -131,10 +132,11 @@ for _, key in ipairs(keys) do
     if not seen[c.name] then seen[c.name] = true
       cj[#cj + 1] = '{"name":' .. jstr(c.name) .. ',"id":' .. jnum(c.n) .. '}' end
   end
-  local nj = {}
+  local nj, pj = {}, {}
   for _, n in ipairs(nums) do nj[#nj + 1] = jnum(n) end
-  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s]}',
+  for _, n in ipairs(params) do pj[#pj + 1] = jnum(n) end
+  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s],"params":[%s]}',
     jstr(key), jstr(fn), jstr(hint), device and jnum(device) or "null",
-    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","))
+    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","), table.concat(pj, ","))
 end
 io.write("[", table.concat(out, ",\n"), "]\n")

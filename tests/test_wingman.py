@@ -15,7 +15,8 @@ class FakeLLM:
 
 
 def cmd(**kw):
-    base = dict(domain="wingman", intent="", mode="", weapon="", action="", value="", addressed_to="", emergency=False)
+    base = dict(domain="wingman", intent="", mode="", weapon="", action="", value="", control="", position="",
+                amount=-1.0, who="", level="", shape="", spacing="", addressed_to="", emergency=False)
     base.update(kw); return base
 
 
@@ -41,10 +42,10 @@ def test_engage_my_target_without_lock_is_refused_locally():
 
 
 def test_formation_mode_and_defaults():
-    r = router([cmd(intent="formation", mode="wedge")]).handle("go wedge")
-    assert r.wingman[0]["params"] == {"mode": "wedge"}
+    r = router([cmd(intent="formation", shape="wedge", spacing="close")]).handle("go wedge close")
+    assert r.wingman[0]["params"] == {"shape": "wedge", "spacing": "close"}
     r = router([cmd(intent="formation")]).handle("spread out")
-    assert r.wingman[0]["params"] == {"mode": "spread"}
+    assert r.wingman[0]["params"] == {"shape": "spread", "spacing": "open"}
 
 
 def test_fast_path_weapons_free_skips_llm():

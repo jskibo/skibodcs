@@ -13,6 +13,10 @@ from .router import Router
 from .state import World
 
 
+GEAR_ALIASES = {"gear": ["landing gear", "wheels", "undercarriage"], "hook": ["tailhook", "arresting hook"],
+                "master_arm": ["master arm", "weapons arm"]}
+
+
 def build(cfg: dict):
     world = World(magvar_east=cfg.get("magvar_east", 0.0))
     if "theater" in cfg:
@@ -20,8 +24,14 @@ def build(cfg: dict):
         load_theater(world, cfg["theater"], cfg.get("wind_from"))
     table = load_table(cfg["airframe_table"])
     llm = OllamaClient(cfg["ollama"]["model"], cfg["ollama"]["host"]) if "ollama" in cfg else None
+    index = None
+    if cfg.get("controls_file") and Path(cfg["controls_file"]).exists():
+        from .. import controls as cl
+        _, cs = cl.load(cfg["controls_file"])
+        index = cl.ControlIndex(cs)
+        index.merge_curated(table, GEAR_ALIASES)
     router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"),
-                    cfg.get("wingman", "Viper 1-2"))
+                    cfg.get("wingman", "Viper 1-2"), index=index)
     return world, router
 
 
@@ -36,6 +46,34 @@ def main(argv=None):
     link.start()
     hook = HookClient(port=cfg.get("hook_command_port", 14510))
     HookStatus(world, cfg.get("hook_status_port", 14511)).start()
+
+    def apply_cockpit(r, say) -> None:
+        """Send clicks; read the cockpit argument before/after so we never claim a switch moved when it did not."""
+        if not r.cockpit:
+            return
+        before = {a: link.read_arg(a) for a, _ in r.checks}
+        if not link.send_all(r.cockpit):
+            say("DCS not reachable: cockpit commands not sent."); return
+        if r.checks:
+            import time as _t; _t.sleep(0.5)
+            for a, name in r.checks:
+                after = link.read_arg(a)
+                if before.get(a) is not None and after is not None and abs(after - before[a]) < 1e-3:
+                    say(f"{name} unchanged.")
+
+    seq_runner: dict = {"cur": None}
+
+    def run_sequence(name: str, say) -> None:
+        import threading
+        from ..sequence import SequenceRunner, load_sequences
+        f = cfg.get("sequence_file")
+        seqs = load_sequences(f) if f and Path(f).exists() else {}
+        steps = seqs.get(name)
+        if not steps:
+            say(f"No {name.replace('_', ' ')} sequence available for this aircraft yet."); return
+        runner = SequenceRunner(lambda d, c, v: link.send(d, c, v), say)
+        seq_runner["cur"] = runner
+        threading.Thread(target=lambda: runner.run(steps), daemon=True).start()
 
     def run_wingman(r) -> list[str]:
         """Send each wingman command; speak only what the sim confirmed."""
@@ -52,10 +90,13 @@ def main(argv=None):
         while (line := input("> ").strip()):
             r = router.handle(line)
             print(f"[{r.source}]", *r.speech, *(f"(note: {n})" for n in r.notes))
-            if r.cockpit and not link.send_all(r.cockpit):
-                print("(DCS not reachable: cockpit commands not sent)")
+            apply_cockpit(r, lambda m: print("  ", m))
             for line in run_wingman(r):
                 print("  wingman:", line)
+            for name in r.sequence:
+                run_sequence(name, lambda m: print("  sequence:", m))
+            if r.abort_sequence and seq_runner["cur"]:
+                seq_runner["cur"].abort()
         return 0
 
     from .audio import FasterWhisperSTT, PiperTTS, PTTRecorder, play_wav, radio_fx
@@ -67,9 +108,13 @@ def main(argv=None):
         if not wav:
             continue
         r = router.handle(stt.transcribe(wav))
-        if r.cockpit:
-            link.send_all(r.cockpit)
-        for line in r.speech + run_wingman(r):
+        spoken: list[str] = []
+        apply_cockpit(r, spoken.append)
+        for name in r.sequence:
+            run_sequence(name, spoken.append)
+        if r.abort_sequence and seq_runner["cur"]:
+            seq_runner["cur"].abort()
+        for line in r.speech + run_wingman(r) + spoken:
             play_wav(radio_fx(tts.synthesize(line)))
 
 

@@ -1,4 +1,4 @@
-# skibodcs v0.4
+# skibodcs v0.5
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -48,6 +48,31 @@ Do not commit ED's .lua files; commit only the generated TOMLs. Shipped: airfram
 (gear, hook, master arm, plus F-16 ICP COM1/COM2 and Hornet master-mode buttons).
 What is still a guess: the VALUE meaning (is gear "down" 1.0 or 0.0? arm = 1.0?). The files do not say.
 Each action carries its cockpit `arg` number so a future read-back step can confirm the result.
+
+## Every control by voice, wingman/element orders, autostart (new in v0.5)
+**All controls.** `skibodcs controls --devices D --commands C --clickable K --aircraft F-16C_50 --out airframes\\f-16c.controls.json`
+exports every clickable (F-16C: 268, F/A-18C: 258; ~90% usable: buttons, 2/3-position switches, multi-position knobs, axes).
+Set `controls_file` in skibodcs.toml. Per utterance the app shortlists ~12 candidate controls (search over names,
+abbreviations like LG/UFC/VOL, synonyms) and gives only those to the LLM, which must choose from that list
+(schema-constrained). The curated TOML (gear, hook, master arm...) wins over generated duplicates.
+Axes take a percentage ("UHF volume to 60"). About 10% of controls are composite (landing gear handle, emergency brake,
+external power...) and are not voice-enabled yet; the curated TOML covers the important ones.
+**Safety.** Eject/jettison/fire-extinguisher/canopy-jettison/harness etc. are flagged `danger`: the app says
+"Confirm ...?" and runs it only if you say "confirm" within 10 s ("negative"/anything else cancels).
+**Truthful feedback.** After a click the app reads the cockpit argument back (Export `R,<arg>`) and says
+"<switch> unchanged" if nothing moved, instead of assuming success.
+**Wingman / element (F-menu equivalents).** `who` = flight (default) | wingman (#2) | element (#3+#4) | 2 | 3 | 4.
+Implemented through the mission Controller API: weapons free/hold + ROE (free/hold/return_fire/open_fire), radar
+(off/attack_only/search/continuous), ECM (off/lock/detected/always), reaction (none/passive/evade/escape),
+formation (line_abreast, trail, wedge, echelon_right/left, finger_four, spread, vic x close/open/group),
+engage my target / nearest / bandits / ground / SEAD, cover me (Escort), rejoin (Follow), status.
+Option ids and formation numbers follow MOOSE's source; task names/params follow pydcs. NOT implemented (the sim says
+so and the app says "unable"): RTB, cleared hot, break left/right. DCS exposes NO API to press its native F-menu
+items, so these are behavioural equivalents, not the literal menu entries; compare them in the sim.
+**Autostart / "cold and dark to ready to taxi".** Engine in place (`skibodcs/sequence.py`, voice intents autostart /
+autostop / ready_to_taxi, "abort the start"). The sequences themselves are DATA in sequences\<aircraft>.json and are
+meant to be generated from ED's own `Macro_sequencies.lua` (the game's autostart: device, command, value, delay).
+That file has not been parsed yet (not supplied), so nothing ships in sequences\ and the app says "no sequence available".
 
 ## UNVERIFIED (verify in this order)
 1. Hook loads: DCS log should show "skibodcs: hook registered" then "mission module loaded".

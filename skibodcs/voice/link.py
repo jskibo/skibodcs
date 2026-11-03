@@ -18,6 +18,7 @@ class DCSLink:
         self._tcp: socket.socket | None = None
         self._stop = threading.Event()
         self._thread: threading.Thread | None = None
+        self._rx_lock = threading.Lock()
         self.bound_port = telemetry_port
 
     # -- telemetry (DCS -> app)
@@ -73,6 +74,35 @@ class DCSLink:
         except OSError:
             self._tcp = None
             return self._connect() and self.send(dev, cmd, val)
+
+    def read_arg(self, arg: int, timeout: float = 0.6) -> float | None:
+        """Read a cockpit argument back from the Export module (None if unreachable / unknown)."""
+        with self._rx_lock:
+            if self._tcp is None and not self._connect():
+                return None
+            try:
+                self._tcp.sendall(f"R,{arg}\n".encode())
+                deadline = time.time() + timeout
+                buf = b""
+                while time.time() < deadline:
+                    try:
+                        chunk = self._tcp.recv(4096)
+                    except socket.timeout:
+                        continue
+                    if not chunk:
+                        raise OSError("closed")
+                    buf += chunk
+                    for line in buf.split(b"\n"):
+                        parts = line.decode(errors="ignore").strip().split(",")
+                        if len(parts) == 3 and parts[0] == "ARG" and parts[1] == str(arg):
+                            try:
+                                return float(parts[2])
+                            except ValueError:
+                                return None
+                return None
+            except OSError:
+                self._tcp = None
+                return None
 
     def send_all(self, cmds: list[tuple[int, int, float]], gap: float = 0.08) -> bool:
         ok = True

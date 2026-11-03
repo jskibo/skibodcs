@@ -52,15 +52,27 @@ local function reply(tbl)
   if client then client:send(net.lua2json(tbl) .. "\n") end
 end
 
+-- params table -> "k=v;k2=v2" (sanitised); the mission state has no JSON decoder
+local function param_string(p)
+  local keys = {}
+  for k in pairs(p) do keys[#keys + 1] = k end
+  table.sort(keys)
+  local out = {}
+  for _, k in ipairs(keys) do
+    local kk = tostring(k):gsub("[^%w_]", "")
+    local vv = tostring(p[k]):gsub("[^%w_%-]", "")
+    out[#out + 1] = kk .. "=" .. vv
+  end
+  return table.concat(out, ";")
+end
+
 local function handle_line(line)
   local cmd = net.json2lua(line)
   if type(cmd) ~= "table" then return end
   if cmd.type ~= "wingman" then reply({ id = cmd.id, ok = false, detail = "unknown type" }); return end
   if not mission_loaded then inject_module() end
   if not mission_loaded then reply({ id = cmd.id, ok = false, detail = "mission module not loaded" }); return end
-  local p = cmd.params or {}
-  local call = string.format("return SKIBO.cmd(%q,%q,%q,%q)", tostring(cmd.intent or ""),
-      tostring(p.mode or ""), tostring(p.weapon or "auto"), tostring(p.target_id or ""))
+  local call = string.format("return SKIBO.cmd(%q,%q)", tostring(cmd.intent or ""), param_string(cmd.params or {}))
   local r, err = in_mission(call)
   if not r then reply({ id = cmd.id, ok = false, detail = "dostring failed: " .. tostring(err) }); return end
   local status, detail = r:match("^(%a+):(.*)$")

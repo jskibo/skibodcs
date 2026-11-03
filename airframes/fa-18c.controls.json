@@ -1,0 +1,6019 @@
+{
+ "aircraft": "FA-18C_hornet",
+ "source": "",
+ "generated_by": "skibodcs",
+ "values": "PROVISIONAL unless verified=true",
+ "controls": [
+  {
+   "id": "ufc_option_select_pushbutton_1",
+   "name": "UFC Option Select Pushbutton 1",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "UFC_commands.OptSw1"
+   ],
+   "arg": 100,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_option_select_pushbutton_2",
+   "name": "UFC Option Select Pushbutton 2",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "UFC_commands.OptSw2"
+   ],
+   "arg": 101,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_option_select_pushbutton_3",
+   "name": "UFC Option Select Pushbutton 3",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "UFC_commands.OptSw3"
+   ],
+   "arg": 102,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_option_select_pushbutton_4",
+   "name": "UFC Option Select Pushbutton 4",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "UFC_commands.OptSw4"
+   ],
+   "arg": 103,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_option_select_pushbutton_5",
+   "name": "UFC Option Select Pushbutton 5",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "UFC_commands.OptSw5"
+   ],
+   "arg": 106,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_adf_function_select_switch",
+   "name": "UFC ADF Function Select Switch",
+   "kind": "switch",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "UFC_commands.SwADF"
+   ],
+   "arg": 107,
+   "positions": {
+    "1": -1.0,
+    "off": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_comm_1_volume_control_knob",
+   "name": "UFC COMM 1 Volume Control Knob",
+   "kind": "axis",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3030
+   ],
+   "command_names": [
+    "UFC_commands.Comm1Vol"
+   ],
+   "arg": 108,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ufc_brightness_control_knob",
+   "name": "UFC Brightness Control Knob",
+   "kind": "axis",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3032
+   ],
+   "command_names": [
+    "UFC_commands.BrtDim"
+   ],
+   "arg": 109,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "left_engine_amad_fire_warning_extinguisher_light",
+   "name": "Left Engine/AMAD Fire Warning/Extinguisher Light -  depress/ cover control",
+   "kind": "other",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3010,
+    3012
+   ],
+   "command_names": [
+    "engines_commands.LENG_FireSw",
+    "engines_commands.LENG_FireSwCover"
+   ],
+   "arg": 11,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_double_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ufc_emission_control_pushbutton",
+   "name": "UFC Emission Control Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "UFC_commands.SwEMCON"
+   ],
+   "arg": 110,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw1"
+   ],
+   "arg": 111,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_112",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw2"
+   ],
+   "arg": 112,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_113",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw3"
+   ],
+   "arg": 113,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_114",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw4"
+   ],
+   "arg": 114,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_115",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw5"
+   ],
+   "arg": 115,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_116",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw6"
+   ],
+   "arg": 116,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_117",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3025
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw7"
+   ],
+   "arg": 117,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_118",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3026
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw8"
+   ],
+   "arg": 118,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_119",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3027
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw9"
+   ],
+   "arg": 119,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_120",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "UFC_commands.KbdSw0"
+   ],
+   "arg": 120,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_comm_2_volume_control_knob",
+   "name": "UFC COMM 2 Volume Control Knob",
+   "kind": "axis",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3031
+   ],
+   "command_names": [
+    "UFC_commands.Comm2Vol"
+   ],
+   "arg": 123,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ufc_comm_1_channel_selector_knob",
+   "name": "UFC COMM 1 Channel Selector Knob",
+   "kind": "other",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3008,
+    3033
+   ],
+   "command_names": [
+    "UFC_commands.Comm1Fcn",
+    "UFC_commands.Comm1Ch"
+   ],
+   "arg": 125,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_axis_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ufc_comm_2_channel_selector_knob",
+   "name": "UFC COMM 2 Channel Selector Knob",
+   "kind": "other",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3009,
+    3034
+   ],
+   "command_names": [
+    "UFC_commands.Comm2Fcn",
+    "UFC_commands.Comm2Ch"
+   ],
+   "arg": 127,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_axis_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwAP"
+   ],
+   "arg": 128,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_129",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwIFF"
+   ],
+   "arg": 129,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_130",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwTCN"
+   ],
+   "arg": 130,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_131",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwILS"
+   ],
+   "arg": 131,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_132",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwDL"
+   ],
+   "arg": 132,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_133",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwBCN"
+   ],
+   "arg": 133,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_function_selector_pushbutton_134",
+   "name": "UFC Function Selector Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "UFC_commands.FuncSwOnOff"
+   ],
+   "arg": 134,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ir_cooling_switch",
+   "name": "IR Cooling Switch",
+   "kind": "switch",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "SMS_commands.IRCoolingSw"
+   ],
+   "arg": 135,
+   "positions": {
+    "oride": -1.0,
+    "norm": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hmd_off_brt_knob",
+   "name": "HMD OFF/BRT Knob",
+   "kind": "axis",
+   "device": 58,
+   "device_name": "HMD_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "hmd_commands.BrtKnob"
+   ],
+   "arg": 136,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "spin_recovery_switch",
+   "name": "Spin Recovery Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "ctrl_commands.SpinRec"
+   ],
+   "arg": 138,
+   "positions": {
+    "rcvy": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "spin_recovery_switch_cover",
+   "name": "Spin Recovery Switch Cover",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "ctrl_commands.SpinRecCover"
+   ],
+   "arg": 139,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_caution_reset_button_press_to_reset",
+   "name": "MASTER CAUTION Reset Button - Press to reset",
+   "kind": "button",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "cptlights_commands.MasterCaution"
+   ],
+   "arg": 14,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_symbology_reject_switch",
+   "name": "HUD Symbology Reject Switch",
+   "kind": "switch",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "HUD_commands.HUD_SymbRejectSw"
+   ],
+   "arg": 140,
+   "positions": {
+    "norm": -1.0,
+    "rej 1": 0.0,
+    "rej 2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_symbology_brightness_control_knob",
+   "name": "HUD Symbology Brightness Control Knob",
+   "kind": "axis",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "HUD_commands.HUD_SymbBrightCtrl"
+   ],
+   "arg": 141,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "hud_symbology_brightness_selector_knob",
+   "name": "HUD Symbology Brightness Selector Knob",
+   "kind": "switch",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "HUD_commands.HUD_SymbBrightSelKnob"
+   ],
+   "arg": 142,
+   "positions": {
+    "day": 0.0,
+    "night": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "black_level_control_knob",
+   "name": "Black Level Control Knob",
+   "kind": "axis",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "HUD_commands.HUD_BlackLevelCtrl"
+   ],
+   "arg": 143,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "hud_video_control_switch",
+   "name": "HUD Video Control Switch",
+   "kind": "switch",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "HUD_commands.HUD_VideoCtrlSw"
+   ],
+   "arg": 144,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "balance_control_knob",
+   "name": "Balance Control Knob",
+   "kind": "axis",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "HUD_commands.HUD_BalanceCtrl"
+   ],
+   "arg": 145,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "aoa_indexer_control_knob",
+   "name": "AOA Indexer Control Knob",
+   "kind": "axis",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "HUD_commands.HUD_AoA_IndexerCtrl"
+   ],
+   "arg": 146,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "altitude_switch",
+   "name": "Altitude Switch",
+   "kind": "switch",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "HUD_commands.HUD_AltitudeSw"
+   ],
+   "arg": 147,
+   "positions": {
+    "baro": 0.0,
+    "rdr": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "attitude_selector_switch",
+   "name": "Attitude Selector Switch",
+   "kind": "switch",
+   "device": 34,
+   "device_name": "HUD",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "HUD_commands.HUD_AttitudeSelSw"
+   ],
+   "arg": 148,
+   "positions": {
+    "ins": -1.0,
+    "auto": 0.0,
+    "stby": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "station_jettison_select_button",
+   "name": "Station Jettison Select Button",
+   "kind": "other",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "SMS_commands.JettStationCntrBtn"
+   ],
+   "arg": 153,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "station_jettison_select_button_155",
+   "name": "Station Jettison Select Button",
+   "kind": "other",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "SMS_commands.JettStationLIBtn"
+   ],
+   "arg": 155,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "station_jettison_select_button_157",
+   "name": "Station Jettison Select Button",
+   "kind": "other",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "SMS_commands.JettStationLOBtn"
+   ],
+   "arg": 157,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "station_jettison_select_button_159",
+   "name": "Station Jettison Select Button",
+   "kind": "other",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "SMS_commands.JettStationRIBtn"
+   ],
+   "arg": 159,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "station_jettison_select_button_161",
+   "name": "Station Jettison Select Button",
+   "kind": "other",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "SMS_commands.JettStationROBtn"
+   ],
+   "arg": 161,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ifei_mode_button",
+   "name": "IFEI Mode Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_MODE"
+   ],
+   "arg": 168,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_qty_button",
+   "name": "IFEI QTY Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_QTY"
+   ],
+   "arg": 169,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_up_arrow_button",
+   "name": "IFEI Up Arrow Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_UP_ARROW"
+   ],
+   "arg": 170,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_down_arrow_button",
+   "name": "IFEI Down Arrow Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_DOWN_ARROW"
+   ],
+   "arg": 171,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_zone_button",
+   "name": "IFEI ZONE Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_ZONE"
+   ],
+   "arg": 172,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_et_button",
+   "name": "IFEI ET Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_BTN_ET"
+   ],
+   "arg": 173,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ifei_brightness_control_knob",
+   "name": "IFEI Brightness Control Knob",
+   "kind": "axis",
+   "device": 33,
+   "device_name": "IFEI",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "IFEI_commands.IFEI_Brightness"
+   ],
+   "arg": 174,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_1",
+   "name": "AMPCD PB 1",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_1"
+   ],
+   "arg": 183,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_2",
+   "name": "AMPCD PB 2",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_2"
+   ],
+   "arg": 184,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_3",
+   "name": "AMPCD PB 3",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_3"
+   ],
+   "arg": 185,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_4",
+   "name": "AMPCD PB 4",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_4"
+   ],
+   "arg": 186,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_5",
+   "name": "AMPCD PB 5",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_5"
+   ],
+   "arg": 187,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_6",
+   "name": "AMPCD PB 6",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_6"
+   ],
+   "arg": 188,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_7",
+   "name": "AMPCD PB 7",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_7"
+   ],
+   "arg": 189,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_8",
+   "name": "AMPCD PB 8",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_8"
+   ],
+   "arg": 190,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_9",
+   "name": "AMPCD PB 9",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_9"
+   ],
+   "arg": 191,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_10",
+   "name": "AMPCD PB 10",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_10"
+   ],
+   "arg": 192,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_11",
+   "name": "AMPCD PB 11",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_11"
+   ],
+   "arg": 193,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_12",
+   "name": "AMPCD PB 12",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_12"
+   ],
+   "arg": 194,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_13",
+   "name": "AMPCD PB 13",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_13"
+   ],
+   "arg": 195,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_14",
+   "name": "AMPCD PB 14",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_14"
+   ],
+   "arg": 196,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_15",
+   "name": "AMPCD PB 15",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3025
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_15"
+   ],
+   "arg": 197,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_16",
+   "name": "AMPCD PB 16",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3026
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_16"
+   ],
+   "arg": 198,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_17",
+   "name": "AMPCD PB 17",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3027
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_17"
+   ],
+   "arg": 199,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_18",
+   "name": "AMPCD PB 18",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3028
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_18"
+   ],
+   "arg": 200,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_19",
+   "name": "AMPCD PB 19",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3029
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_19"
+   ],
+   "arg": 201,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_pb_20",
+   "name": "AMPCD PB 20",
+   "kind": "button",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3030
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_PB_20"
+   ],
+   "arg": 202,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ampcd_off_brightness_control_knob",
+   "name": "AMPCD Off/Brightness Control Knob",
+   "kind": "axis",
+   "device": 37,
+   "device_name": "AMPCD",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "AMPCD_commands.AMPCD_off_brightness"
+   ],
+   "arg": 203,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "sai_cage_knob",
+   "name": "SAI Cage Knob",
+   "kind": "other",
+   "device": 32,
+   "device_name": "SAI",
+   "commands": [
+    3002,
+    3003
+   ],
+   "command_names": [
+    "sai_commands.SAI_pull",
+    "sai_commands.SAI_rotate"
+   ],
+   "arg": 213,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "custom:class_type.BTN,class_type.LEV",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "sai_test_button_push_to_test",
+   "name": "SAI Test Button - Push to test",
+   "kind": "button",
+   "device": 32,
+   "device_name": "SAI",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "sai_commands.SAI_test"
+   ],
+   "arg": 215,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_intensity_knob",
+   "name": "RWR Intensity Knob",
+   "kind": "axis",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "rwr_commands.IntControl"
+   ],
+   "arg": 216,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "aau_52_altimeter_pressure_setting_knob",
+   "name": "AAU-52 Altimeter Pressure Setting Knob",
+   "kind": "axis",
+   "device": 26,
+   "device_name": "AAU52",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "aau52_commands.AAU52_ClkCmd_ZeroSetting"
+   ],
+   "arg": 224,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "landing_gear_control_handle",
+   "name": "Landing Gear Control Handle",
+   "kind": "other",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3001,
+    3002
+   ],
+   "command_names": [
+    "gear_commands.GearHandle",
+    "gear_commands.EmergDown"
+   ],
+   "arg": 226,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "LDG_Gear_Control_Handle",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "down_lock_override_button_push_to_unlock",
+   "name": "Down Lock Override Button - Push to unlock",
+   "kind": "button",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "gear_commands.DownLockOverrideBtn"
+   ],
+   "arg": 229,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "warning_tone_silence_button_push_to_silence",
+   "name": "Warning Tone Silence Button - Push to silence",
+   "kind": "button",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "intercom_commands.WarnToneSilBtn"
+   ],
+   "arg": 230,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "launch_bar_control_switch",
+   "name": "Launch Bar Control Switch",
+   "kind": "button",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "gear_commands.LaunchBarSw"
+   ],
+   "arg": 233,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "flap_switch",
+   "name": "FLAP Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "ctrl_commands.FlapSw"
+   ],
+   "arg": 234,
+   "positions": {
+    "auto": -1.0,
+    "half": 0.0,
+    "full": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "selective_jettison_pushbutton",
+   "name": "Selective Jettison Pushbutton",
+   "kind": "button",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "SMS_commands.SelJettBtn"
+   ],
+   "arg": 235,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "selective_jettison_knob",
+   "name": "Selective Jettison Knob",
+   "kind": "multi",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "SMS_commands.SelJettLvr"
+   ],
+   "arg": 236,
+   "positions": {
+    "1": -0.1,
+    "2": 0.0,
+    "3": 0.1,
+    "4": 0.2,
+    "5": 0.3
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ldg_taxi_light_switch",
+   "name": "LDG/TAXI LIGHT Switch",
+   "kind": "switch",
+   "device": 8,
+   "device_name": "EXT_LIGHTS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "extlights_commands.LdgTaxi"
+   ],
+   "arg": 237,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "anti_skid_switch",
+   "name": "Anti Skid Switch",
+   "kind": "switch",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "gear_commands.AntiSkidSw"
+   ],
+   "arg": 238,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hook_bypass_switch",
+   "name": "HOOK BYPASS Switch",
+   "kind": "switch",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "cptlights_commands.HookBypass"
+   ],
+   "arg": 239,
+   "positions": {
+    "field": 0.0,
+    "carrier": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "emergency_parking_brake_handle",
+   "name": "Emergency/Parking Brake Handle",
+   "kind": "other",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3006,
+    3007,
+    3005
+   ],
+   "command_names": [
+    "gear_commands.EmergParkHandleSelectPark",
+    "gear_commands.EmergParkHandleSelectEmerg",
+    "gear_commands.EmergParkHandleOnOff"
+   ],
+   "arg": 241,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "custom:class_type.BTN,class_type.TUMB,class_type.LEV",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ecm_mode_switch",
+   "name": "ECM Mode Switch",
+   "kind": "multi",
+   "device": 66,
+   "device_name": "ASPJ",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ASPJ_commands.ASPJ_SwitchChange"
+   ],
+   "arg": 248,
+   "positions": {
+    "xmit": 0.0,
+    "rec": 0.1,
+    "bit": 0.2,
+    "stby": 0.3,
+    "off": 0.4
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "auxiliary_release_switch",
+   "name": "Auxiliary Release Switch",
+   "kind": "switch",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "SMS_commands.AuxRelSw"
+   ],
+   "arg": 258,
+   "positions": {
+    "enable": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rudder_pedal_adjust_lever",
+   "name": "Rudder Pedal Adjust Lever",
+   "kind": "button",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "cpt_commands.RudderPedalAdjustLever"
+   ],
+   "arg": 260,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_dis_type_switch",
+   "name": "ALR-67 DIS TYPE Switch",
+   "kind": "multi",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "rwr_commands.DisType"
+   ],
+   "arg": 261,
+   "positions": {
+    "n": 0.0,
+    "i": 0.1,
+    "a": 0.2,
+    "u": 0.3,
+    "f": 0.4
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_dmr_control_knob",
+   "name": "ALR-67 DMR Control Knob",
+   "kind": "axis",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "rwr_commands.DmrControl"
+   ],
+   "arg": 263,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_bit_pushbutton",
+   "name": "ALR-67 BIT Pushbutton",
+   "kind": "button",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "rwr_commands.Bit"
+   ],
+   "arg": 266,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_offset_pushbutton",
+   "name": "ALR-67 OFFSET Pushbutton",
+   "kind": "button",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "rwr_commands.Offset"
+   ],
+   "arg": 269,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_engine_amad_fire_warning_extinguisher_ligh",
+   "name": "Right Engine/AMAD Fire Warning/Extinguisher Light -  depress/ cover control",
+   "kind": "other",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3011,
+    3013
+   ],
+   "command_names": [
+    "engines_commands.RENG_FireSw",
+    "engines_commands.RENG_FireSwCover"
+   ],
+   "arg": 27,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_double_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_special_pushbutton",
+   "name": "ALR-67 SPECIAL Pushbutton",
+   "kind": "button",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "rwr_commands.Special"
+   ],
+   "arg": 272,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_display_pushbutton",
+   "name": "ALR-67 DISPLAY Pushbutton",
+   "kind": "button",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "rwr_commands.Display"
+   ],
+   "arg": 275,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alr_67_power_pushbutton",
+   "name": "ALR-67 POWER Pushbutton",
+   "kind": "switch",
+   "device": 53,
+   "device_name": "RWR",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "rwr_commands.Power"
+   ],
+   "arg": 277,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "push_to_test_switch",
+   "name": "Push to Test Switch",
+   "kind": "other",
+   "device": 30,
+   "device_name": "ID2163A",
+   "commands": [
+    3001,
+    3002
+   ],
+   "command_names": [
+    "id2163a_commands.ID2163A_PushToTest",
+    "id2163a_commands.ID2163A_SetMinAlt"
+   ],
+   "arg": 292,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_axis_extended",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "arresting_hook_handle",
+   "name": "Arresting Hook Handle",
+   "kind": "switch",
+   "device": 5,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "gear_commands.HookHandle"
+   ],
+   "arg": 293,
+   "positions": {
+    "up": 0.0,
+    "down": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "wing_fold_control_handle",
+   "name": "Wing Fold Control Handle",
+   "kind": "other",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3011,
+    3010
+   ],
+   "command_names": [
+    "ctrl_commands.WingFoldSelect",
+    "ctrl_commands.WingFoldPull"
+   ],
+   "arg": 295,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "custom:class_type.TUMB,class_type.TUMB,class_type.LEV",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "av_cool_switch",
+   "name": "AV COOL Switch",
+   "kind": "button",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "ECS_commands.AV_COOL_Sw"
+   ],
+   "arg": 297,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "apu_fire_warning_extinguisher_light",
+   "name": "APU Fire Warning/Extinguisher Light",
+   "kind": "other",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "engines_commands.APU_FireSw"
+   ],
+   "arg": 30,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "heading_set_switch",
+   "name": "Heading Set Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3005,
+    3004
+   ],
+   "command_names": [
+    "MDI_commands.MDI_Left_HDG_Negative",
+    "MDI_commands.MDI_Left_HDG_Positive"
+   ],
+   "arg": 312,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "course_set_switch",
+   "name": "Course Set Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3007,
+    3006
+   ],
+   "command_names": [
+    "MDI_commands.MDI_Left_CRS_Negative",
+    "MDI_commands.MDI_Left_CRS_Positive"
+   ],
+   "arg": 313,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "fire_and_bleed_air_test_switch",
+   "name": "Fire and Bleed Air Test Switch",
+   "kind": "switch",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3007,
+    3006
+   ],
+   "command_names": [
+    "engines_commands.FireTestBSw",
+    "engines_commands.FireTestASw"
+   ],
+   "arg": 331,
+   "positions": {
+    "a": 1.0,
+    "b": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ground_power_switch_1",
+   "name": "Ground Power Switch 1",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3009,
+    3008
+   ],
+   "command_names": [
+    "elec_commands.GndPwr1SwB",
+    "elec_commands.GndPwr1SwA"
+   ],
+   "arg": 332,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "ground_power_switch_2",
+   "name": "Ground Power Switch 2",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3011,
+    3010
+   ],
+   "command_names": [
+    "elec_commands.GndPwr2SwB",
+    "elec_commands.GndPwr2SwA"
+   ],
+   "arg": 333,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "ground_power_switch_3",
+   "name": "Ground Power Switch 3",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3013,
+    3012
+   ],
+   "command_names": [
+    "elec_commands.GndPwr3SwB",
+    "elec_commands.GndPwr3SwA"
+   ],
+   "arg": 334,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "ground_power_switch_4",
+   "name": "Ground Power Switch 4",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3015,
+    3014
+   ],
+   "command_names": [
+    "elec_commands.GndPwr4SwB",
+    "elec_commands.GndPwr4SwA"
+   ],
+   "arg": 335,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "external_power_switch",
+   "name": "External Power Switch",
+   "kind": "other",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3004,
+    3005
+   ],
+   "command_names": [
+    "elec_commands.ExtPwrSw",
+    "elec_commands.ExtPwrReset"
+   ],
+   "arg": 336,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_tumb_v2",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "formation_lights_dimmer_control",
+   "name": "FORMATION Lights Dimmer Control",
+   "kind": "axis",
+   "device": 8,
+   "device_name": "EXT_LIGHTS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "extlights_commands.Formation"
+   ],
+   "arg": 337,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "position_lights_dimmer_control",
+   "name": "POSITION Lights Dimmer Control",
+   "kind": "axis",
+   "device": 8,
+   "device_name": "EXT_LIGHTS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "extlights_commands.Position"
+   ],
+   "arg": 338,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "strobe_lights_switch",
+   "name": "STROBE Lights Switch",
+   "kind": "switch",
+   "device": 8,
+   "device_name": "EXT_LIGHTS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "extlights_commands.Strobe"
+   ],
+   "arg": 339,
+   "positions": {
+    "brt": -1.0,
+    "off": 0.0,
+    "dim": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "internal_wing_tank_fuel_control_switch",
+   "name": "Internal Wing Tank Fuel Control Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "fuel_commands.IntrWingInhibitSw"
+   ],
+   "arg": 340,
+   "positions": {
+    "inhibit": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "probe_control_switch",
+   "name": "Probe Control Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "fuel_commands.ProbeControlSw"
+   ],
+   "arg": 341,
+   "positions": {
+    "extend": -1.0,
+    "retract": 0.0,
+    "emerg extd": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "external_wing_tanks_fuel_control_switch",
+   "name": "External Wing Tanks Fuel Control Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "fuel_commands.ExtTanksWingSw"
+   ],
+   "arg": 342,
+   "positions": {
+    "stop": -1.0,
+    "norm": 0.0,
+    "oride": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "external_centerline_tank_fuel_control_switch",
+   "name": "External Centerline Tank Fuel Control Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "fuel_commands.ExtTanksCtrSw"
+   ],
+   "arg": 343,
+   "positions": {
+    "stop": -1.0,
+    "norm": 0.0,
+    "oride": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fuel_dump_switch",
+   "name": "Fuel Dump Switch",
+   "kind": "button",
+   "device": 6,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "fuel_commands.DumpSw"
+   ],
+   "arg": 344,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rud_trim_control",
+   "name": "RUD TRIM Control",
+   "kind": "axis",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ctrl_commands.RudderTrim"
+   ],
+   "arg": 345,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "t_o_trim_button",
+   "name": "T/O TRIM Button",
+   "kind": "button",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ctrl_commands.TOTrimSw"
+   ],
+   "arg": 346,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "gain_switch",
+   "name": "GAIN Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "ctrl_commands.GainSw"
+   ],
+   "arg": 347,
+   "positions": {
+    "norm": 0.0,
+    "oride": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "gain_switch_cover",
+   "name": "GAIN Switch Cover",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ctrl_commands.GainSwCover"
+   ],
+   "arg": 348,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fcs_reset_button",
+   "name": "FCS RESET Button",
+   "kind": "button",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "ctrl_commands.ResetSw"
+   ],
+   "arg": 349,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "comm_relay_switch",
+   "name": "Comm Relay Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "intercom_commands.COMM_RLY_Sw"
+   ],
+   "arg": 350,
+   "positions": {
+    "cipher": -1.0,
+    "off": 0.0,
+    "plain": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "comm_g_xmt_switch",
+   "name": "COMM G XMT Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "intercom_commands.G_XMT_Sw"
+   ],
+   "arg": 351,
+   "positions": {
+    "comm 1": -1.0,
+    "off": 0.0,
+    "comm 2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ils_channel_selector_switch",
+   "name": "ILS Channel Selector Switch",
+   "kind": "multi",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "intercom_commands.ILS_ChannelSelector"
+   ],
+   "arg": 352,
+   "positions": {
+    "1": 0.0,
+    "2": 0.05,
+    "3": 0.1,
+    "4": 0.15,
+    "5": 0.2,
+    "6": 0.25,
+    "7": 0.3,
+    "8": 0.35,
+    "9": 0.4,
+    "10": 0.45,
+    "11": 0.5,
+    "12": 0.55,
+    "13": 0.6,
+    "14": 0.65,
+    "15": 0.7,
+    "16": 0.75,
+    "17": 0.8,
+    "18": 0.85,
+    "19": 0.9,
+    "20": 0.95
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ils_ufc_man_switch",
+   "name": "ILS UFC/MAN Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "intercom_commands.ILS_UFC_MAN_Sw"
+   ],
+   "arg": 353,
+   "positions": {
+    "ufc": 0.0,
+    "man": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "crypto_switch",
+   "name": "CRYPTO Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3014,
+    3015
+   ],
+   "command_names": [
+    "intercom_commands.IFF_CryptoSw_Zero",
+    "intercom_commands.IFF_CryptoSw_Hold"
+   ],
+   "arg": 354,
+   "positions": {
+    "hold": 1.0,
+    "zero": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_4_switch",
+   "name": "IFF Mode 4 Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "intercom_commands.IFF_Mode4Sw"
+   ],
+   "arg": 355,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_master_switch",
+   "name": "IFF Master Switch",
+   "kind": "switch",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "intercom_commands.IFF_MasterSw"
+   ],
+   "arg": 356,
+   "positions": {
+    "emer": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "vox_volume_control_knob",
+   "name": "VOX Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "intercom_commands.VOX_Volume"
+   ],
+   "arg": 357,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ics_volume_control_knob",
+   "name": "ICS Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "intercom_commands.ICS_Volume"
+   ],
+   "arg": 358,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "rwr_volume_control_knob",
+   "name": "RWR Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "intercom_commands.RWR_Volume"
+   ],
+   "arg": 359,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "wpn_volume_control_knob",
+   "name": "WPN Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "intercom_commands.WPN_Volume"
+   ],
+   "arg": 360,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mids_b_volume_control_knob",
+   "name": "MIDS B Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "intercom_commands.MIDS_B_Volume"
+   ],
+   "arg": 361,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mids_a_volume_control_knob",
+   "name": "MIDS A Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "intercom_commands.MIDS_A_Volume"
+   ],
+   "arg": 362,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "tacan_volume_control_knob",
+   "name": "TACAN Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "intercom_commands.TCN_Volume"
+   ],
+   "arg": 363,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "aux_volume_control_knob",
+   "name": "AUX Volume Control Knob",
+   "kind": "axis",
+   "device": 40,
+   "device_name": "INTERCOM",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "intercom_commands.AUX_Volume"
+   ],
+   "arg": 364,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "obogs_control_switch",
+   "name": "OBOGS Control Switch",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "oxygen_commands.OBOGS_ControlSw"
+   ],
+   "arg": 365,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "oxy_flow_knob",
+   "name": "OXY Flow Knob",
+   "kind": "axis",
+   "device": 10,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "oxygen_commands.OxyFlowControlValve"
+   ],
+   "arg": 366,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mc_switch",
+   "name": "MC Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3026,
+    3025
+   ],
+   "command_names": [
+    "elec_commands.MC2OffSw",
+    "elec_commands.MC1OffSw"
+   ],
+   "arg": 368,
+   "positions": {
+    "1 off": 1.0,
+    "2 off": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hydraulic_isolate_override_switch",
+   "name": "Hydraulic Isolate Override Switch",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "HYDRAULIC_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "hydro_commands.HydIsolSw"
+   ],
+   "arg": 369,
+   "positions": {
+    "norm": 0.0,
+    "oride": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "comm_1_antenna_selector_switch",
+   "name": "COMM 1 Antenna Selector Switch",
+   "kind": "switch",
+   "device": 50,
+   "device_name": "ANTENNA_SELECTOR",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "antsel_commands.Comm1AntSelSw"
+   ],
+   "arg": 373,
+   "positions": {
+    "upper": -1.0,
+    "auto": 0.0,
+    "lower": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_antenna_selector_switch",
+   "name": "IFF Antenna Selector Switch",
+   "kind": "switch",
+   "device": 50,
+   "device_name": "ANTENNA_SELECTOR",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "antsel_commands.AntSelIFFSw"
+   ],
+   "arg": 374,
+   "positions": {
+    "upper": -1.0,
+    "both": 0.0,
+    "lower": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "apu_control_switch",
+   "name": "APU Control Switch",
+   "kind": "button",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "engines_commands.APU_ControlSw"
+   ],
+   "arg": 375,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "engine_crank_switch",
+   "name": "Engine Crank Switch",
+   "kind": "switch",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3002,
+    3003
+   ],
+   "command_names": [
+    "engines_commands.EngineCrankLSw",
+    "engines_commands.EngineCrankRSw"
+   ],
+   "arg": 377,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb2",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "generator_tie_control_switch",
+   "name": "Generator TIE Control Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "elec_commands.GenTieControlSw"
+   ],
+   "arg": 378,
+   "positions": {
+    "norm": 0.0,
+    "reset": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "generator_tie_control_switch_cover",
+   "name": "Generator TIE Control Switch Cover",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "elec_commands.GenTieControlSwCover"
+   ],
+   "arg": 379,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "dispense_button_push_to_dispense_flares_and_chaf",
+   "name": "Dispense Button - Push to dispense flares and chaff",
+   "kind": "button",
+   "device": 54,
+   "device_name": "CMDS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "cmds_commands.EcmDisp"
+   ],
+   "arg": 380,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_generator_control_switch",
+   "name": "Left Generator Control Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "elec_commands.LGenSw"
+   ],
+   "arg": 402,
+   "positions": {
+    "norm": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_generator_control_switch",
+   "name": "Right Generator Control Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "elec_commands.RGenSw"
+   ],
+   "arg": 403,
+   "positions": {
+    "norm": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "battery_switch",
+   "name": "Battery Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "elec_commands.BattSw"
+   ],
+   "arg": 404,
+   "positions": {
+    "on": -1.0,
+    "off": 0.0,
+    "oride": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecs_mode_switch",
+   "name": "ECS Mode Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "ECS_commands.ECSModeSw"
+   ],
+   "arg": 405,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "suit_temperature_knob",
+   "name": "Suit Temperature Knob",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "ECS_commands.SuitTemperatureRst"
+   ],
+   "arg": 406,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "cabin_temperature_knob",
+   "name": "Cabin Temperature Knob",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "ECS_commands.CabinTemperatureRst"
+   ],
+   "arg": 407,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "cabin_pressure_switch",
+   "name": "Cabin Pressure Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ECS_commands.CabinPressSw"
+   ],
+   "arg": 408,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "pitot_heater_switch",
+   "name": "Pitot Heater Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "elec_commands.PitotHeater"
+   ],
+   "arg": 409,
+   "positions": {
+    "on": 0.0,
+    "auto": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "engine_anti_ice_switch",
+   "name": "Engine Anti-Ice Switch",
+   "kind": "switch",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "engines_commands.AntiIceSw"
+   ],
+   "arg": 410,
+   "positions": {
+    "on": -1.0,
+    "off": 0.0,
+    "test": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "bleed_air_knob",
+   "name": "Bleed Air Knob",
+   "kind": "multi",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ECS_commands.BleedAirSw"
+   ],
+   "arg": 411,
+   "positions": {
+    "r off": 0.0,
+    "norm": 0.1,
+    "l off": 0.2,
+    "off": 0.3
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "multiposition_switch_cl",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "bleed_air_knob_412",
+   "name": "Bleed Air Knob",
+   "kind": "button",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ECS_commands.BleedAirSwAugPull"
+   ],
+   "arg": 412,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "consoles_lights_dimmer_control",
+   "name": "CONSOLES Lights Dimmer Control",
+   "kind": "axis",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "cptlights_commands.Consoles"
+   ],
+   "arg": 413,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "inst_pnl_dimmer_control",
+   "name": "INST PNL Dimmer Control",
+   "kind": "axis",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "cptlights_commands.InstPnl"
+   ],
+   "arg": 414,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "flood_light_dimmer_control",
+   "name": "FLOOD Light Dimmer Control",
+   "kind": "axis",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "cptlights_commands.Flood"
+   ],
+   "arg": 415,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "lights_test_switch",
+   "name": "Lights Test Switch",
+   "kind": "switch",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "cptlights_commands.LtTestSw"
+   ],
+   "arg": 416,
+   "positions": {
+    "test": 0.0,
+    "off": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "warn_caution_dimmer_control",
+   "name": "WARN/CAUTION Dimmer Control",
+   "kind": "axis",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "cptlights_commands.WarnCaution"
+   ],
+   "arg": 417,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "chart_light_dimmer_control",
+   "name": "CHART Light Dimmer Control",
+   "kind": "axis",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "cptlights_commands.Chart"
+   ],
+   "arg": 418,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mode_switch",
+   "name": "MODE Switch",
+   "kind": "switch",
+   "device": 9,
+   "device_name": "CPT_LIGHTS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "cptlights_commands.ModeSw"
+   ],
+   "arg": 419,
+   "positions": {
+    "nvg": -1.0,
+    "nite": 0.0,
+    "day": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "canopy_jettison_handle_pull_to_jettison",
+   "name": "Canopy Jettison Handle - Pull to jettison",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "cpt_commands.CanopyJettLever"
+   ],
+   "arg": 42,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "canopy_jettison_handle_unlock_button_press_to_un",
+   "name": "Canopy Jettison Handle Unlock Button - Press to unlock",
+   "kind": "button",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "cpt_commands.CanopyJettLeverButton"
+   ],
+   "arg": 43,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "flir_switch",
+   "name": "FLIR Switch",
+   "kind": "switch",
+   "device": 62,
+   "device_name": "TGP_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "tgp_commands.Flir"
+   ],
+   "arg": 439,
+   "positions": {
+    "on": -1.0,
+    "stby": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "radar_switch_mw_to_pull",
+   "name": "RADAR Switch (MW to pull)",
+   "kind": "other",
+   "device": 42,
+   "device_name": "RADAR",
+   "commands": [
+    3001,
+    3002
+   ],
+   "command_names": [
+    "RADAR_commands.RADAR_SwitchChange",
+    "RADAR_commands.RADAR_SwitchPull"
+   ],
+   "arg": 440,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_with_pull",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ltd_r_switch",
+   "name": "LTD/R Switch",
+   "kind": "switch",
+   "device": 62,
+   "device_name": "TGP_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "tgp_commands.LtdrArm"
+   ],
+   "arg": 441,
+   "positions": {
+    "arm": 0.0,
+    "safe": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "lst_nflr_switch",
+   "name": "LST/NFLR Switch",
+   "kind": "switch",
+   "device": 62,
+   "device_name": "TGP_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "tgp_commands.Lst"
+   ],
+   "arg": 442,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ins_switch",
+   "name": "INS Switch",
+   "kind": "multi",
+   "device": 44,
+   "device_name": "INS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "INS_commands.INS_SwitchChange"
+   ],
+   "arg": 443,
+   "positions": {
+    "off": 0.0,
+    "cv": 0.1,
+    "gnd": 0.2,
+    "nav": 0.3,
+    "ifa": 0.4,
+    "gyro": 0.5,
+    "gb": 0.6,
+    "test": 0.7
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_cl",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_mode_select_knob",
+   "name": "KY-58 Mode Select Knob",
+   "kind": "multi",
+   "device": 41,
+   "device_name": "KY58",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ky58_commands.KY58_ModeSw"
+   ],
+   "arg": 444,
+   "positions": {
+    "p": 0.0,
+    "c": 0.1,
+    "ld": 0.2,
+    "rv": 0.3
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_volume_control_knob",
+   "name": "KY-58 Volume Control Knob",
+   "kind": "axis",
+   "device": 41,
+   "device_name": "KY58",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ky58_commands.KY58_Volume"
+   ],
+   "arg": 445,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_fill_select_knob",
+   "name": "KY-58 Fill Select Knob",
+   "kind": "multi",
+   "device": 41,
+   "device_name": "KY58",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ky58_commands.KY58_FillSw"
+   ],
+   "arg": 446,
+   "positions": {
+    "z 1-5": 0.0,
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3,
+    "4": 0.4,
+    "5": 0.5,
+    "6": 0.6,
+    "z all": 0.7
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_power_select_knob",
+   "name": "KY-58 Power Select Knob",
+   "kind": "multi",
+   "device": 41,
+   "device_name": "KY58",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ky58_commands.KY58_PowerSw"
+   ],
+   "arg": 447,
+   "positions": {
+    "off": 0.0,
+    "on": 0.1,
+    "td": 0.2
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "defog_handle",
+   "name": "Defog Handle",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ECS_commands.DefogHandle"
+   ],
+   "arg": 451,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_movable_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "windshield_anti_ice_rain_switch",
+   "name": "Windshield Anti-Ice/Rain Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "ECS_commands.WindshieldSw"
+   ],
+   "arg": 452,
+   "positions": {
+    "anti ice": -1.0,
+    "off": 0.0,
+    "rain": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "canopy_control_switch",
+   "name": "Canopy Control Switch",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3002,
+    3001
+   ],
+   "command_names": [
+    "cpt_commands.CanopySwitchClose",
+    "cpt_commands.CanopySwitchOpen"
+   ],
+   "arg": 453,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "master_mode_button",
+   "name": "Master Mode Button",
+   "kind": "button",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "SMS_commands.AA_MasterModeSw"
+   ],
+   "arg": 458,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_mode_button_459",
+   "name": "Master Mode Button",
+   "kind": "button",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "SMS_commands.AG_MasterModeSw"
+   ],
+   "arg": 459,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fire_extinguisher_pushbutton",
+   "name": "Fire Extinguisher Pushbutton",
+   "kind": "button",
+   "device": 12,
+   "device_name": "ENGINES_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "engines_commands.FireExtghDischSw"
+   ],
+   "arg": 46,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fcs_bit_switch",
+   "name": "FCS BIT Switch",
+   "kind": "button",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ctrl_commands.FcsBitSw"
+   ],
+   "arg": 470,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button2",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "weapon_release_button",
+   "name": "Weapon Release Button",
+   "kind": "button",
+   "device": 13,
+   "device_name": "HOTAS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "hotas_commands.STICK_WEAPON_RELEASE"
+   ],
+   "arg": 475,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "limit_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "recce_event_mark_switch",
+   "name": "RECCE Event Mark Switch",
+   "kind": "button",
+   "device": 13,
+   "device_name": "HOTAS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "hotas_commands.STICK_RECCE_EVENT_MARK"
+   ],
+   "arg": 477,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "limit_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_121",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3028
+   ],
+   "command_names": [
+    "UFC_commands.KbdSwCLR"
+   ],
+   "arg": 121,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_keyboard_pushbutton_122",
+   "name": "UFC Keyboard Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3029
+   ],
+   "command_names": [
+    "UFC_commands.KbdSwENT"
+   ],
+   "arg": 122,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "undesignate_nose_wheel_steer_switch",
+   "name": "Undesignate/Nose Wheel Steer Switch",
+   "kind": "button",
+   "device": 13,
+   "device_name": "HOTAS",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "hotas_commands.STICK_UNDESIGNATE"
+   ],
+   "arg": 480,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "limit_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "autopilot_nosewheel_steering_disengage_paddle_sw",
+   "name": "Autopilot/Nosewheel Steering Disengage (Paddle) Switch",
+   "kind": "button",
+   "device": 13,
+   "device_name": "HOTAS",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "hotas_commands.STICK_PADDLE"
+   ],
+   "arg": 482,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "limit_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_arm_switch",
+   "name": "Master Arm Switch",
+   "kind": "switch",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "SMS_commands.MasterArmSw"
+   ],
+   "arg": 49,
+   "positions": {
+    "arm": 0.0,
+    "safe": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "exterior_lights_switch",
+   "name": "Exterior Lights Switch",
+   "kind": "switch",
+   "device": 13,
+   "device_name": "HOTAS",
+   "commands": [
+    3041
+   ],
+   "command_names": [
+    "hotas_commands.THROTTLE_EXTERIOR_LIGHTS"
+   ],
+   "arg": 494,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "emergency_jettison_button",
+   "name": "Emergency Jettison Button",
+   "kind": "button",
+   "device": 23,
+   "device_name": "SMS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "SMS_commands.EmerJettSw"
+   ],
+   "arg": 50,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "throttles_friction_adjusting_lever",
+   "name": "Throttles Friction Adjusting Lever",
+   "kind": "axis",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "ctrl_commands.FrictionLever"
+   ],
+   "arg": 504,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_movable_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "left_louver",
+   "name": "Left Louver",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "ECS_commands.LeftLouver"
+   ],
+   "arg": 505,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "right_louver",
+   "name": "Right Louver",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "ECS_commands.RightLouver"
+   ],
+   "arg": 506,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_brightness_selector_knob",
+   "name": "Left MDI Brightness Selector Knob",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "MDI_commands.MDI_off_night_day"
+   ],
+   "arg": 51,
+   "positions": {
+    "off": -1.0,
+    "night": 0.0,
+    "day": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ejection_control_handle_3_times",
+   "name": "Ejection Control Handle (3 times)",
+   "kind": "button",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "cpt_commands.SeatEjectionControlHandle"
+   ],
+   "arg": 510,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ejection_seat_safe_armed_handle",
+   "name": "Ejection Seat SAFE/ARMED Handle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "cpt_commands.EjectionSeatSafeArmedHandle"
+   ],
+   "arg": 511,
+   "positions": {
+    "safe": 0.0,
+    "armed": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ejection_seat_manual_override_handle",
+   "name": "Ejection Seat Manual Override Handle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "cpt_commands.EjectionSeatManualOverrideHandle"
+   ],
+   "arg": 512,
+   "positions": {
+    "pull": 0.0,
+    "push": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "shoulder_harness_control_handle",
+   "name": "Shoulder Harness Control Handle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "cpt_commands.ShoulderHarnessControlHandle"
+   ],
+   "arg": 513,
+   "positions": {
+    "lock": 0.0,
+    "unlock": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "seat_height_adjustment_switch",
+   "name": "Seat Height Adjustment Switch",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3010,
+    3011
+   ],
+   "command_names": [
+    "cpt_commands.SeatHeightAdjustmentSwitchUp",
+    "cpt_commands.SeatHeightAdjustmentSwitchDn"
+   ],
+   "arg": 514,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "ecm_jett_jett_sel_button_push_to_jettison",
+   "name": "ECM JETT JETT SEL Button - Push to jettison",
+   "kind": "other",
+   "device": 54,
+   "device_name": "CMDS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "cmds_commands.EcmJett"
+   ],
+   "arg": 515,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "push_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "dispenser_switch",
+   "name": "DISPENSER Switch",
+   "kind": "switch",
+   "device": 54,
+   "device_name": "CMDS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "cmds_commands.Dispenser"
+   ],
+   "arg": 517,
+   "positions": {
+    "bypass": -1.0,
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_brightness_control_knob",
+   "name": "Left MDI Brightness Control Knob",
+   "kind": "axis",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "MDI_commands.MDI_brightness"
+   ],
+   "arg": 52,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_contrast_control_knob",
+   "name": "Left MDI Contrast Control Knob",
+   "kind": "axis",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "MDI_commands.MDI_contrast"
+   ],
+   "arg": 53,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_1",
+   "name": "Left MDI PB 1",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_1"
+   ],
+   "arg": 54,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_2",
+   "name": "Left MDI PB 2",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_2"
+   ],
+   "arg": 55,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_3",
+   "name": "Left MDI PB 3",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_3"
+   ],
+   "arg": 56,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_4",
+   "name": "Left MDI PB 4",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_4"
+   ],
+   "arg": 57,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hide_stick_toggle",
+   "name": "Hide Stick toggle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "CPT_MECHANICS",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "cpt_commands.StickHide"
+   ],
+   "arg": 575,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_5",
+   "name": "Left MDI PB 5",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_5"
+   ],
+   "arg": 58,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_6",
+   "name": "Left MDI PB 6",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_6"
+   ],
+   "arg": 59,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_7",
+   "name": "Left MDI PB 7",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_7"
+   ],
+   "arg": 60,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_8",
+   "name": "Left MDI PB 8",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_8"
+   ],
+   "arg": 61,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_9",
+   "name": "Left MDI PB 9",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_9"
+   ],
+   "arg": 62,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_10",
+   "name": "Left MDI PB 10",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_10"
+   ],
+   "arg": 63,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_11",
+   "name": "Left MDI PB 11",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_11"
+   ],
+   "arg": 64,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_12",
+   "name": "Left MDI PB 12",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_12"
+   ],
+   "arg": 65,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_13",
+   "name": "Left MDI PB 13",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_13"
+   ],
+   "arg": 66,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_14",
+   "name": "Left MDI PB 14",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_14"
+   ],
+   "arg": 67,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_15",
+   "name": "Left MDI PB 15",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3025
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_15"
+   ],
+   "arg": 68,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_16",
+   "name": "Left MDI PB 16",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3026
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_16"
+   ],
+   "arg": 69,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_17",
+   "name": "Left MDI PB 17",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3027
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_17"
+   ],
+   "arg": 70,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_18",
+   "name": "Left MDI PB 18",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3028
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_18"
+   ],
+   "arg": 72,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_19",
+   "name": "Left MDI PB 19",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3029
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_19"
+   ],
+   "arg": 73,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mdi_pb_20",
+   "name": "Left MDI PB 20",
+   "kind": "button",
+   "device": 35,
+   "device_name": "MDI_LEFT",
+   "commands": [
+    3030
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_20"
+   ],
+   "arg": 75,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_brightness_selector_knob",
+   "name": "Right MDI Brightness Selector Knob",
+   "kind": "switch",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "MDI_commands.MDI_off_night_day"
+   ],
+   "arg": 76,
+   "positions": {
+    "off": -1.0,
+    "night": 0.0,
+    "day": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_brightness_control_knob",
+   "name": "Right MDI Brightness Control Knob",
+   "kind": "axis",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "MDI_commands.MDI_brightness"
+   ],
+   "arg": 77,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_contrast_control_knob",
+   "name": "Right MDI Contrast Control Knob",
+   "kind": "axis",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "MDI_commands.MDI_contrast"
+   ],
+   "arg": 78,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_1",
+   "name": "Right MDI PB 1",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_1"
+   ],
+   "arg": 79,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_2",
+   "name": "Right MDI PB 2",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_2"
+   ],
+   "arg": 80,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_3",
+   "name": "Right MDI PB 3",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_3"
+   ],
+   "arg": 81,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_4",
+   "name": "Right MDI PB 4",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_4"
+   ],
+   "arg": 82,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_5",
+   "name": "Right MDI PB 5",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_5"
+   ],
+   "arg": 83,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_6",
+   "name": "Right MDI PB 6",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_6"
+   ],
+   "arg": 84,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_7",
+   "name": "Right MDI PB 7",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_7"
+   ],
+   "arg": 85,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_8",
+   "name": "Right MDI PB 8",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_8"
+   ],
+   "arg": 86,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_9",
+   "name": "Right MDI PB 9",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_9"
+   ],
+   "arg": 87,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_10",
+   "name": "Right MDI PB 10",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_10"
+   ],
+   "arg": 88,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_11",
+   "name": "Right MDI PB 11",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_11"
+   ],
+   "arg": 89,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_12",
+   "name": "Right MDI PB 12",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_12"
+   ],
+   "arg": 90,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_13",
+   "name": "Right MDI PB 13",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_13"
+   ],
+   "arg": 91,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_14",
+   "name": "Right MDI PB 14",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_14"
+   ],
+   "arg": 92,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_15",
+   "name": "Right MDI PB 15",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3025
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_15"
+   ],
+   "arg": 93,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_16",
+   "name": "Right MDI PB 16",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3026
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_16"
+   ],
+   "arg": 94,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_17",
+   "name": "Right MDI PB 17",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3027
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_17"
+   ],
+   "arg": 95,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_18",
+   "name": "Right MDI PB 18",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3028
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_18"
+   ],
+   "arg": 96,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_19",
+   "name": "Right MDI PB 19",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3029
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_19"
+   ],
+   "arg": 97,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mdi_pb_20",
+   "name": "Right MDI PB 20",
+   "kind": "button",
+   "device": 36,
+   "device_name": "MDI_RIGHT",
+   "commands": [
+    3030
+   ],
+   "command_names": [
+    "MDI_commands.MDI_PB_20"
+   ],
+   "arg": 98,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_i_p_pushbutton",
+   "name": "UFC I/P Pushbutton",
+   "kind": "button",
+   "device": 25,
+   "device_name": "UFC",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "UFC_commands.SwIP"
+   ],
+   "arg": 99,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  }
+ ]
+}

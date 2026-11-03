@@ -3,7 +3,9 @@ awacs = "Magic"
 wingman = "Viper 1-2"
 theater = "Caucasus"           # loads airfields, runways, ATC freqs, bullseye
 wind_from = 310              # optional, degrees; picks active runway
-airframe_table = "airframes/f-16c.toml"
+airframe_table = "airframes/f-16c.toml"          # curated, hand-verified actions (win over generated)
+controls_file = "airframes/f-16c.controls.json"   # EVERY clickable control, generated from your DCS files
+sequence_file = "sequences/f-16c.json"            # autostart / autostop / ready_to_taxi (optional, see sequences/README.md)
 magvar_east = 0.0            # set per theater; brevity bearings are magnetic
 
 [ollama]

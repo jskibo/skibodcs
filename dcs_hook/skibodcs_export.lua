@@ -66,6 +66,11 @@ local function pump_commands()
   while true do
     local line, err = client:receive("*l")
     if not line then if err == "closed" then client = nil end; break end
+    local ra = line:match("^R,(%d+)$")                       -- read-back: R,<cockpit arg> -> ARG,<arg>,<value>
+    if ra then
+      local val = safe(function() return GetDevice(0):get_argument_value(tonumber(ra)) end)
+      client:send(string.format("ARG,%s,%s\n", ra, val and string.format("%.4f", val) or "nil"))
+    end
     local d, c, v = line:match("^(%d+),(%d+),([%d%.%-]+)$")
     if d then
       local dev = GetDevice(tonumber(d))

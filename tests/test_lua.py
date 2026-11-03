@@ -9,7 +9,7 @@ LUA = os.environ.get("LUAJIT") or shutil.which("luajit") or shutil.which("lua5.1
 pytestmark = pytest.mark.skipif(not LUA, reason="no Lua 5.1/LuaJIT interpreter (set LUAJIT=...)")
 
 
-@pytest.mark.parametrize("script,marker", [("test_mission.lua", "MISSION LUA OK"), ("test_hook.lua", "HOOK LUA OK")])
+@pytest.mark.parametrize("script,marker", [("test_mission.lua", "MISSION LUA OK"), ("test_hook.lua", "HOOK LUA OK"), ("test_export.lua", "EXPORT LUA OK")])
 def test_lua(script, marker):
     r = subprocess.run([LUA, f"tests/lua/{script}"], cwd=ROOT, capture_output=True, text=True)
     assert marker in r.stdout, r.stdout + r.stderr

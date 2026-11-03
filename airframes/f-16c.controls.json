@@ -1,0 +1,6374 @@
+{
+ "aircraft": "F-16C_50",
+ "source": "",
+ "generated_by": "skibodcs",
+ "values": "PROVISIONAL unless verified=true",
+ "controls": [
+  {
+   "id": "pitch_trim_knob",
+   "name": "Pitch Trim Knob",
+   "kind": "axis",
+   "device": 50,
+   "device_name": "ADI",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "device_commands.Button_1"
+   ],
+   "arg": 22,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "air_source_knob",
+   "name": "AIR SOURCE Knob",
+   "kind": "multi",
+   "device": 13,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ecs_commands.AirSourceKnob"
+   ],
+   "arg": 693,
+   "positions": {
+    "off": 0.0,
+    "norm": 0.1,
+    "dump": 0.2,
+    "ram": 0.3
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "temp_knob",
+   "name": "TEMP Knob",
+   "kind": "axis",
+   "device": 13,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ecs_commands.TempKnob"
+   ],
+   "arg": 692,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "barometric_setting_knob",
+   "name": "Barometric Setting Knob",
+   "kind": "axis",
+   "device": 45,
+   "device_name": "AAU34",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "alt_commands.ZERO"
+   ],
+   "arg": 62,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mode_lever",
+   "name": "Mode Lever",
+   "kind": "switch",
+   "device": 45,
+   "device_name": "AAU34",
+   "commands": [
+    3002,
+    3001
+   ],
+   "command_names": [
+    "alt_commands.ELEC",
+    "alt_commands.PNEU"
+   ],
+   "arg": 60,
+   "positions": {
+    "elec": 1.0,
+    "pneu": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_manual_frequency_knob_0_025_mhz",
+   "name": "UHF Manual Frequency Knob 0.025 MHz",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "uhf_commands.FreqSelector0025Mhz"
+   ],
+   "arg": 415,
+   "positions": {
+    "1": 0.0,
+    "2": 0.25,
+    "3": 0.5,
+    "4": 0.75
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_manual_frequency_knob_0_1_mhz",
+   "name": "UHF Manual Frequency Knob 0.1 MHz",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "uhf_commands.FreqSelector01Mhz"
+   ],
+   "arg": 414,
+   "positions": {
+    "1": 0.0,
+    "2": 0.1,
+    "3": 0.2,
+    "4": 0.3,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.6,
+    "8": 0.7,
+    "9": 0.8,
+    "10": 0.9
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_manual_frequency_knob_100_mhz",
+   "name": "UHF Manual Frequency Knob 100 MHz",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "uhf_commands.FreqSelector100Mhz"
+   ],
+   "arg": 411,
+   "positions": {
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_manual_frequency_knob_10_mhz",
+   "name": "UHF Manual Frequency Knob 10 MHz",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "uhf_commands.FreqSelector10Mhz"
+   ],
+   "arg": 412,
+   "positions": {
+    "1": 0.0,
+    "2": 0.1,
+    "3": 0.2,
+    "4": 0.3,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.6,
+    "8": 0.7,
+    "9": 0.8,
+    "10": 0.9
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_manual_frequency_knob_1_mhz",
+   "name": "UHF Manual Frequency Knob 1 MHz",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "uhf_commands.FreqSelector1Mhz"
+   ],
+   "arg": 413,
+   "positions": {
+    "1": 0.0,
+    "2": 0.1,
+    "3": 0.2,
+    "4": 0.3,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.6,
+    "8": 0.7,
+    "9": 0.8,
+    "10": 0.9
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_chan_knob",
+   "name": "UHF CHAN Knob",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "uhf_commands.ChannelKnob"
+   ],
+   "arg": 410,
+   "positions": {
+    "1": 0.0,
+    "2": 0.05,
+    "3": 0.1,
+    "4": 0.15,
+    "5": 0.2,
+    "6": 0.25,
+    "7": 0.3,
+    "8": 0.35,
+    "9": 0.4,
+    "10": 0.45,
+    "11": 0.5,
+    "12": 0.55,
+    "13": 0.6,
+    "14": 0.65,
+    "15": 0.7,
+    "16": 0.75,
+    "17": 0.8,
+    "18": 0.85,
+    "19": 0.9,
+    "20": 0.95
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_mode_knob",
+   "name": "UHF Mode Knob",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "uhf_commands.FreqModeKnob"
+   ],
+   "arg": 416,
+   "positions": {
+    "1": 0.0,
+    "2": 0.1,
+    "3": 0.2
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_function_knob",
+   "name": "UHF Function Knob",
+   "kind": "multi",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "uhf_commands.FunctionKnob"
+   ],
+   "arg": 417,
+   "positions": {
+    "1": 0.0,
+    "2": 0.1,
+    "3": 0.2,
+    "4": 0.3
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_squelch_switch",
+   "name": "UHF SQUELCH Switch",
+   "kind": "switch",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "uhf_commands.SquelchSw"
+   ],
+   "arg": 419,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_status_button",
+   "name": "UHF STATUS Button",
+   "kind": "button",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "uhf_commands.StatusBtn"
+   ],
+   "arg": 422,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_tone_button",
+   "name": "UHF Tone Button",
+   "kind": "button",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "uhf_commands.TToneSw"
+   ],
+   "arg": 418,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_test_display_button",
+   "name": "UHF TEST DISPLAY Button",
+   "kind": "button",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "uhf_commands.TestDisplayBtn"
+   ],
+   "arg": 421,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_vol_knob",
+   "name": "UHF VOL Knob",
+   "kind": "axis",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "uhf_commands.VolumeKnob"
+   ],
+   "arg": 420,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "engine_anti_ice_switch",
+   "name": "Engine ANTI ICE Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "engine_commands.EngAntiIceSw"
+   ],
+   "arg": 710,
+   "positions": {
+    "on": -1.0,
+    "auto": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_ant_sel_switch",
+   "name": "IFF ANT SEL Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "intercom_commands.IFF_AntSelSw"
+   ],
+   "arg": 711,
+   "positions": {
+    "lower": -1.0,
+    "norm": 0.0,
+    "upper": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "uhf_ant_sel_switch",
+   "name": "UHF ANT SEL Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "intercom_commands.UHF_AntSelSw"
+   ],
+   "arg": 712,
+   "positions": {
+    "lower": -1.0,
+    "norm": 0.0,
+    "upper": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "aoa_indexer_dimming_lever",
+   "name": "AOA Indexer Dimming Lever",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "cptlights_commands.IndBrtAoA"
+   ],
+   "arg": 794,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ar_status_indicator_dimming_lever",
+   "name": "AR Status Indicator Dimming Lever",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "cptlights_commands.IndBrtAR"
+   ],
+   "arg": 795,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "comm_1_power_knob",
+   "name": "COMM 1 Power Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "intercom_commands.COM1_PowerKnob"
+   ],
+   "arg": 430,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "comm_2_power_knob",
+   "name": "COMM 2 Power Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "intercom_commands.COM2_PowerKnob"
+   ],
+   "arg": 431,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "msl_tone_knob",
+   "name": "MSL Tone Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "intercom_commands.MSL_ToneKnob"
+   ],
+   "arg": 433,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "secure_voice_knob",
+   "name": "SECURE VOICE Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "intercom_commands.SecureVoiceKnob"
+   ],
+   "arg": 432,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "tf_tone_knob",
+   "name": "TF Tone Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "intercom_commands.TF_ToneKnob"
+   ],
+   "arg": 436,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "threat_tone_knob",
+   "name": "THREAT Tone Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "intercom_commands.THREAT_ToneKnob"
+   ],
+   "arg": 437,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "comm_1_uhf_mode_knob",
+   "name": "COMM 1 (UHF) Mode Knob",
+   "kind": "multi",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "intercom_commands.COM1_ModeKnob"
+   ],
+   "arg": 434,
+   "positions": {
+    "1": 0.0,
+    "2": 0.5,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "comm_2_vhf_mode_knob",
+   "name": "COMM 2 (VHF) Mode Knob",
+   "kind": "multi",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "intercom_commands.COM2_ModeKnob"
+   ],
+   "arg": 435,
+   "positions": {
+    "1": 0.0,
+    "2": 0.5,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ils_power_knob",
+   "name": "ILS Power Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "intercom_commands.ILS_PowerKnob"
+   ],
+   "arg": 442,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "intercom_knob",
+   "name": "INTERCOM Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "intercom_commands.INTERCOM_Knob"
+   ],
+   "arg": 440,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "tacan_knob",
+   "name": "TACAN Knob",
+   "kind": "axis",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "intercom_commands.TACAN_Knob"
+   ],
+   "arg": 441,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "hot_mic_cipher_switch",
+   "name": "HOT MIC CIPHER Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "intercom_commands.HotMicCipherSw"
+   ],
+   "arg": 443,
+   "positions": {
+    "hot mic": -1.0,
+    "off": 0.0,
+    "cipher": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_master_knob",
+   "name": "IFF MASTER Knob",
+   "kind": "multi",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "iff_commands.MasterKnob"
+   ],
+   "arg": 539,
+   "positions": {
+    "off": 0.0,
+    "stby": 0.1,
+    "low": 0.2,
+    "norm": 0.3,
+    "emer": 0.4
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_1_selector_lever",
+   "name": "IFF MODE 1 Selector Lever",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3008,
+    3007
+   ],
+   "command_names": [
+    "iff_commands.M1M3Selector1_Dec",
+    "iff_commands.M1M3Selector1_Inc"
+   ],
+   "arg": 545,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_1_selector_lever_547",
+   "name": "IFF MODE 1 Selector Lever",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3010,
+    3009
+   ],
+   "command_names": [
+    "iff_commands.M1M3Selector2_Dec",
+    "iff_commands.M1M3Selector2_Inc"
+   ],
+   "arg": 547,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_3_selector_lever",
+   "name": "IFF MODE 3 Selector Lever",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3012,
+    3011
+   ],
+   "command_names": [
+    "iff_commands.M1M3Selector3_Dec",
+    "iff_commands.M1M3Selector3_Inc"
+   ],
+   "arg": 549,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_3_selector_lever_551",
+   "name": "IFF MODE 3 Selector Lever",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3014,
+    3013
+   ],
+   "command_names": [
+    "iff_commands.M1M3Selector4_Dec",
+    "iff_commands.M1M3Selector4_Inc"
+   ],
+   "arg": 551,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "c_i_knob",
+   "name": "C & I Knob",
+   "kind": "multi",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "iff_commands.CNI_Knob"
+   ],
+   "arg": 542,
+   "positions": {
+    "ufc": 0.0,
+    "backup": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_m_4_code_switch",
+   "name": "IFF M-4 CODE Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "iff_commands.M4CodeSw"
+   ],
+   "arg": 541,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_4_monitor_switch",
+   "name": "IFF MODE 4 MONITOR Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "iff_commands.M4MonitorSw"
+   ],
+   "arg": 544,
+   "positions": {
+    "out": 0.0,
+    "audio": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_mode_4_reply_switch",
+   "name": "IFF MODE 4 REPLY Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "iff_commands.M4ReplySw"
+   ],
+   "arg": 543,
+   "positions": {
+    "out": -1.0,
+    "a": 0.0,
+    "b": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_enable_switch",
+   "name": "IFF ENABLE Switch",
+   "kind": "switch",
+   "device": 35,
+   "device_name": "IFF_CONTROL_PANEL",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "iff_commands.EnableSw"
+   ],
+   "arg": 553,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ins_knob",
+   "name": "INS Knob",
+   "kind": "multi",
+   "device": 14,
+   "device_name": "INS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ins_commands.ModeKnob"
+   ],
+   "arg": 719,
+   "positions": {
+    "off": 0.0,
+    "stor hdg": 0.1,
+    "norm": 0.2,
+    "nav": 0.3,
+    "cal": 0.4,
+    "inflt align": 0.5,
+    "att": 0.6
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mids_lvt_knob",
+   "name": "MIDS LVT Knob",
+   "kind": "multi",
+   "device": 41,
+   "device_name": "MIDS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "mids_commands.PwrSw"
+   ],
+   "arg": 723,
+   "positions": {
+    "zero": 0.0,
+    "off": 0.1,
+    "on": 0.2
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "dl_switch",
+   "name": "DL Switch",
+   "kind": "switch",
+   "device": 60,
+   "device_name": "IDM",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "idm_commands.PwrSw"
+   ],
+   "arg": 721,
+   "positions": {
+    "dl": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "gps_switch",
+   "name": "GPS Switch",
+   "kind": "switch",
+   "device": 59,
+   "device_name": "GPS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "gps_commands.PwrSw"
+   ],
+   "arg": 720,
+   "positions": {
+    "gps": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "map_switch",
+   "name": "MAP Switch",
+   "kind": "switch",
+   "device": 61,
+   "device_name": "MAP",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "map_commands.PwrSw"
+   ],
+   "arg": 722,
+   "positions": {
+    "map": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mfd_switch",
+   "name": "MFD Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "mmc_commands.MFD"
+   ],
+   "arg": 717,
+   "positions": {
+    "mfd": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mmc_switch",
+   "name": "MMC Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "mmc_commands.MmcPwr"
+   ],
+   "arg": 715,
+   "positions": {
+    "mmc": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "st_sta_switch",
+   "name": "ST STA Switch",
+   "kind": "switch",
+   "device": 22,
+   "device_name": "SMS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "sms_commands.StStaSw"
+   ],
+   "arg": 716,
+   "positions": {
+    "st sta": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ufc_switch",
+   "name": "UFC Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ufc_commands.UFC_Sw"
+   ],
+   "arg": 718,
+   "positions": {
+    "ufc": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fuel_qty_sel_knob",
+   "name": "FUEL QTY SEL Knob",
+   "kind": "other",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3006,
+    3005
+   ],
+   "command_names": [
+    "fuel_commands.FuelQtySelSwTEST",
+    "fuel_commands.FuelQtySelSw"
+   ],
+   "arg": 158,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "custom:class_type.BTN,class_type.TUMB",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "external_fuel_transfer_switch",
+   "name": "External Fuel Transfer Switch",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "fuel_commands.ExtFuelTransferSw"
+   ],
+   "arg": 159,
+   "positions": {
+    "norm": 0.0,
+    "wing first": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "adv_mode_switch",
+   "name": "ADV MODE Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "control_commands.AdvMode"
+   ],
+   "arg": 97,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alt_rel_button_push_to_release",
+   "name": "ALT REL Button - Push to release",
+   "kind": "button",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "mmc_commands.AltRel"
+   ],
+   "arg": 104,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "laser_arm_switch",
+   "name": "LASER ARM Switch",
+   "kind": "switch",
+   "device": 22,
+   "device_name": "SMS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "sms_commands.LaserSw"
+   ],
+   "arg": 103,
+   "positions": {
+    "arm": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_arm_switch",
+   "name": "MASTER ARM Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "mmc_commands.MasterArmSw"
+   ],
+   "arg": 105,
+   "positions": {
+    "master arm": -1.0,
+    "off": 0.0,
+    "simulate": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "autopilot_pitch_switch",
+   "name": "Autopilot PITCH Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3012,
+    3013
+   ],
+   "command_names": [
+    "control_commands.ApPitchAtt",
+    "control_commands.ApPitchAlt"
+   ],
+   "arg": 109,
+   "positions": {
+    "first": 1.0,
+    "second": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "two-command spring switch; direction naming unverified",
+   "aliases": []
+  },
+  {
+   "id": "rf_switch",
+   "name": "RF Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3038
+   ],
+   "command_names": [
+    "ufc_commands.RF_Sw"
+   ],
+   "arg": 100,
+   "positions": {
+    "silent": -1.0,
+    "quiet": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "autopilot_roll_switch",
+   "name": "Autopilot ROLL Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "control_commands.ApRoll"
+   ],
+   "arg": 108,
+   "positions": {
+    "strg sel": -1.0,
+    "att hold": 0.0,
+    "hdg sel": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_handoff_button",
+   "name": "RWR Indicator Control HANDOFF Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "rwr_commands.Handoff"
+   ],
+   "arg": 141,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_launch_button",
+   "name": "RWR Indicator Control LAUNCH Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "rwr_commands.Launch"
+   ],
+   "arg": 143,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_mode_button",
+   "name": "RWR Indicator Control MODE Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "rwr_commands.Mode"
+   ],
+   "arg": 145,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_unknown_ship_button",
+   "name": "RWR Indicator Control UNKNOWN SHIP Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "rwr_commands.UnknownShip"
+   ],
+   "arg": 147,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_sys_test_button",
+   "name": "RWR Indicator Control SYS TEST Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "rwr_commands.SysTest"
+   ],
+   "arg": 149,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_t_button",
+   "name": "RWR Indicator Control T Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "rwr_commands.TgtSep"
+   ],
+   "arg": 151,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_intensity_knob_rotate_to_adjust_brightness",
+   "name": "RWR Intensity Knob - Rotate to adjust brightness",
+   "kind": "axis",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "rwr_commands.IntKnob"
+   ],
+   "arg": 140,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "f_ack_button",
+   "name": "F-ACK Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3036
+   ],
+   "command_names": [
+    "ufc_commands.F_ACK"
+   ],
+   "arg": 122,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "iff_ident_button",
+   "name": "IFF IDENT Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3037
+   ],
+   "command_names": [
+    "ufc_commands.IFF_IDENT"
+   ],
+   "arg": 125,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_caution_button_push_to_reset",
+   "name": "Master Caution Button - Push to reset",
+   "kind": "button",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "cptlights_commands.MasterCaution"
+   ],
+   "arg": 116,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_1_button",
+   "name": "ECM 1 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "ecm_commands.OneBtn"
+   ],
+   "arg": 460,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_2_button",
+   "name": "ECM 2 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "ecm_commands.TwoBtn"
+   ],
+   "arg": 465,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_3_button",
+   "name": "ECM 3 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "ecm_commands.ThreeBtn"
+   ],
+   "arg": 470,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_4_button",
+   "name": "ECM 4 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "ecm_commands.FourBtn"
+   ],
+   "arg": 475,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_5_button",
+   "name": "ECM 5 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "ecm_commands.FiveBtn"
+   ],
+   "arg": 480,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_6_button",
+   "name": "ECM 6 Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "ecm_commands.SixBtn"
+   ],
+   "arg": 485,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_bit_button",
+   "name": "ECM BIT Button",
+   "kind": "button",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ecm_commands.BitBtn"
+   ],
+   "arg": 459,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_frm_button",
+   "name": "ECM FRM Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "ecm_commands.FrmBtn"
+   ],
+   "arg": 490,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_reset_button",
+   "name": "ECM RESET Button",
+   "kind": "button",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ecm_commands.ResetBtn"
+   ],
+   "arg": 458,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_spl_button",
+   "name": "ECM SPL Button",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "ecm_commands.SplBtn"
+   ],
+   "arg": 495,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_dim_knob",
+   "name": "ECM DIM Knob",
+   "kind": "axis",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "ecm_commands.DimRotary"
+   ],
+   "arg": 456,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "ecm_power_switch",
+   "name": "ECM Power Switch",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ecm_commands.PwrSw"
+   ],
+   "arg": 455,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ecm_xmit_switch",
+   "name": "ECM XMIT Switch",
+   "kind": "switch",
+   "device": 66,
+   "device_name": "ECM_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ecm_commands.XmitSw"
+   ],
+   "arg": 457,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mode_m_button",
+   "name": "Mode (M) Button",
+   "kind": "button",
+   "device": 28,
+   "device_name": "EHSI",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ehsi_commands.ModeBtn"
+   ],
+   "arg": 46,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "crs_set_brightness_control_knob",
+   "name": "CRS Set / Brightness Control Knob",
+   "kind": "other",
+   "device": 28,
+   "device_name": "EHSI",
+   "commands": [
+    3005,
+    3004
+   ],
+   "command_names": [
+    "ehsi_commands.RightKnobBtn",
+    "ehsi_commands.RightKnob"
+   ],
+   "arg": 43,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_knob",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "hdg_set_knob",
+   "name": "HDG Set Knob",
+   "kind": "other",
+   "device": 28,
+   "device_name": "EHSI",
+   "commands": [
+    3003,
+    3002
+   ],
+   "command_names": [
+    "ehsi_commands.LeftKnobBtn",
+    "ehsi_commands.LeftKnob"
+   ],
+   "arg": 42,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_knob",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "elec_caution_reset_button_push_to_reset",
+   "name": "ELEC CAUTION RESET Button - Push to reset",
+   "kind": "button",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "elec_commands.CautionResetBtn"
+   ],
+   "arg": 511,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "main_pwr_switch",
+   "name": "MAIN PWR Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "elec_commands.MainPwrSw"
+   ],
+   "arg": 510,
+   "positions": {
+    "main pwr": -1.0,
+    "batt": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "eng_cont_switch_cover",
+   "name": "ENG CONT Switch Cover",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "engine_commands.EngContSwCvr"
+   ],
+   "arg": 448,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ab_reset_switch",
+   "name": "AB RESET Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3011,
+    3010
+   ],
+   "command_names": [
+    "engine_commands.ABResetSwEngData",
+    "engine_commands.ABResetSwReset"
+   ],
+   "arg": 450,
+   "positions": {
+    "ab reset": 1.0,
+    "eng data": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "eng_cont_switch",
+   "name": "ENG CONT Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "engine_commands.EngContSw"
+   ],
+   "arg": 449,
+   "positions": {
+    "pri": 0.0,
+    "sec": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "jfs_switch",
+   "name": "JFS Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3006,
+    3005
+   ],
+   "command_names": [
+    "engine_commands.JfsSwStart2",
+    "engine_commands.JfsSwStart1"
+   ],
+   "arg": 447,
+   "positions": {
+    "start 1": 1.0,
+    "start 2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "max_power_switch_is_inoperative",
+   "name": "MAX POWER Switch (is inoperative)",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "engine_commands.MaxPowerSw"
+   ],
+   "arg": 451,
+   "positions": {
+    "max power": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "epu_switch_cover_for_on",
+   "name": "EPU Switch Cover for ON",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "engine_commands.EpuSwCvrOn"
+   ],
+   "arg": 527,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "epu_switch_cover_for_off",
+   "name": "EPU Switch Cover for OFF",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "engine_commands.EpuSwCvrOff"
+   ],
+   "arg": 529,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "epu_switch",
+   "name": "EPU Switch",
+   "kind": "switch",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "engine_commands.EpuSw"
+   ],
+   "arg": 528,
+   "positions": {
+    "on": -1.0,
+    "norm": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "aerial_refueling_knob",
+   "name": "AERIAL REFUELING Knob",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "extlights_commands.AerialRefuel"
+   ],
+   "arg": 537,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "form_knob",
+   "name": "FORM Knob",
+   "kind": "axis",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "extlights_commands.FormKn"
+   ],
+   "arg": 535,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "anti_coll_knob",
+   "name": "ANTI-COLL Knob",
+   "kind": "multi",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "extlights_commands.AntiCollKn"
+   ],
+   "arg": 531,
+   "positions": {
+    "off": 0.0,
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3,
+    "4": 0.4,
+    "a": 0.5,
+    "b": 0.6,
+    "c": 0.7
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "flash_steady_switch",
+   "name": "FLASH STEADY Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "extlights_commands.PosFlash"
+   ],
+   "arg": 532,
+   "positions": {
+    "flash": 0.0,
+    "steady": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fuselage_switch",
+   "name": "FUSELAGE Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "extlights_commands.PosFus"
+   ],
+   "arg": 534,
+   "positions": {
+    "brt": -1.0,
+    "off": 0.0,
+    "dim": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "master_switch",
+   "name": "MASTER Switch",
+   "kind": "multi",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "extlights_commands.Master"
+   ],
+   "arg": 536,
+   "positions": {
+    "off": 0.0,
+    "all": 0.1,
+    "a-c": 0.2,
+    "form": 0.3,
+    "norm": 0.4
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "wing_tail_switch",
+   "name": "WING/TAIL Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "extlights_commands.PosWingTail"
+   ],
+   "arg": 533,
+   "positions": {
+    "brt": -1.0,
+    "off": 0.0,
+    "dim": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alt_flaps_switch",
+   "name": "ALT FLAPS Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "control_commands.AltFlaps"
+   ],
+   "arg": 567,
+   "positions": {
+    "norm": 0.0,
+    "extend": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "bit_switch",
+   "name": "BIT Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "control_commands.BitSw"
+   ],
+   "arg": 574,
+   "positions": {
+    "off": 0.0,
+    "bit": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "digital_backup_switch",
+   "name": "DIGITAL BACKUP Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "control_commands.DigitalBackup"
+   ],
+   "arg": 566,
+   "positions": {
+    "off": 0.0,
+    "backup": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "flcs_reset_switch",
+   "name": "FLCS RESET Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "control_commands.FlcsReset"
+   ],
+   "arg": 573,
+   "positions": {
+    "off": 0.0,
+    "reset": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "le_flaps_switch",
+   "name": "LE FLAPS Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "control_commands.LeFlaps"
+   ],
+   "arg": 572,
+   "positions": {
+    "auto": 0.0,
+    "lock": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "manual_tf_flyup_switch",
+   "name": "MANUAL TF FLYUP Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "control_commands.ManualTfFlyup"
+   ],
+   "arg": 568,
+   "positions": {
+    "enable": 0.0,
+    "disable": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fuel_master_switch_cover",
+   "name": "FUEL MASTER Switch Cover",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "fuel_commands.FuelMasterSwCvr"
+   ],
+   "arg": 558,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "engine_feed_knob",
+   "name": "ENGINE FEED Knob",
+   "kind": "multi",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "fuel_commands.EngineFeedSw"
+   ],
+   "arg": 556,
+   "positions": {
+    "off": 0.0,
+    "norm": 0.1,
+    "aft": 0.2,
+    "fwd": 0.3
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fuel_master_switch",
+   "name": "FUEL MASTER Switch",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "fuel_commands.FuelMasterSw"
+   ],
+   "arg": 559,
+   "positions": {
+    "master": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "air_refuel_switch",
+   "name": "AIR REFUEL Switch",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "fuel_commands.AirRefuelSw"
+   ],
+   "arg": 555,
+   "positions": {
+    "open": 0.0,
+    "close": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "tank_inerting_switch",
+   "name": "TANK INERTING Switch",
+   "kind": "switch",
+   "device": 4,
+   "device_name": "FUEL_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "fuel_commands.TankInertingSw"
+   ],
+   "arg": 557,
+   "positions": {
+    "tank inerting": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hmcs_symbology_int_knob",
+   "name": "HMCS SYMBOLOGY INT Knob",
+   "kind": "axis",
+   "device": 30,
+   "device_name": "HMCS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "hmcs_commands.IntKnob"
+   ],
+   "arg": 392,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "icp_master_mode_button",
+   "name": "ICP Master Mode Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "ufc_commands.AA"
+   ],
+   "arg": 169,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_master_mode_button_170",
+   "name": "ICP Master Mode Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "ufc_commands.AG"
+   ],
+   "arg": 170,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_com_override_button",
+   "name": "ICP COM Override Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "ufc_commands.COM1"
+   ],
+   "arg": 165,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_com_override_button_166",
+   "name": "ICP COM Override Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "ufc_commands.COM2"
+   ],
+   "arg": 166,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_enter_button",
+   "name": "ICP Enter Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "ufc_commands.ENTR"
+   ],
+   "arg": 178,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_iff_override_button",
+   "name": "ICP IFF Override Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "ufc_commands.IFF"
+   ],
+   "arg": 167,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_list_override_button",
+   "name": "ICP LIST Override Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "ufc_commands.LIST"
+   ],
+   "arg": 168,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ufc_commands.DIG0_M_SEL"
+   ],
+   "arg": 182,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_171",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "ufc_commands.DIG1_T_ILS"
+   ],
+   "arg": 171,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_172",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ufc_commands.DIG2_ALOW"
+   ],
+   "arg": 172,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_173",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ufc_commands.DIG3"
+   ],
+   "arg": 173,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_175",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "ufc_commands.DIG4_STPT"
+   ],
+   "arg": 175,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_176",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "ufc_commands.DIG5_CRUS"
+   ],
+   "arg": 176,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_177",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "ufc_commands.DIG6_TIME"
+   ],
+   "arg": 177,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_179",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "ufc_commands.DIG7_MARK"
+   ],
+   "arg": 179,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_180",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "ufc_commands.DIG8_FIX"
+   ],
+   "arg": 180,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_priority_function_button_181",
+   "name": "ICP Priority Function Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "ufc_commands.DIG9_A_CAL"
+   ],
+   "arg": 181,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_recall_button",
+   "name": "ICP Recall Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "ufc_commands.RCL"
+   ],
+   "arg": 174,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_flir_polarity_button",
+   "name": "ICP FLIR Polarity Button",
+   "kind": "button",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3024
+   ],
+   "command_names": [
+    "ufc_commands.Wx"
+   ],
+   "arg": 187,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_raster_intensity_knob",
+   "name": "ICP Raster Intensity Knob",
+   "kind": "axis",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3023
+   ],
+   "command_names": [
+    "ufc_commands.BRT_Knob"
+   ],
+   "arg": 191,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "icp_raster_contrast_knob",
+   "name": "ICP Raster Contrast Knob",
+   "kind": "axis",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3021
+   ],
+   "command_names": [
+    "ufc_commands.CONT_Knob"
+   ],
+   "arg": 193,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "icp_reticle_depression_control_knob",
+   "name": "ICP Reticle Depression Control Knob",
+   "kind": "axis",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "ufc_commands.RET_DEPR_Knob"
+   ],
+   "arg": 192,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "icp_hud_symbology_intensity_knob",
+   "name": "ICP HUD Symbology Intensity Knob",
+   "kind": "axis",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3022
+   ],
+   "command_names": [
+    "ufc_commands.SYM_Knob"
+   ],
+   "arg": 190,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "icp_drift_cutout_warn_reset_switch",
+   "name": "ICP DRIFT CUTOUT/WARN RESET Switch",
+   "kind": "other",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3029,
+    3028
+   ],
+   "command_names": [
+    "ufc_commands.WARN_RESET",
+    "ufc_commands.DRIFT_CUTOUT"
+   ],
+   "arg": 186,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "icp_flir_gain_level_switch",
+   "name": "ICP FLIR GAIN/LEVEL Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3027
+   ],
+   "command_names": [
+    "ufc_commands.FLIR_GAIN_Sw"
+   ],
+   "arg": 189,
+   "positions": {
+    "gain": -1.0,
+    "lvl": 0.0,
+    "auto": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_data_control_switch",
+   "name": "ICP Data Control Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3032
+   ],
+   "command_names": [
+    "ufc_commands.DCS_RTN"
+   ],
+   "arg": 184,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_data_control_switch_185",
+   "name": "ICP Data Control Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3035
+   ],
+   "command_names": [
+    "ufc_commands.DCS_DOWN"
+   ],
+   "arg": 185,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_data_control_switch_185_",
+   "name": "ICP Data Control Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3034
+   ],
+   "command_names": [
+    "ufc_commands.DCS_UP"
+   ],
+   "arg": 185,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "icp_data_control_switch_184",
+   "name": "ICP Data Control Switch",
+   "kind": "switch",
+   "device": 17,
+   "device_name": "UFC",
+   "commands": [
+    3033
+   ],
+   "command_names": [
+    "ufc_commands.DCS_SEQ"
+   ],
+   "arg": 184,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_mode_knob",
+   "name": "KY-58 MODE Knob",
+   "kind": "multi",
+   "device": 42,
+   "device_name": "KY58",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ky58_commands.KY58_ModeSw"
+   ],
+   "arg": 705,
+   "positions": {
+    "p": 0.0,
+    "c": 0.1,
+    "ld": 0.2,
+    "rv": 0.3
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_fill_knob",
+   "name": "KY-58 FILL Knob",
+   "kind": "multi",
+   "device": 42,
+   "device_name": "KY58",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "ky58_commands.KY58_FillSw"
+   ],
+   "arg": 706,
+   "positions": {
+    "z 1-5": 0.0,
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3,
+    "4": 0.4,
+    "5": 0.5,
+    "6": 0.6,
+    "z all": 0.7
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_power_knob",
+   "name": "KY-58 Power Knob",
+   "kind": "multi",
+   "device": 42,
+   "device_name": "KY58",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "ky58_commands.KY58_PowerSw"
+   ],
+   "arg": 707,
+   "positions": {
+    "off": 0.0,
+    "on": 0.5,
+    "td": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ky_58_volume_knob",
+   "name": "KY-58 VOLUME Knob",
+   "kind": "axis",
+   "device": 42,
+   "device_name": "KY58",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "ky58_commands.KY58_Volume"
+   ],
+   "arg": 708,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "canopy_jettison_t_handle",
+   "name": "CANOPY JETTISON T-Handle",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "cpt_commands.CanopyTHandle"
+   ],
+   "arg": 601,
+   "positions": {
+    "pull": 0.0,
+    "stow": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "canopy_handle",
+   "name": "Canopy Handle",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "cpt_commands.CanopyHandle"
+   ],
+   "arg": 600,
+   "positions": {
+    "up": 0.0,
+    "down": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "defog_lever",
+   "name": "DEFOG Lever",
+   "kind": "switch",
+   "device": 13,
+   "device_name": "ECS_INTERFACE",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "ecs_commands.DefogLever"
+   ],
+   "arg": 602,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "canopy_switch",
+   "name": "Canopy Switch",
+   "kind": "other",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3003,
+    3002
+   ],
+   "command_names": [
+    "cpt_commands.CanopySwitchClose",
+    "cpt_commands.CanopySwitchOpen"
+   ],
+   "arg": 606,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "alt_gear_handle",
+   "name": "ALT GEAR Handle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "gear_commands.AltGearHandle"
+   ],
+   "arg": 380,
+   "positions": {
+    "pull": 0.0,
+    "stow": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "lg_handle",
+   "name": "LG Handle",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "gear_commands.LGHandle"
+   ],
+   "arg": 362,
+   "positions": {
+    "up": 0.0,
+    "dn": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "dn_lock_rel_button_push_to_reset",
+   "name": "DN LOCK REL Button - Push to reset",
+   "kind": "button",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "gear_commands.DownLockRelBtn"
+   ],
+   "arg": 361,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "emer_stores_jettison_button_push_to_jettison",
+   "name": "EMER STORES JETTISON Button - Push to jettison",
+   "kind": "button",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "mmc_commands.EmerStoresJett"
+   ],
+   "arg": 353,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "horn_silencer_button_push_to_reset",
+   "name": "HORN SILENCER Button - Push to reset",
+   "kind": "button",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "gear_commands.HornSilencerBtn"
+   ],
+   "arg": 359,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "alt_gear_handle_push_to_reset",
+   "name": "ALT GEAR Handle - Push to reset",
+   "kind": "button",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "gear_commands.AltGearResetBtn"
+   ],
+   "arg": 381,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "brakes_channel_switch",
+   "name": "BRAKES Channel Switch",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "gear_commands.BrakesChannelSw"
+   ],
+   "arg": 356,
+   "positions": {
+    "chan 1": 0.0,
+    "chan 2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "gnd_jett_enable_switch",
+   "name": "GND JETT ENABLE Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "mmc_commands.GroundJett"
+   ],
+   "arg": 355,
+   "positions": {
+    "enable": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hook_switch",
+   "name": "HOOK Switch",
+   "kind": "switch",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "gear_commands.HookSw"
+   ],
+   "arg": 354,
+   "positions": {
+    "up": 0.0,
+    "dn": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "landing_taxi_lights_switch",
+   "name": "LANDING TAXI LIGHTS Switch",
+   "kind": "switch",
+   "device": 11,
+   "device_name": "EXTLIGHTS_SYSTEM",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "extlights_commands.LandingTaxi"
+   ],
+   "arg": 360,
+   "positions": {
+    "landing": -1.0,
+    "off": 0.0,
+    "taxi": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "anti_skid_switch",
+   "name": "ANTI-SKID Switch",
+   "kind": "other",
+   "device": 7,
+   "device_name": "GEAR_INTERFACE",
+   "commands": [
+    3004,
+    3003
+   ],
+   "command_names": [
+    "gear_commands.AntiSkidSw",
+    "gear_commands.ParkingSw"
+   ],
+   "arg": 357,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_tumb_button",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "stores_config_switch",
+   "name": "STORES CONFIG Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "control_commands.StoresConfig"
+   ],
+   "arg": 358,
+   "positions": {
+    "cat iii": 0.0,
+    "cat i": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_1",
+   "name": "Left MFD OSB 1",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "mfd_commands.OSB_1"
+   ],
+   "arg": 300,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_10",
+   "name": "Left MFD OSB 10",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "mfd_commands.OSB_10"
+   ],
+   "arg": 309,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_11",
+   "name": "Left MFD OSB 11",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "mfd_commands.OSB_11"
+   ],
+   "arg": 310,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_12",
+   "name": "Left MFD OSB 12",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "mfd_commands.OSB_12"
+   ],
+   "arg": 311,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_13",
+   "name": "Left MFD OSB 13",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "mfd_commands.OSB_13"
+   ],
+   "arg": 312,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_14",
+   "name": "Left MFD OSB 14",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "mfd_commands.OSB_14"
+   ],
+   "arg": 313,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_15",
+   "name": "Left MFD OSB 15",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "mfd_commands.OSB_15"
+   ],
+   "arg": 314,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_16",
+   "name": "Left MFD OSB 16",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "mfd_commands.OSB_16"
+   ],
+   "arg": 315,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_17",
+   "name": "Left MFD OSB 17",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "mfd_commands.OSB_17"
+   ],
+   "arg": 316,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_18",
+   "name": "Left MFD OSB 18",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "mfd_commands.OSB_18"
+   ],
+   "arg": 317,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_19",
+   "name": "Left MFD OSB 19",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "mfd_commands.OSB_19"
+   ],
+   "arg": 318,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_2",
+   "name": "Left MFD OSB 2",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "mfd_commands.OSB_2"
+   ],
+   "arg": 301,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_20",
+   "name": "Left MFD OSB 20",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "mfd_commands.OSB_20"
+   ],
+   "arg": 319,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_3",
+   "name": "Left MFD OSB 3",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "mfd_commands.OSB_3"
+   ],
+   "arg": 302,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_4",
+   "name": "Left MFD OSB 4",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "mfd_commands.OSB_4"
+   ],
+   "arg": 303,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_5",
+   "name": "Left MFD OSB 5",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "mfd_commands.OSB_5"
+   ],
+   "arg": 304,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_6",
+   "name": "Left MFD OSB 6",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "mfd_commands.OSB_6"
+   ],
+   "arg": 305,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_7",
+   "name": "Left MFD OSB 7",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "mfd_commands.OSB_7"
+   ],
+   "arg": 306,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_8",
+   "name": "Left MFD OSB 8",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "mfd_commands.OSB_8"
+   ],
+   "arg": 307,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_mfd_osb_9",
+   "name": "Left MFD OSB 9",
+   "kind": "button",
+   "device": 24,
+   "device_name": "MFD_LEFT",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "mfd_commands.OSB_9"
+   ],
+   "arg": 308,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "o1_expendable_category_switch",
+   "name": "O1 Expendable Category Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "cmds_commands.O1Exp"
+   ],
+   "arg": 365,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "o2_expendable_category_switch",
+   "name": "O2 Expendable Category Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "cmds_commands.O2Exp"
+   ],
+   "arg": 366,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "ch_expendable_category_switch",
+   "name": "CH Expendable Category Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "cmds_commands.ChExp"
+   ],
+   "arg": 367,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fl_expendable_category_switch",
+   "name": "FL Expendable Category Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "cmds_commands.FlExp"
+   ],
+   "arg": 368,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mode_knob",
+   "name": "MODE Knob",
+   "kind": "multi",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "cmds_commands.Mode"
+   ],
+   "arg": 378,
+   "positions": {
+    "off": 0.0,
+    "stby": 0.1,
+    "man": 0.2,
+    "semi": 0.3,
+    "auto": 0.4,
+    "byp": 0.5
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "program_knob",
+   "name": "PROGRAM Knob",
+   "kind": "multi",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "cmds_commands.Prgm"
+   ],
+   "arg": 377,
+   "positions": {
+    "bit": 0.0,
+    "1": 0.1,
+    "2": 0.2,
+    "3": 0.3,
+    "4": 0.4
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "multiposition_switch",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "jmr_source_switch",
+   "name": "JMR Source Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "cmds_commands.JmrSrc"
+   ],
+   "arg": 374,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "jettison_switch",
+   "name": "Jettison Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "cmds_commands.Jett"
+   ],
+   "arg": 371,
+   "positions": {
+    "jett": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mws_source_switch",
+   "name": "MWS Source Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "cmds_commands.MwsSrc"
+   ],
+   "arg": 373,
+   "positions": {
+    "on": 0.0,
+    "off (no function)": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_555_switch",
+   "name": "RWR 555 Switch",
+   "kind": "switch",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "cmds_commands.RwrSrc"
+   ],
+   "arg": 375,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "chaff_flare_dispense_button_push_to_dispense",
+   "name": "CHAFF/FLARE Dispense Button - Push to dispense",
+   "kind": "button",
+   "device": 32,
+   "device_name": "CMDS",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "cmds_commands.DispBtn"
+   ],
+   "arg": 604,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "pitch_trim_wheel",
+   "name": "PITCH TRIM Wheel",
+   "kind": "axis",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "control_commands.PitchTrim"
+   ],
+   "arg": 562,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "roll_trim_wheel",
+   "name": "ROLL TRIM Wheel",
+   "kind": "axis",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "control_commands.RollTrim"
+   ],
+   "arg": 560,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited_1_side",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "yaw_trim_knob",
+   "name": "YAW TRIM Knob",
+   "kind": "axis",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "control_commands.YawTrim"
+   ],
+   "arg": 565,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "trim_ap_disc_switch",
+   "name": "TRIM/AP DISC Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "control_commands.TrimApDisc"
+   ],
+   "arg": 564,
+   "positions": {
+    "disc": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "manual_pitch_override_switch",
+   "name": "MANUAL PITCH Override Switch",
+   "kind": "switch",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "control_commands.ManualPitchOverride"
+   ],
+   "arg": 425,
+   "positions": {
+    "ovrd": 0.0,
+    "norm": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "plain_cipher_switch",
+   "name": "PLAIN Cipher Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "intercom_commands.PlainCipherSw"
+   ],
+   "arg": 701,
+   "positions": {
+    "crad 1": -1.0,
+    "plain": 0.0,
+    "crad 2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "diluter_lever",
+   "name": "Diluter Lever",
+   "kind": "switch",
+   "device": 8,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "oxygen_commands.DiluterLever"
+   ],
+   "arg": 727,
+   "positions": {
+    "100 percent": 0.0,
+    "norm": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "emergency_lever",
+   "name": "Emergency Lever",
+   "kind": "other",
+   "device": 8,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3004,
+    3003
+   ],
+   "command_names": [
+    "oxygen_commands.EmergencyLeverTestMask",
+    "oxygen_commands.EmergencyLever"
+   ],
+   "arg": 726,
+   "positions": {},
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "supply_lever",
+   "name": "Supply Lever",
+   "kind": "switch",
+   "device": 8,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "oxygen_commands.SupplyLever"
+   ],
+   "arg": 728,
+   "positions": {
+    "pbg": -1.0,
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_altitude_switch",
+   "name": "HUD Altitude Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "mmc_commands.Alt"
+   ],
+   "arg": 680,
+   "positions": {
+    "radar": -1.0,
+    "baro": 0.0,
+    "auto": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_flightpath_marker_switch",
+   "name": "HUD Flightpath Marker Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "mmc_commands.AttFpm"
+   ],
+   "arg": 676,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_velocity_switch",
+   "name": "HUD Velocity Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "mmc_commands.Spd"
+   ],
+   "arg": 679,
+   "positions": {
+    "cas": -1.0,
+    "tas": 0.0,
+    "gnd spd": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_brightness_control_switch",
+   "name": "HUD Brightness Control Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "mmc_commands.Brt"
+   ],
+   "arg": 681,
+   "positions": {
+    "day": -1.0,
+    "auto brt": 0.0,
+    "night": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_ded_pfld_data_switch",
+   "name": "HUD DED/PFLD Data Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "mmc_commands.DedData"
+   ],
+   "arg": 677,
+   "positions": {
+    "ded": -1.0,
+    "pfl": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_depressible_reticle_switch",
+   "name": "HUD Depressible Reticle Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "mmc_commands.DeprRet"
+   ],
+   "arg": 678,
+   "positions": {
+    "stby": -1.0,
+    "pri": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_test_switch",
+   "name": "HUD TEST Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "mmc_commands.Test"
+   ],
+   "arg": 682,
+   "positions": {
+    "step": -1.0,
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "hud_scales_switch",
+   "name": "HUD Scales Switch",
+   "kind": "switch",
+   "device": 19,
+   "device_name": "MMC",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "mmc_commands.VvVah"
+   ],
+   "arg": 675,
+   "positions": {
+    "1": -1.0,
+    "2": 0.0,
+    "3": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "flood_consoles_brt_knob",
+   "name": "FLOOD CONSOLES BRT Knob",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "cptlights_commands.ConsolesFlood"
+   ],
+   "arg": 688,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "flood_inst_pnl_brt_knob",
+   "name": "FLOOD INST PNL BRT Knob",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "cptlights_commands.InstPnlFlood"
+   ],
+   "arg": 690,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "primary_consoles_brt_knob",
+   "name": "PRIMARY CONSOLES BRT Knob",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "cptlights_commands.Consoles"
+   ],
+   "arg": 685,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "primary_data_entry_display_brt_knob",
+   "name": "PRIMARY DATA ENTRY DISPLAY BRT Knob",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "cptlights_commands.DataEntryDisplay"
+   ],
+   "arg": 687,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "primary_inst_pnl_brt_knob",
+   "name": "PRIMARY INST PNL BRT Knob",
+   "kind": "axis",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "cptlights_commands.IntsPnl"
+   ],
+   "arg": 686,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "mal_ind_lts_switch",
+   "name": "MAL & IND LTS Switch",
+   "kind": "switch",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3009,
+    3008
+   ],
+   "command_names": [
+    "cptlights_commands.MalIndLtsDim",
+    "cptlights_commands.MalIndLtsBrt"
+   ],
+   "arg": 691,
+   "positions": {
+    "brt": 1.0,
+    "dim": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_1",
+   "name": "Right MFD OSB 1",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "mfd_commands.OSB_1"
+   ],
+   "arg": 326,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_10",
+   "name": "Right MFD OSB 10",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "mfd_commands.OSB_10"
+   ],
+   "arg": 335,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_11",
+   "name": "Right MFD OSB 11",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "mfd_commands.OSB_11"
+   ],
+   "arg": 336,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_12",
+   "name": "Right MFD OSB 12",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "mfd_commands.OSB_12"
+   ],
+   "arg": 337,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_13",
+   "name": "Right MFD OSB 13",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3013
+   ],
+   "command_names": [
+    "mfd_commands.OSB_13"
+   ],
+   "arg": 338,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_14",
+   "name": "Right MFD OSB 14",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "mfd_commands.OSB_14"
+   ],
+   "arg": 339,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_15",
+   "name": "Right MFD OSB 15",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "mfd_commands.OSB_15"
+   ],
+   "arg": 340,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_16",
+   "name": "Right MFD OSB 16",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3016
+   ],
+   "command_names": [
+    "mfd_commands.OSB_16"
+   ],
+   "arg": 341,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_17",
+   "name": "Right MFD OSB 17",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "mfd_commands.OSB_17"
+   ],
+   "arg": 342,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_18",
+   "name": "Right MFD OSB 18",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "mfd_commands.OSB_18"
+   ],
+   "arg": 343,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_19",
+   "name": "Right MFD OSB 19",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3019
+   ],
+   "command_names": [
+    "mfd_commands.OSB_19"
+   ],
+   "arg": 344,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_2",
+   "name": "Right MFD OSB 2",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "mfd_commands.OSB_2"
+   ],
+   "arg": 327,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_20",
+   "name": "Right MFD OSB 20",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3020
+   ],
+   "command_names": [
+    "mfd_commands.OSB_20"
+   ],
+   "arg": 345,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_3",
+   "name": "Right MFD OSB 3",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "mfd_commands.OSB_3"
+   ],
+   "arg": 328,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_4",
+   "name": "Right MFD OSB 4",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3004
+   ],
+   "command_names": [
+    "mfd_commands.OSB_4"
+   ],
+   "arg": 329,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_5",
+   "name": "Right MFD OSB 5",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "mfd_commands.OSB_5"
+   ],
+   "arg": 330,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_6",
+   "name": "Right MFD OSB 6",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3006
+   ],
+   "command_names": [
+    "mfd_commands.OSB_6"
+   ],
+   "arg": 331,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_7",
+   "name": "Right MFD OSB 7",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3007
+   ],
+   "command_names": [
+    "mfd_commands.OSB_7"
+   ],
+   "arg": 332,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_8",
+   "name": "Right MFD OSB 8",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "mfd_commands.OSB_8"
+   ],
+   "arg": 333,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "right_mfd_osb_9",
+   "name": "Right MFD OSB 9",
+   "kind": "button",
+   "device": 25,
+   "device_name": "MFD_RIGHT",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "mfd_commands.OSB_9"
+   ],
+   "arg": 334,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "mfd_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "clock_elapsed_time_knob",
+   "name": "Clock Elapsed Time Knob",
+   "kind": "button",
+   "device": 51,
+   "device_name": "CLOCK",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "clock_commands.CLOCK_right_lev_down"
+   ],
+   "arg": 628,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "sai_cage_knob",
+   "name": "SAI Cage Knob",
+   "kind": "other",
+   "device": 47,
+   "device_name": "SAI",
+   "commands": [
+    3002,
+    3003
+   ],
+   "command_names": [
+    "sai_commands.cage",
+    "sai_commands.reference"
+   ],
+   "arg": 67,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "custom:class_type.BTN,class_type.LEV",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "ejection_safety_lever",
+   "name": "Ejection Safety Lever",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "cpt_commands.EjectionSafetyLever"
+   ],
+   "arg": 785,
+   "positions": {
+    "armed": 0.0,
+    "locked": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "seat_adj_switch",
+   "name": "SEAT ADJ Switch",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3014,
+    3013
+   ],
+   "command_names": [
+    "cpt_commands.SeatAdjSwitchDown",
+    "cpt_commands.SeatAdjSwitchUp"
+   ],
+   "arg": 786,
+   "positions": {
+    "up": 1.0,
+    "down": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_3_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fcr_switch",
+   "name": "FCR Switch",
+   "kind": "switch",
+   "device": 31,
+   "device_name": "FCR",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "fcr_commands.PwrSw"
+   ],
+   "arg": 672,
+   "positions": {
+    "fcr": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "left_hdpt_switch",
+   "name": "LEFT HDPT Switch",
+   "kind": "switch",
+   "device": 22,
+   "device_name": "SMS",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "sms_commands.LeftHDPT"
+   ],
+   "arg": 670,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rdr_alt_switch",
+   "name": "RDR ALT Switch",
+   "kind": "switch",
+   "device": 15,
+   "device_name": "RALT",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ralt_commands.PwrSw"
+   ],
+   "arg": 673,
+   "positions": {
+    "rdr alt": -1.0,
+    "stby": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_3_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "clock_winding_and_setting_knob",
+   "name": "Clock Winding and Setting Knob",
+   "kind": "other",
+   "device": 51,
+   "device_name": "CLOCK",
+   "commands": [
+    3001,
+    3002
+   ],
+   "command_names": [
+    "clock_commands.CLOCK_left_lev_up",
+    "clock_commands.CLOCK_left_lev_rotate"
+   ],
+   "arg": 626,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "custom:class_type.BTN,class_type.LEV",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "right_hdpt_switch",
+   "name": "RIGHT HDPT Switch",
+   "kind": "switch",
+   "device": 22,
+   "device_name": "SMS",
+   "commands": [
+    3003
+   ],
+   "command_names": [
+    "sms_commands.RightHDPT"
+   ],
+   "arg": 671,
+   "positions": {
+    "on": 0.0,
+    "off": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "set_index_knob",
+   "name": "SET INDEX Knob",
+   "kind": "axis",
+   "device": 46,
+   "device_name": "AMI",
+   "commands": [
+    3001
+   ],
+   "command_names": [
+    "ami_commands.SettingKnob"
+   ],
+   "arg": 71,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "hide_stick_toggle",
+   "name": "Hide Stick toggle",
+   "kind": "switch",
+   "device": 10,
+   "device_name": "CPT_MECH",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "cpt_commands.StickHide"
+   ],
+   "arg": 796,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "fire_oheat_detect_test_button_push_to_test",
+   "name": "FIRE & OHEAT DETECT Test Button - Push to test",
+   "kind": "button",
+   "device": 6,
+   "device_name": "ENGINE_INTERFACE",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "engine_commands.FireOheatTestBtn"
+   ],
+   "arg": 575,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "mal_ind_lts_test_button_push_to_test",
+   "name": "MAL & IND LTS Test Button - Push to test",
+   "kind": "button",
+   "device": 12,
+   "device_name": "CPTLIGHTS_SYSTEM",
+   "commands": [
+    3002
+   ],
+   "command_names": [
+    "cptlights_commands.MalIndLtsTest"
+   ],
+   "arg": 577,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "epu_gen_test_switch",
+   "name": "EPU/GEN Test Switch",
+   "kind": "switch",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "elec_commands.EPU_GEN_TestSw"
+   ],
+   "arg": 579,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "obogs_bit_switch",
+   "name": "OBOGS BIT Switch",
+   "kind": "switch",
+   "device": 8,
+   "device_name": "OXYGEN_INTERFACE",
+   "commands": [
+    3005
+   ],
+   "command_names": [
+    "oxygen_commands.ObogsBitSw"
+   ],
+   "arg": 576,
+   "positions": {
+    "bit": 0.0,
+    "off": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "springloaded_2_pos_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "probe_heat_switch",
+   "name": "PROBE HEAT Switch",
+   "kind": "other",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3007,
+    3006
+   ],
+   "command_names": [
+    "elec_commands.ProbeHeatSwTEST",
+    "elec_commands.ProbeHeatSw"
+   ],
+   "arg": 578,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button_tumb",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "flcs_pwr_test_switch",
+   "name": "FLCS PWR TEST Switch",
+   "kind": "other",
+   "device": 3,
+   "device_name": "ELEC_INTERFACE",
+   "commands": [
+    3003,
+    3004
+   ],
+   "command_names": [
+    "elec_commands.FlcsPwrTestSwMAINT",
+    "elec_commands.FlcsPwrTestSwTEST"
+   ],
+   "arg": 585,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_tumb_button",
+   "note": "composite control; not exposed to voice yet",
+   "aliases": []
+  },
+  {
+   "id": "throttle",
+   "name": "Throttle",
+   "kind": "button",
+   "device": 2,
+   "device_name": "CONTROL_INTERFACE",
+   "commands": [
+    3037
+   ],
+   "command_names": [
+    "control_commands.ThrottleOnOff"
+   ],
+   "arg": 757,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "default_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_act_pwr_button",
+   "name": "RWR Indicator Control ACT/PWR Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3010
+   ],
+   "command_names": [
+    "rwr_commands.ActPwr"
+   ],
+   "arg": 397,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_altitude_button",
+   "name": "RWR Indicator Control ALTITUDE Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3012
+   ],
+   "command_names": [
+    "rwr_commands.Altitude"
+   ],
+   "arg": 399,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_power_button",
+   "name": "RWR Indicator Control POWER Button",
+   "kind": "switch",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3011
+   ],
+   "command_names": [
+    "rwr_commands.Power"
+   ],
+   "arg": 401,
+   "positions": {
+    "1": 0.0,
+    "2": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_search_button",
+   "name": "RWR Indicator Control SEARCH Button",
+   "kind": "button",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3009
+   ],
+   "command_names": [
+    "rwr_commands.Search"
+   ],
+   "arg": 395,
+   "positions": {
+    "press": 1.0
+   },
+   "momentary": true,
+   "danger": false,
+   "verified": false,
+   "fn": "short_way_button",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "rwr_indicator_control_dim_knob_rotate_to_adjust_",
+   "name": "RWR Indicator Control DIM Knob - Rotate to adjust brightness",
+   "kind": "axis",
+   "device": 33,
+   "device_name": "RWR",
+   "commands": [
+    3008
+   ],
+   "command_names": [
+    "rwr_commands.BrtKnob"
+   ],
+   "arg": 404,
+   "positions": {},
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_axis_limited",
+   "note": "continuous 0..1; say a percentage",
+   "aliases": []
+  },
+  {
+   "id": "zeroize_switch_cover",
+   "name": "ZEROIZE Switch Cover",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3017
+   ],
+   "command_names": [
+    "intercom_commands.ZeroizeSwCvr"
+   ],
+   "arg": 694,
+   "positions": {
+    "open": 1.0,
+    "close": 0.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_red_cover",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "voice_message_inhibit_switch",
+   "name": "Voice Message Inhibit Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3015
+   ],
+   "command_names": [
+    "intercom_commands.VMS_InhibitSw"
+   ],
+   "arg": 696,
+   "positions": {
+    "voice message": 0.0,
+    "inhibit": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "zeroize_switch",
+   "name": "ZEROIZE Switch",
+   "kind": "switch",
+   "device": 39,
+   "device_name": "INTERCOM",
+   "commands": [
+    3018
+   ],
+   "command_names": [
+    "intercom_commands.ZeroizeSw"
+   ],
+   "arg": 695,
+   "positions": {
+    "ofp": -1.0,
+    "off": 0.0,
+    "data": 1.0
+   },
+   "momentary": false,
+   "danger": true,
+   "verified": false,
+   "fn": "default_3_position_tumb_small",
+   "note": "",
+   "aliases": []
+  },
+  {
+   "id": "access_door",
+   "name": "Access Door",
+   "kind": "switch",
+   "device": 37,
+   "device_name": "UHF_CONTROL_PANEL",
+   "commands": [
+    3014
+   ],
+   "command_names": [
+    "uhf_commands.AccessDoor"
+   ],
+   "arg": 734,
+   "positions": {
+    "open": 0.0,
+    "close": 1.0
+   },
+   "momentary": false,
+   "danger": false,
+   "verified": false,
+   "fn": "default_2_position_tumb",
+   "note": "",
+   "aliases": []
+  }
+ ]
+}

@@ -72,7 +72,7 @@ local function boot()
   dofile("dcs_hook/skibodcs_hook.lua")
   assert(cb and cb.onSimulationFrame and cb.onSimulationStart, "callbacks must be registered via DCS.setUserCallbacks")
   cb.onSimulationStart()
-  M.add(2, 0, M.group{ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } })
+  M.add(2, 0, M.group({ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } }, 5))
 end
 
 for _, order in ipairs{ false, true } do
@@ -80,7 +80,7 @@ for _, order in ipairs{ false, true } do
   boot()
   assert(SKIBO and SKIBO.version, "mission module injected (swapped=" .. tostring(order) .. ")")
   inbox[1] = '{"id":"w1","type":"wingman","intent":"weapons_free","params":{}}'
-  inbox[2] = '{"id":"w2","type":"wingman","intent":"formation","params":{"mode":"spread"}}'
+  inbox[2] = '{"id":"w2","type":"wingman","intent":"rtb","params":{"who":"wingman"}}'
   inbox[3] = '{"id":"w3","type":"cockpit","intent":"x","params":{}}'
   cb.onSimulationFrame()
   eq(#replies, 3)
@@ -89,6 +89,12 @@ for _, order in ipairs{ false, true } do
   assert(replies[3]:find("unknown type"), replies[3])
 end
 swapped = false
+
+-- structured params survive the trip: JSON params -> k=v string -> mission state -> option on the right ship
+boot()
+inbox[1] = '{"id":"p1","type":"wingman","intent":"formation","params":{"who":"wingman","shape":"wedge","spacing":"close"}}'
+cb.onSimulationFrame()
+eq(replies[#replies], '{"detail":"wedge close","id":"p1","ok":true}\n')
 
 -- heartbeat is throttled (once per second of real time, not per frame)
 boot()
