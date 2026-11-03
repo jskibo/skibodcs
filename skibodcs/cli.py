@@ -33,8 +33,14 @@ def main(argv=None):
     cp.add_argument("--start-date", default="2026-06-14"); cp.add_argument("--flight-size", type=int, default=2)
     cp.add_argument("--out", default="out/campaign"); cp.add_argument("--dcs-dir")
     cp.add_argument("--launch", action="store_true", help="after planning, ask the Hook to load the mission (DCS must be running a mission)")
+    cp.add_argument("--request", default="", help="with --llm: what you want from the next sortie, in plain words")
+    cp.add_argument("--task", choices=["SEAD", "CAS", "STRIKE", "CAP"], help="steer the next sortie's task")
     cp.add_argument("--llm", action="store_true", help="plan with the local LLM instead of the built-in generator")
     cp.add_argument("--model", default="qwen3:30b-a3b"); cp.add_argument("--host", default="http://localhost:11434")
+    ui = sub.add_parser("ui", help="open the mission builder in your browser (forms instead of commands)")
+    ui.add_argument("--port", type=int, default=8765); ui.add_argument("--config", default="skibodcs.toml")
+    ui.add_argument("--dcs-dir"); ui.add_argument("--lan", action="store_true", help="listen on the network (anyone on your LAN can use it)")
+    ui.add_argument("--no-browser", action="store_true")
     dr = sub.add_parser("doctor", help="check the DCS link: Export (14500) and Hook (14510) ports, and the skibodcs lines in dcs.log")
     dr.add_argument("--dcs-dir"); dr.add_argument("--lines", type=int, default=12)
     bt = sub.add_parser("buttons", help="show joystick buttons as you press them (find your push-to-talk button number)")
@@ -108,6 +114,9 @@ def main(argv=None):
         import sounddevice as sd
         print(sd.query_devices()); print("defaults (input, output):", sd.default.device)
         return 0
+    if a.cmd == "ui":
+        from .webui import run
+        run(a.config, a.dcs_dir, a.port, a.lan, not a.no_browser); return 0
     if a.cmd == "doctor":
         from . import deploy as dp
         from .doctor import diagnose
@@ -120,7 +129,7 @@ def main(argv=None):
     if a.cmd == "campaign":
         from . import campaign as cg
         from . import deploy as dp
-        dcs_dir = Path(a.dcs_dir) if a.dcs_dir else (dp.find_dcs_dirs() or [None])[0]
+        dcs_dir = Path(a.dcs_dir) if a.dcs_dir else dp.pick_dcs_dir()
         if a.action == "new":
             cg.Campaign.create(a.db, a.name, a.theater, a.aircraft, a.home, a.callsign, a.start_date, a.flight_size, a.sites, a.seed)
             print(json.dumps(cg.Campaign.open(a.db, a.name).summary(), indent=1)); return 0
@@ -132,7 +141,7 @@ def main(argv=None):
             if a.llm:
                 from .llm import OllamaClient
                 llm = OllamaClient(a.model, a.host)
-            res = cg.build_sortie(camp, a.out, dcs_dir, llm)
+            res = cg.build_sortie(camp, a.out, dcs_dir, llm, steer={"task": a.task} if a.task else None, request=a.request)
             if a.launch and res.get("deployed_miz"):
                 from .voice.link import HookClient
                 ok, detail = HookClient().load_mission(res["deployed_miz"])

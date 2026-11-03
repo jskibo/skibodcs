@@ -21,6 +21,20 @@ def find_dcs_dirs() -> list[Path]:
     return [p for p in (sg / "DCS.openbeta", sg / "DCS") if p.is_dir()]
 
 
+def pick_dcs_dir(cfg: dict | None = None) -> Path | None:
+    """The Saved Games folder to use when the user did not say: skibodcs.toml `dcs_dir`, else the one whose dcs.log is newest
+    (the one actually flown), else the first found. Many installs have both DCS and DCS.openbeta."""
+    if cfg and cfg.get("dcs_dir"):
+        return Path(cfg["dcs_dir"])
+    dirs = find_dcs_dirs()
+    if not dirs:
+        return None
+    def stamp(d: Path) -> float:
+        log = d / "Logs" / "dcs.log"
+        return log.stat().st_mtime if log.exists() else 0.0
+    return max(dirs, key=stamp)
+
+
 def _block() -> str:
     return f"{BEGIN}\n{EXPORT_LINE}\n{END}\n"
 

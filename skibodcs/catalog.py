@@ -55,6 +55,15 @@ def terrain(theater: str):
     return THEATERS[key]()
 
 
+def new_terrain(theater: str):
+    """A FRESH terrain for building a mission. pydcs tracks used parking slots on the terrain's airports, so reusing the cached
+    terrain across missions (a long-running UI or voice app) exhausts the slots: 'No free parking slot at Batumi'."""
+    key = theater.lower().replace(" ", "")
+    if key not in THEATERS:
+        raise KeyError(theater)
+    return THEATERS[key]()
+
+
 def airbases(theater: str) -> list[str]:
     return sorted(terrain(theater).airports)
 

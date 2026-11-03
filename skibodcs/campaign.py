@@ -29,6 +29,7 @@ SAM = ["SA-2", "SA-6", "SA-8", "SA-10", "SA-11", "SA-13", "SA-15", "ZSU-23"]
 GROUND = ["ARMOR_PLATOON", "MECH_INF"]
 TIMES = ["06:30", "09:00", "13:00", "16:30", "19:00"]
 CLOUDS = ["clear", "few", "scattered", "broken"]
+from .builder import TIMES as TIMES_MAP                 # noqa: E402  (named times: dawn, morning, ...)
 
 
 def _units(template: str) -> int:
@@ -61,17 +62,22 @@ class Campaign:
             raise KeyError(f"no airbase '{home}' on {theater}; try {catalog.suggest(home, catalog.airbases(theater))}")
         seed = random.Random().randrange(1 << 30) if seed is None else seed
         con = sqlite3.connect(str(db)); con.executescript(SCHEMA)
-        cur = con.execute("INSERT INTO campaign(name,theater,aircraft,callsign,home,flight_size,pool,pool_max,current_date,seed) "
-                          "VALUES(?,?,?,?,?,?,?,?,?,?)", (name, theater, aircraft, callsign, home, flight_size,
-                                                          flight_size * 2, flight_size * 2, start_date, seed))
-        cid = cur.lastrowid
-        rng = random.Random(seed)
-        for i in range(sites):
-            tpl = rng.choice(SAM) if i % 2 == 0 else rng.choice(GROUND)
-            con.execute("INSERT INTO site(campaign_id,id,template,near,bearing,distance_nm,heading) VALUES(?,?,?,?,?,?,?)",
-                        (cid, f"{tpl.lower().replace('-', '')}_{i + 1}", tpl, home, round(rng.uniform(0, 360)),
-                         round(rng.uniform(25, 85)), round(rng.uniform(0, 360))))
-        con.commit(); con.close()
+        try:                                                  # a failed insert (duplicate name) must not leave the database locked
+            cur = con.execute("INSERT INTO campaign(name,theater,aircraft,callsign,home,flight_size,pool,pool_max,current_date,seed) "
+                              "VALUES(?,?,?,?,?,?,?,?,?,?)", (name, theater, aircraft, callsign, home, flight_size,
+                                                              flight_size * 2, flight_size * 2, start_date, seed))
+            cid = cur.lastrowid
+            rng = random.Random(seed)
+            for i in range(sites):
+                tpl = rng.choice(SAM) if i % 2 == 0 else rng.choice(GROUND)
+                con.execute("INSERT INTO site(campaign_id,id,template,near,bearing,distance_nm,heading) VALUES(?,?,?,?,?,?,?)",
+                            (cid, f"{tpl.lower().replace('-', '')}_{i + 1}", tpl, home, round(rng.uniform(0, 360)),
+                             round(rng.uniform(25, 85)), round(rng.uniform(0, 360))))
+            con.commit()
+        except Exception:
+            con.rollback(); raise
+        finally:
+            con.close()
         return cls(db, cid)
 
     def row(self) -> sqlite3.Row:
@@ -94,9 +100,18 @@ class Campaign:
     def _anchor(self, s) -> dict:
         return {"near": s["near"], "bearing": s["bearing"], "distance_nm": s["distance_nm"]}
 
-    def _pick_target(self, rng: random.Random):
+    def _pick_target(self, rng: random.Random, want: str = "random"):
         alive = self.sites("alive")
         sams = [s for s in alive if s["template"] in SAM]
+        if want in ("SEAD", "CAS", "STRIKE", "CAP"):               # the pilot chose the task: honour it or say why not
+            grd = [s for s in alive if s["template"] not in SAM]
+            if want == "SEAD":
+                if not sams: raise ValueError("No surviving air-defence sites: pick another task.")
+                return "SEAD", rng.choice(sams)
+            if want in ("CAS", "STRIKE"):
+                if not grd: raise ValueError("No surviving ground forces: pick another task.")
+                return want, rng.choice(grd)
+            return "CAP", None
         # SEAD first while SAMs live and the dice agree; otherwise hit ground forces; CAP when nothing is left to hit
         if sams and (rng.random() < 0.6 or len(sams) == len(alive)):
             return "SEAD", rng.choice(sams)
@@ -105,14 +120,16 @@ class Campaign:
             return rng.choice(["CAS", "STRIKE"]), rng.choice(grd)
         return "CAP", None
 
-    def plan_deterministic(self, rng: random.Random | None = None) -> Scenario:
+    def plan_deterministic(self, rng: random.Random | None = None, steer: dict | None = None) -> Scenario:
+        """steer (all optional): task = SEAD|CAS|STRIKE|CAP|random, time = dawn..night or HH:MM, clouds = clear..overcast."""
+        steer = steer or {}
         c = self.row()
         rng = rng or random.Random(c["seed"] * 1000 + c["seq"] + 1)
         seq = c["seq"] + 1
-        task, tgt = self._pick_target(rng)
+        task, tgt = self._pick_target(rng, steer.get("task", "random"))
         near = c["home"]
         size = max(1, min(c["flight_size"], c["pool"]))
-        weather = {"clouds": rng.choice(CLOUDS), "wind_kt": rng.randint(2, 18), "wind_from_deg": rng.randrange(0, 360, 10),
+        weather = {"clouds": steer.get("clouds") if steer.get("clouds") in (*CLOUDS, "overcast") else rng.choice(CLOUDS), "wind_kt": rng.randint(2, 18), "wind_from_deg": rng.randrange(0, 360, 10),
                    "vis_km": rng.choice([15, 30, 60, 80]), "qnh_mmhg": rng.randint(752, 768)}
         route, groups, objectives = [], [], []
         if tgt is not None:
@@ -140,7 +157,7 @@ class Campaign:
         d = dt.date.fromisoformat(c["current_date"])
         spec = {
             "meta": {"id": f"{c['name']}_{seq:03d}".replace(" ", "_"), "title": f"{c['name']} - Sortie {seq}", "theater": c["theater"],
-                     "date": d.isoformat(), "start_time": rng.choice(TIMES), "campaign_id": c["name"], "sequence": seq},
+                     "date": d.isoformat(), "start_time": TIMES_MAP.get(steer.get("time"), steer.get("time") if steer.get("time") and ":" in str(steer.get("time")) else rng.choice(TIMES)), "campaign_id": c["name"], "sequence": seq},
             "weather": weather,
             "player": [{"callsign": c["callsign"], "aircraft": c["aircraft"], "count": size, "task": task if task != "CAP" else "CAP",
                         "start_airbase": near, "start_type": "cold", "route": route}],
@@ -161,7 +178,8 @@ class Campaign:
             raise RuntimeError("deterministic planner produced an invalid scenario: " + "; ".join(errs))
         return sc
 
-    def plan_llm(self, llm, request: str = "Plan the next campaign sortie.") -> Scenario:
+    def plan_llm(self, llm, request: str = "") -> Scenario:
+        request = request.strip() or "Plan the next campaign sortie."
         from .generate import generate_scenario
         c = self.row()
         sc, _log = generate_scenario(llm, request, c["theater"], f"{c['name']}_{c['seq'] + 1:03d}".replace(" ", "_"),
@@ -262,6 +280,11 @@ class Campaign:
         self.db.commit()
         return sid
 
+    def set_offset(self, mission_id: int, offset: int) -> None:
+        """Called at install time: this sortie's events are the ones written after the file's current size."""
+        self.db.execute("UPDATE mission SET events_offset=? WHERE id=? AND campaign_id=?", (offset, mission_id, self.cid))
+        self.db.commit()
+
     def last_mission(self):
         return self.db.execute("SELECT * FROM mission WHERE campaign_id=? ORDER BY id DESC LIMIT 1", (self.cid,)).fetchone()
 
@@ -270,7 +293,8 @@ def events_path(dcs_dir: str | Path) -> Path:
     return Path(dcs_dir) / "skibodcs" / "events.jsonl"
 
 
-def build_sortie(camp: Campaign, out_dir: str | Path, dcs_dir: str | Path | None = None, llm=None) -> dict:
+def build_sortie(camp: Campaign, out_dir: str | Path, dcs_dir: str | Path | None = None, llm=None,
+                 steer: dict | None = None, request: str = "") -> dict:
     """Plan -> compile .miz -> kneeboards -> (deploy) -> register. Returns paths + the mission id.
     The events file offset is stored so `ingest` reads only this sortie's events."""
     from .compile import compile_scenario
@@ -279,7 +303,7 @@ def build_sortie(camp: Campaign, out_dir: str | Path, dcs_dir: str | Path | None
     if c["status"] != "active":
         raise RuntimeError(f"campaign is {c['status']}")
     camp.reinforce()
-    sc = camp.plan_llm(llm) if llm else camp.plan_deterministic()
+    sc = camp.plan_llm(llm, request) if llm else camp.plan_deterministic(steer=steer)
     out = Path(out_dir); out.mkdir(parents=True, exist_ok=True)
     miz = out / f"{sc.meta.id}.miz"
     warnings = compile_scenario(sc, miz)

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skibo DCS - Mission Builder</title>
+<style>
+:root{--bg:#0f1419;--panel:#171e26;--panel2:#1e2731;--ink:#e6edf3;--dim:#8b98a5;--line:#2b3744;--acc:#4da3ff;--acc2:#2b6cb0;--ok:#3fb950;--bad:#f85149;--warn:#d29922;--radius:10px}
+@media (prefers-color-scheme:light){:root{--bg:#f3f5f8;--panel:#fff;--panel2:#eef1f5;--ink:#16202a;--dim:#5b6b7b;--line:#d6dde5;--acc:#1f6feb;--acc2:#1558c0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,Segoe UI,Roboto,sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+header h1{font-size:18px;margin:0;font-weight:650}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:99px;background:var(--panel2);font-size:12.5px;color:var(--dim)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--bad)}.dot.on{background:var(--ok)}
+nav{display:flex;gap:4px;margin-left:auto}
+nav button{background:none;border:0;color:var(--dim);padding:8px 14px;border-radius:8px;font:inherit;cursor:pointer}
+nav button.active{background:var(--panel2);color:var(--ink);font-weight:600}
+main{display:grid;grid-template-columns:minmax(340px,520px) 1fr;gap:18px;padding:18px 20px;max-width:1500px;margin:0 auto}
+@media (max-width:980px){main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin:0 0 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.grid .full{grid-column:1/-1}
+label{display:block;font-size:12.5px;color:var(--dim);margin-bottom:3px}
+select,input[type=text],input[type=number],input[type=date],textarea{width:100%;padding:8px 9px;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:7px;font:inherit}
+textarea{min-height:110px;resize:vertical}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg label{flex:1;margin:0;text-align:center;padding:7px 4px;cursor:pointer;color:var(--ink);background:var(--panel2);font-size:13.5px}
+.seg input{display:none}.seg input:checked+span{font-weight:700;color:#fff}
+.seg label:has(input:checked){background:var(--acc2);color:#fff}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);margin:0}
+.check input{width:auto}
+.btn{background:var(--acc2);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--acc)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+.btn.good{background:#238636}.btn.good:hover{background:#2ea043}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hint{color:var(--dim);font-size:12.5px}
+#result .empty{color:var(--dim);padding:40px 10px;text-align:center}
+.err{background:rgba(248,81,73,.12);border:1px solid var(--bad);color:var(--ink);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.ok{background:rgba(63,185,80,.12);border:1px solid var(--ok);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.note{color:var(--warn);font-size:13px;margin:2px 0}
+ul.tight{margin:4px 0 0;padding-left:18px}ul.tight li{margin:1px 0}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:4px 10px}.kv b{color:var(--dim);font-weight:500}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.thumbs img{width:100%;border-radius:6px;border:1px solid var(--line);cursor:zoom-in;background:#fff}
+dialog{border:0;border-radius:12px;padding:0;background:var(--panel);max-width:92vw}dialog img{display:block;max-height:92vh;max-width:92vw}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.camp{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:8px;margin-bottom:8px;background:var(--panel2);cursor:pointer}
+.camp.sel{border-color:var(--acc)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--dim);border-top-color:var(--acc);border-radius:50%;animation:s .8s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes s{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1>Skibo DCS &middot; Mission Builder</h1>
+  <span class="pill" title="Cockpit link (Export, TCP 14500)"><span class="dot" id="dEx"></span>Cockpit</span>
+  <span class="pill" title="Mission link (Hook, TCP 14510)"><span class="dot" id="dHk"></span>Mission</span>
+  <span class="pill" id="dcsdir"></span>
+  <nav id="tabs">
+    <button data-tab="quick" class="active">Quick mission</button>
+    <button data-tab="campaign">Campaign</button>
+    <button data-tab="ai">Describe it (AI)</button>
+  </nav>
+</header>
+
+<main>
+<section id="left">
+
+<!-- ================= QUICK MISSION ================= -->
+<div data-pane="quick">
+  <div class="card"><h2>1 &middot; Aircraft and flight</h2>
+    <div class="grid">
+      <div><label for="theater">Theater</label><select id="theater"></select></div>
+      <div><label for="aircraft">Aircraft</label><select id="aircraft"></select></div>
+      <div><label for="start_airbase">Start airbase</label><select id="start_airbase"></select></div>
+      <div><label for="callsign">Callsign <span class="hint">(blank = automatic)</span></label><input type="text" id="callsign" placeholder="Viper"></div>
+      <div><label>Flight size</label>
+        <div class="seg" id="count"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2" checked><span>2</span></label><label><input type="radio" name="count" value="3"><span>3</span></label><label><input type="radio" name="count" value="4"><span>4</span></label></div></div>
+      <div><label>Start</label>
+        <div class="seg" id="start_type"><label><input type="radio" name="start_type" value="cold" checked><span>Cold</span></label><label><input type="radio" name="start_type" value="warm"><span>Warm</span></label><label><input type="radio" name="start_type" value="runway"><span>Runway</span></label></div></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>2 &middot; Mission</h2>
+    <div class="grid">
+      <div class="full"><label for="task">Task</label><select id="task"></select></div>
+      <div><label for="target_near">Target area near</label><select id="target_near"></select></div>
+      <div><label for="target_bearing">Direction from there</label><select id="target_bearing">
+        <option value="random">Random</option><option value="0">North</option><option value="45">North-east</option><option value="90">East</option><option value="135">South-east</option><option value="180">South</option><option value="225">South-west</option><option value="270">West</option><option value="315">North-west</option></select></div>
+      <div class="full"><label for="target_distance">Distance (nm) <span class="hint">blank = random</span></label><input type="number" id="target_distance" min="0" max="300" placeholder="random"></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>3 &middot; Enemy</h2>
+    <div class="grid">
+      <div><label for="sam">Air defence</label><select id="sam"></select></div>
+      <div><label for="sam_count">How many sites</label><select id="sam_count"><option>0</option><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+      <div><label for="ground">Ground forces</label><select id="ground"><option value="random">Random</option><option value="none">None</option><option value="armor">Armor</option><option value="mech">Mechanized infantry</option><option value="both">Armor + mech</option></select></div>
+      <div><label for="air">Enemy fighters</label><select id="air"></select></div>
+      <div class="full"><label for="skill">Enemy skill</label><select id="skill"><option>Average</option><option>Good</option><option selected>High</option><option>Excellent</option></select></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>4 &middot; Conditions</h2>
+    <div class="grid">
+      <div><label for="date">Date</label><input type="date" id="date"></div>
+      <div><label for="time">Time of day</label><select id="time"></select></div>
+      <div><label for="clouds">Clouds</label><select id="clouds"></select></div>
+      <div><label for="vis_km">Visibility (km)</label><input type="number" id="vis_km" min="5" max="100" placeholder="random"></div>
+      <div><label for="wind_kt">Wind (kt)</label><input type="number" id="wind_kt" min="0" max="40" placeholder="random"></div>
+      <div><label for="wind_from">Wind from (deg)</label><input type="number" id="wind_from" min="0" max="360" placeholder="random"></div>
+    </div>
+  </div>
+
+  <div class="card"><h2>5 &middot; Support</h2>
+    <div class="row">
+      <label class="check"><input type="checkbox" id="awacs" checked> AWACS</label>
+      <label class="check"><input type="checkbox" id="tanker" checked> Tanker</label>
+      <div style="min-width:170px"><label for="jtac">JTAC</label><select id="jtac"><option value="auto">Automatic (CAS/strike)</option><option value="true">Always</option><option value="false">Never</option></select></div>
+    </div>
+  </div>
+
+  <div class="row" style="margin:6px 0 24px">
+    <button class="btn" id="build">Build preview</button>
+    <button class="btn ghost" id="reroll">Roll again</button>
+    <span class="hint">Anything left on Random is rolled for you. Nothing is installed until you press Install.</span>
+  </div>
+</div>
+
+<!-- ================= CAMPAIGN ================= -->
+<div data-pane="campaign" class="hide">
+  <div class="card"><h2>Your campaigns</h2><div id="camps"><span class="hint">Loading...</span></div></div>
+  <div class="card"><h2>Next sortie</h2>
+    <div class="hint" id="campSel" style="margin-bottom:8px">Select a campaign above.</div>
+    <div class="grid">
+      <div><label for="c_task">Task</label><select id="c_task"></select></div>
+      <div><label for="c_time">Time of day</label><select id="c_time"></select></div>
+      <div class="full"><label for="c_clouds">Clouds</label><select id="c_clouds"></select></div>
+      <div class="full"><label class="check"><input type="checkbox" id="c_ai"> Let the AI plan it</label>
+        <textarea id="c_req" class="hide" placeholder="Optional: what you want from this sortie, in plain words (e.g. 'a night mission against the northern SAMs')"></textarea></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="c_next">Plan next sortie</button>
+      <button class="btn good" id="c_ingest">I flew it: score it</button>
+    </div>
+    <div class="hint" style="margin-top:8px">After flying: close DCS or finish the mission, then press "score it" so the campaign remembers what you destroyed.</div>
+  </div>
+  <div class="card"><h2>New campaign</h2>
+    <div class="grid">
+      <div class="full"><label for="n_name">Name</label><input type="text" id="n_name" placeholder="Iron Winter"></div>
+      <div><label for="n_theater">Theater</label><select id="n_theater"></select></div>
+      <div><label for="n_aircraft">Aircraft</label><select id="n_aircraft"></select></div>
+      <div><label for="n_home">Home airbase</label><select id="n_home"></select></div>
+      <div><label for="n_sites">Enemy sites</label><select id="n_sites"><option>3</option><option>4</option><option>5</option><option selected>6</option><option>8</option><option>10</option></select></div>
+      <div><label for="n_callsign">Callsign</label><input type="text" id="n_callsign" placeholder="automatic"></div>
+      <div><label for="n_size">Flight size</label><select id="n_size"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></div>
+    </div>
+    <div class="row" style="margin-top:12px"><button class="btn" id="n_create">Create campaign</button></div>
+  </div>
+</div>
+
+<!-- ================= AI ================= -->
+<div data-pane="ai" class="hide">
+  <div class="card"><h2>Describe the mission you want</h2>
+    <label for="ai_theater">Theater</label><select id="ai_theater" style="margin-bottom:10px"></select>
+    <label for="ai_text">In plain words</label>
+    <textarea id="ai_text" placeholder="Two-ship SEAD on an SA-10 near Kutaisi at dawn, MiG-29 CAP, broken cloud"></textarea>
+    <div class="row" style="margin-top:12px"><button class="btn" id="ai_go">Create with AI</button>
+      <span class="hint" id="aiHint">Uses your Ollama model. It can only pick real airbases, aircraft and units; the app checks everything it writes.</span></div>
+  </div>
+</div>
+
+</section>
+
+<section id="right">
+  <div id="msg"></div>
+  <div class="card" id="result"><div class="empty">Build a preview and it appears here: briefing, kneeboard pages, enemy, route.</div></div>
+</section>
+</main>
+
+<dialog id="zoom"><img id="zoomImg" alt="kneeboard page"></dialog>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+let OPT = null, current = null, selCamp = null, lastForm = null;
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  const j = await r.json().catch(() => ({error: "Unexpected reply from the app."}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+const busy = (on, text) => { $("msg").innerHTML = on ? `<div class="ok"><span class="spin"></span>${text}</div>` : ""; document.querySelectorAll(".btn").forEach(b => b.disabled = on); };
+const showErr = (e) => { $("msg").innerHTML = `<div class="err">${esc(e.message || e)}</div>`; document.querySelectorAll(".btn").forEach(b => b.disabled = false); window.scrollTo({top: 0, behavior: "smooth"}); };
+const showOk = (t) => { $("msg").innerHTML = `<div class="ok">${esc(t)}</div>`; };
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c])); }
+function fill(sel, items, first) { sel.innerHTML = (first ? `<option value="random">${first}</option>` : "") + items.map(i => typeof i === "string" ? `<option>${esc(i)}</option>` : `<option value="${esc(i.id)}">${esc(i.label)}</option>`).join(""); }
+
+// ---------------- tabs
+document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("active", x === b));
+  document.querySelectorAll("[data-pane]").forEach(p => p.classList.toggle("hide", p.dataset.pane !== b.dataset.tab));
+  if (b.dataset.tab === "campaign") loadCamps();
+});
+
+// ---------------- options
+async function loadOptions(theater) {
+  OPT = await api("/api/options?theater=" + encodeURIComponent(theater || "Caucasus"));
+  const keep = {};
+  ["start_airbase", "target_near", "n_home"].forEach(id => keep[id] = $(id).value);
+  fill($("theater"), OPT.theaters); fill($("n_theater"), OPT.theaters); fill($("ai_theater"), OPT.theaters);
+  [$("theater"), $("n_theater"), $("ai_theater")].forEach(s => s.value = theater || "Caucasus");
+  fill($("aircraft"), OPT.aircraft.map(a => ({id: a.id, label: a.label}))); fill($("n_aircraft"), OPT.aircraft.map(a => ({id: a.id, label: a.label})));
+  fill($("start_airbase"), OPT.airbases); fill($("n_home"), OPT.airbases);
+  fill($("target_near"), OPT.airbases); $("target_near").insertAdjacentHTML("afterbegin", `<option value="">Same as start airbase</option>`); $("target_near").value = "";
+  fill($("task"), OPT.tasks, "Random"); fill($("c_task"), OPT.tasks, "Random");
+  fill($("sam"), [{id: "none", label: "None"}, ...OPT.sams], "Random");
+  fill($("air"), OPT.air.filter(a => a.id !== "random"), "Random");
+  const tm = OPT.times.map(t => ({id: t, label: t[0].toUpperCase() + t.slice(1)}));
+  fill($("time"), tm, "Random"); fill($("c_time"), tm, "Random");
+  const cl = OPT.clouds.map(c => ({id: c, label: c[0].toUpperCase() + c.slice(1)}));
+  fill($("clouds"), cl, "Random"); fill($("c_clouds"), cl, "Random");
+  $("start_airbase").value = OPT.airbases.includes(keep.start_airbase) ? keep.start_airbase : (OPT.airbases.includes("Batumi") ? "Batumi" : OPT.airbases[0]);
+  $("n_home").value = OPT.airbases.includes(keep.n_home) ? keep.n_home : $("start_airbase").value;
+  if (!$("date").value) $("date").value = OPT.defaults.date;
+  $("dcsdir").textContent = OPT.dcs_dir ? "DCS: " + OPT.dcs_dir : "No DCS folder found: preview only";
+  $("aiHint").textContent = OPT.ollama ? $("aiHint").textContent : "The AI is not set up yet: add the [ollama] section to skibodcs.toml.";
+}
+$("theater").onchange = () => loadOptions($("theater").value);
+$("n_theater").onchange = () => loadOptions($("n_theater").value);
+$("ai_theater").onchange = () => loadOptions($("ai_theater").value);
+$("aircraft").onchange = () => { const a = OPT.aircraft.find(x => x.id === $("aircraft").value); $("callsign").placeholder = a ? a.callsign : ""; };
+
+// ---------------- status pills
+async function pollStatus() {
+  try { const s = await api("/api/status"); $("dEx").classList.toggle("on", s.export); $("dHk").classList.toggle("on", s.hook); } catch (e) {}
+}
+
+// ---------------- quick mission
+const val = (id) => { const v = $(id).value.trim(); return v === "" ? "random" : v; };
+function readForm(seed) {
+  return {theater: $("theater").value, aircraft: $("aircraft").value, count: +document.querySelector("input[name=count]:checked").value,
+    callsign: $("callsign").value.trim(), start_airbase: $("start_airbase").value, start_type: document.querySelector("input[name=start_type]:checked").value,
+    task: $("task").value, target_near: $("target_near").value, target_bearing: $("target_bearing").value, target_distance: val("target_distance"),
+    sam: $("sam").value, sam_count: +$("sam_count").value, ground: $("ground").value, air: $("air").value, skill: $("skill").value,
+    date: $("date").value, time: $("time").value, clouds: $("clouds").value, wind_kt: val("wind_kt"), wind_from: val("wind_from"), vis_km: val("vis_km"),
+    awacs: $("awacs").checked, tanker: $("tanker").checked, jtac: $("jtac").value === "auto" ? "auto" : $("jtac").value === "true", seed: seed ?? null};
+}
+async function build(seed) {
+  busy(true, "Building the mission and kneeboard pages..."); lastForm = readForm(seed);
+  try { current = await api("/api/preview", {form: lastForm}); busy(false); render(current); } catch (e) { showErr(e); }
+}
+$("build").onclick = () => build(null);
+$("reroll").onclick = () => build(Math.floor(Math.random() * 1e9));
+
+// ---------------- AI
+$("ai_go").onclick = async () => {
+  busy(true, "Asking the AI to design the mission (this can take a minute)...");
+  try { current = await api("/api/describe", {text: $("ai_text").value, theater: $("ai_theater").value}); busy(false); render(current); } catch (e) { showErr(e); }
+};
+
+// ---------------- result panel
+function render(r) {
+  const s = r.summary, b = s.briefing;
+  const list = (a) => a.length ? `<ul class="tight">${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<span class="hint">none</span>`;
+  const notes = (r.notes || []).map(n => `<div class="note">&bull; ${esc(n)}</div>`).join("");
+  const warn = (r.warnings || []).map(n => `<div class="note">&#9888; ${esc(n)}</div>`).join("");
+  const camp = r.campaign_status ? `<div class="hint" style="margin-bottom:8px">Campaign ${esc(r.campaign_status.campaign)}: sortie ${r.campaign_status.sortie + 1}, ${r.campaign_status.red_alive.length} enemy sites alive</div>` : "";
+  $("result").innerHTML = `
+    <h2 style="font-size:20px;text-transform:none;letter-spacing:0;color:var(--ink);margin-bottom:2px">${esc(s.title)}</h2>
+    <div class="hint" style="margin-bottom:10px">${esc(s.when)}Z &middot; ${esc(s.theater)}</div>${camp}${notes}
+    <div class="kv"><b>Flight</b><div>${esc(s.flight)}</div><b>Weather</b><div>${esc(s.weather)}</div><b>Support</b><div>${esc(s.support.join(", ") || "none")}</div></div>
+    <div class="row" style="margin:14px 0 6px"><button class="btn good" id="install">Install into DCS</button>
+      <button class="btn ghost" id="launch" disabled title="Install first. DCS must already be running a mission.">Start it in DCS now</button></div>
+    <div class="hint" id="instMsg"></div>
+    <h2 style="margin-top:16px">Route</h2>${list(s.route)}
+    <h2 style="margin-top:14px">Enemy</h2>${list(s.enemy)}
+    <h2 style="margin-top:14px">Objectives</h2>${list(s.objectives)}
+    <h2 style="margin-top:14px">Your loadout</h2>${s.loadout.length ? list(s.loadout) : '<span class="hint">No default loadout is known for this task: set it in the Rearm screen.</span>'}
+    <h2 style="margin-top:14px">Briefing</h2>
+    ${["situation", "mission", "execution", "threats", "roe"].filter(k => b[k]).map(k => `<p style="margin:4px 0"><b>${k[0].toUpperCase() + k.slice(1)}.</b> ${esc(b[k])}</p>`).join("")}
+    <h2 style="margin-top:14px">Kneeboard pages <span class="hint" style="text-transform:none">(click to enlarge)</span></h2>
+    <div class="thumbs">${r.kneeboards.map(u => `<img loading="lazy" src="${u}" alt="kneeboard page" data-big="${u}">`).join("")}</div>${warn}`;
+  $("install").onclick = install; $("launch").onclick = launch;
+  document.querySelectorAll(".thumbs img").forEach(i => i.onclick = () => { $("zoomImg").src = i.dataset.big; $("zoom").showModal(); });
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+$("zoom").onclick = () => $("zoom").close();
+async function install() {
+  busy(true, "Installing into DCS...");
+  try { const r = await api("/api/install", {id: current.id}); busy(false); $("instMsg").textContent = r.message; $("launch").disabled = false; showOk(r.message); }
+  catch (e) { showErr(e); }
+}
+async function launch() {
+  busy(true, "Asking DCS to start the mission...");
+  try { const r = await api("/api/launch", {id: current.id}); busy(false); showOk(r.message); } catch (e) { showErr(e); }
+}
+
+// ---------------- campaigns
+async function loadCamps() {
+  const r = await api("/api/campaigns");
+  if (!r.campaigns.length) { $("camps").innerHTML = `<span class="hint">None yet. Create one below.</span>`; return; }
+  $("camps").innerHTML = r.campaigns.map(c => `<div class="camp ${selCamp === c.campaign ? "sel" : ""}" data-name="${esc(c.campaign)}">
+    <div><b>${esc(c.campaign)}</b> <span class="hint">${esc(c.aircraft)} &middot; ${esc(c.theater)}</span><br>
+    <span class="hint">Sortie ${c.sortie} &middot; ${esc(c.date)} &middot; airframes ${esc(c.airframes)}</span></div>
+    <div class="hint" style="text-align:right">${c.status === "victory" ? "<b style='color:var(--ok)'>VICTORY</b>" : `${c.red_alive.length} enemy alive<br>${c.red_destroyed.length} destroyed`}</div></div>`).join("");
+  document.querySelectorAll(".camp").forEach(el => el.onclick = () => { selCamp = el.dataset.name; $("campSel").textContent = "Selected: " + selCamp; loadCamps(); });
+  if (!selCamp && r.campaigns[0]) { selCamp = r.campaigns[0].campaign; $("campSel").textContent = "Selected: " + selCamp; loadCamps(); }
+}
+$("c_ai").onchange = () => $("c_req").classList.toggle("hide", !$("c_ai").checked);
+$("n_create").onclick = async () => {
+  busy(true, "Creating the campaign...");
+  try { const r = await api("/api/campaign/new", {name: $("n_name").value, theater: $("n_theater").value, aircraft: $("n_aircraft").value, home: $("n_home").value,
+      callsign: $("n_callsign").value.trim(), sites: +$("n_sites").value, flight_size: +$("n_size").value});
+    selCamp = r.campaign; busy(false); showOk(`Campaign ${r.campaign} created with ${r.red_alive.length} enemy sites.`); loadCamps(); } catch (e) { showErr(e); }
+};
+$("c_next").onclick = async () => {
+  if (!selCamp) return showErr("Select a campaign first.");
+  busy(true, $("c_ai").checked ? "The AI is planning the sortie..." : "Planning the next sortie...");
+  try { current = await api("/api/campaign/next", {name: selCamp, use_ai: $("c_ai").checked, request: $("c_req").value,
+      steer: {task: $("c_task").value, time: $("c_time").value, clouds: $("c_clouds").value}}); busy(false); render(current); loadCamps(); } catch (e) { showErr(e); }
+};
+$("c_ingest").onclick = async () => {
+  if (!selCamp) return showErr("Select a campaign first.");
+  busy(true, "Reading what happened in the mission...");
+  try { const r = await api("/api/campaign/ingest", {name: selCamp}); busy(false); const o = r.outcome;
+    $("result").innerHTML = `<h2 style="font-size:20px;text-transform:none;color:var(--ink)">${o.success ? "Mission accomplished" : "Mission not completed"}</h2>
+      <div class="kv"><b>Destroyed</b><div>${esc(o.destroyed.join(", ") || "nothing")}</div><b>Landed</b><div>${o.landed ? "yes" : "no"}</div>
+      <b>Airframes lost</b><div>${o.airframes_lost}</div><b>Campaign</b><div>${esc(r.status.campaign_status || r.status.status)} &middot; ${r.status.red_alive.length} enemy sites left</div></div>`;
+    loadCamps(); } catch (e) { showErr(e); }
+};
+
+// ---------------- start
+(async () => { await loadOptions("Caucasus"); $("aircraft").onchange(); pollStatus(); setInterval(pollStatus, 5000); })().catch(showErr);
+</script>
+</body>
+</html>

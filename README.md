@@ -1,4 +1,4 @@
-# skibodcs v0.9
+# skibodcs v1.0
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -150,6 +150,20 @@ UNVERIFIED that net.load_mission starts a mission from the single-player GUI (do
 Saved Games\\DCS\\Missions are refused.
 **Speech on the Mac:** `python -m skibodcs.voice.server --tts-model PATH.onnx` there; on the PC set `[stt] server` / `[tts] server`
 to `http://MAC:8765`. LAN only, no authentication. Whisper/Piper never ran in the build sandbox.
+
+## v1.0: the mission builder as a web page
+`skibodcs ui` opens http://localhost:8765 in your browser: no commands, no JSON. Tabs:
+* **Quick mission** - five cards: aircraft and flight, mission (task, where, how far), enemy (air defence type and count, ground
+  forces, fighters, skill), conditions (date, time of day, clouds, wind, visibility), support (AWACS, tanker, JTAC). Every field
+  can stay on Random; `Roll again` re-rolls with a new seed. `Build preview` shows the briefing, route, enemy, objectives, your loadout and all
+  nine kneeboard pages (click to enlarge). NOTHING is installed until you press `Install into DCS`; `Start it in DCS now` then asks the Hook to load it.
+* **Campaign** - create a campaign, steer the next sortie (task, time, clouds, or "let the AI plan it" with a plain-words request), install it,
+  fly, then press `I flew it: score it` to record kills and losses.
+* **Describe it (AI)** - type the mission in plain words; your Ollama model designs it, the app validates and builds it, same preview.
+The two coloured dots show whether DCS's cockpit link and mission link are up. `--lan` makes the page reachable from other machines on your
+network (no password: trusted LAN only). The DCS folder used is `dcs_dir` in skibodcs.toml, else the Saved Games folder whose dcs.log is newest.
+Fixed along the way: pydcs consumes parking slots on the terrain object, so a long-running process ran out of spots at Batumi after a few
+missions ("No free parking slot"); every mission now gets a fresh terrain. A failed campaign insert (duplicate name) no longer locks the database.
 
 ## Safety rule (v0.7)
 Unconfirmed value + consequential control => the app says "Confirm <thing>? That value is unverified for this aircraft" and acts

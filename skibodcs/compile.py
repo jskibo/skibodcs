@@ -42,7 +42,7 @@ def _ring(center: mapping.Point, terrain, i: int, n: int, radius: float) -> mapp
 def compile_scenario(sc: Scenario, out_path: str | Path) -> list[str]:
     warnings: list[str] = []
     th = sc.meta.theater
-    terrain = catalog.terrain(th)
+    terrain = catalog.new_terrain(th)                     # fresh per mission: parking slots are consumed on the terrain object
     m = dcs.Mission(terrain)
     blue, red = dcs.countries.USA(), dcs.countries.Russia()
     m.coalition["blue"].add_country(blue)
@@ -56,7 +56,7 @@ def compile_scenario(sc: Scenario, out_path: str | Path) -> list[str]:
 
     # --- player flights
     for f in sc.player:
-        ab = catalog.find_airbase(th, f.start_airbase)
+        ab = next((v for k, v in terrain.airports.items() if k.lower() == f.start_airbase.lower()), None)
         ac = catalog.aircraft_ids()[f.aircraft]
         start = {"cold": dcs.mission.StartType.Cold, "warm": dcs.mission.StartType.Warm,
                  "runway": dcs.mission.StartType.Runway}[f.start_type]
@@ -105,7 +105,7 @@ def compile_scenario(sc: Scenario, out_path: str | Path) -> list[str]:
                         start_type=dcs.mission.StartType.Cold, group_size=a.count)
 
     # --- blue support (AI orbits near the first player's start base)
-    base = catalog.find_airbase(th, sc.player[0].start_airbase)
+    base = next(v for k, v in terrain.airports.items() if k.lower() == sc.player[0].start_airbase.lower())
     sup = sc.blue_support
     if sup.awacs:
         pos = mapping.Point(base.position.x, base.position.y + 60000, terrain)
