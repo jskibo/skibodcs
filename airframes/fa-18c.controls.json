@@ -214,7 +214,7 @@
   },
   {
    "id": "left_engine_amad_fire_warning_extinguisher_light",
-   "name": "Left Engine/AMAD Fire Warning/Extinguisher Light -  depress/ cover control",
+   "name": "Left Engine/AMAD Fire Warning/Extinguisher Light - depress/ cover control",
    "kind": "other",
    "device": 12,
    "device_name": "ENGINES_INTERFACE",
@@ -1033,15 +1033,15 @@
    ],
    "arg": 144,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2231,7 +2231,7 @@
     "sai_commands.SAI_pull",
     "sai_commands.SAI_rotate"
    ],
-   "arg": 213,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -2614,7 +2614,7 @@
     "gear_commands.EmergParkHandleSelectEmerg",
     "gear_commands.EmergParkHandleOnOff"
    ],
-   "arg": 241,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -2821,7 +2821,7 @@
   },
   {
    "id": "right_engine_amad_fire_warning_extinguisher_ligh",
-   "name": "Right Engine/AMAD Fire Warning/Extinguisher Light -  depress/ cover control",
+   "name": "Right Engine/AMAD Fire Warning/Extinguisher Light - depress/ cover control",
    "kind": "other",
    "device": 12,
    "device_name": "ENGINES_INTERFACE",
@@ -2911,14 +2911,14 @@
    ],
    "arg": 277,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2995,7 +2995,7 @@
     "ctrl_commands.WingFoldSelect",
     "ctrl_commands.WingFoldPull"
    ],
-   "arg": 295,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -3826,15 +3826,15 @@
    ],
    "arg": 355,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4587,15 +4587,15 @@
    ],
    "arg": 405,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4663,15 +4663,15 @@
    ],
    "arg": 408,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4988,14 +4988,14 @@
    ],
    "arg": 42,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": true,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -6277,14 +6277,14 @@
    ],
    "arg": 575,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],

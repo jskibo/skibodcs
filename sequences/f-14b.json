@@ -1,0 +1,29 @@
+{
+ "aircraft": "F-14B",
+ "source": "native iCommand (LoSetCommand)",
+ "note": "Triggers the module's own autostart/autostop input commands instead of replaying clicks. UNVERIFIED: confirm the codes (Controls screen shows them with OPTIONS_ADD_COMMAND_CODES_TO_TOOLTIP = true).",
+ "sequences": {
+  "autostart": [
+   {
+    "delay": 0,
+    "message": "Starting automatic engine start",
+    "speak": true
+   },
+   {
+    "delay": 0.5,
+    "icommand": 311
+   }
+  ],
+  "autostop": [
+   {
+    "delay": 0,
+    "message": "Starting automatic shutdown",
+    "speak": true
+   },
+   {
+    "delay": 0.5,
+    "icommand": 312
+   }
+  ]
+ }
+}

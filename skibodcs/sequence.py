@@ -19,11 +19,12 @@ class Step:
     message: str | None = None         # spoken/printed progress text instead of a click
     speak: bool = False                # worth saying aloud (headings, prompts) vs. log only
     prompt: bool = False               # ED asks the PILOT to do something (e.g. move the throttle)
+    icommand: int | None = None        # raw DCS input command (native autostart/autostop), instead of a click
 
     @staticmethod
     def from_dict(d: dict) -> "Step":
         return Step(float(d.get("delay", 0)), d.get("device"), d.get("command"), d.get("value"), d.get("message"),
-                    bool(d.get("speak", False)), bool(d.get("prompt", False)))
+                    bool(d.get("speak", False)), bool(d.get("prompt", False)), d.get("icommand"))
 
 
 @dataclass
@@ -47,8 +48,9 @@ class SequenceRunner:
     """Replays steps on an absolute timeline (no cumulative drift from many tiny delays)."""
     def __init__(self, send: Callable[[int, int, float], bool], say: Callable[[str], None] = lambda s: None,
                  sleep: Callable[[float], None] = time.sleep, speed: float = 1.0,
-                 clock: Callable[[], float] = time.monotonic):
+                 clock: Callable[[], float] = time.monotonic, send_icommand: Callable[[int], bool] | None = None):
         self.send, self.say, self.sleep, self.speed, self.clock = send, say, sleep, speed, clock
+        self.send_icommand = send_icommand
         self.cancel = threading.Event()
 
     def abort(self):
@@ -72,6 +74,12 @@ class SequenceRunner:
                 res.messages.append(st.message)
                 if st.speak or st.prompt:
                     self.say(st.message)
+            if st.icommand is not None:
+                if self.send_icommand and self.send_icommand(int(st.icommand)):
+                    res.sent += 1
+                else:
+                    res.failed += 1
+                    self.say("Could not send the start command to DCS.")
             if st.device is not None and st.command is not None:
                 if self.send(st.device, st.command, float(st.value if st.value is not None else 1.0)):
                     res.sent += 1

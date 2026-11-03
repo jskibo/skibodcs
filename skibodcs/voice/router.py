@@ -24,6 +24,10 @@ FAST = [
 CONFIRM = re.compile(r"^(?:confirm|confirmed|affirm|affirmative|yes|do it|execute)\.?$")
 CANCEL = re.compile(r"^(?:cancel|negative|no|abort|disregard|belay that)\.?$")
 CONFIRM_SECONDS = 10.0
+# Controls where a wrong guess about the value's meaning matters. If the value is not confirmed from ED's own data,
+# ask for a spoken "confirm" first instead of trusting a guess.
+CONSEQUENTIAL = re.compile(r"\b(gear|hook|master arm|flaps?|canopy|fuel|engines?|throttle|brakes?|speed ?brake|"
+                           r"wing sweep|apu|jfs|generator|battery|battery|ignition)\b", re.I)
 
 PROMPT = """You convert a pilot's spoken words (already transcribed, may be messy) into commands.
 Return JSON only. Several commands are allowed (max 6) for compound requests.
@@ -185,13 +189,19 @@ class Router:
             return
         if c.domain == "cockpit":
             try:
-                r.cockpit += self.table.resolve(c.action, c.value)
-                r.speech.append(f"{c.action.replace('_', ' ')} {c.value}")
+                cmds = self.table.resolve(c.action, c.value)
                 a = self.table.actions[c.action]
-                if a.arg and not a.momentary:
-                    r.checks.append((a.arg, c.action.replace("_", " ")))
+                label = f"{c.action.replace('_', ' ')} {c.value}"
                 if c.value not in a.confirmed:
                     r.notes.append(f"action '{c.action}' value '{c.value}' is UNVERIFIED (ids come from the game files; this value is not in ED's autostart data)")
+                    if CONSEQUENTIAL.search(c.action.replace("_", " ")):
+                        self.pending = (cmds, label, self.clock() + CONFIRM_SECONDS)
+                        r.speech.append(f"Confirm {label}? That value is unverified for this aircraft. Say confirm.")
+                        return
+                r.cockpit += cmds
+                r.speech.append(label)
+                if a.arg and not a.momentary:
+                    r.checks.append((a.arg, c.action.replace("_", " ")))
             except KeyError as e:
                 r.notes.append(str(e).strip("'\""))
 
@@ -209,9 +219,10 @@ class Router:
                 r.speech.append(f"{k.name}, say how much.")
             return
         label = f"{k.name} {int(round(c.amount))} percent" if k.kind == "axis" else f"{k.name} {c.position}"
-        if k.danger:
+        unconfirmed = k.kind != "axis" and c.position not in k.confirmed and c.position not in k.inferred
+        if k.danger or (unconfirmed and CONSEQUENTIAL.search(k.name)):
             self.pending = (cmds, label, self.clock() + CONFIRM_SECONDS)
-            r.speech.append(f"Confirm {label}? Say confirm.")
+            r.speech.append(f"Confirm {label}?" + (" That value is unverified for this aircraft." if not k.danger else "") + " Say confirm.")
             return
         r.cockpit += cmds
         r.speech.append(label)

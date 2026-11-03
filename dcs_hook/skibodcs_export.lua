@@ -66,6 +66,10 @@ local function pump_commands()
   while true do
     local line, err = client:receive("*l")
     if not line then if err == "closed" then client = nil end; break end
+    local ic, iv = line:match("^C,(%d+),?([%d%.%-]*)$")          -- C,<iCommand>[,<value>]: e.g. native autostart/autostop
+    if ic then
+      safe(function() if iv ~= "" then LoSetCommand(tonumber(ic), tonumber(iv)) else LoSetCommand(tonumber(ic)) end end)
+    end
     local ra = line:match("^R,(%d+)$")                       -- read-back: R,<cockpit arg> -> ARG,<arg>,<value>
     if ra then
       local val = safe(function() return GetDevice(0):get_argument_value(tonumber(ra)) end)

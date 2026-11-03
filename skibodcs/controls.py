@@ -47,9 +47,10 @@ def _slug(s: str) -> str:
 def _split_hint(hint: str) -> tuple[str, list[str]]:
     """'MASTER ARM Switch, MASTER ARM/OFF/SIMULATE' -> ('MASTER ARM Switch', [...])"""
     h = re.sub(r"\((?:RMB|LMB|MW)\)", "", hint)
+    h = re.sub(r"\((?:RB|LB|MB|Right-click|Left-click)[^)]*\)", "", h)          # F-14 hint tails like "(RB emergency extend)"
     name, _, tail = h.partition(",")
     toks = [t.strip() for t in re.split(r"/", tail) if t.strip()] if tail else []
-    return name.strip(), [re.sub(r"\s+", " ", t).lower() for t in toks]
+    return re.sub(r"\s+", " ", name).strip(), [re.sub(r"\s+", " ", t).lower() for t in toks]
 
 
 def _names(tokens: list[str], n: int) -> list[str]:
@@ -65,7 +66,13 @@ def classify(e: dict) -> Control | None:
     name, toks = _split_hint(hint)
     cmds = e["commands"]
     p = e.get("params") or []
-    arg = int(p[0]) if p else (e["args"][0] if e.get("args") else 0)
+    if "arg" in e:                                   # newer extractions state the cockpit arg explicitly (or null)
+        explicit = e["arg"]
+        arg = int(explicit) if explicit is not None else 0
+        rest = p[1:] if (explicit is not None and p and p[0] == explicit) else p
+    else:                                            # older extraction files: first numeric param was the arg
+        arg = int(p[0]) if p else (e["args"][0] if e.get("args") else 0)
+        rest = p[1:]
     c = Control(id="", name=name or hint, kind="other", device=int(e["device"]), device_name=e.get("device_name", ""),
                 commands=[int(x["id"]) for x in cmds], command_names=[x["name"] for x in cmds], arg=arg, fn=fn,
                 crew=(e.get("crew") or ""))
@@ -83,11 +90,13 @@ def classify(e: dict) -> Control | None:
         c.note = "composite control; not exposed to voice yet"
         return _finish(c)
     if "multiposition" in l:
-        count = int(p[1]) if len(p) > 1 else len(toks) or 2
-        delta = float(p[2]) if len(p) > 2 else 0.1
-        mn = float(p[3]) if len(p) > 3 else 0.0
+        count = int(rest[0]) if rest and float(rest[0]).is_integer() and rest[0] >= 2 else (len(toks) or 2)
+        delta = float(rest[1]) if len(rest) > 1 else 0.1
+        mn = float(rest[2]) if len(rest) > 2 else 0.0
         names = _names(toks, count)
         c.kind, c.positions = "multi", {n: round(mn + i * delta, 4) for i, n in enumerate(names)}
+        if not rest:
+            c.note = "step size assumed 0.1 (module does not state it in the definition)"
     elif "axis" in l or "rheostat" in l or l == "default_lever":
         c.kind, c.positions = "axis", {}
         c.note = "continuous 0..1; say a percentage"
@@ -95,7 +104,7 @@ def classify(e: dict) -> Control | None:
         c.kind, c.positions, c.momentary = "button", {"press": 1.0}, True
     elif "red_cover" in l:
         c.kind, c.positions = "switch", {"open": 1.0, "close": 0.0}
-    elif "3_pos" in l and len(c.commands) == 2:                       # springloaded, one command per direction
+    elif re.search(r"3_?pos", l) and len(c.commands) == 2:                       # springloaded, one command per direction
         c.kind, c.momentary = "switch", True
         names = toks if len(toks) == 3 else ["a", "b"]
         sides = [t for t in names if t not in ("off", "center", "norm", "mid")][:2] or ["a", "b"]
@@ -107,14 +116,18 @@ def classify(e: dict) -> Control | None:
         if len(c.positions) < 2:
             c.positions = {"first": 1.0, "second": 1.0}
             c.note = "two-command spring switch; direction naming unverified"
-    elif "3_pos" in l:
-        names = _names(toks, 3)
+    elif re.search(r"3_?pos", l):
+        names = _names(toks, 3) if len(toks) == 3 else ["down", "middle", "up"]
         c.kind, c.positions = "switch", dict(zip(names, (-1.0, 0.0, 1.0)))
-        c.momentary = "springloaded" in l
-    elif "2_pos" in l:
-        names = _names(toks, 2)
+        c.momentary = "springloaded" in l or "springy" in l
+        if len(toks) != 3:
+            c.note = "position names generic (hint does not list them)"
+    elif re.search(r"2_?pos", l) or "flipcover" in l:
+        names = _names(toks, 2) if len(toks) == 2 else (["open", "close"] if "flipcover" in l else ["off", "on"])
         c.kind, c.positions = "switch", dict(zip(names, (0.0, 1.0)))
-        c.momentary = "springloaded" in l
+        c.momentary = "springloaded" in l or "springy" in l
+        if len(toks) != 2:
+            c.note = "position names generic (hint does not list them)"
     else:
         c.note = f"unclassified helper {fn}"
         return _finish(c)

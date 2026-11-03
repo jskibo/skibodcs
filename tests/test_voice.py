@@ -119,8 +119,18 @@ def test_emergency_inbound():
     assert "cleared to land" in s and "number one" in s and "three one" in s
 
 
-def test_unconfirmed_value_still_warns():
+def test_unconfirmed_consequential_value_asks_to_confirm_first():
     reply = json.dumps({"commands": [{"domain": "cockpit", "intent": "", "action": "master_arm", "value": "arm",
                                       "addressed_to": "", "emergency": False}]})
-    res = Router(FakeLLM(reply), load_table(AF), world()).handle("arm the jet")
-    assert res.cockpit == [(19, 3002, 1.0)] and any("UNVERIFIED" in n for n in res.notes)    # F-16 'arm' is a guess
+    rt = Router(FakeLLM(reply), load_table(AF), world())
+    res = rt.handle("arm the jet")                       # F-16 'arm' is a guess -> must not fire on a guess
+    assert res.cockpit == [] and "Confirm" in res.speech[0] and "unverified" in res.speech[0]
+    assert any("UNVERIFIED" in n for n in res.notes)
+    assert rt.handle("confirm").cockpit == [(19, 3002, 1.0)]
+
+
+def test_confirmed_value_runs_immediately():
+    reply = json.dumps({"commands": [{"domain": "cockpit", "intent": "", "action": "master_arm", "value": "safe",
+                                      "addressed_to": "", "emergency": False}]})
+    res = Router(FakeLLM(reply), load_table(AF), world()).handle("safe the master arm")
+    assert res.cockpit == [(19, 3002, 0.0)] and res.notes == []

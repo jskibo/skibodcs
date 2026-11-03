@@ -16,7 +16,10 @@ local function any_obj(name, recorder)
     end,
     __add = function() return any_obj(name) end, __sub = function() return any_obj(name) end,
     __mul = function() return any_obj(name) end, __div = function() return any_obj(name) end,
-    __unm = function() return any_obj(name) end, __concat = function() return name end,
+    __unm = function() return any_obj(name) end, __concat = function(a, b)
+      local function str(x) if type(x) == "table" and rawget(x, "__any") then return rawget(x, "__any") end return tostring(x) end
+      return str(a) .. str(b)
+    end,
   })
   rawset(o, "__any", name)
   return o
@@ -43,7 +46,7 @@ package.preload["i_18n"] = function() return gettext end
 
 local records = {}
 local function recorder(fname, ...)
-  local el = { fn = fname, args = { ... } }
+  local el = { fn = fname, args = { ... }, nargs = select("#", ...) }
   records[el] = true
   return el
 end
@@ -54,18 +57,35 @@ setmetatable(_G, { __index = function(_, k) return any_obj(k, recorder) end })
 
 local loaded = {}
 dofile = function(path)
-  -- clickabledata.lua re-dofiles command_defs/devices itself; run each only once so our tagged tables survive
-  local base = path:match("([%w_]+)%.lua$")
-  if base == "command_defs" or base == "devices" then
-    if loaded[base] then return end
-    loaded[base] = true
+  path = tostring(path)
+  for _, base in ipairs{ "command_defs", "devices" } do
+    if path:match(base .. "%.lua$") then
+      if loaded[base] then return end                     -- clickabledata re-dofiles these; keep our tagged tables
+      loaded[base] = true
+      return real_dofile(base == "devices" and DEV or CMD)
+    end
   end
-  if path:match("clickable_defs%.lua$") or path:match("config%.lua$") or path:match("sounds%.lua$") then return end
-  if path:match("command_defs%.lua$") then return real_dofile(CMD) end
-  if path:match("devices%.lua$") then return real_dofile(DEV) end
   if path:match("clickabledata%.lua$") then return real_dofile(CLK) end
-  return real_dofile(path)
+  -- clickable_defs/config/sounds/paths/draw_args ...: not needed (or not supplied); unknown names resolve to harmless stubs
+  return
 end
+
+-- Modules that define their OWN helper functions (Heatblur F-14) return plain tables. Wrap every global function the
+-- file defines so each returned element remembers which helper built it and with what arguments.
+setmetatable(_G, { __index = getmetatable(_G).__index,
+  __newindex = function(t, k, v)
+    if type(v) == "function" and type(k) == "string" and k ~= "__" and not k:match("^_") then
+      rawset(t, k, function(...)
+        local r = v(...)
+        if type(r) == "table" and not is_any(r) then
+          rawset(r, "__helper", k); rawset(r, "__args", { ... }); rawset(r, "__nargs", select("#", ...))
+        end
+        return r
+      end)
+    else
+      rawset(t, k, v)
+    end
+  end })
 
 -- ---- run devices + commands, wrap command tables so ids carry their names
 dofile("devices.lua"); dofile("command_defs.lua")
@@ -101,17 +121,30 @@ table.sort(keys)
 for _, key in ipairs(keys) do
   local el = elements[key]
   local fn, hint, device, cmds, nums, params = "", "", nil, {}, {}, {}
-  local crew = nil
-  if records[el] then                              -- helper-built element
-    fn = el.fn
-    local a = el.args
+  local crew, arg_explicit = nil, nil
+  local helper = rawget(el, "__helper")
+  if records[el] or helper then                    -- helper-built element (ED stub OR the module's own helper)
+    fn = helper or el.fn
+    local a = helper and rawget(el, "__args") or el.args
+    local na = (helper and rawget(el, "__nargs") or el.nargs) or #a          -- nil holes (default args) must not truncate the scan
     -- AH-64D helpers take a crew selector first (CREW.PLT / CREW.CPG); others start with the hint string
     if is_any(a[1]) and tostring(rawget(a[1], "__any")):match("^CREW%.") then crew = tostring(rawget(a[1], "__any")):gsub("^CREW%.", "") end
     local hi = 1
     while a[hi] ~= nil and type(a[hi]) ~= "string" and hi < 3 do hi = hi + 1 end
     hint = type(a[hi]) == "string" and a[hi] or ""
     if type(a[hi + 1]) == "number" then device = a[hi + 1] end
-    for i = hi + 2, #a do
+    for ai = 1, na do                              -- F-14 passes pilot_only / rio_only / pilot_and_rio tables
+      local v = a[ai]
+      if type(v) == "table" and not is_any(v) and not is_tag(v) then
+        if v == rawget(_G, "pilot_only") then crew = "PLT" elseif v == rawget(_G, "rio_only") then crew = "RIO" end
+      end
+    end
+    if records[el] then                              -- ED-style helpers: the cockpit arg number follows the command id(s)
+      local i = hi + 2                               -- (modules with their own helpers, e.g. the F-14, hide it in cockpit_args)
+      while is_tag(a[i]) do i = i + 1 end
+      if type(a[i]) == "number" then arg_explicit = a[i] end
+    end
+    for i = hi + 2, na do
       local v = a[i]
       if is_tag(v) then cmds[#cmds + 1] = v
       elseif type(v) == "number" and v >= 1 and v < 3000 and #nums < 3 and math.floor(v) == v then nums[#nums + 1] = v end
@@ -135,8 +168,8 @@ for _, key in ipairs(keys) do
   local nj, pj = {}, {}
   for _, n in ipairs(nums) do nj[#nj + 1] = jnum(n) end
   for _, n in ipairs(params) do pj[#pj + 1] = jnum(n) end
-  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s],"params":[%s],"crew":%s}',
+  out[#out + 1] = string.format('{"key":%s,"fn":%s,"hint":%s,"device":%s,"device_name":%s,"commands":[%s],"args":[%s],"params":[%s],"crew":%s,"arg":%s}',
     jstr(key), jstr(fn), jstr(hint), device and jnum(device) or "null",
-    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","), table.concat(pj, ","), crew and jstr(crew) or "null")
+    device and jstr(dev_by_id[device] or "?") or "null", table.concat(cj, ","), table.concat(nj, ","), table.concat(pj, ","), crew and jstr(crew) or "null", arg_explicit and jnum(arg_explicit) or "null")
 end
 io.write("[", table.concat(out, ",\n"), "]\n")

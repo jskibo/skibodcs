@@ -30,6 +30,11 @@ WISHLIST: dict[str, dict[str, tuple]] = {
         "master_mode_aa": ("SMS_commands.AA_MasterModeSw", {"press": 1.0}, True, {}),
         "master_mode_ag": ("SMS_commands.AG_MasterModeSw", {"press": 1.0}, True, {}),
     },
+    "F-14B": {      # Heatblur: no autostart-macro data, so every value here is a PROVISIONAL guess (the app asks to confirm)
+        "gear":          ("device_commands.GEAR_Handle",          {"down": 1.0, "up": 0.0}, False, {}),
+        "hook":          ("device_commands.HOOK_Handle",          {"down": 1.0, "up": 0.0}, False, {}),
+        "parking_brake": ("device_commands.BRAKE_ParkingBrake",   {"set": 1.0, "release": 0.0}, False, {}),
+    },
     "AH-64D_BLK_II": {
         "parking_brake":   ("gear_commands.AH64_ParkingBrake",     {"set": 1.0, "release": 0.0}, False, {}),
         "rotor_brake":     ("hydraulic_commands.Rotor_Brake",      {"off": 1.0, "brk": 0.0, "lock": -1.0}, False, {}),

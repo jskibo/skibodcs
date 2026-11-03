@@ -12,3 +12,8 @@ Steps: `{"delay": s, "device": d, "command": c, "value": v}` (a click), or `{"me
 * ED's internal verification checks (engine RPM, INS ready...) are NOT replayed; the timeline simply continues.
 Voice: "autostart" / "cold and dark to ready to taxi" (same sequence: ED's autostart ends ready to taxi),
 "autostop", "abort the start". Durations (1x): F-16C ~4.3 min, F/A-18C ~5.4 min, AH-64D ~7 min.
+
+Native variant (F-14B): `skibodcs native-sequence --aircraft F-14B --start 311 --stop 312 --out sequences\\f-14b.json`
+sends the module's own autostart/autostop input commands ("icommand" steps) through Export's LoSetCommand.
+To see a command's real code: set OPTIONS_ADD_COMMAND_CODES_TO_TOOLTIP = true (see the DCS forum thread on invoking iCommands)
+and hover the binding in the Controls screen.

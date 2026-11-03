@@ -30,12 +30,21 @@ def mk(reply, clock=lambda: 0.0):
 
 def test_control_switch_resolves_real_ids_and_queues_readback():
     _, cs = C.load(ROOT / "airframes" / "f-16c.controls.json")
+    k = next(c for c in cs if c.id == "digital_backup_switch")
+    pos = next(iter(k.positions))
+    r = mk([cmd(control="digital_backup_switch", position=pos)]).handle("set the digital backup")
+    assert r.source == "llm" and r.cockpit == C.resolve(k, pos)
+    assert r.checks == [(k.arg, k.name)] and r.speech == [f"{k.name} {pos}"]
+
+
+def test_consequential_control_with_unconfirmed_value_asks_first():
+    _, cs = C.load(ROOT / "airframes" / "f-16c.controls.json")
     k = next(c for c in cs if c.id == "engine_anti_ice_switch")
-    assert "on" in k.positions
-    r = mk([cmd(control="engine_anti_ice_switch", position="on")]).handle("turn the engine anti ice on")
-    assert r.source == "llm" and r.cockpit == C.resolve(k, "on")
-    assert r.checks == [(k.arg, k.name)] and r.speech == [f"{k.name} on"]
-    assert any("UNVERIFIED" in n for n in r.notes)
+    pos = next(p for p in k.positions if p not in k.confirmed and p not in k.inferred)
+    rt = mk([cmd(control="engine_anti_ice_switch", position=pos)])
+    r = rt.handle("engine anti ice")
+    assert r.cockpit == [] and "unverified" in r.speech[0] and rt.pending
+    assert rt.handle("confirm").cockpit == C.resolve(k, pos)
 
 
 def test_curated_actions_replace_generated_duplicates():

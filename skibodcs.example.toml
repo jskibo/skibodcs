@@ -6,7 +6,7 @@ wind_from = 310              # optional, degrees; picks active runway
 airframe_table = "airframes/f-16c.toml"          # curated, hand-verified actions (win over generated)
 controls_file = "airframes/f-16c.controls.json"   # EVERY clickable control, generated from your DCS files
 sequence_file = "sequences/f-16c.json"            # ED's own autostart/autostop timeline (see sequences/README.md)
-# crew = "PLT"                                    # AH-64D only: PLT (rear) or CPG (front)
+# crew = "PLT"                                    # AH-64D: PLT or CPG ; F-14B: PLT or RIO
 # Other jets: airframe_table / controls_file / sequence_file = airframes\\fa-18c.* , sequences\\fa-18c.json , airframes\\ah-64d.* ...
 magvar_east = 0.0            # set per theater; brevity bearings are magnetic
 

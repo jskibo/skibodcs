@@ -73,7 +73,7 @@ def main(argv=None):
             say(f"No {name.replace('_', ' ')} sequence available for this aircraft yet."); return
         if seq_runner["cur"] is not None:
             seq_runner["cur"].abort()                       # never run two sequences at once
-        runner = SequenceRunner(lambda d, c, v: link.send(d, c, v), say)
+        runner = SequenceRunner(lambda d, c, v: link.send(d, c, v), say, send_icommand=link.send_icommand)
         seq_runner["cur"] = runner
         threading.Thread(target=lambda: runner.run(steps), daemon=True).start()
 

@@ -414,14 +414,14 @@
    ],
    "arg": 419,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -1159,15 +1159,15 @@
    ],
    "arg": 541,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -1242,15 +1242,15 @@
    ],
    "arg": 553,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -1551,7 +1551,7 @@
     "fuel_commands.FuelQtySelSwTEST",
     "fuel_commands.FuelQtySelSw"
    ],
-   "arg": 158,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1608,14 +1608,14 @@
    ],
    "arg": 97,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2072,14 +2072,14 @@
    ],
    "arg": 460,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2099,14 +2099,14 @@
    ],
    "arg": 465,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2126,14 +2126,14 @@
    ],
    "arg": 470,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2153,14 +2153,14 @@
    ],
    "arg": 475,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2180,14 +2180,14 @@
    ],
    "arg": 480,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2207,14 +2207,14 @@
    ],
    "arg": 485,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2260,14 +2260,14 @@
    ],
    "arg": 490,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2313,14 +2313,14 @@
    ],
    "arg": 495,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2364,15 +2364,15 @@
    ],
    "arg": 455,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -2392,15 +2392,15 @@
    ],
    "arg": 457,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4087,14 +4087,14 @@
    ],
    "arg": 184,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": true,
    "danger": false,
    "verified": false,
    "fn": "springloaded_2_pos_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4114,14 +4114,14 @@
    ],
    "arg": 185,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": true,
    "danger": false,
    "verified": false,
    "fn": "springloaded_2_pos_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4141,14 +4141,14 @@
    ],
    "arg": 185,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": true,
    "danger": false,
    "verified": false,
    "fn": "springloaded_2_pos_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4168,14 +4168,14 @@
    ],
    "arg": 184,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": true,
    "danger": false,
    "verified": false,
    "fn": "springloaded_2_pos_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -4367,14 +4367,14 @@
    ],
    "arg": 602,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -6092,15 +6092,15 @@
    ],
    "arg": 676,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -6260,15 +6260,15 @@
    ],
    "arg": 675,
    "positions": {
-    "1": -1.0,
-    "2": 0.0,
-    "3": 1.0
+    "down": -1.0,
+    "middle": 0.0,
+    "up": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_3_position_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -7191,7 +7191,7 @@
     "sai_commands.cage",
     "sai_commands.reference"
    ],
-   "arg": 67,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7372,7 +7372,7 @@
     "clock_commands.CLOCK_left_lev_up",
     "clock_commands.CLOCK_left_lev_rotate"
    ],
-   "arg": 626,
+   "arg": 0,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7453,14 +7453,14 @@
    ],
    "arg": 796,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -7532,14 +7532,14 @@
    ],
    "arg": 579,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": true,
    "danger": false,
    "verified": false,
    "fn": "springloaded_2_pos_tumb_small",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],
@@ -7716,14 +7716,14 @@
    ],
    "arg": 401,
    "positions": {
-    "1": 0.0,
-    "2": 1.0
+    "off": 0.0,
+    "on": 1.0
    },
    "momentary": false,
    "danger": false,
    "verified": false,
    "fn": "default_2_position_tumb",
-   "note": "",
+   "note": "position names generic (hint does not list them)",
    "aliases": [],
    "crew": "",
    "confirmed": [],

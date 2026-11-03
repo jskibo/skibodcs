@@ -75,6 +75,17 @@ class DCSLink:
             self._tcp = None
             return self._connect() and self.send(dev, cmd, val)
 
+    def send_icommand(self, code: int, value: float | None = None) -> bool:
+        """Raw DCS input command through Export's LoSetCommand (e.g. the module's native autostart)."""
+        if self._tcp is None and not self._connect():
+            return False
+        try:
+            self._tcp.sendall((f"C,{code}" + (f",{value}" if value is not None else "") + "\n").encode())
+            return True
+        except OSError:
+            self._tcp = None
+            return False
+
     def read_arg(self, arg: int, timeout: float = 0.6) -> float | None:
         """Read a cockpit argument back from the Export module (None if unreachable / unknown)."""
         with self._rx_lock:

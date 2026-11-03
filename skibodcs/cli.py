@@ -39,6 +39,9 @@ def main(argv=None):
     q = sub.add_parser("sequences", help="build sequences/<aircraft>.json (autostart/autostop) from ED's Macro_sequencies.lua")
     q.add_argument("--devices", required=True); q.add_argument("--commands", required=True)
     q.add_argument("--macros", required=True); q.add_argument("--aircraft", required=True); q.add_argument("--out", required=True)
+    n = sub.add_parser("native-sequence", help="sequence that triggers the module's built-in autostart/autostop key commands")
+    n.add_argument("--aircraft", required=True); n.add_argument("--start", type=int, required=True)
+    n.add_argument("--stop", type=int, required=True); n.add_argument("--out", required=True)
     a = ap.parse_args(argv)
 
     if a.cmd in ("install", "uninstall", "deploy") or getattr(a, "deploy", False):
@@ -58,6 +61,16 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
+    if a.cmd == "native-sequence":
+        from . import macros as mc
+        seq = {"aircraft": a.aircraft, "source": "native iCommand (LoSetCommand)",
+               "note": "Triggers the module's own autostart/autostop input commands instead of replaying clicks. UNVERIFIED: "
+                       "confirm the codes (Controls screen shows them with OPTIONS_ADD_COMMAND_CODES_TO_TOOLTIP = true).",
+               "sequences": {"autostart": [{"delay": 0, "message": "Starting automatic engine start", "speak": True},
+                                           {"delay": 0.5, "icommand": a.start}],
+                             "autostop": [{"delay": 0, "message": "Starting automatic shutdown", "speak": True},
+                                          {"delay": 0.5, "icommand": a.stop}]}}
+        mc.save_sequences(seq, a.out); print("wrote", a.out); return 0
     if a.cmd == "sequences":
         from . import extract as ex, macros as mc
         raw = ex.run_macro_extractor(Path(a.devices), Path(a.commands), Path(a.macros))
