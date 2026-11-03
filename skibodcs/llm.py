@@ -12,12 +12,16 @@ class LLM(Protocol):
 
 class OllamaClient:
     def __init__(self, model: str, host: str = "http://localhost:11434",
-                 temperature: float = 0.2, timeout: float = 120.0, num_ctx: int = 8192):
+                 temperature: float = 0.2, timeout: float = 120.0, num_ctx: int = 8192,
+                 think: bool = False, keep_alive: str = "30m"):
         self.model, self.host = model, host.rstrip("/")
         self.temperature, self.timeout, self.num_ctx = temperature, timeout, num_ctx
+        self.think, self.keep_alive = think, keep_alive
 
     def chat(self, messages: list[dict], schema: dict | None = None) -> str:
-        body = {"model": self.model, "messages": messages, "stream": False,
+        # think=False: reasoning models (qwen3, gpt-oss) must not spend seconds "thinking" before a one-line intent;
+        # keep_alive keeps the model loaded between radio calls.
+        body = {"model": self.model, "messages": messages, "stream": False, "think": self.think, "keep_alive": self.keep_alive,
                 "options": {"temperature": self.temperature, "num_ctx": self.num_ctx}}
         if schema is not None:
             body["format"] = schema

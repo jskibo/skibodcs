@@ -19,7 +19,7 @@ def main(argv=None):
     e.add_argument("theater")
     g = sub.add_parser("generate", help="LLM request -> validated spec -> .miz")
     g.add_argument("request"); g.add_argument("--theater", default="Caucasus")
-    g.add_argument("--model", default="qwen3:14b"); g.add_argument("--host", default="http://localhost:11434")
+    g.add_argument("--model", default="qwen3:30b-a3b"); g.add_argument("--host", default="http://localhost:11434")
     g.add_argument("--out", default="out/generated.miz"); g.add_argument("--id", default="scn_0001")
     for name in ("install", "uninstall"):
         x = sub.add_parser(name, help=f"{name} the DCS Lua files (Hook, mission module, Export.lua block)")
@@ -34,7 +34,7 @@ def main(argv=None):
     cp.add_argument("--out", default="out/campaign"); cp.add_argument("--dcs-dir")
     cp.add_argument("--launch", action="store_true", help="after planning, ask the Hook to load the mission (DCS must be running a mission)")
     cp.add_argument("--llm", action="store_true", help="plan with the local LLM instead of the built-in generator")
-    cp.add_argument("--model", default="qwen3:14b"); cp.add_argument("--host", default="http://localhost:11434")
+    cp.add_argument("--model", default="qwen3:30b-a3b"); cp.add_argument("--host", default="http://localhost:11434")
     la = sub.add_parser("launch", help="ask the running DCS (via the Hook) to load a .miz from Saved Games\\DCS\\Missions")
     la.add_argument("miz"); la.add_argument("--port", type=int, default=14510)
     k = sub.add_parser("kneeboard", help="spec.json -> kneeboard PNG pages (mission, route, briefing, threats, map, data card)")

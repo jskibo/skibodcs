@@ -269,3 +269,26 @@ def test_lua_files_stay_lua_51_compatible():
         code = re.sub(r'"(?:\\.|[^"\\\n])*"', '""', code)
         assert not re.search(r"\bgoto\b|::\w+::", code), f"{f.name} uses goto/labels (not Lua 5.1)"
         assert not re.search(r"//|\bbit32\b|\b0x[0-9a-f]+p", code) or f.name == "", f"{f.name}: non-5.1 syntax"
+
+
+def test_ollama_client_disables_thinking_and_keeps_model_loaded():
+    import threading
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+    from skibodcs.llm import OllamaClient
+    seen = []
+
+    class H(BaseHTTPRequestHandler):
+        def do_POST(self):
+            seen.append(json.loads(self.rfile.read(int(self.headers["Content-Length"]))))
+            body = json.dumps({"message": {"content": "{}"}}).encode()
+            self.send_response(200); self.send_header("Content-Length", str(len(body))); self.end_headers(); self.wfile.write(body)
+        def log_message(self, *a): pass
+
+    srv = HTTPServer(("127.0.0.1", 0), H)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        out = OllamaClient("qwen3:30b-a3b", f"http://127.0.0.1:{srv.server_address[1]}").chat([{"role": "user", "content": "x"}], {"type": "object"})
+    finally:
+        srv.shutdown()
+    assert out == "{}" and seen[0]["think"] is False and seen[0]["keep_alive"] == "30m" and seen[0]["format"] == {"type": "object"}
+    assert seen[0]["model"] == "qwen3:30b-a3b"
