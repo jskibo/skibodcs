@@ -117,13 +117,13 @@ def compile_scenario(sc: Scenario, out_path: str | Path) -> list[str]:
                         altitude=6000, speed=700, frequency=sup.tanker.freq_mhz,
                         tacanchannel=sup.tanker.tacan or "40X")
     if sup.jtac:
-        warnings.append("blue_support.jtac not compiled in v0.1 (voice/runtime step)")
+        warnings.append("blue_support.jtac: no JTAC unit is spawned; the voice JTAC works from real contacts instead")
 
     # --- not yet compiled
     if sc.dynamic_rules:
         warnings.append(f"{len(sc.dynamic_rules)} dynamic_rules kept in sidecar JSON only (runtime.lua step)")
     if sc.objectives:
-        warnings.append("objectives are briefing-only in v0.1 (scoring needs runtime.lua)")
+        warnings.append("objectives are briefing-only in the mission; the campaign scores them from the Hook events")
 
     # --- briefing
     b = sc.briefing

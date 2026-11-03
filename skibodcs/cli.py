@@ -6,6 +6,9 @@ from .compile import compile_scenario
 
 
 def main(argv=None):
+    import logging
+    # pydcs logs a full traceback for every third-party livery file it cannot parse (harmless, dozens per run)
+    logging.getLogger().setLevel(logging.CRITICAL)
     ap = argparse.ArgumentParser(prog="skibodcs")
     sub = ap.add_subparsers(dest="cmd", required=True)
     c = sub.add_parser("compile", help="spec.json -> .miz")
