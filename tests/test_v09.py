@@ -314,3 +314,13 @@ def test_doctor_reports_each_half_of_the_link(tmp_path):
     (tmp_path / "Logs" / "dcs.log").write_text("nothing relevant\n")
     assert "never loaded" in diagnose(tmp_path, 5, export_port=down, hook_port=down)
     assert "pass --dcs-dir" in diagnose(None, 5, export_port=down, hook_port=down)
+
+
+def test_doctor_flags_a_broken_export_lua_line(tmp_path):
+    from skibodcs.doctor import diagnose
+    (tmp_path / "Logs").mkdir()
+    (tmp_path / "Logs" / "dcs.log").write_text(
+        "2026 ALERT   EDCORE (Main): Can't execute Lua file C:\\Users\\x\\Saved Games\\DCS\\Scripts\\Export.lua - no file 'C:\\SimHaptic\\rkApps_Export.lua'\n")
+    rep = diagnose(tmp_path, 5, export_port=1, hook_port=1)
+    assert "EXPORT.LUA ERROR" in rep and "rkApps_Export.lua" in rep
+    assert "EXPORT.LUA ERROR" not in diagnose(tmp_path / "nonexistent", 5, export_port=1, hook_port=1)

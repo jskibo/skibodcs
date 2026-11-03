@@ -12,6 +12,7 @@ def test_install_is_idempotent_and_preserves_existing_export(tmp_path):
     assert (scripts / "Hooks" / "skibodcs_hook.lua").exists()
     assert (scripts / "skibodcs_mission.lua").exists() and (scripts / "skibodcs_export.lua").exists()
     assert (scripts / dp.BACKUP).read_text() == "-- my existing\ndofile('tacview.lua')\n"   # original kept
+    assert txt.index(dp.BEGIN) < txt.index("dofile('tacview.lua')"), "our block comes first: a broken later line cannot block it"
 
 
 def test_uninstall_restores_original_content(tmp_path):

@@ -52,7 +52,9 @@ def install(dcs_dir: Path, lua_dir: Path = LUA_DIR) -> list[str]:
     base = _strip_block(old)
     if base and not base.endswith("\n"):
         base += "\n"
-    exp.write_text(base + _block(), encoding="utf-8"); done.append("Export.lua (managed block)")
+    # FIRST, not last: DCS stops reading Export.lua at the first error, and other tools' lines can fail (a real install had a SimHaptic
+    # line pointing at a missing file). Our module chains whatever callbacks exist when it loads; tools loaded after it chain ours.
+    exp.write_text(_block() + base, encoding="utf-8"); done.append("Export.lua (managed block, at the top)")
     return done
 
 

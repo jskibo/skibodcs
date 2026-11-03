@@ -34,7 +34,12 @@ def diagnose(dcs_dir: Path | None, lines: int = 12, export_port: int = 14500, ho
     if not log.exists():
         out.append(f"No log yet: {log}")
         return "\n".join(out)
-    hits = [ln.rstrip() for ln in log.read_text(encoding="utf-8", errors="replace").splitlines() if "skibodcs" in ln.lower()]
+    text = log.read_text(encoding="utf-8", errors="replace")
+    bad = [ln.rstrip() for ln in text.splitlines() if "Can't execute Lua file" in ln and "Export.lua" in ln]
+    if bad:
+        out.append("EXPORT.LUA ERROR (DCS stops reading Export.lua here, so everything after this line never runs):")
+        out.append("  " + bad[-1])
+    hits = [ln.rstrip() for ln in text.splitlines() if "skibodcs" in ln.lower()]
     out.append(f"--- last {min(lines, len(hits))} skibodcs lines in {log.name} ---")
     out += hits[-lines:] or ["(none: the hook and export module never loaded; run `skibodcs install`)"]
     return "\n".join(out)

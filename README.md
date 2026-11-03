@@ -15,7 +15,7 @@ semantics, like DCS) against mocked DCS APIs (tests/lua).
     pytest                         (Lua tests are skipped unless LUAJIT=path\to\luajit.exe is set)
     skibodcs install               (add --dcs-dir "C:\Users\you\Saved Games\DCS.openbeta" if both exist)
 `install` copies the Hook, mission module and Export module into Saved Games\DCS\Scripts and adds
-ONE managed block to your existing Export.lua (original backed up once; `skibodcs uninstall`
+ONE managed block at the TOP of your existing Export.lua (a broken line later in the file, e.g. another tool pointing at a missing script, would otherwise stop DCS before reaching ours) (original backed up once; `skibodcs uninstall`
 removes everything cleanly).
 
 ## Four places code runs (corrected in v0.9.1 after the first real log)
