@@ -2,7 +2,7 @@
 -- Runs ED's own cockpit definition files under stubs and records, for every clickable element:
 --   key, helper function, hint text, device id+name, command ids+names, cockpit arg numbers.
 -- Works on Lua 5.1 / LuaJIT (DCS uses 5.1). Nothing here is copied from the game; only ids are emitted.
-local DEV, CMD, CLK = arg[1], arg[2], arg[3]
+local DEV, CMD, CLK, DRAW = arg[1], arg[2], arg[3], arg[4]   -- DRAW (optional): draw_args.lua with cockpit_args (F-14)
 assert(DEV and CMD and CLK, "usage: extract_clickables.lua devices.lua command_defs.lua clickabledata.lua")
 
 -- ---- "any" object: callable, indexable, arithmetic-safe. Used for helpers and constants we do not model.
@@ -66,6 +66,7 @@ dofile = function(path)
     end
   end
   if path:match("clickabledata%.lua$") then return real_dofile(CLK) end
+  if path:match("draw_args%.lua$") and DRAW and DRAW ~= "" then return real_dofile(DRAW) end
   -- clickable_defs/config/sounds/paths/draw_args ...: not needed (or not supplied); unknown names resolve to harmless stubs
   return
 end
@@ -150,6 +151,10 @@ for _, key in ipairs(keys) do
       elseif type(v) == "number" and v >= 1 and v < 3000 and #nums < 3 and math.floor(v) == v then nums[#nums + 1] = v end
       if type(v) == "number" then params[#params + 1] = v end
     end
+    if arg_explicit == nil and type(rawget(el, "arg")) == "table" then   -- module-defined helper: trust the element it actually returned
+      local fa = rawget(el, "arg")[1]
+      if type(fa) == "number" then arg_explicit = fa end
+    end
   else                                             -- hand-written table (class/action/arg...)
     fn = "custom:" .. (type(el.class) == "table" and table.concat((function() local t = {} for _, c in ipairs(el.class) do t[#t+1] = tostring(is_any(c) and rawget(c, "__any") or c) end return t end)(), ",") or "")
     hint = type(el.hint) == "string" and el.hint or ""
@@ -158,6 +163,7 @@ for _, key in ipairs(keys) do
     if is_tag(act) then act = { act } end
     for _, v in ipairs(act or {}) do if is_tag(v) then cmds[#cmds + 1] = v end end
     for _, v in ipairs(el.arg or {}) do if type(v) == "number" then nums[#nums + 1] = v; params[#params + 1] = v end end
+    if type(el.arg) == "table" and type(el.arg[1]) == "number" then arg_explicit = el.arg[1] end
   end
   local cj = {}
   local seen = {}

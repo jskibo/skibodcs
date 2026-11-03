@@ -16,7 +16,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_PSRCH"
    ],
-   "arg": 0,
+   "arg": 10,
    "positions": {
     "press": 1.0
    },
@@ -66,7 +66,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_WingExt_Trans"
    ],
-   "arg": 0,
+   "arg": 1001,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -94,7 +94,7 @@
    "command_names": [
     "device_commands.NAV_Btn_Steer_TCN"
    ],
-   "arg": 0,
+   "arg": 1002,
    "positions": {
     "press": 1.0
    },
@@ -120,7 +120,7 @@
    "command_names": [
     "device_commands.NAV_Btn_Steer_DEST"
    ],
-   "arg": 0,
+   "arg": 1003,
    "positions": {
     "press": 1.0
    },
@@ -146,7 +146,7 @@
    "command_names": [
     "device_commands.NAV_Btn_Steer_AWL_PCD"
    ],
-   "arg": 0,
+   "arg": 1004,
    "positions": {
     "press": 1.0
    },
@@ -172,7 +172,7 @@
    "command_names": [
     "device_commands.NAV_Btn_Steer_VEC"
    ],
-   "arg": 0,
+   "arg": 1005,
    "positions": {
     "press": 1.0
    },
@@ -198,7 +198,7 @@
    "command_names": [
     "device_commands.NAV_Btn_Steer_MAN"
    ],
-   "arg": 0,
+   "arg": 1006,
    "positions": {
     "press": 1.0
    },
@@ -224,7 +224,7 @@
    "command_names": [
     "device_commands.DISP_HUD_pitch_bright"
    ],
-   "arg": 0,
+   "arg": 1007,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -248,7 +248,7 @@
    "command_names": [
     "device_commands.DISP_HSD_ECMD_power"
    ],
-   "arg": 0,
+   "arg": 1008,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -275,7 +275,7 @@
    "command_names": [
     "device_commands.DISP_HUD_power"
    ],
-   "arg": 0,
+   "arg": 1009,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -302,7 +302,7 @@
    "command_names": [
     "device_commands.DISP_VDI_power"
    ],
-   "arg": 0,
+   "arg": 1010,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -329,7 +329,7 @@
    "command_names": [
     "device_commands.DISP_mode_landing"
    ],
-   "arg": 0,
+   "arg": 1011,
    "positions": {
     "press": 1.0
    },
@@ -355,7 +355,7 @@
    "command_names": [
     "device_commands.DISP_mode_air2ground"
    ],
-   "arg": 0,
+   "arg": 1012,
    "positions": {
     "press": 1.0
    },
@@ -381,7 +381,7 @@
    "command_names": [
     "device_commands.DISP_mode_air2air"
    ],
-   "arg": 0,
+   "arg": 1013,
    "positions": {
     "press": 1.0
    },
@@ -407,7 +407,7 @@
    "command_names": [
     "device_commands.DISP_mode_cruise"
    ],
-   "arg": 0,
+   "arg": 1014,
    "positions": {
     "press": 1.0
    },
@@ -433,7 +433,7 @@
    "command_names": [
     "device_commands.DISP_mode_takeoff"
    ],
-   "arg": 0,
+   "arg": 1015,
    "positions": {
     "press": 1.0
    },
@@ -459,7 +459,7 @@
    "command_names": [
     "device_commands.HSD_Display_Mode_Cycle"
    ],
-   "arg": 0,
+   "arg": 1016,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -487,7 +487,7 @@
    "command_names": [
     "device_commands.HSD_ECM_Override"
    ],
-   "arg": 0,
+   "arg": 1017,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -514,7 +514,7 @@
    "command_names": [
     "device_commands.DISP_VDI_landing_mode"
    ],
-   "arg": 0,
+   "arg": 1018,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -541,7 +541,7 @@
    "command_names": [
     "device_commands.DISP_VDI_display_mode"
    ],
-   "arg": 0,
+   "arg": 1019,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -568,7 +568,7 @@
    "command_names": [
     "device_commands.DISP_HUD_AWL_mode"
    ],
-   "arg": 0,
+   "arg": 1020,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -595,7 +595,7 @@
    "command_names": [
     "device_commands.DISP_HUD_declutter"
    ],
-   "arg": 0,
+   "arg": 1021,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -622,7 +622,7 @@
    "command_names": [
     "device_commands.WEAP_Gun_Ammo_adjust"
    ],
-   "arg": 0,
+   "arg": 1022,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -646,7 +646,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_Remote_DISP_BRT_Pilot"
    ],
-   "arg": 0,
+   "arg": 1030,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -670,7 +670,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_Remote_DISP_BRT_Pilot"
    ],
-   "arg": 0,
+   "arg": 1031,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -696,7 +696,7 @@
     "device_commands.STDBYADI_uncage",
     "device_commands.STDBYADI_trim"
    ],
-   "arg": 0,
+   "arg": 1032,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -720,7 +720,7 @@
    "command_names": [
     "device_commands.VDIG_VDI_handle"
    ],
-   "arg": 0,
+   "arg": 1033,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -744,7 +744,7 @@
    "command_names": [
     "device_commands.VDIG_HUD_trim"
    ],
-   "arg": 0,
+   "arg": 1034,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -768,7 +768,7 @@
    "command_names": [
     "device_commands.VDIG_VSDI_trim"
    ],
-   "arg": 0,
+   "arg": 1035,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -792,7 +792,7 @@
    "command_names": [
     "device_commands.VDIG_VSDI_bright"
    ],
-   "arg": 0,
+   "arg": 1036,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -816,7 +816,7 @@
    "command_names": [
     "device_commands.VDIG_HUD_bright"
    ],
-   "arg": 0,
+   "arg": 761,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -840,7 +840,7 @@
    "command_names": [
     "device_commands.VDIG_VDI_contrast"
    ],
-   "arg": 0,
+   "arg": 1038,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -864,7 +864,7 @@
    "command_names": [
     "device_commands.HSD_Knob_Heading"
    ],
-   "arg": 0,
+   "arg": 1039,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -888,7 +888,7 @@
    "command_names": [
     "device_commands.HSD_Knob_Course"
    ],
-   "arg": 0,
+   "arg": 1040,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -912,7 +912,7 @@
    "command_names": [
     "device_commands.HSD_Btn_Test"
    ],
-   "arg": 0,
+   "arg": 1041,
    "positions": {
     "press": 1.0
    },
@@ -938,7 +938,7 @@
    "command_names": [
     "device_commands.HSD_Knob_Brightness"
    ],
-   "arg": 0,
+   "arg": 1043,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -962,7 +962,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Shutoff_R"
    ],
-   "arg": 0,
+   "arg": 1044,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -986,7 +986,7 @@
    "command_names": [
     "device_commands.WEAP_Master_Arm_Cover"
    ],
-   "arg": 0,
+   "arg": 1046,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1010,7 +1010,7 @@
    "command_names": [
     "device_commands.WEAP_Master_Arm"
    ],
-   "arg": 0,
+   "arg": 1047,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1038,7 +1038,7 @@
    "command_names": [
     "device_commands.WEAP_ACM_Jettison"
    ],
-   "arg": 0,
+   "arg": 1048,
    "positions": {
     "press": 1.0
    },
@@ -1064,7 +1064,7 @@
    "command_names": [
     "device_commands.WEAP_ACM_Cover"
    ],
-   "arg": 0,
+   "arg": 1049,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1088,7 +1088,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Bingo_Knob"
    ],
-   "arg": 0,
+   "arg": 1050,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1112,7 +1112,7 @@
    "command_names": [
     "device_commands.CLOCK_Wind"
    ],
-   "arg": 0,
+   "arg": 1051,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1160,7 +1160,7 @@
    "command_names": [
     "device_commands.RIO_CLOCK_Timer"
    ],
-   "arg": 0,
+   "arg": 4153,
    "positions": {
     "press": 1.0
    },
@@ -1186,7 +1186,7 @@
    "command_names": [
     "device_commands.WEAP_Selective_Jett_cover"
    ],
-   "arg": 0,
+   "arg": 1069,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -1210,7 +1210,7 @@
    "command_names": [
     "device_commands.MASTER_Reset"
    ],
-   "arg": 0,
+   "arg": 1071,
    "positions": {
     "press": 1.0
    },
@@ -1236,7 +1236,7 @@
    "command_names": [
     "device_commands.BRAKE_AntiSkidAndSpoilerBrake"
    ],
-   "arg": 0,
+   "arg": 1072,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1264,7 +1264,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Refuel_Probe"
    ],
-   "arg": 0,
+   "arg": 1073,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1292,7 +1292,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Dump"
    ],
-   "arg": 0,
+   "arg": 1074,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -1319,7 +1319,7 @@
    "command_names": [
     "device_commands.GEAR_Strut"
    ],
-   "arg": 0,
+   "arg": 1075,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1347,7 +1347,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Fuel_Qty_Sel"
    ],
-   "arg": 0,
+   "arg": 1076,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1375,7 +1375,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Fuel_Feed_Cover"
    ],
-   "arg": 0,
+   "arg": 1094,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -1402,7 +1402,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Fuel_Feed"
    ],
-   "arg": 0,
+   "arg": 1095,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -1430,7 +1430,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_TWSMAN"
    ],
-   "arg": 0,
+   "arg": 11,
    "positions": {
     "press": 1.0
    },
@@ -1456,7 +1456,7 @@
    "command_names": [
     "device_commands.TID_ALT_NUM"
    ],
-   "arg": 0,
+   "arg": 1115,
    "positions": {
     "press": 1.0
    },
@@ -1482,7 +1482,7 @@
    "command_names": [
     "device_commands.TID_SYM_ELEM"
    ],
-   "arg": 0,
+   "arg": 1116,
    "positions": {
     "press": 1.0
    },
@@ -1508,7 +1508,7 @@
    "command_names": [
     "device_commands.TID_DATA_LINK"
    ],
-   "arg": 0,
+   "arg": 1117,
    "positions": {
     "press": 1.0
    },
@@ -1534,7 +1534,7 @@
    "command_names": [
     "device_commands.TID_JAM_STROBE"
    ],
-   "arg": 0,
+   "arg": 1118,
    "positions": {
     "press": 1.0
    },
@@ -1560,7 +1560,7 @@
    "command_names": [
     "device_commands.RADIO_KY28_RADIO_SELECTOR"
    ],
-   "arg": 0,
+   "arg": 115,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -1588,7 +1588,7 @@
    "command_names": [
     "device_commands.RADIO_KY28_POWER_MODE"
    ],
-   "arg": 0,
+   "arg": 116,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -1616,7 +1616,7 @@
    "command_names": [
     "device_commands.BEACON_ACLS_test_button"
    ],
-   "arg": 0,
+   "arg": 117,
    "positions": {
     "press": 1.0
    },
@@ -1642,7 +1642,7 @@
    "command_names": [
     "device_commands.BEACON_mode_knob"
    ],
-   "arg": 0,
+   "arg": 118,
    "positions": {
     "1": 0.0,
     "2": 0.1667,
@@ -1674,7 +1674,7 @@
    "command_names": [
     "device_commands.RIOOxygenOn"
    ],
-   "arg": 0,
+   "arg": 119,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -1701,7 +1701,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_TWSAUTO"
    ],
-   "arg": 0,
+   "arg": 12,
    "positions": {
     "press": 1.0
    },
@@ -1727,7 +1727,7 @@
    "command_names": [
     "device_commands.RIO_STORAGE_BOX"
    ],
-   "arg": 0,
+   "arg": 122,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -1751,7 +1751,7 @@
    "command_names": [
     "device_commands.CAP_button4"
    ],
-   "arg": 0,
+   "arg": 124,
    "positions": {
     "press": 1.0
    },
@@ -1777,7 +1777,7 @@
    "command_names": [
     "device_commands.CAP_button5"
    ],
-   "arg": 0,
+   "arg": 123,
    "positions": {
     "press": 1.0
    },
@@ -1803,7 +1803,7 @@
    "command_names": [
     "device_commands.CAP_button3"
    ],
-   "arg": 0,
+   "arg": 125,
    "positions": {
     "press": 1.0
    },
@@ -1829,7 +1829,7 @@
    "command_names": [
     "device_commands.CAP_button2"
    ],
-   "arg": 0,
+   "arg": 126,
    "positions": {
     "press": 1.0
    },
@@ -1855,7 +1855,7 @@
    "command_names": [
     "device_commands.CAP_button1"
    ],
-   "arg": 0,
+   "arg": 127,
    "positions": {
     "press": 1.0
    },
@@ -1881,7 +1881,7 @@
    "command_names": [
     "device_commands.CAP_tng_nbr"
    ],
-   "arg": 0,
+   "arg": 128,
    "positions": {
     "press": 1.0
    },
@@ -1907,7 +1907,7 @@
    "command_names": [
     "device_commands.CAP_button10"
    ],
-   "arg": 0,
+   "arg": 129,
    "positions": {
     "press": 1.0
    },
@@ -1933,7 +1933,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_RWS"
    ],
-   "arg": 0,
+   "arg": 13,
    "positions": {
     "press": 1.0
    },
@@ -1959,7 +1959,7 @@
    "command_names": [
     "device_commands.CAP_button9"
    ],
-   "arg": 0,
+   "arg": 130,
    "positions": {
     "press": 1.0
    },
@@ -1985,7 +1985,7 @@
    "command_names": [
     "device_commands.CAP_button8"
    ],
-   "arg": 0,
+   "arg": 131,
    "positions": {
     "press": 1.0
    },
@@ -2011,7 +2011,7 @@
    "command_names": [
     "device_commands.CAP_button7"
    ],
-   "arg": 0,
+   "arg": 132,
    "positions": {
     "press": 1.0
    },
@@ -2037,7 +2037,7 @@
    "command_names": [
     "device_commands.CAP_button6"
    ],
-   "arg": 0,
+   "arg": 133,
    "positions": {
     "press": 1.0
    },
@@ -2063,7 +2063,7 @@
    "command_names": [
     "device_commands.CAP_program_restart"
    ],
-   "arg": 0,
+   "arg": 134,
    "positions": {
     "press": 1.0
    },
@@ -2089,7 +2089,7 @@
    "command_names": [
     "device_commands.TACAN_CMD_Btn_RIO"
    ],
-   "arg": 0,
+   "arg": 135,
    "positions": {
     "press": 1.0
    },
@@ -2115,7 +2115,7 @@
    "command_names": [
     "device_commands.CAP_LONG_6"
    ],
-   "arg": 0,
+   "arg": 136,
    "positions": {
     "press": 1.0
    },
@@ -2141,7 +2141,7 @@
    "command_names": [
     "device_commands.CAP_LAT_1"
    ],
-   "arg": 0,
+   "arg": 137,
    "positions": {
     "press": 1.0
    },
@@ -2167,7 +2167,7 @@
    "command_names": [
     "device_commands.CAP_NBR_2"
    ],
-   "arg": 0,
+   "arg": 138,
    "positions": {
     "press": 1.0
    },
@@ -2193,7 +2193,7 @@
    "command_names": [
     "device_commands.CAP_7"
    ],
-   "arg": 0,
+   "arg": 139,
    "positions": {
     "press": 1.0
    },
@@ -2219,7 +2219,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_PDSRCH"
    ],
-   "arg": 0,
+   "arg": 14,
    "positions": {
     "press": 1.0
    },
@@ -2245,7 +2245,7 @@
    "command_names": [
     "device_commands.CAP_HDG_8"
    ],
-   "arg": 0,
+   "arg": 140,
    "positions": {
     "press": 1.0
    },
@@ -2271,7 +2271,7 @@
    "command_names": [
     "device_commands.CAP_SPD_3"
    ],
-   "arg": 0,
+   "arg": 141,
    "positions": {
     "press": 1.0
    },
@@ -2297,7 +2297,7 @@
    "command_names": [
     "device_commands.CAP_9"
    ],
-   "arg": 0,
+   "arg": 142,
    "positions": {
     "press": 1.0
    },
@@ -2323,7 +2323,7 @@
    "command_names": [
     "device_commands.CAP_ALT_4"
    ],
-   "arg": 0,
+   "arg": 143,
    "positions": {
     "press": 1.0
    },
@@ -2349,7 +2349,7 @@
    "command_names": [
     "device_commands.CAP_BRG_0"
    ],
-   "arg": 0,
+   "arg": 144,
    "positions": {
     "press": 1.0
    },
@@ -2375,7 +2375,7 @@
    "command_names": [
     "device_commands.CAP_RNG_5"
    ],
-   "arg": 0,
+   "arg": 145,
    "positions": {
     "press": 1.0
    },
@@ -2401,7 +2401,7 @@
    "command_names": [
     "device_commands.CAP_NE"
    ],
-   "arg": 0,
+   "arg": 146,
    "positions": {
     "press": 1.0
    },
@@ -2427,7 +2427,7 @@
    "command_names": [
     "device_commands.CAP_SW"
    ],
-   "arg": 0,
+   "arg": 147,
    "positions": {
     "press": 1.0
    },
@@ -2453,7 +2453,7 @@
    "command_names": [
     "device_commands.CAP_clear"
    ],
-   "arg": 0,
+   "arg": 148,
    "positions": {
     "press": 1.0
    },
@@ -2479,7 +2479,7 @@
    "command_names": [
     "device_commands.CAP_enter"
    ],
-   "arg": 0,
+   "arg": 149,
    "positions": {
     "press": 1.0
    },
@@ -2505,7 +2505,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_PSTT"
    ],
-   "arg": 0,
+   "arg": 15,
    "positions": {
     "press": 1.0
    },
@@ -2531,7 +2531,7 @@
    "command_names": [
     "device_commands.RADIO_KY28_ZEROIZE_COVER"
    ],
-   "arg": 0,
+   "arg": 150,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -2558,7 +2558,7 @@
    "command_names": [
     "device_commands.FUELSYSTEM_Shutoff_L"
    ],
-   "arg": 0,
+   "arg": 15081,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -2582,7 +2582,7 @@
    "command_names": [
     "device_commands.DECM_Mode_Knob"
    ],
-   "arg": 0,
+   "arg": 151,
    "positions": {
     "1": 0.0,
     "2": 0.2,
@@ -2613,7 +2613,7 @@
    "command_names": [
     "device_commands.LIGHTS_WhiteFlood_RIO"
    ],
-   "arg": 0,
+   "arg": 159,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2641,7 +2641,7 @@
    "command_names": [
     "device_commands.ENGINE_Asym_LimiterCover"
    ],
-   "arg": 0,
+   "arg": 16005,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -2668,7 +2668,7 @@
    "command_names": [
     "device_commands.ENGINE_Asym_Limiter"
    ],
-   "arg": 0,
+   "arg": 16006,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -2695,7 +2695,7 @@
    "command_names": [
     "device_commands.ENGINE_Left_Mode"
    ],
-   "arg": 0,
+   "arg": 16007,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -2722,7 +2722,7 @@
    "command_names": [
     "device_commands.ENGINE_Right_Mode"
    ],
-   "arg": 0,
+   "arg": 16008,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -2749,7 +2749,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_LOAD_Pilot"
    ],
-   "arg": 0,
+   "arg": 16009,
    "positions": {
     "press": 1.0
    },
@@ -2775,7 +2775,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_TONE_Pilot"
    ],
-   "arg": 0,
+   "arg": 16010,
    "positions": {
     "press": 1.0
    },
@@ -2801,7 +2801,7 @@
    "command_names": [
     "device_commands.RWR_Brightness_Pilot"
    ],
-   "arg": 0,
+   "arg": 16011,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -2825,7 +2825,7 @@
    "command_names": [
     "device_commands.RECORD_Knob_Reset"
    ],
-   "arg": 0,
+   "arg": 16016,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -2849,7 +2849,7 @@
    "command_names": [
     "device_commands.IFF_audiolight_switch"
    ],
-   "arg": 0,
+   "arg": 161,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2877,7 +2877,7 @@
    "command_names": [
     "device_commands.IFF_M1_switch"
    ],
-   "arg": 0,
+   "arg": 162,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2905,7 +2905,7 @@
    "command_names": [
     "device_commands.IFF_M2_switch"
    ],
-   "arg": 0,
+   "arg": 163,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2933,7 +2933,7 @@
    "command_names": [
     "device_commands.IFF_M3A_switch"
    ],
-   "arg": 0,
+   "arg": 164,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2961,7 +2961,7 @@
    "command_names": [
     "device_commands.IFF_MC_switch"
    ],
-   "arg": 0,
+   "arg": 165,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -2989,7 +2989,7 @@
    "command_names": [
     "device_commands.IFF_RAD_switch"
    ],
-   "arg": 0,
+   "arg": 166,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -3017,7 +3017,7 @@
    "command_names": [
     "device_commands.IFF_ident_switch"
    ],
-   "arg": 0,
+   "arg": 167,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -3045,7 +3045,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_display_IFF"
    ],
-   "arg": 0,
+   "arg": 17,
    "positions": {
     "press": 1.0
    },
@@ -3071,7 +3071,7 @@
    "command_names": [
     "device_commands.DATALINK_antenna_pos"
    ],
-   "arg": 0,
+   "arg": 175,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3098,7 +3098,7 @@
    "command_names": [
     "device_commands.DATALINK_reply"
    ],
-   "arg": 0,
+   "arg": 176,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3125,7 +3125,7 @@
    "command_names": [
     "device_commands.DATALINK_tac_cains"
    ],
-   "arg": 0,
+   "arg": 177,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3152,7 +3152,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_display_IR"
    ],
-   "arg": 0,
+   "arg": 18,
    "positions": {
     "press": 1.0
    },
@@ -3178,7 +3178,7 @@
    "command_names": [
     "device_commands.IFF_M4_switch"
    ],
-   "arg": 0,
+   "arg": 181,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3205,7 +3205,7 @@
    "command_names": [
     "device_commands.CCM_SPL"
    ],
-   "arg": 0,
+   "arg": 1812,
    "positions": {
     "press": 1.0
    },
@@ -3231,7 +3231,7 @@
    "command_names": [
     "device_commands.CCM_ALT_DIFF"
    ],
-   "arg": 0,
+   "arg": 1813,
    "positions": {
     "press": 1.0
    },
@@ -3257,7 +3257,7 @@
    "command_names": [
     "device_commands.CCM_VGS"
    ],
-   "arg": 0,
+   "arg": 1814,
    "positions": {
     "press": 1.0
    },
@@ -3283,7 +3283,7 @@
    "command_names": [
     "device_commands.IFF_code_knob"
    ],
-   "arg": 0,
+   "arg": 183,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -3312,7 +3312,7 @@
    "command_names": [
     "device_commands.IFF_master_knob"
    ],
-   "arg": 0,
+   "arg": 184,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -3342,7 +3342,7 @@
    "command_names": [
     "device_commands.IFF_test_button"
    ],
-   "arg": 0,
+   "arg": 185,
    "positions": {
     "press": 1.0
    },
@@ -3368,7 +3368,7 @@
    "command_names": [
     "device_commands.IFF_reply_button"
    ],
-   "arg": 0,
+   "arg": 186,
    "positions": {
     "press": 1.0
    },
@@ -3394,7 +3394,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_display_radar"
    ],
-   "arg": 0,
+   "arg": 19,
    "positions": {
     "press": 1.0
    },
@@ -3420,7 +3420,7 @@
    "command_names": [
     "device_commands.DATALINK_antijam"
    ],
-   "arg": 0,
+   "arg": 191,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -3448,7 +3448,7 @@
    "command_names": [
     "device_commands.LIGHTS_Console_RIO"
    ],
-   "arg": 0,
+   "arg": 192,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -3482,7 +3482,7 @@
    "command_names": [
     "device_commands.LIGHTS_Instruments_RIO"
    ],
-   "arg": 0,
+   "arg": 193,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -3516,7 +3516,7 @@
    "command_names": [
     "device_commands.LIGHTS_RedFlood_RIO"
    ],
-   "arg": 0,
+   "arg": 194,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -3544,7 +3544,7 @@
    "command_names": [
     "device_commands.DATALINK_freq_1s"
    ],
-   "arg": 0,
+   "arg": 195,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -3579,7 +3579,7 @@
    "command_names": [
     "device_commands.DATALINK_freq_10s"
    ],
-   "arg": 0,
+   "arg": 196,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -3614,7 +3614,7 @@
    "command_names": [
     "device_commands.DATALINK_freq_tenths"
    ],
-   "arg": 0,
+   "arg": 197,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -3649,7 +3649,7 @@
    "command_names": [
     "device_commands.IFF_M3code_100s"
    ],
-   "arg": 0,
+   "arg": 198,
    "positions": {
     "1": 0.0,
     "2": 0.7778,
@@ -3671,7 +3671,7 @@
    "inferred": []
   },
   {
-   "id": "iff_m3_code_x_0",
+   "id": "iff_m3_code_x_199",
    "name": "IFF M3 code x---",
    "kind": "multi",
    "device": 64,
@@ -3682,7 +3682,7 @@
    "command_names": [
     "device_commands.IFF_M3code_1000s"
    ],
-   "arg": 0,
+   "arg": 199,
    "positions": {
     "1": 0.0,
     "2": 0.7778,
@@ -3715,7 +3715,7 @@
    "command_names": [
     "device_commands.RADAR_IR_gain"
    ],
-   "arg": 0,
+   "arg": 20,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -3739,7 +3739,7 @@
    "command_names": [
     "device_commands.IFF_M1code_1s"
    ],
-   "arg": 0,
+   "arg": 200,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -3768,7 +3768,7 @@
    "command_names": [
     "device_commands.TID_RID_DSBL"
    ],
-   "arg": 0,
+   "arg": 2004,
    "positions": {
     "press": 1.0
    },
@@ -3794,7 +3794,7 @@
    "command_names": [
     "device_commands.TID_mode_knob"
    ],
-   "arg": 0,
+   "arg": 2005,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -3823,7 +3823,7 @@
    "command_names": [
     "device_commands.TID_range_knob"
    ],
-   "arg": 0,
+   "arg": 2006,
    "positions": {
     "1": -1.0,
     "2": -0.5,
@@ -3853,7 +3853,7 @@
    "command_names": [
     "device_commands.HCU_IR_TV"
    ],
-   "arg": 0,
+   "arg": 2007,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3880,7 +3880,7 @@
    "command_names": [
     "device_commands.HCU_RDR"
    ],
-   "arg": 0,
+   "arg": 2008,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3907,7 +3907,7 @@
    "command_names": [
     "device_commands.HCU_DDD_cursor"
    ],
-   "arg": 0,
+   "arg": 2009,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3923,7 +3923,7 @@
    "inferred": []
   },
   {
-   "id": "iff_m1_code_x_0",
+   "id": "iff_m1_code_x_201",
    "name": "IFF M1 code x-",
    "kind": "multi",
    "device": 64,
@@ -3934,7 +3934,7 @@
    "command_names": [
     "device_commands.IFF_M1code_10s"
    ],
-   "arg": 0,
+   "arg": 201,
    "positions": {
     "1": 0.0,
     "2": 0.7778,
@@ -3967,7 +3967,7 @@
    "command_names": [
     "device_commands.HCU_TID_cursor"
    ],
-   "arg": 0,
+   "arg": 6025,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -3994,7 +3994,7 @@
    "command_names": [
     "device_commands.HCU_TVIR_enable"
    ],
-   "arg": 0,
+   "arg": 6026,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4022,7 +4022,7 @@
    "command_names": [
     "device_commands.HCU_WCS_enable"
    ],
-   "arg": 0,
+   "arg": 2141,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4050,7 +4050,7 @@
    "command_names": [
     "device_commands.HCU_POWER_RESET_BUTTON"
    ],
-   "arg": 0,
+   "arg": 2142,
    "positions": {
     "press": 1.0
    },
@@ -4076,7 +4076,7 @@
    "command_names": [
     "device_commands.HCU_LIGHT_TEST_BUTTON"
    ],
-   "arg": 0,
+   "arg": 2144,
    "positions": {
     "press": 1.0
    },
@@ -4102,7 +4102,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Salvo_Intv_Wheel"
    ],
-   "arg": 0,
+   "arg": 202,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -4132,7 +4132,7 @@
    "command_names": [
     "device_commands.WEAP_ATTK_Mode"
    ],
-   "arg": 0,
+   "arg": 2022,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -4162,7 +4162,7 @@
    "command_names": [
     "device_commands.ECMD_Knob_Brightness"
    ],
-   "arg": 0,
+   "arg": 2023,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4186,7 +4186,7 @@
    "command_names": [
     "device_commands.ECMD_Btn_Test"
    ],
-   "arg": 0,
+   "arg": 2024,
    "positions": {
     "press": 1.0
    },
@@ -4212,7 +4212,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FREQ_HUNDREDTH_Pilot"
    ],
-   "arg": 0,
+   "arg": 2026,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4240,7 +4240,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_BRT_Pilot"
    ],
-   "arg": 0,
+   "arg": 2027,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4264,7 +4264,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FREQ_TEHTH_Pilot"
    ],
-   "arg": 0,
+   "arg": 2028,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4292,7 +4292,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FREQ_UNIT_Pilot"
    ],
-   "arg": 0,
+   "arg": 2029,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4320,7 +4320,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Salvo_Qty_Wheel"
    ],
-   "arg": 0,
+   "arg": 203,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -4352,7 +4352,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FREQ_HUNDRED_TEN_Pilot"
    ],
-   "arg": 0,
+   "arg": 2030,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4380,7 +4380,7 @@
    "command_names": [
     "device_commands.RIOALTIMETER_Knob"
    ],
-   "arg": 0,
+   "arg": 20306,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4404,7 +4404,7 @@
    "command_names": [
     "device_commands.RIOALTIMETER_Mode"
    ],
-   "arg": 0,
+   "arg": 20307,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4432,7 +4432,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_VOL_Pilot"
    ],
-   "arg": 0,
+   "arg": 2031,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4456,7 +4456,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_CHAN_Pilot"
    ],
-   "arg": 0,
+   "arg": 2032,
    "positions": {
     "1": 0.0,
     "2": 0.0833,
@@ -4493,7 +4493,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FREQ_MODE_Pilot"
    ],
-   "arg": 0,
+   "arg": 2033,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -4521,7 +4521,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_FUNC_Pilot"
    ],
-   "arg": 0,
+   "arg": 2034,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -4550,7 +4550,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_SQL_Pilot"
    ],
-   "arg": 0,
+   "arg": 2035,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -4577,7 +4577,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Vol_Pilot"
    ],
-   "arg": 0,
+   "arg": 2036,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4601,7 +4601,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_VOL_PILOT"
    ],
-   "arg": 0,
+   "arg": 2038,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4625,7 +4625,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_Sidewinder"
    ],
-   "arg": 0,
+   "arg": 2039,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4649,7 +4649,7 @@
    "command_names": [
     "device_commands.CMDS_JAMR_Qty"
    ],
-   "arg": 0,
+   "arg": 204,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -4678,7 +4678,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_ALR67_Pilot"
    ],
-   "arg": 0,
+   "arg": 2040,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4702,7 +4702,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Func_Pilot"
    ],
-   "arg": 0,
+   "arg": 2041,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -4732,7 +4732,7 @@
    "command_names": [
     "device_commands.TACAN_Mode_Norm_Inv_Pilot"
    ],
-   "arg": 0,
+   "arg": 2042,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -4759,7 +4759,7 @@
    "command_names": [
     "device_commands.TACAN_Mode_X_Y_Pilot"
    ],
-   "arg": 0,
+   "arg": 2043,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -4786,7 +4786,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Func_Pilot"
    ],
-   "arg": 0,
+   "arg": 2044,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -4814,7 +4814,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Ampl_Pilot"
    ],
-   "arg": 0,
+   "arg": 2045,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -4842,7 +4842,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_Pilot"
    ],
-   "arg": 0,
+   "arg": 2048,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -4866,7 +4866,7 @@
    "command_names": [
     "device_commands.EJECT_CMD_Lever"
    ],
-   "arg": 0,
+   "arg": 2049,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -4890,7 +4890,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Qty_Wheel"
    ],
-   "arg": 0,
+   "arg": 205,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -4921,7 +4921,7 @@
    "command_names": [
     "device_commands.CANOPY_Drop_RIO"
    ],
-   "arg": 0,
+   "arg": 2051,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -4945,7 +4945,7 @@
    "command_names": [
     "device_commands.CMDS_L10_Wheel"
    ],
-   "arg": 0,
+   "arg": 206,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -4973,7 +4973,7 @@
    "command_names": [
     "device_commands.CMDS_L20_Wheel"
    ],
-   "arg": 0,
+   "arg": 207,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5001,7 +5001,7 @@
    "command_names": [
     "device_commands.CMDS_R20_Wheel"
    ],
-   "arg": 0,
+   "arg": 208,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5029,7 +5029,7 @@
    "command_names": [
     "device_commands.CMDS_R10_Wheel"
    ],
-   "arg": 0,
+   "arg": 209,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5057,7 +5057,7 @@
    "command_names": [
     "device_commands.RADAR_IR_volume"
    ],
-   "arg": 0,
+   "arg": 21,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -5081,7 +5081,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Intv_Wheel"
    ],
-   "arg": 0,
+   "arg": 210,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5111,7 +5111,7 @@
    "command_names": [
     "device_commands.INLET_RAMPS_LeftSwitch"
    ],
-   "arg": 0,
+   "arg": 2100,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5138,7 +5138,7 @@
    "command_names": [
     "device_commands.INLET_RAMPS_RightSwitch"
    ],
-   "arg": 0,
+   "arg": 2101,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5165,7 +5165,7 @@
    "command_names": [
     "device_commands.ENGINE_Crank"
    ],
-   "arg": 0,
+   "arg": 2102,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5193,7 +5193,7 @@
    "command_names": [
     "device_commands.ENGINE_Throttle_Temp"
    ],
-   "arg": 0,
+   "arg": 2103,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5221,7 +5221,7 @@
    "command_names": [
     "device_commands.ENGINE_Throttle_Mode"
    ],
-   "arg": 0,
+   "arg": 2104,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5249,7 +5249,7 @@
    "command_names": [
     "device_commands.ENGINE_Air_Start"
    ],
-   "arg": 0,
+   "arg": 2105,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5276,7 +5276,7 @@
    "command_names": [
     "device_commands.AFCS_Stability_Pitch"
    ],
-   "arg": 0,
+   "arg": 2106,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5303,7 +5303,7 @@
    "command_names": [
     "device_commands.AFCS_Stability_Roll"
    ],
-   "arg": 0,
+   "arg": 2107,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5330,7 +5330,7 @@
    "command_names": [
     "device_commands.AFCS_Stability_Yaw"
    ],
-   "arg": 0,
+   "arg": 2108,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5357,7 +5357,7 @@
    "command_names": [
     "device_commands.AP_Vector"
    ],
-   "arg": 0,
+   "arg": 2109,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5385,7 +5385,7 @@
    "command_names": [
     "device_commands.CMDS_JAMR_Intv_1"
    ],
-   "arg": 0,
+   "arg": 211,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5420,7 +5420,7 @@
    "command_names": [
     "device_commands.AP_Altitude"
    ],
-   "arg": 0,
+   "arg": 2110,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5447,7 +5447,7 @@
    "command_names": [
     "device_commands.AP_Heading"
    ],
-   "arg": 0,
+   "arg": 2111,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5475,7 +5475,7 @@
    "command_names": [
     "device_commands.AP_Engage"
    ],
-   "arg": 0,
+   "arg": 2112,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5502,7 +5502,7 @@
    "command_names": [
     "device_commands.TID_LAUNCH_ZONE"
    ],
-   "arg": 0,
+   "arg": 2113,
    "positions": {
     "press": 1.0
    },
@@ -5528,7 +5528,7 @@
    "command_names": [
     "device_commands.TID_VEL_VECTOR"
    ],
-   "arg": 0,
+   "arg": 2114,
    "positions": {
     "press": 1.0
    },
@@ -5554,7 +5554,7 @@
    "command_names": [
     "device_commands.TACAN_Btn_BIT_Pilot"
    ],
-   "arg": 0,
+   "arg": 2115,
    "positions": {
     "press": 1.0
    },
@@ -5580,7 +5580,7 @@
    "command_names": [
     "device_commands.CMDS_JAMR_Intv_10"
    ],
-   "arg": 0,
+   "arg": 212,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5615,7 +5615,7 @@
    "command_names": [
     "device_commands.CMDS_JAMR_Intv_100"
    ],
-   "arg": 0,
+   "arg": 213,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5650,7 +5650,7 @@
    "command_names": [
     "device_commands.RWR_DISPLAY_TYPE"
    ],
-   "arg": 0,
+   "arg": 2136,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -5680,7 +5680,7 @@
    "command_names": [
     "device_commands.RWR_DISPLAY_MODE"
    ],
-   "arg": 0,
+   "arg": 2137,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5708,7 +5708,7 @@
    "command_names": [
     "device_commands.RWR_ALR67_Volume"
    ],
-   "arg": 0,
+   "arg": 2138,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -5732,7 +5732,7 @@
    "command_names": [
     "device_commands.RWR_POWER"
    ],
-   "arg": 0,
+   "arg": 2139,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -5759,7 +5759,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Burst_Qty_Wheel"
    ],
-   "arg": 0,
+   "arg": 214,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5790,7 +5790,7 @@
    "command_names": [
     "device_commands.RWR_TEST_SWITCH"
    ],
-   "arg": 0,
+   "arg": 2140,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -5818,7 +5818,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Burst_Intv_Wheel"
    ],
-   "arg": 0,
+   "arg": 215,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5849,7 +5849,7 @@
    "command_names": [
     "device_commands.CMDS_Programmer_Reset"
    ],
-   "arg": 0,
+   "arg": 216,
    "positions": {
     "press": 1.0
    },
@@ -5875,7 +5875,7 @@
    "command_names": [
     "device_commands.RADAR_IR_threshold"
    ],
-   "arg": 0,
+   "arg": 22,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -5899,7 +5899,7 @@
    "command_names": [
     "device_commands.DATALINK_addr_hi"
    ],
-   "arg": 0,
+   "arg": 222,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5934,7 +5934,7 @@
    "command_names": [
     "device_commands.DATALINK_addr_lo"
    ],
-   "arg": 0,
+   "arg": 223,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -5969,7 +5969,7 @@
    "command_names": [
     "device_commands.CANOPY_Drop"
    ],
-   "arg": 0,
+   "arg": 224,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -5995,7 +5995,7 @@
     "device_commands.FLAPS_Lever",
     "device_commands.FLAPS_Lever_Outboard"
    ],
-   "arg": 0,
+   "arg": 225,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6019,7 +6019,7 @@
    "command_names": [
     "device_commands.TID_NON_ATTK"
    ],
-   "arg": 0,
+   "arg": 226,
    "positions": {
     "press": 1.0
    },
@@ -6034,7 +6034,7 @@
    "inferred": []
   },
   {
-   "id": "iff_m3_code_x_0_",
+   "id": "iff_m3_code_x_2261",
    "name": "IFF M3 code --x-",
    "kind": "multi",
    "device": 64,
@@ -6045,7 +6045,7 @@
    "command_names": [
     "device_commands.IFF_M3code_10s"
    ],
-   "arg": 0,
+   "arg": 2261,
    "positions": {
     "1": 0.0,
     "2": 0.7778,
@@ -6067,7 +6067,7 @@
    "inferred": []
   },
   {
-   "id": "iff_m3_code_x_0__",
+   "id": "iff_m3_code_x_2262",
    "name": "IFF M3 code ---x",
    "kind": "multi",
    "device": 64,
@@ -6078,7 +6078,7 @@
    "command_names": [
     "device_commands.IFF_M3code_1s"
    ],
-   "arg": 0,
+   "arg": 2262,
    "positions": {
     "1": 0.0,
     "2": 0.7778,
@@ -6111,7 +6111,7 @@
    "command_names": [
     "device_commands.ACCEL_Reset"
    ],
-   "arg": 0,
+   "arg": 228,
    "positions": {
     "press": 1.0
    },
@@ -6137,7 +6137,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_bright"
    ],
-   "arg": 0,
+   "arg": 23,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6161,7 +6161,7 @@
    "command_names": [
     "device_commands.BRAKE_ParkingBrake"
    ],
-   "arg": 0,
+   "arg": 237,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6187,7 +6187,7 @@
     "device_commands.HOOK_Handle",
     "device_commands.HOOK_Handle_Emergency"
    ],
-   "arg": 0,
+   "arg": 238,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6211,7 +6211,7 @@
    "command_names": [
     "device_commands.WEAP_Emer_Jettison"
    ],
-   "arg": 0,
+   "arg": 239,
    "positions": {
     "press": 1.0
    },
@@ -6237,7 +6237,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_pulse_vid"
    ],
-   "arg": 0,
+   "arg": 24,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6261,7 +6261,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_erase"
    ],
-   "arg": 0,
+   "arg": 25,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6287,7 +6287,7 @@
     "device_commands.AIRSPEED_KnobSwitch_RIO",
     "device_commands.AIRSPEED_Knob_RIO"
    ],
-   "arg": 0,
+   "arg": 254,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6311,7 +6311,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_pulse_gain"
    ],
-   "arg": 0,
+   "arg": 26,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6335,7 +6335,7 @@
    "command_names": [
     "device_commands.RADAR_ACM_thresh"
    ],
-   "arg": 0,
+   "arg": 27,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6359,7 +6359,7 @@
    "command_names": [
     "device_commands.RADAR_jamjet"
    ],
-   "arg": 0,
+   "arg": 28,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6383,7 +6383,7 @@
    "command_names": [
     "device_commands.RADAR_PD_thresh_clutter"
    ],
-   "arg": 0,
+   "arg": 29,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6396,7 +6396,7 @@
    "inferred": []
   },
   {
-   "id": "tacan_cmd_button_0",
+   "id": "tacan_cmd_button_292",
    "name": "TACAN CMD Button",
    "kind": "button",
    "device": 47,
@@ -6407,7 +6407,7 @@
    "command_names": [
     "device_commands.TACAN_CMD_Btn_Pilot"
    ],
-   "arg": 0,
+   "arg": 292,
    "positions": {
     "press": 1.0
    },
@@ -6433,7 +6433,7 @@
    "command_names": [
     "device_commands.RADAR_PD_thresh_clear"
    ],
-   "arg": 0,
+   "arg": 30,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6446,7 +6446,7 @@
    "inferred": []
   },
   {
-   "id": "altimeter_pressure_setting_0",
+   "id": "altimeter_pressure_setting_306",
    "name": "Altimeter Pressure Setting",
    "kind": "axis",
    "device": 29,
@@ -6457,7 +6457,7 @@
    "command_names": [
     "device_commands.ALTIMETER_Knob"
    ],
-   "arg": 0,
+   "arg": 306,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6470,7 +6470,7 @@
    "inferred": []
   },
   {
-   "id": "altimeter_mode_switch_0",
+   "id": "altimeter_mode_switch_307",
    "name": "Altimeter Mode Switch",
    "kind": "switch",
    "device": 29,
@@ -6481,7 +6481,7 @@
    "command_names": [
     "device_commands.ALTIMETER_Mode"
    ],
-   "arg": 0,
+   "arg": 307,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6511,7 +6511,7 @@
     "device_commands.RADARALT_Test",
     "device_commands.RADARALT_Knob"
    ],
-   "arg": 0,
+   "arg": 16020,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6524,7 +6524,7 @@
    "inferred": []
   },
   {
-   "id": "airspeed_indicator_bug_knob_0",
+   "id": "airspeed_indicator_bug_knob_2127",
    "name": "Airspeed Indicator Bug Knob",
    "kind": "other",
    "device": 28,
@@ -6537,7 +6537,7 @@
     "device_commands.AIRSPEED_KnobSwitch",
     "device_commands.AIRSPEED_Knob"
    ],
-   "arg": 0,
+   "arg": 2127,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6561,7 +6561,7 @@
    "command_names": [
     "device_commands.WINGSWEEP_EmergencySweepCover"
    ],
-   "arg": 0,
+   "arg": 317,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -6587,7 +6587,7 @@
     "device_commands.GEAR_Handle",
     "device_commands.GEAR_Handle_Emergency"
    ],
-   "arg": 0,
+   "arg": 326,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6611,7 +6611,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_aspect"
    ],
-   "arg": 0,
+   "arg": 34,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6639,7 +6639,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_Vc_scale"
    ],
-   "arg": 0,
+   "arg": 35,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6667,7 +6667,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_VOL_RIO"
    ],
-   "arg": 0,
+   "arg": 350,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6691,7 +6691,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_SQL_RIO"
    ],
-   "arg": 0,
+   "arg": 351,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -6718,7 +6718,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_CHAN_RIO"
    ],
-   "arg": 0,
+   "arg": 352,
    "positions": {
     "1": 0.0,
     "2": 0.0833,
@@ -6755,7 +6755,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FREQ_HUNDRED_TEN_RIO"
    ],
-   "arg": 0,
+   "arg": 354,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6783,7 +6783,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FREQ_UNIT_RIO"
    ],
-   "arg": 0,
+   "arg": 355,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6811,7 +6811,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FREQ_TEHTH_RIO"
    ],
-   "arg": 0,
+   "arg": 356,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6839,7 +6839,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FREQ_HUNDREDTH_RIO"
    ],
-   "arg": 0,
+   "arg": 357,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6867,7 +6867,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FUNC_RIO"
    ],
-   "arg": 0,
+   "arg": 358,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -6897,7 +6897,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FM_AM_RIO"
    ],
-   "arg": 0,
+   "arg": 359,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -6924,7 +6924,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_tgts"
    ],
-   "arg": 0,
+   "arg": 36,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -6952,7 +6952,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_BRT_RIO"
    ],
-   "arg": 0,
+   "arg": 360,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -6976,7 +6976,7 @@
    "command_names": [
     "device_commands.RADIO_KY28_ZEROIZE"
    ],
-   "arg": 0,
+   "arg": 361,
    "positions": {
     "press": 1.0
    },
@@ -7002,7 +7002,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_MLC"
    ],
-   "arg": 0,
+   "arg": 37,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7019,7 +7019,7 @@
    "inferred": []
   },
   {
-   "id": "tacan_bit_0",
+   "id": "tacan_bit_371",
    "name": "TACAN BIT",
    "kind": "button",
    "device": 47,
@@ -7030,7 +7030,7 @@
    "command_names": [
     "device_commands.TACAN_Btn_BIT_RIO"
    ],
-   "arg": 0,
+   "arg": 371,
    "positions": {
     "press": 1.0
    },
@@ -7045,7 +7045,7 @@
    "inferred": []
   },
   {
-   "id": "tacan_channel_x_y_0",
+   "id": "tacan_channel_x_y_372",
    "name": "TACAN Channel X/Y",
    "kind": "switch",
    "device": 47,
@@ -7056,7 +7056,7 @@
    "command_names": [
     "device_commands.TACAN_Mode_X_Y_RIO"
    ],
-   "arg": 0,
+   "arg": 372,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -7083,7 +7083,7 @@
    "command_names": [
     "device_commands.TACAN_Mode_Norm_Inv_RIO"
    ],
-   "arg": 0,
+   "arg": 373,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -7110,7 +7110,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Func_RIO"
    ],
-   "arg": 0,
+   "arg": 374,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -7140,7 +7140,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Vol_RIO"
    ],
-   "arg": 0,
+   "arg": 375,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7153,7 +7153,7 @@
    "inferred": []
   },
   {
-   "id": "an_alr_67_display_brightness_0",
+   "id": "an_alr_67_display_brightness_376",
    "name": "AN/ALR-67 Display Brightness",
    "kind": "axis",
    "device": 54,
@@ -7164,7 +7164,7 @@
    "command_names": [
     "device_commands.RWR_Brightness_RIO"
    ],
-   "arg": 0,
+   "arg": 376,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7188,7 +7188,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_AGC"
    ],
-   "arg": 0,
+   "arg": 38,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -7215,7 +7215,7 @@
    "command_names": [
     "device_commands.RIO_UHF_UPR_LWR"
    ],
-   "arg": 0,
+   "arg": 380,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -7242,7 +7242,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_XMTR_SEL_RIO"
    ],
-   "arg": 0,
+   "arg": 381,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7270,7 +7270,7 @@
    "command_names": [
     "device_commands.RIO_KY_MODE"
    ],
-   "arg": 0,
+   "arg": 382,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7298,7 +7298,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_VOL_RIO"
    ],
-   "arg": 0,
+   "arg": 383,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7324,7 +7324,7 @@
     "device_commands.WINGSWEEP_EmergencySweepLever",
     "device_commands.WINGSWEEP_EmergencyLeverExtended"
    ],
-   "arg": 0,
+   "arg": 384,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -7348,7 +7348,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Counter_Control"
    ],
-   "arg": 0,
+   "arg": 385,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7372,7 +7372,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Counter_Control"
    ],
-   "arg": 0,
+   "arg": 386,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7396,7 +7396,7 @@
    "command_names": [
     "device_commands.CMDS_Jammer_Oper_SW"
    ],
-   "arg": 0,
+   "arg": 387,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7424,7 +7424,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Oper_SW"
    ],
-   "arg": 0,
+   "arg": 388,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7452,7 +7452,7 @@
    "command_names": [
     "device_commands.CMDS_Chaff_Oper_SW"
    ],
-   "arg": 0,
+   "arg": 389,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7480,7 +7480,7 @@
    "command_names": [
     "device_commands.CMDS_Master_Mode_SW"
    ],
-   "arg": 0,
+   "arg": 390,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7508,7 +7508,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_paramp"
    ],
-   "arg": 0,
+   "arg": 3900,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -7535,7 +7535,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Salvo_SW"
    ],
-   "arg": 0,
+   "arg": 391,
    "positions": {
     "press": 1.0
    },
@@ -7561,7 +7561,7 @@
    "command_names": [
     "device_commands.CMDS_Flare_Mode_SW"
    ],
-   "arg": 0,
+   "arg": 398,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7589,7 +7589,7 @@
    "command_names": [
     "device_commands.CMDS_Jammer_Counter_Control"
    ],
-   "arg": 0,
+   "arg": 399,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7613,7 +7613,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_5"
    ],
-   "arg": 0,
+   "arg": 40,
    "positions": {
     "press": 1.0
    },
@@ -7639,7 +7639,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_RIO"
    ],
-   "arg": 0,
+   "arg": 400,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7652,7 +7652,7 @@
    "inferred": []
   },
   {
-   "id": "ics_amplifier_selector_0",
+   "id": "ics_amplifier_selector_401",
    "name": "ICS Amplifier Selector",
    "kind": "multi",
    "device": 2,
@@ -7663,7 +7663,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Ampl_RIO"
    ],
-   "arg": 0,
+   "arg": 401,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -7691,7 +7691,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Func_RIO"
    ],
-   "arg": 0,
+   "arg": 402,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7719,7 +7719,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_Remote_DISP_TEST_RIO"
    ],
-   "arg": 0,
+   "arg": 405,
    "positions": {
     "press": 1.0
    },
@@ -7745,7 +7745,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_Remote_DISP_BRT_RIO"
    ],
-   "arg": 0,
+   "arg": 406,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7769,7 +7769,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_10"
    ],
-   "arg": 0,
+   "arg": 41,
    "positions": {
     "press": 1.0
    },
@@ -7795,7 +7795,7 @@
    "command_names": [
     "device_commands.DATALINK_power"
    ],
-   "arg": 0,
+   "arg": 413,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -7823,7 +7823,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_20"
    ],
-   "arg": 0,
+   "arg": 42,
    "positions": {
     "press": 1.0
    },
@@ -7849,7 +7849,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_50"
    ],
-   "arg": 0,
+   "arg": 43,
    "positions": {
     "press": 1.0
    },
@@ -7875,7 +7875,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_100"
    ],
-   "arg": 0,
+   "arg": 44,
    "positions": {
     "press": 1.0
    },
@@ -7901,7 +7901,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_range_200"
    ],
-   "arg": 0,
+   "arg": 45,
    "positions": {
     "press": 1.0
    },
@@ -7927,7 +7927,7 @@
    "command_names": [
     "device_commands.TID_bright"
    ],
-   "arg": 0,
+   "arg": 48,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7951,7 +7951,7 @@
    "command_names": [
     "device_commands.TID_contrast"
    ],
-   "arg": 0,
+   "arg": 49,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -7975,7 +7975,7 @@
    "command_names": [
     "device_commands.GEAR_LaunchBarAbortCover"
    ],
-   "arg": 0,
+   "arg": 496,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -8002,7 +8002,7 @@
    "command_names": [
     "device_commands.GEAR_LaunchBarAbort"
    ],
-   "arg": 0,
+   "arg": 497,
    "positions": {
     "press": 1.0
    },
@@ -8028,7 +8028,7 @@
    "command_names": [
     "device_commands.EJECT_ArmRIO"
    ],
-   "arg": 0,
+   "arg": 498,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -8052,7 +8052,7 @@
    "command_names": [
     "device_commands.TID_nav_mode"
    ],
-   "arg": 0,
+   "arg": 50,
    "positions": {
     "1": 0.0,
     "2": 0.1667,
@@ -8084,7 +8084,7 @@
    "command_names": [
     "device_commands.TID_dest_mode"
    ],
-   "arg": 0,
+   "arg": 51,
    "positions": {
     "1": 0.0,
     "2": 0.1429,
@@ -8117,7 +8117,7 @@
    "command_names": [
     "device_commands.TID_CLSN"
    ],
-   "arg": 0,
+   "arg": 52,
    "positions": {
     "press": 1.0
    },
@@ -8143,7 +8143,7 @@
    "command_names": [
     "device_commands.TID_trackhold"
    ],
-   "arg": 0,
+   "arg": 53,
    "positions": {
     "press": 1.0
    },
@@ -8169,7 +8169,7 @@
    "command_names": [
     "device_commands.WEAP_Elec_Fuse"
    ],
-   "arg": 0,
+   "arg": 58,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -8199,7 +8199,7 @@
    "command_names": [
     "device_commands.WEAP_Type_Wheel"
    ],
-   "arg": 0,
+   "arg": 59,
    "positions": {
     "1": 0.0,
     "2": 0.0233,
@@ -8268,7 +8268,7 @@
    "command_names": [
     "device_commands.WEAP_Bomb_SinglePairs"
    ],
-   "arg": 0,
+   "arg": 60,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8295,7 +8295,7 @@
    "command_names": [
     "device_commands.WEAP_Bomb_StepRipple"
    ],
-   "arg": 0,
+   "arg": 61,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8322,7 +8322,7 @@
    "command_names": [
     "device_commands.WEAP_AG_Gun"
    ],
-   "arg": 0,
+   "arg": 62,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8349,7 +8349,7 @@
    "command_names": [
     "device_commands.HYD_TRANSFER_PUMP_Switch"
    ],
-   "arg": 0,
+   "arg": 629,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8376,7 +8376,7 @@
    "command_names": [
     "device_commands.WEAP_Mech_Fuse"
    ],
-   "arg": 0,
+   "arg": 63,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -8404,7 +8404,7 @@
    "command_names": [
     "device_commands.HYD_TRANSFER_PUMP_SwitchCover"
    ],
-   "arg": 0,
+   "arg": 630,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -8431,7 +8431,7 @@
    "command_names": [
     "device_commands.HYD_ISOL_Switch"
    ],
-   "arg": 0,
+   "arg": 631,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8458,7 +8458,7 @@
    "command_names": [
     "device_commands.HYD_HandPump"
    ],
-   "arg": 0,
+   "arg": 13133,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -8482,7 +8482,7 @@
    "command_names": [
     "device_commands.GEAR_DownLockOverride"
    ],
-   "arg": 0,
+   "arg": 633,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -8506,7 +8506,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station6"
    ],
-   "arg": 0,
+   "arg": 64,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8533,7 +8533,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station3"
    ],
-   "arg": 0,
+   "arg": 65,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8560,7 +8560,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_RackWeapons"
    ],
-   "arg": 0,
+   "arg": 66,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8587,7 +8587,7 @@
    "command_names": [
     "device_commands.LANTIRN_PowerMode"
    ],
-   "arg": 0,
+   "arg": 667,
    "positions": {
     "1": 0.0,
     "2": 0.5,
@@ -8615,7 +8615,7 @@
    "command_names": [
     "device_commands.LANTIRN_Laser_ARM"
    ],
-   "arg": 0,
+   "arg": 668,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8642,7 +8642,7 @@
    "command_names": [
     "device_commands.LANTIRN_OPER_STBY_Toggle"
    ],
-   "arg": 0,
+   "arg": 669,
    "positions": {
     "press": 1.0
    },
@@ -8668,7 +8668,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_RightTank"
    ],
-   "arg": 0,
+   "arg": 67,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8695,7 +8695,7 @@
    "command_names": [
     "device_commands.LANTIRN_TCS_Select_Toggle"
    ],
-   "arg": 0,
+   "arg": 670,
    "positions": {
     "press": 1.0
    },
@@ -8721,7 +8721,7 @@
    "command_names": [
     "device_commands.LANTIRN_IBIT"
    ],
-   "arg": 0,
+   "arg": 671,
    "positions": {
     "press": 1.0
    },
@@ -8747,7 +8747,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station1"
    ],
-   "arg": 0,
+   "arg": 68,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -8775,7 +8775,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station4"
    ],
-   "arg": 0,
+   "arg": 69,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8802,7 +8802,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station5"
    ],
-   "arg": 0,
+   "arg": 70,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8829,7 +8829,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_Station8"
    ],
-   "arg": 0,
+   "arg": 71,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -8857,7 +8857,7 @@
    "command_names": [
     "device_commands.WEAP_MSL_SPD_Gate"
    ],
-   "arg": 0,
+   "arg": 72,
    "positions": {
     "1": 0.0,
     "2": 0.2,
@@ -8888,7 +8888,7 @@
    "command_names": [
     "device_commands.WEAP_Jett_LeftTank"
    ],
-   "arg": 0,
+   "arg": 73,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -8915,7 +8915,7 @@
    "command_names": [
     "device_commands.WEAP_AA_Launch"
    ],
-   "arg": 0,
+   "arg": 74,
    "positions": {
     "press": 1.0
    },
@@ -8941,7 +8941,7 @@
    "command_names": [
     "device_commands.WEAP_Missile_Option"
    ],
-   "arg": 0,
+   "arg": 75,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -8969,7 +8969,7 @@
    "command_names": [
     "device_commands.WEAP_Selective_Jett"
    ],
-   "arg": 0,
+   "arg": 78,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -8997,7 +8997,7 @@
    "command_names": [
     "device_commands.RADAR_elevation_bars_knob"
    ],
-   "arg": 0,
+   "arg": 79,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -9026,7 +9026,7 @@
    "command_names": [
     "device_commands.RADAR_azimuth_scan_knob"
    ],
-   "arg": 0,
+   "arg": 80,
    "positions": {
     "1": 0.0,
     "2": 0.3333,
@@ -9055,7 +9055,7 @@
    "command_names": [
     "device_commands.RADAR_elevation_center_knob"
    ],
-   "arg": 0,
+   "arg": 81,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9079,7 +9079,7 @@
    "command_names": [
     "device_commands.HYD_EMERG_FLT_SwitchCover"
    ],
-   "arg": 0,
+   "arg": 615,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -9106,7 +9106,7 @@
    "command_names": [
     "device_commands.PilotOxygenOn"
    ],
-   "arg": 0,
+   "arg": 8114,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9133,7 +9133,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_READ_Pilot"
    ],
-   "arg": 0,
+   "arg": 8115,
    "positions": {
     "press": 1.0
    },
@@ -9159,7 +9159,7 @@
    "command_names": [
     "device_commands.PILOT_RUDDER_TRIM_SWITCH"
    ],
-   "arg": 0,
+   "arg": 8116,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9187,7 +9187,7 @@
    "command_names": [
     "device_commands.RADAR_azimuth_center_knob"
    ],
-   "arg": 0,
+   "arg": 82,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9211,7 +9211,7 @@
    "command_names": [
     "device_commands.RADAR_stab_switch"
    ],
-   "arg": 0,
+   "arg": 83,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9238,7 +9238,7 @@
    "command_names": [
     "device_commands.RADAR_VSL_switch"
    ],
-   "arg": 0,
+   "arg": 84,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9266,7 +9266,7 @@
    "command_names": [
     "device_commands.TCS_Trim_az"
    ],
-   "arg": 0,
+   "arg": 85,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9290,7 +9290,7 @@
    "command_names": [
     "device_commands.TCS_Trim_el"
    ],
-   "arg": 0,
+   "arg": 86,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9314,7 +9314,7 @@
    "command_names": [
     "device_commands.TCS_ACQ_switch"
    ],
-   "arg": 0,
+   "arg": 87,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9342,7 +9342,7 @@
    "command_names": [
     "device_commands.TCS_FOV_button"
    ],
-   "arg": 0,
+   "arg": 88,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9369,7 +9369,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Chnl_Ones_RIO"
    ],
-   "arg": 0,
+   "arg": 8890,
    "positions": {
     "1": 0.0,
     "2": 0.1111,
@@ -9404,7 +9404,7 @@
    "command_names": [
     "device_commands.TCS_Slave_switch"
    ],
-   "arg": 0,
+   "arg": 89,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9432,7 +9432,7 @@
    "command_names": [
     "device_commands.RECORD_power"
    ],
-   "arg": 0,
+   "arg": 90,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9460,7 +9460,7 @@
    "command_names": [
     "device_commands.SPOIL_Inboard_Override_Cover"
    ],
-   "arg": 0,
+   "arg": 902,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9487,7 +9487,7 @@
    "command_names": [
     "device_commands.SPOIL_Outboard_Override_Cover"
    ],
-   "arg": 0,
+   "arg": 903,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9516,7 +9516,7 @@
     "device_commands.AHRS_HDG_PushButton",
     "device_commands.AHRS_HDG_Rotate"
    ],
-   "arg": 0,
+   "arg": 16014,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9540,7 +9540,7 @@
    "command_names": [
     "device_commands.AHRS_ModeSwitch"
    ],
-   "arg": 0,
+   "arg": 905,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9568,7 +9568,7 @@
    "command_names": [
     "device_commands.AHRS_NorthSouth"
    ],
-   "arg": 0,
+   "arg": 906,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9595,7 +9595,7 @@
    "command_names": [
     "device_commands.SPOIL_Outboard_Override"
    ],
-   "arg": 0,
+   "arg": 907,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9622,7 +9622,7 @@
    "command_names": [
     "device_commands.SPOIL_Inboard_Override"
    ],
-   "arg": 0,
+   "arg": 908,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9649,7 +9649,7 @@
    "command_names": [
     "device_commands.AHRS_LatCorrection"
    ],
-   "arg": 0,
+   "arg": 909,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -9673,7 +9673,7 @@
    "command_names": [
     "device_commands.RECORD_mode"
    ],
-   "arg": 0,
+   "arg": 91,
    "positions": {
     "1": 0.0,
     "2": 0.25,
@@ -9703,7 +9703,7 @@
    "command_names": [
     "device_commands.ARA63_Power_Switch"
    ],
-   "arg": 0,
+   "arg": 910,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9730,7 +9730,7 @@
    "command_names": [
     "device_commands.ARA63_BIT_Btn"
    ],
-   "arg": 0,
+   "arg": 911,
    "positions": {
     "press": 1.0
    },
@@ -9756,7 +9756,7 @@
    "command_names": [
     "device_commands.ARA63_Chnl_Knob"
    ],
-   "arg": 0,
+   "arg": 912,
    "positions": {
     "1": 0.0,
     "2": 0.0526,
@@ -9801,7 +9801,7 @@
    "command_names": [
     "device_commands.LIGHTS_ACMPanel"
    ],
-   "arg": 0,
+   "arg": 15005,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -9835,7 +9835,7 @@
    "command_names": [
     "device_commands.LIGHTS_PositionWings"
    ],
-   "arg": 0,
+   "arg": 913,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9863,7 +9863,7 @@
    "command_names": [
     "device_commands.AoA_HookBypass"
    ],
-   "arg": 0,
+   "arg": 915,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9890,7 +9890,7 @@
    "command_names": [
     "device_commands.LIGHTS_PositionTail"
    ],
-   "arg": 0,
+   "arg": 916,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -9918,7 +9918,7 @@
    "command_names": [
     "device_commands.AoA_IndexerStrength"
    ],
-   "arg": 0,
+   "arg": 15006,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -9952,7 +9952,7 @@
    "command_names": [
     "device_commands.LIGHTS_Taxi"
    ],
-   "arg": 0,
+   "arg": 918,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -9979,7 +9979,7 @@
    "command_names": [
     "device_commands.LIGHTS_PositionFlash"
    ],
-   "arg": 0,
+   "arg": 919,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10006,7 +10006,7 @@
    "command_names": [
     "device_commands.WLP_Master_Caution_Pilot"
    ],
-   "arg": 0,
+   "arg": 9199,
    "positions": {
     "press": 1.0
    },
@@ -10032,7 +10032,7 @@
    "command_names": [
     "device_commands.LIGHTS_Instruments"
    ],
-   "arg": 0,
+   "arg": 15007,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -10066,7 +10066,7 @@
    "command_names": [
     "device_commands.LIGHTS_WhiteFlood"
    ],
-   "arg": 0,
+   "arg": 921,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10094,7 +10094,7 @@
    "command_names": [
     "device_commands.LIGHTS_Console"
    ],
-   "arg": 0,
+   "arg": 15008,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -10128,7 +10128,7 @@
    "command_names": [
     "device_commands.LIGHTS_AntiCol"
    ],
-   "arg": 0,
+   "arg": 923,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10155,7 +10155,7 @@
    "command_names": [
     "device_commands.LIGHTS_RedFlood"
    ],
-   "arg": 0,
+   "arg": 924,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10183,7 +10183,7 @@
    "command_names": [
     "device_commands.LIGHTS_Formation"
    ],
-   "arg": 0,
+   "arg": 15009,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -10217,7 +10217,7 @@
    "command_names": [
     "device_commands.ELEC_EMERG_GEN_Switch"
    ],
-   "arg": 0,
+   "arg": 926,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10244,7 +10244,7 @@
    "command_names": [
     "device_commands.ELEC_EMERG_GEN_SwitchCover"
    ],
-   "arg": 0,
+   "arg": 927,
    "positions": {
     "open": 0.0,
     "close": 1.0
@@ -10271,7 +10271,7 @@
    "command_names": [
     "device_commands.HYD_EMERG_FLT_Switch"
    ],
-   "arg": 0,
+   "arg": 928,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10299,7 +10299,7 @@
    "command_names": [
     "device_commands.AirSourceRam"
    ],
-   "arg": 0,
+   "arg": 929,
    "positions": {
     "press": 1.0
    },
@@ -10325,7 +10325,7 @@
    "command_names": [
     "device_commands.AirSourceLEng"
    ],
-   "arg": 0,
+   "arg": 930,
    "positions": {
     "press": 1.0
    },
@@ -10351,7 +10351,7 @@
    "command_names": [
     "device_commands.AirSourceREng"
    ],
-   "arg": 0,
+   "arg": 931,
    "positions": {
     "press": 1.0
    },
@@ -10377,7 +10377,7 @@
    "command_names": [
     "device_commands.AirSourceBoth"
    ],
-   "arg": 0,
+   "arg": 932,
    "positions": {
     "press": 1.0
    },
@@ -10403,7 +10403,7 @@
    "command_names": [
     "device_commands.AirSourceOff"
    ],
-   "arg": 0,
+   "arg": 933,
    "positions": {
     "press": 1.0
    },
@@ -10431,7 +10431,7 @@
     "device_commands.BIT_Selector",
     "device_commands.BIT_SelectorPush"
    ],
-   "arg": 0,
+   "arg": 934,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -10455,7 +10455,7 @@
    "command_names": [
     "device_commands.ELEC_MASTER_GEN_RightSwitch"
    ],
-   "arg": 0,
+   "arg": 936,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10483,7 +10483,7 @@
    "command_names": [
     "device_commands.ELEC_MASTER_GEN_LeftSwitch"
    ],
-   "arg": 0,
+   "arg": 937,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10511,7 +10511,7 @@
    "command_names": [
     "device_commands.RamAir"
    ],
-   "arg": 0,
+   "arg": 938,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10538,7 +10538,7 @@
    "command_names": [
     "device_commands.CabinPressureDump"
    ],
-   "arg": 0,
+   "arg": 939,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10565,7 +10565,7 @@
    "command_names": [
     "device_commands.TempAutoMan"
    ],
-   "arg": 0,
+   "arg": 940,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -10592,7 +10592,7 @@
    "command_names": [
     "device_commands.ENGINE_Probe_Anti_Ice"
    ],
-   "arg": 0,
+   "arg": 941,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10620,7 +10620,7 @@
    "command_names": [
     "device_commands.WindShield_Air"
    ],
-   "arg": 0,
+   "arg": 942,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10648,7 +10648,7 @@
    "command_names": [
     "device_commands.LIQUID_cooling_switch"
    ],
-   "arg": 0,
+   "arg": 95,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10676,7 +10676,7 @@
    "command_names": [
     "device_commands.Temperature"
    ],
-   "arg": 0,
+   "arg": 950,
    "positions": {
     "1": 0.0,
     "2": 0.125,
@@ -10710,7 +10710,7 @@
    "command_names": [
     "device_commands.BEACON_power_switch"
    ],
-   "arg": 0,
+   "arg": 96,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10738,7 +10738,7 @@
    "command_names": [
     "device_commands.WindShield_Defog"
    ],
-   "arg": 0,
+   "arg": 975,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -10766,7 +10766,7 @@
    "command_names": [
     "device_commands.CAP_category"
    ],
-   "arg": 0,
+   "arg": 98,
    "positions": {
     "1": 0.0,
     "2": 0.2,
@@ -10797,7 +10797,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_WCS_PDSTT"
    ],
-   "arg": 0,
+   "arg": 9916,
    "positions": {
     "press": 1.0
    },
@@ -10823,7 +10823,7 @@
    "command_names": [
     "device_commands.DECM_Vol_Knob"
    ],
-   "arg": 0,
+   "arg": 9950,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -10847,7 +10847,7 @@
    "command_names": [
     "device_commands.WEAP_Interval_10s"
    ],
-   "arg": 0,
+   "arg": 9960,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -10882,7 +10882,7 @@
    "command_names": [
     "device_commands.WEAP_Interval_100s"
    ],
-   "arg": 0,
+   "arg": 9961,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -10917,7 +10917,7 @@
    "command_names": [
     "device_commands.WEAP_Quantity_10s"
    ],
-   "arg": 0,
+   "arg": 9962,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -10952,7 +10952,7 @@
    "command_names": [
     "device_commands.WEAP_Quantity_1s"
    ],
-   "arg": 0,
+   "arg": 9963,
    "positions": {
     "1": 0.0,
     "2": 0.1,
@@ -10987,7 +10987,7 @@
    "command_names": [
     "device_commands.WEAP_Next_launch"
    ],
-   "arg": 0,
+   "arg": 9964,
    "positions": {
     "press": 1.0
    },
@@ -11013,7 +11013,7 @@
    "command_names": [
     "device_commands.INT_Code_100s"
    ],
-   "arg": 0,
+   "arg": 895,
    "positions": {
     "1": 0.0,
     "2": 0.864,
@@ -11035,7 +11035,7 @@
    "inferred": []
   },
   {
-   "id": "interrogator_code_x_0",
+   "id": "interrogator_code_x_896",
    "name": "Interrogator Code --x-",
    "kind": "multi",
    "device": 64,
@@ -11046,7 +11046,7 @@
    "command_names": [
     "device_commands.INT_Code_10s"
    ],
-   "arg": 0,
+   "arg": 896,
    "positions": {
     "1": 0.0,
     "2": 0.864,
@@ -11068,7 +11068,7 @@
    "inferred": []
   },
   {
-   "id": "interrogator_code_x_0_",
+   "id": "interrogator_code_x_894",
    "name": "Interrogator Code x---",
    "kind": "multi",
    "device": 64,
@@ -11079,7 +11079,7 @@
    "command_names": [
     "device_commands.INT_Code_1000s"
    ],
-   "arg": 0,
+   "arg": 894,
    "positions": {
     "1": 0.0,
     "2": 0.864,
@@ -11101,7 +11101,7 @@
    "inferred": []
   },
   {
-   "id": "interrogator_code_x_0__",
+   "id": "interrogator_code_x_897",
    "name": "Interrogator Code ---x",
    "kind": "multi",
    "device": 64,
@@ -11112,7 +11112,7 @@
    "command_names": [
     "device_commands.INT_Code_1s"
    ],
-   "arg": 0,
+   "arg": 897,
    "positions": {
     "1": 0.0,
     "2": 0.864,
@@ -11145,7 +11145,7 @@
    "command_names": [
     "device_commands.INT_M4_ALARM"
    ],
-   "arg": 0,
+   "arg": 892,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11172,7 +11172,7 @@
    "command_names": [
     "device_commands.INT_Mode"
    ],
-   "arg": 0,
+   "arg": 893,
    "positions": {
     "1": 0.0,
     "2": 0.791,
@@ -11203,7 +11203,7 @@
    "command_names": [
     "device_commands.INT_CHAL_TEST"
    ],
-   "arg": 0,
+   "arg": 891,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11231,7 +11231,7 @@
    "command_names": [
     "device_commands.ALR45_Volume_RIO"
    ],
-   "arg": 0,
+   "arg": 158,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -11255,7 +11255,7 @@
    "command_names": [
     "device_commands.ALR50_Volume_RIO"
    ],
-   "arg": 0,
+   "arg": 157,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -11279,7 +11279,7 @@
    "command_names": [
     "device_commands.HUD_Baro_set"
    ],
-   "arg": 0,
+   "arg": 1037,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -11303,7 +11303,7 @@
    "command_names": [
     "device_commands.PILOT_NVG_BIN"
    ],
-   "arg": 0,
+   "arg": 2150,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -11316,7 +11316,7 @@
    "inferred": []
   },
   {
-   "id": "clock_timer_start_stop_reset_0",
+   "id": "clock_timer_start_stop_reset_1099",
    "name": "Clock Timer Start/Stop/Reset",
    "kind": "button",
    "device": 27,
@@ -11327,7 +11327,7 @@
    "command_names": [
     "device_commands.CLOCK_Timer"
    ],
-   "arg": 0,
+   "arg": 1099,
    "positions": {
     "press": 1.0
    },
@@ -11353,7 +11353,7 @@
    "command_names": [
     "device_commands.RADAR_DDD_filter"
    ],
-   "arg": 0,
+   "arg": -1,
    "positions": {
     "press": 1.0
    },
@@ -11379,7 +11379,7 @@
    "command_names": [
     "device_commands.ECMD_Corr_Cycle"
    ],
-   "arg": 0,
+   "arg": 4100,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11407,7 +11407,7 @@
    "command_names": [
     "device_commands.ECMD_Data_ADF_Cycle"
    ],
-   "arg": 0,
+   "arg": 4103,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11435,7 +11435,7 @@
    "command_names": [
     "device_commands.ECMD_Mode_Cycle"
    ],
-   "arg": 0,
+   "arg": 4102,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11462,7 +11462,7 @@
    "command_names": [
     "device_commands.ECMD_Override_Cycle"
    ],
-   "arg": 0,
+   "arg": 4101,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11490,7 +11490,7 @@
    "command_names": [
     "device_commands.ALR45_AAA_Cycle"
    ],
-   "arg": 0,
+   "arg": 173,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11517,7 +11517,7 @@
    "command_names": [
     "device_commands.ALR45_BAND_HIGH"
    ],
-   "arg": 0,
+   "arg": 155,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11545,7 +11545,7 @@
    "command_names": [
     "device_commands.ALR45_BAND_LOW"
    ],
-   "arg": 0,
+   "arg": 154,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11573,7 +11573,7 @@
    "command_names": [
     "device_commands.ALR45_BAND_MID"
    ],
-   "arg": 0,
+   "arg": 178,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11601,7 +11601,7 @@
    "command_names": [
     "device_commands.ALR45_Power_Cycle"
    ],
-   "arg": 0,
+   "arg": 174,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11628,7 +11628,7 @@
    "command_names": [
     "device_commands.ALR45_Unknown"
    ],
-   "arg": 0,
+   "arg": 172,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11655,7 +11655,7 @@
    "command_names": [
     "device_commands.ALR45_Test_High"
    ],
-   "arg": 0,
+   "arg": 170,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11682,7 +11682,7 @@
    "command_names": [
     "device_commands.ALR45_Test_ML"
    ],
-   "arg": 0,
+   "arg": 171,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11709,7 +11709,7 @@
    "command_names": [
     "device_commands.ALR45_Test_LowMid"
    ],
-   "arg": 0,
+   "arg": 169,
    "positions": {
     "down": -1.0,
     "middle": 0.0,
@@ -11737,7 +11737,7 @@
    "command_names": [
     "device_commands.FIRE_Bottle_Fire_L"
    ],
-   "arg": 0,
+   "arg": 15083,
    "positions": {
     "press": 1.0
    },
@@ -11763,7 +11763,7 @@
    "command_names": [
     "device_commands.FIRE_Bottle_Fire_R"
    ],
-   "arg": 0,
+   "arg": 15082,
    "positions": {
     "press": 1.0
    },
@@ -11789,7 +11789,7 @@
    "command_names": [
     "device_commands.WEAP_Gun_Rate"
    ],
-   "arg": 0,
+   "arg": 16000,
    "positions": {
     "press": 1.0
    },
@@ -11815,7 +11815,7 @@
    "command_names": [
     "device_commands.HUD_ShowHide"
    ],
-   "arg": 0,
+   "arg": 3490,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -11998,7 +11998,7 @@
    "command_names": [
     "device_commands.ENGINE_Mid_Compression_Bypass_Test"
    ],
-   "arg": 0,
+   "arg": 13132,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12025,7 +12025,7 @@
    "command_names": [
     "device_commands.WEAP_MSL_Mode"
    ],
-   "arg": 0,
+   "arg": 16003,
    "positions": {
     "press": 1.0
    },
@@ -12051,7 +12051,7 @@
    "command_names": [
     "device_commands.WEAP_MSL_Prep"
    ],
-   "arg": 0,
+   "arg": 16002,
    "positions": {
     "press": 1.0
    },
@@ -12077,7 +12077,7 @@
    "command_names": [
     "device_commands.PILOT_NVG_EQUIP_SWITCH"
    ],
-   "arg": 0,
+   "arg": 2152,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12101,7 +12101,7 @@
    "command_names": [
     "device_commands.RIO_NVG_EQUIP_SWITCH"
    ],
-   "arg": 0,
+   "arg": 2151,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12128,7 +12128,7 @@
    "command_names": [
     "device_commands.PILOT_CHECKLIST_TOOL_PEN_CLICK"
    ],
-   "arg": 0,
+   "arg": 7037,
    "positions": {
     "press": 1.0
    },
@@ -12143,7 +12143,7 @@
    "inferred": []
   },
   {
-   "id": "pen_0",
+   "id": "pen_7047",
    "name": "Pen",
    "kind": "button",
    "device": 79,
@@ -12154,7 +12154,7 @@
    "command_names": [
     "device_commands.RIO_CHECKLIST_TOOL_PEN_CLICK"
    ],
-   "arg": 0,
+   "arg": 7047,
    "positions": {
     "press": 1.0
    },
@@ -12180,7 +12180,7 @@
    "command_names": [
     "device_commands.Adjust_Pilot_Mirror_L"
    ],
-   "arg": 0,
+   "arg": 256,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12204,7 +12204,7 @@
    "command_names": [
     "device_commands.Adjust_Pilot_Mirror_R"
    ],
-   "arg": 0,
+   "arg": 257,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12228,7 +12228,7 @@
    "command_names": [
     "device_commands.Adjust_Pilot_Mirror_T"
    ],
-   "arg": 0,
+   "arg": 258,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12252,7 +12252,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_ALR45"
    ],
-   "arg": 0,
+   "arg": 2046,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12276,7 +12276,7 @@
    "command_names": [
     "device_commands.RADIO_ICS_Vol_ALR50"
    ],
-   "arg": 0,
+   "arg": 2050,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12300,7 +12300,7 @@
    "command_names": [
     "device_commands.PILOT_GREASE_PENCIL_LEFT_SWITCH"
    ],
-   "arg": 0,
+   "arg": 3036,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12316,7 +12316,7 @@
    "inferred": []
   },
   {
-   "id": "plt_hide_show_grease_pencil_0",
+   "id": "plt_hide_show_grease_pencil_3037",
    "name": "Hide/Show Grease Pencil",
    "kind": "switch",
    "device": 77,
@@ -12327,7 +12327,7 @@
    "command_names": [
     "device_commands.PILOT_GREASE_PENCIL_RIGHT_SWITCH"
    ],
-   "arg": 0,
+   "arg": 3037,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12354,7 +12354,7 @@
    "command_names": [
     "device_commands.RIO_GREASE_PENCIL_LEFT_SWITCH"
    ],
-   "arg": 0,
+   "arg": 3038,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12370,7 +12370,7 @@
    "inferred": []
   },
   {
-   "id": "rio_hide_show_grease_pencil_0",
+   "id": "rio_hide_show_grease_pencil_3039",
    "name": "Hide/Show Grease Pencil",
    "kind": "switch",
    "device": 77,
@@ -12381,7 +12381,7 @@
    "command_names": [
     "device_commands.RIO_GREASE_PENCIL_RIGHT_SWITCH"
    ],
-   "arg": 0,
+   "arg": 3039,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12397,7 +12397,7 @@
    "inferred": []
   },
   {
-   "id": "master_caution_reset_0",
+   "id": "master_caution_reset_9229",
    "name": "Master Caution Reset",
    "kind": "button",
    "device": 35,
@@ -12408,7 +12408,7 @@
    "command_names": [
     "device_commands.WLP_Master_Caution_RIO"
    ],
-   "arg": 0,
+   "arg": 9229,
    "positions": {
     "press": 1.0
    },
@@ -12434,7 +12434,7 @@
    "command_names": [
     "device_commands.Adjust_RIO_Mirror"
    ],
-   "arg": 0,
+   "arg": 46,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12447,7 +12447,7 @@
    "inferred": []
   },
   {
-   "id": "standby_adi_knob_0",
+   "id": "standby_adi_knob_6155",
    "name": "Standby ADI Knob",
    "kind": "other",
    "device": 31,
@@ -12460,7 +12460,7 @@
     "device_commands.STDBYADI_RIO_uncage",
     "device_commands.STDBYADI_RIO_trim"
    ],
-   "arg": 0,
+   "arg": 6155,
    "positions": {},
    "momentary": false,
    "danger": false,
@@ -12484,7 +12484,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_FREQ_MODE_RIO"
    ],
-   "arg": 0,
+   "arg": 353,
    "positions": {
     "1": 0.0,
     "2": 0.2,
@@ -12515,7 +12515,7 @@
    "command_names": [
     "device_commands.WEAP_SW_Cool"
    ],
-   "arg": 0,
+   "arg": 16001,
    "positions": {
     "press": 1.0
    },
@@ -12541,7 +12541,7 @@
    "command_names": [
     "device_commands.EJECT_ArmPilot"
    ],
-   "arg": 0,
+   "arg": 404,
    "positions": {},
    "momentary": false,
    "danger": true,
@@ -12554,7 +12554,7 @@
    "inferred": []
   },
   {
-   "id": "tacan_channel_lever_ones_0",
+   "id": "tacan_channel_lever_ones_8889",
    "name": "TACAN Channel Lever (Ones)",
    "kind": "multi",
    "device": 47,
@@ -12565,7 +12565,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Chnl_Ones_Pilot"
    ],
-   "arg": 0,
+   "arg": 8889,
    "positions": {
     "1": 0.0,
     "2": 0.1111,
@@ -12600,7 +12600,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Chnl_Tens_Pilot"
    ],
-   "arg": 0,
+   "arg": 8888,
    "positions": {
     "1": 0.0,
     "2": 0.0833,
@@ -12627,7 +12627,7 @@
    "inferred": []
   },
   {
-   "id": "tacan_channel_wheel_tens_0",
+   "id": "tacan_channel_wheel_tens_8891",
    "name": "TACAN Channel Wheel (Tens)",
    "kind": "multi",
    "device": 47,
@@ -12638,7 +12638,7 @@
    "command_names": [
     "device_commands.TACAN_Knob_Chnl_Tens_RIO"
    ],
-   "arg": 0,
+   "arg": 8891,
    "positions": {
     "1": 0.0,
     "2": 0.0833,
@@ -12676,7 +12676,7 @@
    "command_names": [
     "device_commands.THROTTLE_Left_Throttle_CutOff"
    ],
-   "arg": 0,
+   "arg": 12300,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12703,7 +12703,7 @@
    "command_names": [
     "device_commands.THROTTLE_Right_Throttle_CutOff"
    ],
-   "arg": 0,
+   "arg": 12301,
    "positions": {
     "off": 0.0,
     "on": 1.0
@@ -12730,7 +12730,7 @@
    "command_names": [
     "device_commands.VDIG_VDI_filter"
    ],
-   "arg": 0,
+   "arg": -1,
    "positions": {
     "press": 1.0
    },
@@ -12745,7 +12745,7 @@
    "inferred": []
   },
   {
-   "id": "uhf_radio_remote_display_test_0",
+   "id": "uhf_radio_remote_display_test_15004",
    "name": "UHF Radio Remote Display Test",
    "kind": "button",
    "device": 3,
@@ -12756,7 +12756,7 @@
    "command_names": [
     "device_commands.RADIO_UHF_Remote_DISP_TEST_Pilot"
    ],
-   "arg": 0,
+   "arg": 15004,
    "positions": {
     "press": 1.0
    },
@@ -12782,7 +12782,7 @@
    "command_names": [
     "device_commands.RADIO_VHF_Remote_DISP_TEST_Pilot"
    ],
-   "arg": 0,
+   "arg": 15003,
    "positions": {
     "press": 1.0
    },

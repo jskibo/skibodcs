@@ -1,4 +1,4 @@
-# skibodcs v0.7
+# skibodcs v0.8
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -81,7 +81,7 @@ That file has not been parsed yet (not supplied), so nothing ships in sequences\
 Modules shipped: F-16C (288 controls), F/A-18C (274), AH-64D (478: PLT 220 / CPG 258; `crew = "PLT"` or `"CPG"`),
 F-14B (469: PLT 137 / RIO 29 / shared 303; `crew = "PLT"` or `"RIO"`; files live in Mods\\aircraft\\F14, no hyphen).
 **F-14 caveats.** Heatblur defines its own helpers (the extractor wraps them) and hides cockpit argument numbers in
-`draw_args.lua` (not supplied) -> no read-back for F-14 until that file is added. There is no ED-style autostart macro
+`draw_args.lua` (supplied in v0.8: read-back now works for 461 of 469 F-14 controls; pass `--draw-args` when regenerating). There is no ED-style autostart macro
 file, so NO value is confirmed: gear/hook/parking-brake values in airframes\\f-14b.toml are guesses and the app asks you to
 say "confirm" before acting on any unconfirmed value of a consequential control (gear, hook, flaps, master arm, fuel, engines,
 brakes, canopy...). The F-14's command file declares Engine_Start = 311 / Engine_Stop = 312 (the standard autostart/autostop
@@ -96,6 +96,17 @@ ends ready to taxi), "autostop", "abort the start". Spoken: section headings, pr
 to move a physical lever (throttle / power levers) it is spoken as a prompt; the sim cannot move your HOTAS.
 Not replayed: ED's internal verification checks (engine RPM, INS ready...) - the timeline just continues.
 Untested against a live sim: that replaying these through performClickableAction behaves like ED's internal runner.
+
+## v0.8: A-10C and A-10C II
+Files: airframes\\a-10c.* / a-10c-ii.* and sequences\\a-10c.json / a-10c-ii.json (unit types `A-10C` and `A-10C_2`; ED's two
+cockpits are ~99% identical, the II adds ARC-210 radio items). 470 / 473 controls, every one with a cockpit arg number (read-back).
+Autostart / autostop come from ED's own Macro_sequencies.lua (146 / 46 steps, ~6.6 min at 1x, no pilot prompts).
+Pinned to ED's data: APU, battery, AC generators, APU generator, oxygen supply. NOT pinned (provisional, the app asks you to say
+"confirm"): the landing gear lever (down = 1.0 / up = 0.0 is a guess; ED's autostart never touches it) and AHCP master arm.
+Engine start buttons are momentary. Extractor changes that came with it: (1) the cockpit arg number is now read from the element a
+module-defined helper actually returns (before, A-10 args all came out 0); (2) wishlist command names may be `DEVICE:command`,
+because the A-10 reuses `device_commands.Button_N` on every device; (3) `--draw-args` for the F-14. Three controls each in the
+F-16C and F/A-18C files gained their real arg numbers from (1); nothing else in those files changed.
 
 ## Safety rule (v0.7)
 Unconfirmed value + consequential control => the app says "Confirm <thing>? That value is unverified for this aircraft" and acts

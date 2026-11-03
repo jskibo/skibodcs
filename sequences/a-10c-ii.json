@@ -1,0 +1,1177 @@
+{
+ "aircraft": "A-10C_2",
+ "source": "Macro_sequencies.lua (ED)",
+ "note": "Timeline replayed from ED's own autostart. check_condition entries that ask the pilot to move a physical lever become spoken prompts; ED's internal verification checks are not replayed.",
+ "sequences": {
+  "autostart": [
+   {
+    "delay": 3.8,
+    "message": "AUTOSTART SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 0.05,
+    "device": 38,
+    "command": 3030,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 0.106,
+    "message": "BATTERY - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3006,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 2.028,
+    "message": "INVERTER - STBY",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3002,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 3.708,
+    "message": "LEFT MAIN BOOST PUMP - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 36,
+    "command": 3007,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.918,
+    "message": "LEFT WING BOOST PUMP - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 36,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.996,
+    "message": "RIGHT MAIN BOOST PUMP - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 36,
+    "command": 3008,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.882,
+    "message": "RIGHT WING BOOST PUMP - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 36,
+    "command": 3006,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 2.304,
+    "message": "APU - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 37,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 4.344,
+    "message": "THROTTLE PINKY SWITCH - AFT",
+    "speak": false
+   },
+   {
+    "delay": 3.372,
+    "message": "POSITION LIGHTS - FLASH",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 49,
+    "command": 3008,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 2.418,
+    "message": "VHF AM RADIO - TR + G",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 55,
+    "command": 3043,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 2.562,
+    "message": "UHF RADIO - MAIN",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 54,
+    "command": 3008,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 1.308,
+    "message": "VHF FM RADIO - TR",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 56,
+    "command": 3003,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 6.702,
+    "message": "LEFT GENERATOR - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3004,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.338,
+    "message": "RIGHT GENERATOR - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 16.674,
+    "message": "APU GENERATOR - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 4.54,
+    "message": "LEFT ENGINE - START",
+    "speak": false
+   },
+   {
+    "delay": 6.572,
+    "message": "EGI - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 22,
+    "command": 3006,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.702,
+    "message": "CDU - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 22,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 4.974,
+    "message": "CICU - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 7,
+    "command": 3008,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.918,
+    "message": "JTRS - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 7,
+    "command": 3009,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.262,
+    "message": "IFFCC - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 7,
+    "command": 3010,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.274,
+    "device": 7,
+    "command": 3010,
+    "value": 0.2,
+    "note": ""
+   },
+   {
+    "delay": 3.918,
+    "message": "LEFT MFCD - DAY",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 2,
+    "command": 3036,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.408,
+    "device": 2,
+    "command": 3036,
+    "value": 0.2,
+    "note": ""
+   },
+   {
+    "delay": 1.782,
+    "message": "RIGHT MFCD - DAY",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 3,
+    "command": 3036,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.34,
+    "device": 3,
+    "command": 3036,
+    "value": 0.2,
+    "note": ""
+   },
+   {
+    "delay": 14.8,
+    "message": "ALIGNING INERTIAL NAVIGATION SYSTEM - 4 MINUTES LEFT",
+    "speak": false
+   },
+   {
+    "delay": 3.442,
+    "message": "CEASE MASTER CAUTION LIGHT",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 24,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.086,
+    "device": 24,
+    "command": 3001,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 3.244,
+    "message": "CMSP MODE - STBY",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 4,
+    "command": 3018,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 1.988,
+    "message": "MWS - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 4,
+    "command": 3010,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.736,
+    "message": "JAMMER - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 4,
+    "command": 3012,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.814,
+    "message": "RWR - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 4,
+    "command": 3014,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.95,
+    "message": "CHAFF/FLARE DISPENSERS - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 4,
+    "command": 3016,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 8.238,
+    "message": "RIGHT ENGINE - START",
+    "speak": false
+   },
+   {
+    "delay": 7.686,
+    "message": "SELECT CDU PAGE ON RIGHT MFCD",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 3,
+    "command": 3013,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.108,
+    "device": 3,
+    "command": 3013,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 32.708,
+    "message": "ALIGNING INERTIAL NAVIGATION SYSTEM - 3 MINUTES LEFT",
+    "speak": false
+   },
+   {
+    "delay": 8.74,
+    "message": "APU GENERATOR - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3001,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.868,
+    "message": "APU - OFF",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 37,
+    "command": 3005,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 4.702,
+    "message": "YAW SAS LEFT CHANNEL - ENGAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3003,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.11,
+    "device": 38,
+    "command": 3004,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.338,
+    "message": "YAW SAS RIGHT CHANNEL - ENGAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.096,
+    "device": 38,
+    "command": 3006,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.044,
+    "message": "PITCH SAS LEFT CHANNEL - ENGAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3007,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.112,
+    "device": 38,
+    "command": 3008,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.43,
+    "message": "PITCH SAS RIGHT CHANNEL - ENGAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3009,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.132,
+    "device": 38,
+    "command": 3010,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.652,
+    "message": "TAKEOFF TRIM - SET",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3012,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.756,
+    "device": 38,
+    "command": 3012,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 10.79,
+    "message": "ANTICOLLISION LIGHTS - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 49,
+    "command": 3010,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.096,
+    "device": 49,
+    "command": 3011,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 4.38,
+    "message": "ANTISKID - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3032,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.438,
+    "device": 38,
+    "command": 3029,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 19.316,
+    "message": "ALIGNING INERTIAL NAVIGATION SYSTEM - 2 MINUTES LEFT",
+    "speak": false
+   },
+   {
+    "delay": 60.0,
+    "message": "ALIGNING INERTIAL NAVIGATION SYSTEM - 1 MINUTE LEFT",
+    "speak": false
+   },
+   {
+    "delay": 16.184,
+    "message": "LEFT MFCD - LOAD ALL",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 2,
+    "command": 3010,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.108,
+    "device": 2,
+    "command": 3010,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 4.708,
+    "message": "PITOT HEAT - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 41,
+    "command": 3005,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 16.184,
+    "message": "RECALL CDU PAGE ON RIGHT MFCD",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 3,
+    "command": 3013,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.108,
+    "device": 3,
+    "command": 3013,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 22.708,
+    "message": "INERTIAL NAVIGATION SYSTEM ALIGNMENT COMPLETE",
+    "speak": true
+   },
+   {
+    "delay": 3.95,
+    "message": "CDU - SWITCH INS TO NAV",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 9,
+    "command": 3007,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.296,
+    "device": 9,
+    "command": 3007,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 6.126,
+    "message": "NMSP - SELECT EGI MODE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 46,
+    "command": 3002,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.102,
+    "device": 46,
+    "command": 3002,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 11.412,
+    "message": "RADAR ALTIMETER - NORM",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 67,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.888,
+    "message": "EAC - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3026,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.106,
+    "device": 38,
+    "command": 3027,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 13.53,
+    "message": "CDU - SELECT WP MENU PAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 9,
+    "command": 3011,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.104,
+    "device": 9,
+    "command": 3011,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.38,
+    "message": "CDU - SELECT STEERPOINT PAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 9,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.106,
+    "device": 9,
+    "command": 3001,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 5.384,
+    "message": "AAP STEERPT SWITCH - SET FLT PLAN",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 22,
+    "command": 3001,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 0.402,
+    "device": 22,
+    "command": 3001,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.398,
+    "message": "SELECT TAD PAGE ON LEFT MFCD",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 2,
+    "command": 3015,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.108,
+    "device": 2,
+    "command": 3015,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.708,
+    "message": "NOSEWHEEL STEERING - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 17,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 3.358,
+    "message": "SAI - UNCAGE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 48,
+    "command": 3003,
+    "value": -0.075,
+    "note": ""
+   },
+   {
+    "delay": 0.082,
+    "device": 48,
+    "command": 3003,
+    "value": -0.075,
+    "note": ""
+   },
+   {
+    "delay": 0.086,
+    "device": 48,
+    "command": 3003,
+    "value": -0.075,
+    "note": ""
+   },
+   {
+    "delay": 0.112,
+    "device": 48,
+    "command": 3003,
+    "value": 0.075,
+    "note": ""
+   },
+   {
+    "delay": 0.508,
+    "device": 48,
+    "command": 3003,
+    "value": -0.075,
+    "note": ""
+   },
+   {
+    "delay": 0.326,
+    "message": "ALTIMETER - ELECT",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 62,
+    "command": 3002,
+    "value": -1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.674,
+    "device": 62,
+    "command": 3002,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 0.326,
+    "message": "SEAT - ARMED",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 39,
+    "command": 3010,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 0.402,
+    "message": "CANOPY - CLOSE",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 39,
+    "command": 3006,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 7.384,
+    "device": 39,
+    "command": 3006,
+    "value": 0.5,
+    "note": ""
+   },
+   {
+    "delay": 0.126,
+    "message": "OXYGEN SUPPLY - ON",
+    "speak": false
+   },
+   {
+    "delay": 0.0,
+    "device": 40,
+    "command": 3001,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 0.616,
+    "message": "AUTOSTART COMPLETE. AIRCRAFT IS READY TO FLY",
+    "speak": true
+   }
+  ],
+  "autostop": [
+   {
+    "delay": 3.8,
+    "message": "AUTOSTOP SEQUENCE IS RUNNING",
+    "speak": true
+   },
+   {
+    "delay": 1.978,
+    "message": "PITOT HEATING OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 41,
+    "command": 3005,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.468,
+    "message": "ANTISKID OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3028,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.77,
+    "message": "POSITION LIGHTS FLASH",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 49,
+    "command": 3008,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 1.224,
+    "message": "SIGNAL LIGHTS BRIGHT",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 49,
+    "command": 3013,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 2.191,
+    "message": "EMERGENCY BRAKE ON",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 38,
+    "command": 3030,
+    "value": 1.0,
+    "note": ""
+   },
+   {
+    "delay": 2.283,
+    "message": "CANOPY - OPEN",
+    "speak": false
+   },
+   {
+    "delay": 1.696,
+    "message": "IFFCC OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 7,
+    "command": 3010,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.136,
+    "message": "CICU OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 7,
+    "command": 3008,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.898,
+    "message": "LEFT MFCD OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 2,
+    "command": 3036,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 2.426,
+    "device": 2,
+    "command": 3036,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.87,
+    "message": "RIGHT MFCD OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 3,
+    "command": 3036,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 1.384,
+    "device": 3,
+    "command": 3036,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.172,
+    "message": "LAND TAXI LIGHTS OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 49,
+    "command": 3014,
+    "value": 0.1,
+    "note": ""
+   },
+   {
+    "delay": 1.8,
+    "message": "FLAPS UP",
+    "speak": true
+   },
+   {
+    "delay": 2.918,
+    "message": "EGI POWER OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 22,
+    "command": 3006,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 3.85,
+    "message": "CDU POWER OFF OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 22,
+    "command": 3005,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 3.696,
+    "message": "LEFT ENGINE STOP",
+    "speak": true
+   },
+   {
+    "delay": 1.754,
+    "message": "RIGHT ENGINE STOP",
+    "speak": true
+   },
+   {
+    "delay": 1.796,
+    "message": "LEFT GENERATOR OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3004,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.706,
+    "message": "RIGHT GENERATOR OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3005,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.972,
+    "message": "INVERTER OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3055,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.79,
+    "message": "BATTERY OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 1,
+    "command": 3006,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.34,
+    "message": "VHF AM RADIO OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 55,
+    "command": 3043,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.037,
+    "message": "UHF RADIO OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 54,
+    "command": 3013,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 1.103,
+    "message": "VHF FM RADIO OFF",
+    "speak": true
+   },
+   {
+    "delay": 0.0,
+    "device": 56,
+    "command": 3003,
+    "value": 0.0,
+    "note": ""
+   },
+   {
+    "delay": 2.742,
+    "message": "AUTOSTOP COMPLETE",
+    "speak": true
+   }
+  ]
+ }
+}

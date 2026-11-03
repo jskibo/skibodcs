@@ -8,7 +8,7 @@ id = "F-14B"
 [actions.gear]
 device = 18
 command = 3016
-arg = 0
+arg = 326
 verified = false
 confirmed = []
 values = { down = 1.0, up = 0.0 }
@@ -17,7 +17,7 @@ values = { down = 1.0, up = 0.0 }
 [actions.hook]
 device = 18
 command = 3021
-arg = 0
+arg = 238
 verified = false
 confirmed = []
 values = { down = 1.0, up = 0.0 }
@@ -26,7 +26,7 @@ values = { down = 1.0, up = 0.0 }
 [actions.parking_brake]
 device = 18
 command = 3013
-arg = 0
+arg = 237
 verified = false
 confirmed = []
 values = { set = 1.0, release = 0.0 }

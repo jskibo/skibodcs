@@ -31,6 +31,7 @@ def main(argv=None):
         x = sub.add_parser(name, help=hlp)
         x.add_argument("--devices", required=True); x.add_argument("--commands", required=True)
         x.add_argument("--clickable", required=True)
+        x.add_argument("--draw-args", help="draw_args.lua (cockpit arg numbers for modules whose helpers hide them, e.g. F-14)")
         if name in ("extract", "controls"):
             x.add_argument("--macros", help="Macro_sequencies.lua: pin switch values to ED's own autostart data")
             x.add_argument("--aircraft", required=True, help="F-16C_50 or FA-18C_hornet"); x.add_argument("--out", required=True)
@@ -81,7 +82,7 @@ def main(argv=None):
         return 0
     if a.cmd in ("extract", "find", "controls"):
         from . import extract as ex
-        els = ex.run_extractor(Path(a.devices), Path(a.commands), Path(a.clickable))
+        els = ex.run_extractor(Path(a.devices), Path(a.commands), Path(a.clickable), Path(a.draw_args) if getattr(a, "draw_args", None) else None)
         observed = None
         if getattr(a, "macros", None):
             from . import macros as mc
