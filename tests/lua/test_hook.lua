@@ -15,8 +15,10 @@ local swapped = false
 local loaded_missions = {}
 net = { log = function(m) logs[#logs + 1] = m end,
         load_mission = function(p) loaded_missions[#loaded_missions + 1] = p; return true end }
+local fail_next = 0
 function net.dostring_in(state, code)
   assert(state == "mission")
+  if fail_next > 0 then fail_next = fail_next - 1; return "boom: AI is nil", false end
   local f, err = loadstring(code); if not f then return err, false end
   local ok, r = pcall(f)
   if swapped then return ok, tostring(r) end      -- opposite return order
@@ -91,6 +93,21 @@ for _, order in ipairs{ false, true } do
   assert(replies[3]:find("unknown type"), replies[3])
 end
 swapped = false
+
+-- an injection that fails at onSimulationStart (mission environment not ready) is retried by the poll loop, and logged once
+do
+  M.reset(); sent_udp, replies, inbox = {}, {}, {}
+  fail_next = 2; logs = {}
+  dofile("dcs_hook/skibodcs_hook.lua")
+  cb.onSimulationStart()                                   -- injection attempt 1 fails
+  assert(not SKIBO, "module must not be loaded yet")
+  clock = clock + 2; cb.onSimulationFrame()                -- poll: attempt 2 fails (same error: not logged again)
+  assert(not SKIBO)
+  clock = clock + 2; cb.onSimulationFrame()                -- poll: attempt 3 succeeds
+  assert(SKIBO and SKIBO.version, "retry must load the module")
+  local fails = 0; for _, l in ipairs(logs) do if l:find("inject failed") then fails = fails + 1 end end
+  eq(fails, 1, "the same failure is logged once")
+end
 
 -- load_mission: accepted only for existing .miz files under <writedir>/Missions; everything else is refused, nothing loaded
 do

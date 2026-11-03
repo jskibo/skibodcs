@@ -109,14 +109,14 @@ def test_kneeboards_render_and_deploy(tmp_path):
     sc, errs = validate((ROOT / "examples" / "iron_lantern.json").read_text())
     assert not errs
     pages = make_kneeboards(sc, tmp_path / "kb")
-    assert list(pages) == ["F-16C_50"] and [p.stem for p in pages["F-16C_50"]] == ["mission", "route", "briefing", "threats", "map", "datacard"]
+    assert list(pages) == ["F-16C_50"] and [p.stem for p in pages["F-16C_50"]] == ["mission", "flight", "loadout", "route", "briefing", "threats", "threattable", "map", "datacard"]
     for p in pages["F-16C_50"]:
         im = Image.open(p)
         assert im.size == (768, 1024) and sum(1 for h in im.convert("L").histogram() if h) > 5    # not blank
     assert dm(41.5, -71.25) == "N41 30.000  W071 15.000"
     miz = tmp_path / "a.miz"; miz.write_bytes(b"x")
     out = dp.deploy_mission(tmp_path / "sg", miz, pages)
-    assert (tmp_path / "sg" / "Kneeboard" / "F-16C_50" / "skibodcs_05_map.png").exists()
+    assert (tmp_path / "sg" / "Kneeboard" / "F-16C_50" / "skibodcs_08_map.png").exists()
     dp.deploy_mission(tmp_path / "sg", miz, {"F-16C_50": pages["F-16C_50"][:2]})       # stale pages are replaced
     assert len(list((tmp_path / "sg" / "Kneeboard" / "F-16C_50").glob("skibodcs_*"))) == 2
 
@@ -237,3 +237,25 @@ def test_speech_server_roundtrip_and_errors():
             RemoteSTT("http://127.0.0.1:1").transcribe(b"x")
     finally:
         srv.shutdown()
+
+
+def test_loadout_and_flight_pages(tmp_path):
+    import dcs
+    from skibodcs import catalog, kneeboard as kb
+    from skibodcs.validate import validate
+    sc, errs = validate((ROOT / "examples" / "iron_lantern.json").read_text())
+    ac = catalog.aircraft_ids()["F-16C_50"]
+    saved = ac.payloads
+    try:
+        ac.payloads = {"x": {"tasks": {"0": dcs.task.SEAD.id}, "pylons": {
+            "7": {"num": 7, "CLSID": "{AB_250_2_SD_10A}"}, "1": {"num": 1, "CLSID": "{NEW-UNKNOWN}"}}}}
+        rows = kb.loadout_rows(sc.player[0])
+        assert [n for n, _ in rows] == [1, 7] and rows[0][1] == "{NEW-UNKNOWN}" and "SD-10A" in rows[1][1]   # sorted; unknown id survives
+        kb.make_kneeboards(sc, tmp_path / "a")
+        ac.payloads = None                                                       # no DCS install / no payload: honest page, no crash
+        assert kb.loadout_rows(sc.player[0]) == []
+        out = kb.make_kneeboards(sc, tmp_path / "b")
+        assert (tmp_path / "b" / "F-16C_50" / "loadout.png").exists() and len(out["F-16C_50"]) == 9
+    finally:
+        ac.payloads = saved
+    assert set(kb.THREAT_INFO) >= {"SA-2", "SA-6", "SA-10", "ZSU-23"} and all(len(v) == 4 for v in kb.THREAT_INFO.values())

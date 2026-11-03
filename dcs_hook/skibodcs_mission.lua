@@ -117,13 +117,22 @@ end
 -- ---------- tasking
 -- Option ids/values follow the DCS scripting API as used by MOOSE (Controllable.lua, Enums.lua);
 -- task ids/params follow pydcs (dcs/task.py). Not yet exercised against a live sim.
-local OPT = AI.Option.Air
-local ROE_MAP   = { free = OPT.val.ROE.WEAPON_FREE, hold = OPT.val.ROE.WEAPON_HOLD,
-                    return_fire = OPT.val.ROE.RETURN_FIRE, open_fire = OPT.val.ROE.OPEN_FIRE }
-local ROT_MAP   = { none = OPT.val.REACTION_ON_THREAT.NO_REACTION, passive = OPT.val.REACTION_ON_THREAT.PASSIVE_DEFENCE,
-                    evade = OPT.val.REACTION_ON_THREAT.EVADE_FIRE, escape = OPT.val.REACTION_ON_THREAT.BYPASS_AND_ESCAPE }
+-- AI.Option is resolved lazily: at onSimulationStart the mission environment may not have defined `AI` yet
+-- (seen in a real log: "attempt to index global 'AI' (a nil value)"), and a load-time failure kills the whole module.
+local OPT, ROE_MAP, ROT_MAP
 local RADAR_MAP = { off = 0, attack_only = 1, search = 2, continuous = 3 }   -- RADAR_USING
 local ECM_MAP   = { off = 0, lock = 1, detected = 2, always = 3 }            -- ECM_USING
+local function ai_ready()
+  if OPT then return true end
+  if not (AI and AI.Option and AI.Option.Air) then return false end
+  OPT = AI.Option.Air
+  ROE_MAP = { free = OPT.val.ROE.WEAPON_FREE, hold = OPT.val.ROE.WEAPON_HOLD,
+              return_fire = OPT.val.ROE.RETURN_FIRE, open_fire = OPT.val.ROE.OPEN_FIRE }
+  ROT_MAP = { none = OPT.val.REACTION_ON_THREAT.NO_REACTION, passive = OPT.val.REACTION_ON_THREAT.PASSIVE_DEFENCE,
+              evade = OPT.val.REACTION_ON_THREAT.EVADE_FIRE, escape = OPT.val.REACTION_ON_THREAT.BYPASS_AND_ESCAPE }
+  return true
+end
+local NEEDS_AI = { weapons_free = true, weapons_hold = true, roe = true, radar = true, ecm = true, reaction = true, formation = true }
 -- FORMATION values (MOOSE ENUMS.Formation.FixedWing): shape -> { close, open, group }
 local FORM = {
   line_abreast = { 65537, 65538, 65539 },  trail        = { 131073, 131074, 131075 },
@@ -187,6 +196,7 @@ function S._cmd(intent, ps)
   local p, ws, side, pg = S.wingmen()
   if not p then return "err:no player unit found" end
   if not S.IMPLEMENTED[intent] then return "err:not implemented: " .. tostring(intent) end
+  if NEEDS_AI[intent] and not ai_ready() then return "err:AI options not available in the mission yet" end
   if #ws == 0 then return "err:no wingman" end
   local us = select_units(ws, P.who)
   if #us == 0 then return "err:no such flight member" end

@@ -183,4 +183,20 @@ do
   eq(S.drain(), "")
 end
 
+-- the module must load even when `AI` is not defined yet (real log: inject failed at onSimulationStart), then work once it is
+do
+  M.reset()
+  local saved = AI; AI = nil
+  local ok, err = pcall(dofile, "dcs_hook/skibodcs_mission.lua")
+  assert(ok, "module must load without AI: " .. tostring(err))
+  local p = M.unit{ id = 1, player = "Skibo" }; local w = M.unit{ id = 2 }
+  M.add(2, 0, M.group{ p, w })
+  assert(SKIBO.cmd("weapons_free", ""):match("^err:AI options not available"), "no AI yet -> honest error")
+  eq(#w.ctl.options, 0)
+  AI = saved
+  eq(SKIBO.cmd("weapons_free", ""), "ok:weapons free")                         -- same module instance, AI now present
+  eq(#w.ctl.options, 1)
+  assert(SKIBO.cmd("status", ""):match("^ok:"), "intents that do not need AI never depended on it")
+end
+
 print("MISSION LUA OK")

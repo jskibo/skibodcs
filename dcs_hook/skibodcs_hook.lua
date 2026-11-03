@@ -29,12 +29,14 @@ local function in_mission(code)
   return tostring(a or "")
 end
 
+local last_inject_err
 local function inject_module()
   local f = io.open(MODULE, "r")
   if not f then log("missing " .. MODULE); return end
   local code = f:read("*a"); f:close()
   local r, err = in_mission(code)
-  if r then mission_loaded = true; log("mission module loaded: " .. r) else log("inject failed: " .. tostring(err)) end
+  if r then mission_loaded = true; last_inject_err = nil; log("mission module loaded: " .. r)
+  elseif err ~= last_inject_err then last_inject_err = err; log("inject failed (will retry every poll): " .. tostring(err)) end
 end
 
 local function ensure_sockets()
@@ -120,6 +122,7 @@ local function append_event(tbl)
 end
 
 local function poll_events()
+  if not mission_loaded then inject_module() end       -- the mission environment can be incomplete at onSimulationStart
   if not mission_loaded then return end
   local r = in_mission("return SKIBO.drain()")
   if r and r ~= "" then

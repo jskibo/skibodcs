@@ -1,6 +1,6 @@
 """Scenario -> kneeboard PNG pages (Pillow only, no map tiles). One set per player aircraft type; deploy.py copies them
 to Saved Games\\DCS\\Kneeboard\\<aircraft>\\ so the pages are in the cockpit when the mission starts.
-Pages: 1 mission + comms card, 2 route, 3 briefing, 4 threats, 5 map, 6 data card (the printed equivalent of a DTC load -
+Pages: mission+comms, flight roster + voice hints, loadout, route, briefing, threats, threat table, map, data card (the printed equivalent of a DTC load -
 steerpoints and radio presets as numbers to enter; real DTC files are module-specific and are NOT generated).
 Lat/long needs pyproj (installed with pydcs); everything else is plain geometry."""
 from __future__ import annotations
@@ -18,6 +18,21 @@ BG, INK, DIM, ACC, RED, BLUE = (246, 242, 230), (20, 20, 20), (95, 95, 90), (30,
 NM = 1852.0
 # Approximate engagement radii (nm) by template; for planning only, real ranges depend on target and altitude.
 THREAT_NM = {"SA-2": 27, "SA-6": 13, "SA-8": 8, "SA-10": 40, "SA-11": 17, "SA-13": 3, "SA-15": 7, "ZSU-23": 1.4}
+
+
+# Approximate planning figures: (max range nm, ceiling ft, guidance, tip). Real engagement zones depend on target, altitude and aspect.
+THREAT_INFO = {
+    "SA-2":  (27, 60000, "radar cmd", "Big, old: beat it low or with HARM; watch for the guidance light on the RWR."),
+    "SA-6":  (13, 45000, "radar SARH", "Mobile; low-altitude minimum is its weak point. Stay out of 13 nm or go low and fast."),
+    "SA-8":  (8, 16000, "radar cmd", "Short range; stay above 16,000 ft or beyond 8 nm."),
+    "SA-10": (40, 90000, "radar TVM", "Long reach, high ceiling; plan SEAD first, stay low and out of 40 nm until it is dead."),
+    "SA-11": (17, 46000, "radar SARH", "Very capable; expect launches at 17 nm. Notch and use chaff."),
+    "SA-13": (3, 11000, "IR", "Heat seeker, no radar warning. Stay above 11,000 ft, use flares."),
+    "SA-15": (7, 20000, "radar cmd", "Fast reaction, hits small targets; stay above 20,000 ft or outside 7 nm."),
+    "ZSU-23": (1.4, 8000, "optical/radar guns", "Guns only: stay above 8,000 ft and do not overfly."),
+}
+AIR_INFO = {"MiG-29S": "R-27 / R-73, radar + IRST; merge-capable", "Su-27": "R-27 / R-73, long-range radar",
+            "MiG-21Bis": "R-3 / R-60, short range", "F-5E-3": "AIM-9, guns"}
 
 
 def _f(size: int) -> ImageFont.ImageFont:
@@ -150,6 +165,88 @@ def _threat_page(sc: Scenario) -> Image.Image:
     return im
 
 
+def _weapon_name(clsid: str) -> str:
+    try:
+        from dcs import weapons_data
+        return weapons_data.weapon_ids[clsid]["name"]
+    except Exception:                                                 # noqa: BLE001 - unknown/new weapon: show the raw id
+        return clsid
+
+
+def loadout_rows(f) -> list[tuple[int, str]]:
+    """(station, store name) for this flight's task, exactly what compile_scenario loads. [] when pydcs has no payload
+    (it reads payloads from a DCS install, so this is empty on machines without DCS)."""
+    try:
+        ac = catalog.aircraft_ids()[f.aircraft]
+        pay = ac.loadout(catalog.TASKS[f.task]) or []
+    except Exception:                                                 # noqa: BLE001
+        return []
+    return sorted((int(n), _weapon_name(d["clsid"])) for n, d in pay)
+
+
+def _loadout_page(sc: Scenario, f) -> Image.Image:
+    im, d = _page("LOADOUT", sc)
+    rows = loadout_rows(f)
+    y = _rows(d, 100, [("Aircraft", f"{f.aircraft}  x{f.count}"), ("Task", f.task)], [28, 220], 28, 14, head=False) + 14
+    if not rows:
+        y = _wrap(d, y, f"No default {f.task} loadout is known for {f.aircraft}, so the pylons are EMPTY. "
+                  "Set the loadout in the Rearm/Refuel screen before takeoff.", 26, 46)
+        return im
+    d.text((28, y), "STATION  STORE (every aircraft in the flight is identical)", font=_f(20), fill=ACC); y += 36
+    for n, name in rows:
+        d.text((28, y), f"{n}", font=_f(26), fill=ACC)
+        lines = textwrap.wrap(name, 42)[:2] or [""]
+        for ln in lines:
+            d.text((100, y), ln, font=_f(24), fill=INK); y += 30
+        y += 8
+    d.text((28, y + 10), "Tip: check the real loadout in the Rearm screen; this page shows the generator's default.", font=_f(18), fill=DIM)
+    return im
+
+
+VOICE_HINTS = ["bogey dope / picture / radio check", "weapons free / weapons hold", "attack my target / engage bandits / SEAD",
+               "cleared hot  (after the JTAC readback)", "go wedge / line abreast / spread / trail", "break left / break right / rejoin",
+               "RTB / cover me / how is your fuel", "ready for the nine line / readback / BDA", "autostart / cold and dark to ready to taxi",
+               "request taxi / takeoff / inbound"]
+
+
+def _flight_page(sc: Scenario, f) -> Image.Image:
+    im, d = _page("FLIGHT", sc)
+    roles = {1: "you (lead)", 2: "wingman", 3: "element lead", 4: "element wingman"}
+    rows = [("Pos", "Callsign", "Role", "Loadout")]
+    same = "same as page 3" if loadout_rows(f) else "no default"
+    for i in range(1, f.count + 1):
+        rows.append((i, f"{f.callsign} 1-{i}", roles.get(i, ""), same))
+    y = _rows(d, 100, rows, [28, 110, 340, 560], 24, 14)
+    y += 10
+    d.text((28, y), f"Flight freq {sc.comms.flight_freq_mhz:.3f}   Start {f.start_airbase} ({f.start_type})", font=_f(22), fill=INK); y += 50
+    d.text((28, y), "VOICE (push-to-talk, plain speech works too)", font=_f(24), fill=ACC); y += 40
+    for h in VOICE_HINTS:
+        y = _wrap(d, y, "- " + h, 22, 56)
+    return im
+
+
+def _threat_table_page(sc: Scenario) -> Image.Image:
+    im, d = _page("THREAT TABLE", sc)
+    kinds = sorted({g.template for g in sc.red.groups if g.template in THREAT_INFO})
+    rows = [("System", "Range", "Ceiling", "Guid.")]
+    for k in kinds:
+        r, c, g_, _t = THREAT_INFO[k]
+        rows.append((k, f"{r:g} nm", f"{c:,} ft", g_))
+    y = 100
+    if len(rows) > 1:
+        y = _rows(d, y, rows, [24, 190, 330, 520], 24, 14) + 10
+        for k in kinds:
+            d.text((24, y), k, font=_f(22), fill=RED); y += 30
+            y = _wrap(d, y, THREAT_INFO[k][3], 21, 58, x=44) + 6
+    else:
+        d.text((24, y), "No surface-to-air threats in this mission.", font=_f(24), fill=INK); y += 44
+    for a in sc.red.air:
+        d.text((24, y + 10), f"AIR: {a.aircraft} x{a.count}", font=_f(24), fill=RED); y += 46
+        y = _wrap(d, y, AIR_INFO.get(a.aircraft, "fighter threat"), 21, 58, x=44)
+    d.text((24, H - 40), "Approximate planning figures; real ranges depend on altitude and aspect.", font=_f(18), fill=DIM)
+    return im
+
+
 def _map_page(sc: Scenario, f) -> Image.Image:
     im, d = _page("MAP (north up)", sc)
     th = sc.meta.theater
@@ -235,8 +332,9 @@ def make_kneeboards(sc: Scenario, outdir: str | Path) -> dict[str, list[Path]]:
     for f in sc.player:
         folder = base / f.aircraft
         folder.mkdir(parents=True, exist_ok=True)
-        pages = [("mission", _mission_page(sc, f)), ("route", _route_page(sc, f)), ("briefing", _brief_page(sc)),
-                 ("threats", _threat_page(sc)), ("map", _map_page(sc, f)), ("datacard", _data_card(sc, f))]
+        pages = [("mission", _mission_page(sc, f)), ("flight", _flight_page(sc, f)), ("loadout", _loadout_page(sc, f)),
+                 ("route", _route_page(sc, f)), ("briefing", _brief_page(sc)), ("threats", _threat_page(sc)),
+                 ("threattable", _threat_table_page(sc)), ("map", _map_page(sc, f)), ("datacard", _data_card(sc, f))]
         paths = []
         for n, im in pages:
             p = folder / f"{n}.png"

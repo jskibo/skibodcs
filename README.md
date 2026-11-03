@@ -124,8 +124,9 @@ JTAC's primary target, else the nearest hostile ground unit within 25 nm / +-60 
 ground contact to you (group = contacts within 1 nm). The IP is synthetic (10 nm from the target on a clean radial back toward you),
 so lines 2-3 always match the geometry. Line 6 is lat/long (the sim's own format), line 7 laser code 1688. UNVERIFIED: Export
 reporting ground objects with is_air = false and MSL altitude.
-**Kneeboards** (`skibodcs kneeboard spec.json --out DIR [--deploy]`): six 768x1024 PNG pages per aircraft - mission+comms, route,
-briefing, threats (approximate SAM ranges), north-up map (airbases, route, threat rings), data card (steerpoints in lat/long and radio
+**Kneeboards** (`skibodcs kneeboard spec.json --out DIR [--deploy]`): nine 768x1024 PNG pages per aircraft - mission+comms, flight
+roster + voice hints, loadout (the generator's default store per station; empty pylons are stated plainly), route, briefing, threats,
+threat table (range, ceiling, guidance, tip per SAM type present), north-up map, data card (steerpoints in lat/long and radio
 presets: the printed equivalent of a DTC load; real DTC files are module-specific and are NOT generated). Needs pyproj for lat/long.
 **Campaign** (`skibodcs campaign new|next|ingest|status --name N --db campaign.db`): SQLite state (red sites alive/destroyed, airframe
 pool, sortie number, date). `next` plans a sortie (built-in generator, or `--llm` with your Ollama model), compiles the .miz,
