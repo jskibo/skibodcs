@@ -1,5 +1,5 @@
 -- Minimal fake of the DCS mission-scripting API, just enough to drive skibodcs_mission.lua.
-local M = {}
+local M = { flags = {} }
 
 coalition = { side = { RED = 1, BLUE = 2 } }
 Group = { Category = { AIRPLANE = 0, HELICOPTER = 1, GROUND = 2, SHIP = 3 } }
@@ -11,6 +11,9 @@ world = { event = { S_EVENT_DEAD = 8, S_EVENT_KILL = 28, S_EVENT_CRASH = 5, S_EV
                     S_EVENT_TAKEOFF = 3, S_EVENT_EJECTION = 6 }, handlers = {} }
 function world.addEventHandler(h) world.handlers[#world.handlers + 1] = h end
 timer = { getTime = function() return 123.4 end }
+M = M
+trigger = { action = { setUserFlag = function(n, v) M.flags[n] = v end },
+            misc = { getUserFlag = function(n) return M.flags[n] or 0 end } }
 
 M.groups = {}   -- [side][cat] = { group, ... }
 
@@ -25,7 +28,7 @@ function M.airbase(o)
            getPoint = function() return { x = o.x, y = 0, z = o.z } end,
            getDesc = function() return { category = o.cat or 0 } end }
 end
-function M.reset() M.groups = {}; M.airbases = {}; world.handlers = {}; SKIBO = nil end
+function M.reset() M.groups = {}; M.airbases = {}; M.flags = {}; world.handlers = {}; SKIBO = nil end
 
 function M.unit(o)
   local u = { calls = {}, o = o }

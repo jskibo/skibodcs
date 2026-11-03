@@ -199,4 +199,60 @@ do
   assert(SKIBO.cmd("status", ""):match("^ok:"), "intents that do not need AI never depended on it")
 end
 
+-- flag mailbox: text -> 4 chars per flag -> text, with the sequence number committed last
+local function decode(prefix)
+  local out = {}
+  for i = 1, SKIBO.NF do
+    local n = M.flags["skibo_" .. prefix .. "_" .. i]
+    for _, div in ipairs({ 1000000, 10000, 100, 1 }) do
+      local c = math.floor(n / div) % 100
+      if c == 99 then return M.flags["skibo_" .. prefix .. "_0"], table.concat(out) end
+      out[#out + 1] = string.char(c + 32)
+    end
+  end
+  return M.flags["skibo_" .. prefix .. "_0"], table.concat(out)
+end
+do
+  local S = load_module()
+  eq(M.flags["skibo_ready"], 5, "module announces itself through a flag")
+  for _, txt in ipairs{ "", "ok:weapons free", "a", "abcd", "abc", string.rep("x", 200), "ok:engaging T-72B, 12 miles | ~^ \n" } do
+    S.put("res", 7, txt)
+    local seq, got = decode("res")
+    local want = txt:gsub("[^\32-\126]", "?"):sub(1, S.NF * 4 - 1)
+    eq(seq, 7); eq(got, want, "round trip of [" .. txt .. "]")
+  end
+  for i = 1, S.NF do assert(M.flags["skibo_res_" .. i] < 2147483647, "every flag stays inside int32") end
+  -- S.run: command result lands in the mailbox under the caller's sequence number
+  local p1 = M.unit{ id = 1, player = "Skibo" }; local w1 = M.unit{ id = 2 }
+  M.add(2, 0, M.group{ p1, w1 })
+  S.run(41, "weapons_free", "")
+  local seq, got = decode("res"); eq(seq, 41); eq(got, "ok:weapons free")
+  S.run(42, "barrel_roll", "")
+  seq, got = decode("res"); eq(seq, 42); assert(got:match("^err:not implemented"), got)
+end
+
+-- event mailbox: at-least-once with an explicit ack; oversized lines never wedge the queue; '^' (the line separator) is sanitised
+do
+  local S = load_module()
+  S.events = { "dead|sa6_site_1-1|sa6_site_1|Kub 2P25 ln|1|10", "dead|sa6_site_1-2|sa6_site_1|Kub 2P25 ln|1|11",
+               "dead|sa6_site_1-3|sa6_site_1|Kub 2P25 ln|1|12", "dead|sa6_site_1-4|sa6_site_1|Kub 2P25 ln|1|13" }
+  S.flush()
+  local seq, text = decode("ev"); eq(seq, 1)
+  local n = select(2, text:gsub("dead", ""))
+  assert(n >= 1 and n < 4, "a packet carries as many whole lines as fit (" .. n .. ")")
+  S.flush()                                               -- no ack: the same lines must stay queued, packet number unchanged
+  eq(S.ev_seq, 1); eq(#S.events, 4)
+  S.flush(1)                                              -- ack: those lines go, the next packet is packed
+  eq(S.ev_seq, 2); eq(#S.events, 4 - n)
+  local _, t2 = decode("ev"); assert(t2:find("dead|sa6_site_1-" .. (n + 1), 1, true), t2)
+  S.flush(2); S.flush(S.ev_seq)
+  while #S.events > 0 do S.flush(S.ev_seq) end            -- drains completely
+  S.events = { "dead|" .. string.rep("z", 300) .. "|g|t|1|1", "kill|u^x|g|t|1|2" }
+  S.ev_packed = 0
+  S.flush(); local s3, t3 = decode("ev")
+  assert(#t3 > 0 and #t3 <= S.NF * 4 - 1, "oversized line truncated")
+  S.flush(S.ev_seq); S.flush()
+  local _, t4 = decode("ev"); eq(t4, "kill|u_x|g|t|1|2", "separator inside a name is replaced")
+end
+
 print("MISSION LUA OK")

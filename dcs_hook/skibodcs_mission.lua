@@ -1,18 +1,46 @@
 -- skibodcs_mission.lua
--- Runs INSIDE the mission scripting state. The Hook injects it via net.dostring_in('mission', ...).
--- Mission state has no sockets and no io (sanitized): it only answers calls and buffers events;
--- the Hook polls SKIBO.drain() and does the file/network work.
+-- Runs in the MISSION SCRIPTING SANDBOX (where `world`, `coalition`, `AI`, `trigger` exist) - the same place as DO SCRIPT.
+-- net.dostring_in('mission', ...) does NOT reach it: that state is a control layer without those globals (confirmed by a real
+-- log: "attempt to index global 'world' (a nil value)"). The Hook therefore injects this file with a_do_script(), and the
+-- two sides talk through mission USER FLAGS (the one channel every DCS version supports): text is packed 4 characters per
+-- flag (2 decimal digits per character, 99 = end) into skibo_<res|ev>_1..24, with the sequence number written last to
+-- skibo_<res|ev>_0. The sandbox has no sockets and no io; the Hook owns the files and the network.
 -- UNVERIFIED in a live sim: AI task/option behaviour, getPlayerName() in single player,
 -- and whether Export object ids equal Object:getID(). Everything is pcall-wrapped.
 
 SKIBO = SKIBO or {}
 local S = SKIBO
-S.version = "0.4"
+S.version = "0.5"
 S.events = S.events or {}
 local MAX_EVENTS = 500
 
 local function sides() return { coalition.side.RED, coalition.side.BLUE } end
 local function cats() return { Group.Category.AIRPLANE, Group.Category.HELICOPTER } end
+
+-- ---------- flag mailbox (sandbox -> Hook)
+local NF = 24                                         -- flags per message: up to 4*NF-1 = 95 characters
+S.NF = NF
+function S.encode(text)
+  local codes = {}
+  for i = 1, math.min(#text, NF * 4 - 1) do
+    local b = text:byte(i)
+    if b < 32 or b > 126 then b = 63 end             -- '?'
+    codes[#codes + 1] = b - 32
+  end
+  codes[#codes + 1] = 99                              -- terminator; the rest is padding
+  while #codes % 4 ~= 0 do codes[#codes + 1] = 99 end
+  local flags = {}
+  for i = 1, #codes, 4 do
+    flags[#flags + 1] = codes[i] * 1000000 + codes[i + 1] * 10000 + codes[i + 2] * 100 + codes[i + 3]   -- < 1e8, well inside int32
+  end
+  return flags
+end
+
+function S.put(prefix, seq, text)
+  local flags = S.encode(tostring(text or ""))
+  for i = 1, NF do trigger.action.setUserFlag("skibo_" .. prefix .. "_" .. i, flags[i] or 99999999) end
+  trigger.action.setUserFlag("skibo_" .. prefix .. "_0", seq)                  -- commit marker written last
+end
 
 -- ---------- lookup helpers
 function S.find_player()
@@ -304,6 +332,11 @@ function S.cmd(intent, ps)
   return "err:" .. tostring(r)
 end
 
+-- Hook entry point: run one command and publish the answer in the "res" mailbox under the caller's sequence number.
+function S.run(seq, intent, ps)
+  S.put("res", seq, S.cmd(intent, ps))
+end
+
 -- ---------- event buffer (campaign results)
 local H = {}
 local NAMES = {}
@@ -329,10 +362,32 @@ end
 
 if not S.handler then S.handler = H; world.addEventHandler(H) end
 
+-- Hook entry point, called once per poll. Packs the front of the event queue into the "ev" mailbox; lines stay queued until
+-- the Hook acknowledges that exact packet on its next call (at-least-once; the Hook ignores repeats of a sequence number).
+S.ev_seq, S.ev_packed = S.ev_seq or 0, S.ev_packed or 0
+function S.flush(ack)
+  if ack and ack == S.ev_seq and S.ev_packed > 0 then
+    for _ = 1, S.ev_packed do table.remove(S.events, 1) end
+    S.ev_packed = 0
+  end
+  if S.ev_packed == 0 and #S.events > 0 then
+    local parts, len = {}, 0
+    for _, line in ipairs(S.events) do
+      local l = line:gsub("%^", "_")
+      if len + #l + 1 > NF * 4 - 1 then break end
+      parts[#parts + 1] = l; len = len + #l + 1
+    end
+    if #parts == 0 then parts[1] = S.events[1]:gsub("%^", "_"):sub(1, NF * 4 - 2) end     -- oversized line: truncate, never wedge the queue
+    S.ev_seq = S.ev_seq + 1; S.ev_packed = #parts
+    S.put("ev", S.ev_seq, table.concat(parts, "^"))
+  end
+end
+
 function S.drain()
   local out = table.concat(S.events, "\n")
   S.events = {}
   return out
 end
 
+trigger.action.setUserFlag("skibo_ready", 5)          -- the Hook checks this to know the module really loaded
 return "skibodcs mission module " .. S.version

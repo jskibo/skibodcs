@@ -16,10 +16,25 @@ local loaded_missions = {}
 net = { log = function(m) logs[#logs + 1] = m end,
         load_mission = function(p) loaded_missions[#loaded_missions + 1] = p; return true end }
 local fail_next = 0
+-- Two Lua states, like DCS: the 'mission' state is only a control layer WITHOUT world/coalition/AI/Group/timer; those live in the
+-- scripting sandbox (= this test's globals), reachable only through a_do_script(). a_do_script returns nothing (several DCS
+-- builds return an empty string), so the Hook must use the flag mailbox.
+local hidden = { world = true, coalition = true, AI = true, Group = true, timer = true }
+local mission_state = setmetatable({}, { __index = function(_, k) if hidden[k] then return nil end return _G[k] end })
+sandbox_errors = {}
+defer_run, deferred = false, nil
+mission_state.a_do_script = function(code)
+  if defer_run and code:find("SKIBO.run", 1, true) then deferred = code; return end      -- sandbox call completes on a later frame / never
+  local f, err = loadstring(code)
+  if not f then sandbox_errors[#sandbox_errors + 1] = err; return end
+  local ok, e = pcall(f)
+  if not ok then sandbox_errors[#sandbox_errors + 1] = tostring(e) end
+end
 function net.dostring_in(state, code)
   assert(state == "mission")
-  if fail_next > 0 then fail_next = fail_next - 1; return "boom: AI is nil", false end
+  if fail_next > 0 then fail_next = fail_next - 1; return "boom: control layer not ready", false end
   local f, err = loadstring(code); if not f then return err, false end
+  setfenv(f, mission_state)
   local ok, r = pcall(f)
   if swapped then return ok, tostring(r) end      -- opposite return order
   return tostring(r), ok
@@ -88,9 +103,11 @@ for _, order in ipairs{ false, true } do
   inbox[3] = '{"id":"w3","type":"cockpit","intent":"x","params":{}}'
   cb.onSimulationFrame()
   eq(#replies, 3)
-  eq(replies[1], '{"detail":"weapons free","id":"w1","ok":true}\n')
-  assert(replies[2]:find('"ok":false') and replies[2]:find("not implemented"), replies[2])
-  assert(replies[3]:find("unknown type"), replies[3])
+  local function by_id(id) for _, r in ipairs(replies) do if r:find('"id":"' .. id .. '"', 1, true) then return r end end end
+  eq(by_id("w1"), '{"detail":"weapons free","id":"w1","ok":true}\n')            -- answers may arrive in any order; the id matches them
+  assert(by_id("w2"):find('"ok":false') and by_id("w2"):find("not implemented"), by_id("w2"))
+  assert(by_id("w3"):find("unknown type"), by_id("w3"))
+  eq(#sandbox_errors, 0, "sandbox code ran clean: " .. table.concat(sandbox_errors, "; "))
 end
 swapped = false
 
@@ -107,6 +124,39 @@ do
   assert(SKIBO and SKIBO.version, "retry must load the module")
   local fails = 0; for _, l in ipairs(logs) do if l:find("inject failed") then fails = fails + 1 end end
   eq(fails, 1, "the same failure is logged once")
+end
+
+-- a sandbox answer that arrives on a LATER frame is still delivered; one that never arrives is reported, not faked
+do
+  boot()
+  defer_run = true
+  inbox[1] = '{"id":"d1","type":"wingman","intent":"weapons_free","params":{}}'
+  cb.onSimulationFrame()
+  eq(#replies, 0, "no answer yet, so no claim of success")
+  local run = deferred; deferred = nil; defer_run = false
+  assert(run, "the run call was issued")
+  mission_state.a_do_script(run)                           -- sandbox finally executes it
+  clock = clock + 0.2; cb.onSimulationFrame()
+  eq(replies[#replies], '{"detail":"weapons free","id":"d1","ok":true}\n')
+  boot()
+  defer_run = true
+  inbox[1] = '{"id":"d2","type":"wingman","intent":"weapons_free","params":{}}'
+  cb.onSimulationFrame()
+  clock = clock + 4; cb.onSimulationFrame()
+  assert(replies[#replies]:find('"ok":false') and replies[#replies]:find("no answer from the mission"), replies[#replies])
+  defer_run = false
+end
+
+-- the module failing INSIDE the sandbox is diagnosed (flag stays 0) instead of being reported as loaded
+do
+  M.reset(); sent_udp, replies, inbox, logs = {}, {}, {}, {}
+  local real = _G.world; world = nil                     -- sandbox without `world`: module load throws before the ready flag
+  dofile("dcs_hook/skibodcs_hook.lua")
+  cb.onSimulationStart()
+  world = real
+  assert(not SKIBO or M.flags["skibo_ready"] == nil, "not ready")
+  local msg = table.concat(logs, "\n")
+  assert(msg:find("inject failed") and msg:find("Mission script error"), msg)
 end
 
 -- load_mission: accepted only for existing .miz files under <writedir>/Missions; everything else is refused, nothing loaded

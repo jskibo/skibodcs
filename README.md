@@ -18,12 +18,21 @@ semantics, like DCS) against mocked DCS APIs (tests/lua).
 ONE managed block to your existing Export.lua (original backed up once; `skibodcs uninstall`
 removes everything cleanly).
 
+## Four places code runs (corrected in v0.9.1 after the first real log)
+`net.dostring_in('mission', ...)` does NOT reach the scripting sandbox: that state is a control layer without `world`, `coalition`
+or `AI` (real log: "attempt to index global 'world' (a nil value)"). The Hook now injects skibodcs_mission.lua with `a_do_script()`
+and the two sides exchange text through mission USER FLAGS (4 characters per flag, `skibo_res_*` for command answers,
+`skibo_ev_*` for events, `skibo_ready` = module loaded), because a_do_script's return value is broken on some DCS builds.
+Commands wait up to 3 real seconds for their answer and say so when none arrives (a PAUSED mission does not run scripts:
+unpause first). Newer DCS builds can require `net.allow_dostring_in` in autoexec.cfg for hooks; dostring_in already ran on
+your install, so it is allowed there.
+
 ## Three Lua states, one bridge (this is why there are three files)
 | file | runs in | job |
 |---|---|---|
 | skibodcs_export.lua | Export (cockpit) | telemetry, locked target, cockpit clicks (UDP 14501 / TCP 14500) |
 | Hooks/skibodcs_hook.lua | Hook (GUI) | sockets + files; reaches the mission via net.dostring_in (TCP 14510 / UDP 14511) |
-| skibodcs_mission.lua | Mission | wingman tasking, event buffer; no sockets/io (sanitized) |
+| skibodcs_mission.lua | Mission scripting sandbox (via a_do_script) | wingman tasking, event buffer; no sockets/io (sanitized) |
 The PC app is the bridge: it takes your locked target id from Export and puts it in the wingman
 command it sends to the Hook.
 

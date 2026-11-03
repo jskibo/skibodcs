@@ -259,3 +259,13 @@ def test_loadout_and_flight_pages(tmp_path):
     finally:
         ac.payloads = saved
     assert set(kb.THREAT_INFO) >= {"SA-2", "SA-6", "SA-10", "ZSU-23"} and all(len(v) == 4 for v in kb.THREAT_INFO.values())
+
+
+def test_lua_files_stay_lua_51_compatible():
+    # DCS embeds plain Lua 5.1; the test runner is LuaJIT, which also accepts goto and labels. Catch that here.
+    import re
+    for f in sorted((ROOT / "dcs_hook").glob("*.lua")):
+        code = re.sub(r"--[^\n]*", "", f.read_text())
+        code = re.sub(r'"(?:\\.|[^"\\\n])*"', '""', code)
+        assert not re.search(r"\bgoto\b|::\w+::", code), f"{f.name} uses goto/labels (not Lua 5.1)"
+        assert not re.search(r"//|\bbit32\b|\b0x[0-9a-f]+p", code) or f.name == "", f"{f.name}: non-5.1 syntax"
