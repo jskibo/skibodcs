@@ -7,7 +7,7 @@
 
 SKIBO = SKIBO or {}
 local S = SKIBO
-S.version = "0.3"
+S.version = "0.4"
 S.events = S.events or {}
 local MAX_EVENTS = 500
 
@@ -67,6 +67,51 @@ local function nearest_hostile_air(p, my_side)
     end
   end
   return best, bd
+end
+
+local function heading_of(u)                      -- radians, 0 = north, clockwise
+  local ok, pos = pcall(u.getPosition, u)
+  if ok and pos and pos.x then return math.atan2(pos.x.z, pos.x.x) end
+  return 0
+end
+
+local function nearest_hostile_ground(p, my_side, max_m, arc_rad)
+  local enemy = (my_side == coalition.side.BLUE) and coalition.side.RED or coalition.side.BLUE
+  local pp, hd = p:getPoint(), heading_of(p)
+  local best, bd = nil, math.huge
+  for _, g in ipairs(coalition.getGroups(enemy, Group.Category.GROUND) or {}) do
+    for _, u in ipairs(g:getUnits() or {}) do
+      if u:isExist() then
+        local q = u:getPoint()
+        local dx, dz = q.x - pp.x, q.z - pp.z
+        local d = math.sqrt(dx * dx + dz * dz)
+        local off = math.abs(((math.atan2(dz, dx) - hd) + math.pi) % (2 * math.pi) - math.pi)
+        if d <= max_m and off <= arc_rad and d < bd then best, bd = u, d end
+      end
+    end
+  end
+  return best, bd
+end
+
+local function nearest_friendly_airfield(u, side)
+  local pp, best, bd = u:getPoint(), nil, math.huge
+  for _, ab in ipairs(coalition.getAirbases and coalition.getAirbases(side) or {}) do
+    local okd, desc = pcall(ab.getDesc, ab)
+    if okd and desc and desc.category == 0 then      -- 0 = airdrome (not helipad / ship)
+      local q = ab:getPoint()
+      local d = math.sqrt((q.x - pp.x) ^ 2 + (q.z - pp.z) ^ 2)
+      if d < bd then best, bd = ab, d end
+    end
+  end
+  return best, bd
+end
+
+local function route_task(points) return { id = "Mission", params = { route = { points = points } } } end
+local function wp(x, z, alt, speed, kind, extra)
+  local t = { x = x, y = z, alt = alt, speed = speed, alt_type = "BARO", type = kind or "Turning Point",
+              action = kind == "Land" and "Landing" or "Turning Point" }
+  for k, v in pairs(extra or {}) do t[k] = v end
+  return t
 end
 
 -- ---------- tasking
@@ -134,7 +179,8 @@ end
 -- (never a fake success: the app would announce an action that did not happen).
 S.IMPLEMENTED = { weapons_free = true, weapons_hold = true, roe = true, radar = true, ecm = true, reaction = true,
                   formation = true, engage_my_target = true, engage_nearest = true, engage_bandits = true,
-                  engage_ground = true, engage_sead = true, cover_me = true, rejoin = true, status = true }
+                  engage_ground = true, engage_sead = true, cover_me = true, rejoin = true, status = true,
+                  rtb = true, cleared_hot = true, break_left = true, break_right = true }
 
 function S._cmd(intent, ps)
   local P = parse(ps)
@@ -198,6 +244,41 @@ function S._cmd(intent, ps)
       c:pushTask({ id = "Follow", params = { groupId = pg:getID(), pos = { x = -150, y = 0, z = 150 } } })
     end)
     return n > 0 and "ok:rejoining" or "err:no controller"
+
+  elseif intent == "rtb" then
+    local n, home = 0, nil
+    for _, w in ipairs(us) do
+      local ab = nearest_friendly_airfield(w, side)
+      if ab then
+        local a, q = w:getPoint(), ab:getPoint()
+        local c = w:getController()
+        if c then
+          c:setTask(route_task({ wp(a.x, a.z, a.y, 200), wp(q.x, q.z, 0, 120, "Land", { airdromeId = ab:getID() }) }))
+          n = n + 1; home = home or ab:getName()
+        end
+      end
+    end
+    if n == 0 then return "err:no friendly airfield found" end
+    return "ok:returning to " .. tostring(home)
+
+  elseif intent == "break_left" or intent == "break_right" then
+    local sign = (intent == "break_left") and -1 or 1
+    local n = each_controller(us, function(c, w)
+      local a, h = w:getPoint(), heading_of(w) + sign * math.pi / 2
+      local d = 18520                                  -- 10 nm out, same altitude
+      c:setTask(route_task({ wp(a.x, a.z, a.y, 250), wp(a.x + d * math.cos(h), a.z + d * math.sin(h), a.y, 250) }))
+    end)
+    return n > 0 and ("ok:breaking " .. (sign < 0 and "left" or "right")) or "err:no controller"
+
+  elseif intent == "cleared_hot" then
+    local tgt
+    if P.target_id and P.target_id ~= "" then tgt = S.find_unit_by_id(P.target_id) end
+    if not tgt then tgt = nearest_hostile_ground(p, side, 25 * 1852, math.rad(60)) end
+    if not tgt then return "err:no ground target in front of you" end
+    local n = each_controller(us, function(c)
+      c:pushTask({ id = "AttackUnit", params = { unitId = tgt:getID(), groupAttack = true } })
+    end)
+    return n > 0 and ("ok:attacking " .. tostring(tgt:getTypeName())) or "err:no controller"
 
   elseif intent == "status" then
     local parts = {}

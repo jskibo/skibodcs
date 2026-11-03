@@ -10,6 +10,7 @@ from .. import controls as ctl
 from ..llm import LLM
 from . import brevity as bv
 from . import comms
+from . import jtac as jt
 from .cockpit import AirframeTable
 from .intents import COMMS_INTENTS, SEQUENCE_INTENTS, WINGMAN_INTENTS, Command, Parsed, intent_schema
 from .state import World
@@ -68,9 +69,9 @@ class Result:
 class Router:
     def __init__(self, llm: LLM | None, table: AirframeTable, world: World,
                  callsign: str = "Viper 1-1", awacs: str = "Magic", wingman: str = "Viper 1-2",
-                 index: ctl.ControlIndex | None = None, clock=time.time):
+                 index: ctl.ControlIndex | None = None, clock=time.time, jtac: str = "Axeman"):
         self.llm, self.table, self.world = llm, table, world
-        self.callsign, self.awacs, self.wingman = callsign, awacs, wingman
+        self.callsign, self.awacs, self.wingman, self.jtac = callsign, awacs, wingman, jtac
         self.index, self.clock = index, clock
         self._seq = 0
         self.pending: tuple[list, str, float] | None = None
@@ -163,6 +164,9 @@ class Router:
         if c.domain == "none":
             return
         if c.domain == "comms":
+            if c.intent.startswith("jtac_"):
+                self._jtac(c, r)
+                return
             ctrl = c.addressed_to or self.awacs
             h = {"bogey_dope": lambda: comms.bogey_dope(w, self.callsign, ctrl),
                  "picture": lambda: comms.picture(w, self.callsign, ctrl),
@@ -205,6 +209,25 @@ class Router:
             except KeyError as e:
                 r.notes.append(str(e).strip("'\""))
 
+    def _jtac(self, c: Command, r: Result):
+        w, name = self.world, (c.addressed_to or self.jtac)
+        if c.intent == "jtac_checkin":
+            r.speech.append(jt.checkin(w, self.callsign, name))
+        elif c.intent == "jtac_nine_line":
+            nl = jt.nine_line(w)
+            if nl is None:
+                r.speech.append(f"{bv.callsign_speech(self.callsign)}, {name}, no hostile ground contacts known, standing by.")
+                return
+            w.jtac_target, w.jtac_primary = nl["target_ids"], nl["primary_id"]
+            r.speech.append(jt.speech_nine_line(w, self.callsign, name, nl))
+            r.notes.append("9-line: " + "; ".join(f"{n} {v}" for n, (_, v) in nl["lines"].items()))
+        elif c.intent == "jtac_readback":
+            r.speech.append(jt.readback(self.callsign, name, bool(w.jtac_target)))
+        elif c.intent == "jtac_bda":
+            r.speech.append(jt.bda(w, self.callsign, name, w.jtac_target))
+        else:
+            r.notes.append(f"unknown JTAC intent '{c.intent}'")
+
     def _control(self, c: Command, r: Result):
         k = self.index.by_id.get(c.control) if self.index else None
         if k is None:
@@ -243,6 +266,10 @@ class Router:
                 r.speech.append(f"{bv.callsign_speech(self.callsign)}, unable, no target locked.")
                 return
             params["target_id"] = self.world.own.lock_id
+        if c.intent == "cleared_hot":                                # lock wins, then the JTAC's target, else nearest ahead (sim side)
+            tid = self.world.own.lock_id or self.world.jtac_primary
+            if tid:
+                params["target_id"] = tid
         if c.intent in ("roe", "radar", "ecm", "reaction"):
             if not c.level:
                 r.notes.append(f"{c.intent} needs a level"); return

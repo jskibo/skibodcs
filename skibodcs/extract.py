@@ -35,6 +35,15 @@ WISHLIST: dict[str, dict[str, tuple]] = {
         "hook":          ("device_commands.HOOK_Handle",          {"down": 1.0, "up": 0.0}, False, {}),
         "parking_brake": ("device_commands.BRAKE_ParkingBrake",   {"set": 1.0, "release": 0.0}, False, {}),
     },
+    "F-4E-45MC": {   # Heatblur: no Macro_sequencies supplied => every value is PROVISIONAL (consequential ones need a spoken "confirm")
+        "gear":         ("device_commands.LANDING_GEAR_PilotHandle", {"down": 1.0, "up": 0.0}, False, {}),
+        "hook":         ("device_commands.PILOT_HOOK_HANDLE",        {"down": 1.0, "up": 0.0}, False, {}),
+        "master_arm":   ("device_commands.WEAPONS_Master_Arm",       {"arm": 1.0, "safe": 0.0}, False, {}),
+        "left_engine_master":  ("device_commands.ENGINES_LeftMasterSwitch",  {"on": 1.0, "off": 0.0}, False, {}),
+        "right_engine_master": ("device_commands.ENGINES_RightMasterSwitch", {"on": 1.0, "off": 0.0}, False, {}),
+        "left_ignition":  ("device_commands.ENGINES_LeftIgnition",  {"press": 1.0}, True, {}),
+        "right_ignition": ("device_commands.ENGINES_RightIgnition", {"press": 1.0}, True, {}),
+    },
     "A-10C": {      # ED autostart pins the electrical/engine items; the gear lever is NOT touched by it => provisional
         "gear":          ("CPT_MECH:device_commands.Button_1",   {"down": 1.0, "up": 0.0}, False, {}),
         "apu":           ("ENGINE_SYSTEM:device_commands.Button_5", {"on": 1.0, "off": 0.0}, False, {"on": "apu"}),

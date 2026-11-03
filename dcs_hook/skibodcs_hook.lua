@@ -66,9 +66,26 @@ local function param_string(p)
   return table.concat(out, ";")
 end
 
+-- Start a mission file. Only .miz files under Saved Games\\DCS\\Missions are accepted. net.load_mission is documented for
+-- servers; whether it starts a mission from the single-player GUI is UNVERIFIED (the reply says what DCS answered).
+local function handle_load_mission(cmd)
+  local path = tostring(cmd.path or ""):gsub("\\", "/")
+  local base = (lfs.writedir():gsub("\\", "/")) .. "Missions/"
+  if path:sub(1, #base):lower() ~= base:lower() or not path:lower():match("%.miz$") or path:find("..", 1, true) then
+    reply({ id = cmd.id, ok = false, detail = "refused: only .miz files under Saved Games/DCS/Missions" }); return
+  end
+  local f = io.open(path, "rb")
+  if not f then reply({ id = cmd.id, ok = false, detail = "mission file not found" }); return end
+  f:close()
+  reply({ id = cmd.id, ok = true, detail = "loading " .. path:match("[^/]+$") })     -- answer first: loading tears the sockets down
+  local ok, r = pcall(net.load_mission, path)
+  if not ok or r == false then log("load_mission failed: " .. tostring(r)) end
+end
+
 local function handle_line(line)
   local cmd = net.json2lua(line)
   if type(cmd) ~= "table" then return end
+  if cmd.type == "load_mission" then handle_load_mission(cmd); return end
   if cmd.type ~= "wingman" then reply({ id = cmd.id, ok = false, detail = "unknown type" }); return end
   if not mission_loaded then inject_module() end
   if not mission_loaded then reply({ id = cmd.id, ok = false, detail = "mission module not loaded" }); return end

@@ -1,3 +1,4 @@
+jtac = "Axeman"
 callsign = "Viper 1-1"
 awacs = "Magic"
 wingman = "Viper 1-2"
@@ -14,6 +15,8 @@ magvar_east = 0.0            # set per theater; brevity bearings are magnetic
 host = "http://MAC_STUDIO_IP:11434"
 model = "qwen3:14b"
 
+# Speech on the Mac instead of this PC: run  python -m skibodcs.voice.server --tts-model ...  there, then set
+#   [stt] server = "http://MAC_STUDIO_IP:8765"   and   [tts] server = "http://MAC_STUDIO_IP:8765"
 [stt]
 model = "small.en"
 device = "cpu"

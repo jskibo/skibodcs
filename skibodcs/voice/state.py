@@ -50,6 +50,8 @@ class World:
     updated: float = 0.0
     hook_seen: float = 0.0          # last Hook heartbeat (time.time())
     events: list = field(default_factory=list)   # mission events from the Hook
+    jtac_target: list = field(default_factory=list)   # contact ids of the group in the last 9-line (for BDA / cleared hot)
+    jtac_primary: str = ""
     lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def hostiles(self, air_only=True) -> list[Contact]:

@@ -12,7 +12,9 @@ lfs = { currentdir = function() return "." end, writedir = function() return WD 
         mkdir = function(p) os.execute("mkdir -p " .. p) end }
 local logs = {}
 local swapped = false
-net = { log = function(m) logs[#logs + 1] = m end }
+local loaded_missions = {}
+net = { log = function(m) logs[#logs + 1] = m end,
+        load_mission = function(p) loaded_missions[#loaded_missions + 1] = p; return true end }
 function net.dostring_in(state, code)
   assert(state == "mission")
   local f, err = loadstring(code); if not f then return err, false end
@@ -80,7 +82,7 @@ for _, order in ipairs{ false, true } do
   boot()
   assert(SKIBO and SKIBO.version, "mission module injected (swapped=" .. tostring(order) .. ")")
   inbox[1] = '{"id":"w1","type":"wingman","intent":"weapons_free","params":{}}'
-  inbox[2] = '{"id":"w2","type":"wingman","intent":"rtb","params":{"who":"wingman"}}'
+  inbox[2] = '{"id":"w2","type":"wingman","intent":"barrel_roll","params":{"who":"wingman"}}'
   inbox[3] = '{"id":"w3","type":"cockpit","intent":"x","params":{}}'
   cb.onSimulationFrame()
   eq(#replies, 3)
@@ -89,6 +91,23 @@ for _, order in ipairs{ false, true } do
   assert(replies[3]:find("unknown type"), replies[3])
 end
 swapped = false
+
+-- load_mission: accepted only for existing .miz files under <writedir>/Missions; everything else is refused, nothing loaded
+do
+  boot()
+  os.execute("mkdir -p " .. WD .. "Missions/skibodcs && touch " .. WD .. "Missions/skibodcs/a.miz")
+  inbox[1] = '{"id":"m1","type":"load_mission","path":"' .. WD .. 'Missions/skibodcs/a.miz"}'
+  inbox[2] = '{"id":"m2","type":"load_mission","path":"/etc/passwd"}'
+  inbox[3] = '{"id":"m3","type":"load_mission","path":"' .. WD .. 'Missions/../Scripts/x.miz"}'
+  inbox[4] = '{"id":"m4","type":"load_mission","path":"' .. WD .. 'Missions/skibodcs/missing.miz"}'
+  cb.onSimulationFrame()
+  eq(#replies, 4)
+  assert(replies[1]:find('"ok":true') and replies[1]:find("loading a.miz"), replies[1])
+  assert(replies[2]:find('"ok":false') and replies[2]:find("refused"), replies[2])
+  assert(replies[3]:find("refused"), replies[3])
+  assert(replies[4]:find("not found"), replies[4])
+  eq(#loaded_missions, 1); eq(loaded_missions[1], WD .. "Missions/skibodcs/a.miz")
+end
 
 -- structured params survive the trip: JSON params -> k=v string -> mission state -> option on the right ship
 boot()

@@ -172,6 +172,12 @@ class HookClient:
             return False, "DCS hook unreachable"
 
 
+    def load_mission(self, path) -> tuple[bool, str]:
+        """Ask the Hook to start a .miz (must be under Saved Games\\DCS\\Missions). Only reachable while a mission is running:
+        the Hook binds its socket in onSimulationStart. UNVERIFIED that net.load_mission works from the single-player GUI."""
+        return self.request({"id": f"m{int(time.time() * 1000)}", "type": "load_mission", "path": str(path)})
+
+
 class HookStatus:
     """UDP listener for Hook heartbeats and mission events (kills, deaths, landings)."""
     def __init__(self, world: World, port: int = 14511, host: str = "127.0.0.1"):

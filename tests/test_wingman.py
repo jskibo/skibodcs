@@ -120,3 +120,10 @@ def test_hook_status_heartbeat_and_events():
 def test_lock_id_parsed_from_telemetry():
     w = World(); w.update_from_payload({"own": {"model": "F-16C_50", "lock": "777"}, "objs": []})
     assert w.own.lock_id == "777"
+
+
+def test_hook_client_load_mission_roundtrip():
+    got = []
+    port, _ = _server([lambda c: (got.append(c), {"id": c["id"], "ok": True, "detail": "loading a.miz"})[1]])
+    ok, detail = HookClient(port=port).load_mission("C:/x/Missions/skibodcs/a.miz")
+    assert ok and detail == "loading a.miz" and got[0]["type"] == "load_mission" and got[0]["path"].endswith("a.miz")

@@ -46,7 +46,7 @@ package.preload["i_18n"] = function() return gettext end
 
 local records = {}
 local function recorder(fname, ...)
-  local el = { fn = fname, args = { ... }, nargs = select("#", ...) }
+  local el = { fn = fname, args = { ... }, nargs = select("#", ...), class = {} }   -- class: modules post-process elements ("Sanitize tumbs")
   records[el] = true
   return el
 end
@@ -136,7 +136,10 @@ for _, key in ipairs(keys) do
     if type(a[hi + 1]) == "number" then device = a[hi + 1] end
     for ai = 1, na do                              -- F-14 passes pilot_only / rio_only / pilot_and_rio tables
       local v = a[ai]
-      if type(v) == "table" and not is_any(v) and not is_tag(v) then
+      if is_any(v) then                            -- F-4E: pilot_only / wso_only live in clickable_dsl.lua (not supplied) => stubs
+        local nm = tostring(rawget(v, "__any"))
+        if nm == "pilot_only" then crew = "PLT" elseif nm == "wso_only" or nm == "rio_only" then crew = "WSO" end
+      elseif type(v) == "table" and not is_tag(v) then
         if v == rawget(_G, "pilot_only") then crew = "PLT" elseif v == rawget(_G, "rio_only") then crew = "RIO" end
       end
     end

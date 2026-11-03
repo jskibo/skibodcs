@@ -45,6 +45,46 @@ class PiperTTS:
             os.unlink(out)
 
 
+def _http_error(e: Exception) -> str:
+    import json, urllib.error
+    if isinstance(e, urllib.error.HTTPError):
+        try:
+            return f"HTTP {e.code}: {json.loads(e.read()).get('error', '')}"
+        except Exception:                                            # noqa: BLE001
+            return f"HTTP {e.code}"
+    return str(e)
+
+
+class RemoteSTT:
+    """Whisper running on another machine (see voice/server.py). Raises RuntimeError with the reason on failure."""
+    def __init__(self, url: str, timeout: float = 15.0):
+        self.url, self.timeout = url.rstrip("/"), timeout
+
+    def transcribe(self, wav: bytes) -> str:
+        import json, urllib.request
+        req = urllib.request.Request(self.url + "/stt", data=wav, headers={"Content-Type": "audio/wav"})
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout) as r:
+                return str(json.loads(r.read()).get("text", "")).strip()
+        except Exception as e:                                       # noqa: BLE001
+            raise RuntimeError(f"speech server STT failed: {_http_error(e)}") from e
+
+
+class RemoteTTS:
+    def __init__(self, url: str, timeout: float = 15.0):
+        self.url, self.timeout = url.rstrip("/"), timeout
+
+    def synthesize(self, text: str) -> bytes:
+        import json, urllib.request
+        req = urllib.request.Request(self.url + "/tts", data=json.dumps({"text": text}).encode(),
+                                     headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout) as r:
+                return r.read()
+        except Exception as e:                                       # noqa: BLE001
+            raise RuntimeError(f"speech server TTS failed: {_http_error(e)}") from e
+
+
 def radio_fx(wav: bytes, lo: float = 300.0, hi: float = 3400.0, drive: float = 1.8) -> bytes:
     """Band-limit to the radio passband and add mild clipping. Pure numpy."""
     import numpy as np

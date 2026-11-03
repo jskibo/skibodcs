@@ -9,6 +9,10 @@ COMMS_INTENTS = {
     "radio_check": "pilot checks that the controller hears them",
     "atc_taxi":    "pilot asks to taxi",
     "atc_takeoff": "pilot asks for takeoff clearance",
+    "jtac_checkin":   "check in with the JTAC / JTAC how copy / on station for tasking",
+    "jtac_nine_line": "request the nine line / ready for tasking / ready to copy / what are we hitting",
+    "jtac_readback":  "read back the nine line / ready for readback / I have the nine line",
+    "jtac_bda":       "battle damage assessment / BDA / how did we do",
     "atc_inbound": "pilot wants to land / come back / inbound / low on fuel (set emergency if urgent)",
 }
 

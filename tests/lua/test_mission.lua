@@ -108,14 +108,55 @@ do
   eq(S2.cmd("status", "who=element"), "ok:2 aircraft, fuel 70%, 60%")
 end
 
--- unimplemented intents never claim success
+-- unknown intents never claim success
 do
   local S, _, w1 = scenario()
-  for _, i in ipairs{ "rtb", "cleared_hot", "break_left", "break_right" } do
-    local r = S.cmd(i, "")
-    assert(r:match("^err:not implemented"), i .. " -> " .. r)
-  end
+  local r = S.cmd("barrel_roll", "")
+  assert(r:match("^err:not implemented"), r)
   eq(#w1.ctl.tasks, 0, "no task pushed")
+end
+
+-- rtb: each wingman gets a route to the nearest friendly AIRDROME (not a helipad / ship)
+do
+  local S, p, w1, w2 = scenario()
+  eq(S.cmd("rtb", ""), "err:no friendly airfield found")
+  coalition.getAirbases = coalition.getAirbases
+  M.airbases[2] = { M.airbase{ name = "Helipad", id = 9, x = 1000, z = 0, cat = 1 },
+                    M.airbase{ name = "Batumi", id = 5, x = -30 * 1852, z = 0, cat = 0 },
+                    M.airbase{ name = "Kobuleti", id = 6, x = -80 * 1852, z = 0, cat = 0 } }
+  eq(S.cmd("rtb", ""), "ok:returning to Batumi")
+  local pts = w1.ctl.set.params.route.points
+  eq(#pts, 2); eq(pts[2].type, "Land"); eq(pts[2].action, "Landing"); eq(pts[2].airdromeId, 5)
+  assert(w2.ctl.set, "second wingman tasked too"); eq(p.ctl.set, nil, "player untouched")
+  eq(S.cmd("rtb", "who=2"), "ok:returning to Batumi")
+end
+
+-- break left / right: a 90 degree turn point 10 nm out, relative to each wingman's own heading
+do
+  local S, _, w1 = scenario()
+  eq(S.cmd("break_right", ""), "ok:breaking right")
+  local q = w1.ctl.set.params.route.points[2]
+  assert(math.abs(q.x - 0) < 1 and math.abs(q.y - 18520) < 1, "heading north, break right = east: x=" .. q.x .. " y=" .. q.y)
+  eq(S.cmd("break_left", ""), "ok:breaking left")
+  q = w1.ctl.set.params.route.points[2]
+  assert(math.abs(q.y + 18520) < 1, "break left = west")
+end
+
+-- cleared hot: explicit lock wins; otherwise nearest hostile ground unit inside the forward arc; never behind
+do
+  local S, _, w1 = scenario()
+  eq(S.cmd("cleared_hot", "target_id=60"), "ok:attacking Kub")
+  eq(w1.ctl.tasks[1].id, "AttackUnit"); eq(w1.ctl.tasks[1].params.unitId, 60)
+  local S2, _, v1 = scenario()
+  M.add(1, 2, M.group{ M.unit{ id = 61, side = 1, type = "T-72B", x = 10 * 1852, z = 0, cat = 2 },
+                       M.unit{ id = 62, side = 1, type = "BMP-2", x = -5 * 1852, z = 0, cat = 2 } })
+  eq(S2.cmd("cleared_hot", ""), "ok:attacking Kub")                  -- sam at 0 m is nearest
+  M.reset(); S2 = load_module()
+  M.add(2, 0, M.group{ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } })
+  M.add(1, 2, M.group{ M.unit{ id = 62, side = 1, type = "BMP-2", x = -5 * 1852, z = 0, cat = 2 } })
+  eq(S2.cmd("cleared_hot", ""), "err:no ground target in front of you")
+  M.add(1, 2, M.group{ M.unit{ id = 61, side = 1, type = "T-72B", x = 10 * 1852, z = 0, cat = 2 } })
+  eq(S2.cmd("cleared_hot", ""), "ok:attacking T-72B")
 end
 
 -- no wingman / no player / errors inside DCS calls are contained

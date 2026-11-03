@@ -31,7 +31,7 @@ def build(cfg: dict):
         index = cl.ControlIndex(cs, crew=cfg.get("crew", ""))
         index.merge_curated(table, GEAR_ALIASES)
     router = Router(llm, table, world, cfg.get("callsign", "Viper 1-1"), cfg.get("awacs", "Magic"),
-                    cfg.get("wingman", "Viper 1-2"), index=index)
+                    cfg.get("wingman", "Viper 1-2"), index=index, jtac=cfg.get("jtac", "Axeman"))
     return world, router
 
 
@@ -101,9 +101,11 @@ def main(argv=None):
                 seq_runner["cur"].abort()
         return 0
 
-    from .audio import FasterWhisperSTT, PiperTTS, PTTRecorder, play_wav, radio_fx
-    stt = FasterWhisperSTT(**cfg.get("stt", {}))
-    tts = PiperTTS(cfg["tts"]["model"])
+    from .audio import FasterWhisperSTT, PiperTTS, PTTRecorder, RemoteSTT, RemoteTTS, play_wav, radio_fx
+    stt_cfg, tts_cfg = dict(cfg.get("stt", {})), dict(cfg.get("tts", {}))
+    # [stt] server = "http://MAC:8765" / [tts] server = "http://MAC:8765" -> speech runs on the Mac (voice/server.py)
+    stt = RemoteSTT(stt_cfg["server"]) if stt_cfg.get("server") else FasterWhisperSTT(**stt_cfg)
+    tts = RemoteTTS(tts_cfg["server"]) if tts_cfg.get("server") else PiperTTS(tts_cfg["model"])
     ptt = PTTRecorder(**cfg.get("ptt", {}))
     while True:
         wav = ptt.record_while_held()

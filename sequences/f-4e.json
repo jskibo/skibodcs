@@ -1,0 +1,54 @@
+{
+ "aircraft": "F-4E-45MC",
+ "source": "Heatblur AUTO_START device 88 (PILOT_AUTO_START=3001, PILOT_AUTO_STOP=3002); no Macro_sequencies supplied",
+ "sequences": {
+  "autostart": [
+   {
+    "delay": 0.5,
+    "message": "Starting the Phantom.",
+    "speak": true
+   },
+   {
+    "delay": 0.5,
+    "device": 88,
+    "command": 3001,
+    "value": 1.0
+   },
+   {
+    "delay": 0.2,
+    "device": 88,
+    "command": 3001,
+    "value": 0.0
+   },
+   {
+    "delay": 1.0,
+    "message": "Autostart commanded. The module runs its own sequence.",
+    "speak": true
+   }
+  ],
+  "autostop": [
+   {
+    "delay": 0.5,
+    "message": "Shutting the Phantom down.",
+    "speak": true
+   },
+   {
+    "delay": 0.5,
+    "device": 88,
+    "command": 3002,
+    "value": 1.0
+   },
+   {
+    "delay": 0.2,
+    "device": 88,
+    "command": 3002,
+    "value": 0.0
+   },
+   {
+    "delay": 1.0,
+    "message": "Autostop commanded.",
+    "speak": true
+   }
+  ]
+ }
+}

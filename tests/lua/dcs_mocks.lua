@@ -18,7 +18,14 @@ function coalition.getGroups(side, cat)
   return (M.groups[side] and M.groups[side][cat]) or {}
 end
 
-function M.reset() M.groups = {}; world.handlers = {}; SKIBO = nil end
+M.airbases = {}
+function coalition.getAirbases(side) return M.airbases[side] or {} end
+function M.airbase(o)
+  return { getName = function() return o.name end, getID = function() return o.id end,
+           getPoint = function() return { x = o.x, y = 0, z = o.z } end,
+           getDesc = function() return { category = o.cat or 0 } end }
+end
+function M.reset() M.groups = {}; M.airbases = {}; world.handlers = {}; SKIBO = nil end
 
 function M.unit(o)
   local u = { calls = {}, o = o }
@@ -30,6 +37,7 @@ function M.unit(o)
   function u.getFuel() return o.fuel or 1.0 end
   function u.getPoint() return { x = o.x or 0, y = 0, z = o.z or 0 } end
   function u.getDesc() return { category = o.cat or 0 } end
+  function u.getPosition() local h = math.rad(o.hdg or 0); return { x = { x = math.cos(h), y = 0, z = math.sin(h) } } end
   function u.getCoalition() return o.side or 2 end
   function u.getGroup() return { getName = function() return o.group or "grp" end } end
   if o.boom then u.getController = function() error("controller exploded") end
@@ -37,6 +45,7 @@ function M.unit(o)
     local ctl = { options = {}, tasks = {} }
     function ctl:setOption(id, val) self.options[#self.options + 1] = { id, val } end
     function ctl:pushTask(t) self.tasks[#self.tasks + 1] = t end
+    function ctl:setTask(t) self.set = t end
     function ctl:resetTask() self.resets = (self.resets or 0) + 1 end
     u.ctl = ctl
     function u.getController() return ctl end

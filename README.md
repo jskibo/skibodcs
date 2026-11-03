@@ -1,4 +1,4 @@
-# skibodcs v0.8
+# skibodcs v0.9
 
 Three tracks in one codebase: mission generator, natural-language voice (comms, cockpit, wingman),
 and a DCS bridge. Anything marked UNVERIFIED could not be run against a live DCS/Ollama/Whisper/
@@ -26,15 +26,13 @@ command it sends to the Hook.
 
 ## Use
     skibodcs generate "SEAD on an SA-6 near Kutaisi" --host http://MAC:11434 --deploy
-    skibodcs deploy out\m1.miz --kneeboard F-16C_50=route.png      (kneeboard PNG generation not built yet)
+    skibodcs deploy out\m1.miz --kneeboard F-16C_50=route.png      (kneeboards are now generated: see v0.9)
     copy skibodcs.example.toml skibodcs.toml ; skibodcs-voice --text      # type instead of speak
 Wingman examples: "weapons free", "attack my target", "go wedge", "how's your fuel".
 
 ## Honest status of wingman intents
-IMPLEMENTED in the mission module: weapons_free, weapons_hold, engage_my_target, engage_nearest, status.
-NOT implemented (the sim answers "not implemented" and the app says "unable", never a fake "roger"):
-formation, cover_me, rejoin, rtb, cleared_hot, break_left/right. Formation needs the real AI
-option values; the rest need route/task injection. Add them one at a time against a live sim.
+(Historical note, v0.1-v0.4. Everything below is implemented as of v0.9 - see the v0.9 section; unknown intents still
+answer "not implemented", never a fake "roger".)
 
 ## Cockpit tables: generated from your own DCS files (new in v0.4)
     skibodcs find --devices D --commands C --clickable K "master arm"      # look up any control
@@ -69,8 +67,8 @@ Implemented through the mission Controller API: weapons free/hold + ROE (free/ho
 (off/attack_only/search/continuous), ECM (off/lock/detected/always), reaction (none/passive/evade/escape),
 formation (line_abreast, trail, wedge, echelon_right/left, finger_four, spread, vic x close/open/group),
 engage my target / nearest / bandits / ground / SEAD, cover me (Escort), rejoin (Follow), status.
-Option ids and formation numbers follow MOOSE's source; task names/params follow pydcs. NOT implemented (the sim says
-so and the app says "unable"): RTB, cleared hot, break left/right. DCS exposes NO API to press its native F-menu
+Option ids and formation numbers follow MOOSE's source; task names/params follow pydcs. RTB / cleared hot / break left-right
+arrived in v0.9. DCS exposes NO API to press its native F-menu
 items, so these are behavioural equivalents, not the literal menu entries; compare them in the sim.
 **Autostart / "cold and dark to ready to taxi".** Engine in place (`skibodcs/sequence.py`, voice intents autostart /
 autostop / ready_to_taxi, "abort the start"). The sequences themselves are DATA in sequences\<aircraft>.json and are
@@ -108,6 +106,38 @@ module-defined helper actually returns (before, A-10 args all came out 0); (2) w
 because the A-10 reuses `device_commands.Button_N` on every device; (3) `--draw-args` for the F-14. Three controls each in the
 F-16C and F/A-18C files gained their real arg numbers from (1); nothing else in those files changed.
 
+## v0.9: F-4E, wingman RTB/cleared hot/break, JTAC, kneeboards, campaign, auto-launch, speech server
+**F-4E** (Heatblur; files `airframes\\f-4e.*`, `sequences\\f-4e.json`, unit type `F-4E-45MC` - check it matches the type shown in
+your mission). 486 controls: PLT 265 / WSO 210 / shared 11 (`crew = "PLT"` or `"WSO"`), 484 with cockpit arg numbers (from
+draw_args.lua). No Macro_sequencies was supplied, so NO value is confirmed (gear/hook/master arm/engine masters are guesses; the
+app asks for a spoken "confirm"). Autostart/autostop press the module's own AUTO_START device (88: cmd 3001 / 3002) - UNVERIFIED
+that performClickableAction on a non-clickable device works; fallback is the Controls-screen binding. The extractor now also
+copes with `pilot_only` / `wso_only` coming from a support file that is not supplied, and with post-processing loops in the
+cockpit file. The F4U-1D files that came along were ignored.
+**Wingman:** `rtb` (route to the nearest friendly AIRDROME, landing waypoint), `break_left` / `break_right` (90 degree turn point
+10 nm out, relative to each wingman's heading; say "rejoin" afterwards), `cleared_hot` (AttackUnit on: your cockpit lock, else the
+JTAC's primary target, else the nearest hostile ground unit within 25 nm / +-60 degrees ahead). Tested against the mocked API only.
+**JTAC** (voice/jtac.py, deterministic): "Axeman, check in", "ready for the nine line", "readback", "BDA". Target = nearest hostile
+ground contact to you (group = contacts within 1 nm). The IP is synthetic (10 nm from the target on a clean radial back toward you),
+so lines 2-3 always match the geometry. Line 6 is lat/long (the sim's own format), line 7 laser code 1688. UNVERIFIED: Export
+reporting ground objects with is_air = false and MSL altitude.
+**Kneeboards** (`skibodcs kneeboard spec.json --out DIR [--deploy]`): six 768x1024 PNG pages per aircraft - mission+comms, route,
+briefing, threats (approximate SAM ranges), north-up map (airbases, route, threat rings), data card (steerpoints in lat/long and radio
+presets: the printed equivalent of a DTC load; real DTC files are module-specific and are NOT generated). Needs pyproj for lat/long.
+**Campaign** (`skibodcs campaign new|next|ingest|status --name N --db campaign.db`): SQLite state (red sites alive/destroyed, airframe
+pool, sortie number, date). `next` plans a sortie (built-in generator, or `--llm` with your Ollama model), compiles the .miz,
+renders kneeboards and deploys everything. `ingest` reads the Hook's events.jsonl from where this sortie started: a site counts as
+destroyed when ALL its units died; an objective needs its target destroyed (destroy) or you landing (survive); lost airframes shrink the
+pool (one replacement per sortie); the next sortie never contains destroyed sites; red rebuilds a site when fewer than 3 remain; all
+sites destroyed = victory. Example: `skibodcs campaign new --name Iron --home Batumi --aircraft F-16C_50` then `campaign next`, fly,
+`campaign ingest`, `campaign next`. Known gap: unit-level player loss cannot be told from wingmen (events carry no player flag).
+**Auto-launch:** `skibodcs launch FILE.miz` or `campaign next --launch` asks the Hook to call net.load_mission. Limits: the Hook only
+listens while a mission is running (it binds in onSimulationStart), so the FIRST mission of a session is still picked by hand;
+UNVERIFIED that net.load_mission starts a mission from the single-player GUI (documented for servers). Files outside
+Saved Games\\DCS\\Missions are refused.
+**Speech on the Mac:** `python -m skibodcs.voice.server --tts-model PATH.onnx` there; on the PC set `[stt] server` / `[tts] server`
+to `http://MAC:8765`. LAN only, no authentication. Whisper/Piper never ran in the build sandbox.
+
 ## Safety rule (v0.7)
 Unconfirmed value + consequential control => the app says "Confirm <thing>? That value is unverified for this aircraft" and acts
 only on a spoken "confirm" within 10 s. Confirmed values (from ED's autostart data) run immediately.
@@ -122,6 +152,7 @@ only on a spoken "confirm" within 10 s. Confirmed values (from ED's autostart da
 5. net.dostring_in return order: code tolerates either (result, ok) or (ok, result).
 6. Action VALUE polarity in airframes\*.toml (ids are real; test each action once in the sim, then set verified = true). The lupa fallback in extract.py never ran (LuaJIT path is tested).
 7. Ollama accepting the generated schemas; Whisper/Piper/PTT never ran.
-8. Whether DCS can be started with a mission chosen by the app: NOT built. The mission lands in
-   Missions\skibodcs\; you still pick it in DCS.
+8. Auto-launch: net.load_mission from the Hook (see v0.9). The mission always lands in Missions\skibodcs\ so picking it by hand works.
+9. v0.9 items: wingman rtb / break / cleared_hot behaviour; JTAC contact fields; F-4E gear/hook/master-arm values and the
+   AUTO_START device; campaign ingest (event group/unit names match the scenario's group ids); kneeboard readability in the cockpit.
 Mission events are appended to Saved Games\DCS\skibodcs\events.jsonl for the campaign step.

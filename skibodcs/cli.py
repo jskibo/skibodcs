@@ -21,6 +21,23 @@ def main(argv=None):
     for name in ("install", "uninstall"):
         x = sub.add_parser(name, help=f"{name} the DCS Lua files (Hook, mission module, Export.lua block)")
         x.add_argument("--dcs-dir")
+    cp = sub.add_parser("campaign", help="persistent campaign: new | next | ingest | status")
+    cp.add_argument("action", choices=["new", "next", "ingest", "status"])
+    cp.add_argument("--name", default="campaign1"); cp.add_argument("--db", default="campaign.db")
+    cp.add_argument("--theater", default="Caucasus"); cp.add_argument("--aircraft", default="F-16C_50")
+    cp.add_argument("--home", default="Batumi"); cp.add_argument("--callsign", default="Viper")
+    cp.add_argument("--sites", type=int, default=6); cp.add_argument("--seed", type=int)
+    cp.add_argument("--start-date", default="2026-06-14"); cp.add_argument("--flight-size", type=int, default=2)
+    cp.add_argument("--out", default="out/campaign"); cp.add_argument("--dcs-dir")
+    cp.add_argument("--launch", action="store_true", help="after planning, ask the Hook to load the mission (DCS must be running a mission)")
+    cp.add_argument("--llm", action="store_true", help="plan with the local LLM instead of the built-in generator")
+    cp.add_argument("--model", default="qwen3:14b"); cp.add_argument("--host", default="http://localhost:11434")
+    la = sub.add_parser("launch", help="ask the running DCS (via the Hook) to load a .miz from Saved Games\\DCS\\Missions")
+    la.add_argument("miz"); la.add_argument("--port", type=int, default=14510)
+    k = sub.add_parser("kneeboard", help="spec.json -> kneeboard PNG pages (mission, route, briefing, threats, map, data card)")
+    k.add_argument("spec"); k.add_argument("--out", default="out/kneeboard")
+    k.add_argument("--deploy", action="store_true", help="also copy the pages into Saved Games\\DCS\\Kneeboard\\<aircraft>")
+    k.add_argument("--dcs-dir")
     d = sub.add_parser("deploy", help="copy a .miz (+ kneeboards) into the DCS folders")
     d.add_argument("miz"); d.add_argument("--dcs-dir")
     d.add_argument("--kneeboard", action="append", default=[], metavar="AIRCRAFT=PNG")
@@ -62,6 +79,54 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
+    if a.cmd == "launch":
+        from .voice.link import HookClient
+        ok, detail = HookClient(port=a.port).load_mission(a.miz)
+        print(("ok: " if ok else "failed: ") + detail); return 0 if ok else 1
+    if a.cmd == "campaign":
+        from . import campaign as cg
+        from . import deploy as dp
+        dcs_dir = Path(a.dcs_dir) if a.dcs_dir else (dp.find_dcs_dirs() or [None])[0]
+        if a.action == "new":
+            cg.Campaign.create(a.db, a.name, a.theater, a.aircraft, a.home, a.callsign, a.start_date, a.flight_size, a.sites, a.seed)
+            print(json.dumps(cg.Campaign.open(a.db, a.name).summary(), indent=1)); return 0
+        camp = cg.Campaign.open(a.db, a.name)
+        if a.action == "status":
+            print(json.dumps(camp.summary(), indent=1)); return 0
+        if a.action == "next":
+            llm = None
+            if a.llm:
+                from .llm import OllamaClient
+                llm = OllamaClient(a.model, a.host)
+            res = cg.build_sortie(camp, a.out, dcs_dir, llm)
+            if a.launch and res.get("deployed_miz"):
+                from .voice.link import HookClient
+                ok, detail = HookClient().load_mission(res["deployed_miz"])
+                res["launch"] = {"ok": ok, "detail": detail}
+            print(json.dumps(res, indent=1)); return 0
+        if dcs_dir is None:
+            print("No Saved Games\\DCS folder found; pass --dcs-dir"); return 1
+        out = cg.ingest_latest(camp, dcs_dir)
+        print(json.dumps(out, indent=1)); print(json.dumps(camp.summary(), indent=1)); return 0
+    if a.cmd == "kneeboard":
+        from .kneeboard import make_kneeboards
+        sc, errs = validate(Path(a.spec).read_text())
+        if sc is None:
+            print("invalid spec:", *errs, sep="\n  "); return 1
+        pages = make_kneeboards(sc, a.out)
+        for ac, ps in pages.items():
+            print(ac, *[p.name for p in ps])
+        if a.deploy:
+            import shutil
+            for ac, ps in pages.items():
+                kb = Path(dcs) / "Kneeboard" / ac
+                kb.mkdir(parents=True, exist_ok=True)
+                for old in kb.glob("skibodcs_*"):
+                    old.unlink()
+                for i, png in enumerate(ps, 1):
+                    shutil.copy2(png, kb / f"skibodcs_{i:02d}_{png.name}")
+            print("deployed to", Path(dcs) / "Kneeboard")
+        return 0
     if a.cmd == "native-sequence":
         from . import macros as mc
         seq = {"aircraft": a.aircraft, "source": "native iCommand (LoSetCommand)",
