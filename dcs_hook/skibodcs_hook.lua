@@ -91,24 +91,43 @@ local function select_reader()
   return false, table.concat(notes, " | ")
 end
 
-local function inject_module()
+-- a_do_script is ASYNCHRONOUS on real builds: it queues the code, which runs on the next sim frame (a real log showed the probe
+-- failing right after sending and succeeding on a later poll). So injection is a small state machine: send the module + probe once,
+-- then check for the answer on later frames, and re-send only if nothing came back after 5 real seconds.
+local inject = { sent = nil, attempts = 0, last_drive = -1, err = nil }
+local DIAG = 'local t = {} for _, n in ipairs({"world","coalition","AI","trigger","Group","timer","a_do_script","env"}) do t[#t + 1] = n .. "=" .. tostring(_G[n] ~= nil) end return table.concat(t, " ")'
+local function diag_states()
+  for _, st in ipairs({ "mission", "server", "scripting" }) do
+    local r, err = in_state(st, DIAG)
+    log("diag state '" .. st .. "': " .. tostring(r or ("error: " .. tostring(err))):sub(1, 160))
+  end
+end
+
+local function drive_injection(now)
+  if mission_loaded then return end
+  if inject.sent and now - inject.sent < 5 then
+    local ok, how = select_reader()
+    if ok then
+      mission_loaded = true; inject.err = nil
+      log("mission module loaded in the scripting sandbox; flags are read via " .. how)
+    elseif how and how:find("only partly", 1, true) and how ~= inject.err then
+      inject.err = how; log("inject failed: " .. how)
+    end
+    return
+  end
   local f = io.open(MODULE, "r")
   if not f then log("missing " .. MODULE); return end
   local code = f:read("*a"); f:close()
   local _, err = in_mission("a_do_script(" .. long_bracket(code) .. ")")
   if not err then _, err = in_mission("a_do_script(" .. long_bracket("SKIBO.put('probe', 7, SKIBO.loaded and 'hello' or 'partial')") .. ")") end
-  local ok, how = false, err
-  if not err then ok, how = select_reader() end
-  if ok then
-    mission_loaded = true; last_inject_err = nil
-    log("mission module loaded in the scripting sandbox; flags are read via " .. how)
-  else
-    local why = how or "unknown"
-    if not err and not why:find("only partly", 1, true) then
-      why = "no flag reader could see the sandbox (module probably failed inside it: look for 'Mission script error' lines above). Tried: " .. why
-    end
-    if why ~= last_inject_err then last_inject_err = why; log("inject failed (will retry every poll): " .. why) end
+  if err then
+    inject.sent = nil
+    if err ~= inject.err then inject.err = err; log("not ready to inject yet (will retry): " .. err:sub(1, 200)) end
+    return
   end
+  inject.sent = now; inject.attempts = inject.attempts + 1
+  if inject.attempts <= 6 or inject.attempts % 6 == 0 then log("module sent to the scripting sandbox (attempt " .. inject.attempts .. "); waiting for it to answer") end
+  if inject.attempts == 1 then safe(diag_states) end
 end
 
 local function ensure_sockets()
@@ -163,9 +182,7 @@ local function handle_line(line)
   if type(cmd) ~= "table" then return end
   if cmd.type == "load_mission" then handle_load_mission(cmd); return end
   if cmd.type ~= "wingman" then reply({ id = cmd.id, ok = false, detail = "unknown type" }); return end
-  if not mission_loaded then inject_module() end
-  if not mission_loaded then reply({ id = cmd.id, ok = false, detail = "mission module not loaded" }); return end
-  cmd_queue[#cmd_queue + 1] = { id = cmd.id, intent = tostring(cmd.intent or ""), ps = param_string(cmd.params or {}) }
+  cmd_queue[#cmd_queue + 1] = { id = cmd.id, intent = tostring(cmd.intent or ""), ps = param_string(cmd.params or {}), t0 = DCS.getRealTime() }
 end
 
 -- One command at a time: run it in the sandbox, then read the answer from the "res" flags. If the answer is not there yet
@@ -173,13 +190,20 @@ end
 local function service_commands(now)
   while true do
     if not pending then
-      local c = table.remove(cmd_queue, 1)
+      local c = cmd_queue[1]
       if not c then return end
-      seq_counter = seq_counter + 1
-      pending = { id = c.id, seq = seq_counter, t0 = now }
-      local run = string.format("SKIBO.run(%d, %q, %q)", pending.seq, c.intent, c.ps)
-      local _, err = in_mission("a_do_script(" .. long_bracket(run) .. ")")
-      if err then reply({ id = c.id, ok = false, detail = "dostring failed: " .. err }); pending = nil end
+      if not mission_loaded then                         -- the module may still be loading: wait up to 8 s, then say so
+        if now - c.t0 <= 8 then return end
+        table.remove(cmd_queue, 1)
+        reply({ id = c.id, ok = false, detail = "mission module not loaded (see the skibodcs lines in dcs.log)" })
+      else
+        table.remove(cmd_queue, 1)
+        seq_counter = seq_counter + 1
+        pending = { id = c.id, seq = seq_counter, t0 = now }
+        local run = string.format("SKIBO.run(%d, %q, %q)", pending.seq, c.intent, c.ps)
+        local _, err = in_mission("a_do_script(" .. long_bracket(run) .. ")")
+        if err then reply({ id = c.id, ok = false, detail = "dostring failed: " .. err }); pending = nil end
+      end
     end
     if pending then
       local r = read_mailbox("res")
@@ -192,7 +216,7 @@ local function service_commands(now)
         reply({ id = pending.id, ok = false, detail = "no answer from the mission (paused, or the module is not running)" })
         pending = nil
       else
-        return                                        -- try again next frame
+        return                                        -- the sandbox answers on a later frame: look again next time
       end
     end
   end
@@ -223,7 +247,6 @@ end
 
 local last_ev_seq, ack_next = 0, nil
 local function poll_events()
-  if not mission_loaded then inject_module() end       -- the sandbox can be incomplete at onSimulationStart
   if not mission_loaded then return end
   local call = string.format("SKIBO.flush(%s)", ack_next and tostring(ack_next) or "nil")
   in_mission("a_do_script(" .. long_bracket(call) .. ")")
@@ -251,15 +274,16 @@ local cb = {}
 function cb.onSimulationStart()
   mission_loaded = false
   reader = nil
+  inject = { sent = nil, attempts = 0, last_drive = -1, err = nil }
   cmd_queue, pending, last_ev_seq, ack_next = {}, nil, 0, nil
   safe(ensure_sockets)
-  safe(inject_module)
 end
 
 function cb.onSimulationFrame()
-  safe(pump_commands)
-  safe(service_commands, DCS.getRealTime())
   local now = DCS.getRealTime()
+  safe(pump_commands)
+  if not mission_loaded and now - inject.last_drive >= 0.5 then inject.last_drive = now; safe(drive_injection, now) end
+  safe(service_commands, now)
   if now - last_poll >= POLL_SECONDS then
     last_poll = now
     safe(poll_events)

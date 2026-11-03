@@ -21,7 +21,17 @@ local fail_next = 0
 -- builds return an empty string), so the Hook must use the flag mailbox.
 local hidden = { world = true, coalition = true, AI = true, Group = true, timer = true }
 -- Which flag-reading routes exist differs per DCS build. Default = the author's install: no `trigger` in the 'mission' control state.
-W = { mission_trigger = false, a_get = "a_get_flag_value", passthrough = false, server = false, scripting = false }
+W = { mission_trigger = false, a_get = "a_get_flag_value", passthrough = false, server = false, scripting = false, async = true }
+-- a_do_script is ASYNCHRONOUS on real builds: code is queued and runs on the next simulation frame (sandbox_step)
+sandbox_queue = {}
+function sandbox_step()
+  local q = sandbox_queue; sandbox_queue = {}
+  for _, code in ipairs(q) do
+    local f, err = loadstring(code)
+    if not f then sandbox_errors[#sandbox_errors + 1] = err else
+      local ok, r = pcall(f); if not ok then sandbox_errors[#sandbox_errors + 1] = tostring(r) end end
+  end
+end
 local function env_for(state)
   local e = setmetatable({}, { __index = function(_, k)
     if hidden[k] then return nil end
@@ -31,6 +41,7 @@ local function env_for(state)
     if W.a_get then e[W.a_get] = function(n) return M.flags[n] or 0 end end
     e.a_do_script = function(code)
       if defer_run and code:find("SKIBO.run", 1, true) then deferred = code; return end      -- sandbox call completes later / never
+      if W.async then sandbox_queue[#sandbox_queue + 1] = code; return end
       local f, err = loadstring(code)
       if not f then sandbox_errors[#sandbox_errors + 1] = err; return end
       local ok, r = pcall(f)
@@ -82,7 +93,11 @@ end
 local clock = 100
 DCS = { getRealTime = function() return clock end }
 local cb
-function DCS.setUserCallbacks(t) cb = t end
+function DCS.setUserCallbacks(t)
+  cb = t
+  local frame = t.onSimulationFrame
+  t.onSimulationFrame = function(...) frame(...); sandbox_step() end       -- the sim runs queued sandbox code once per frame
+end
 
 -- ---- mock LuaSocket
 local sent_udp, replies, inbox = {}, {}, {}
@@ -98,12 +113,16 @@ local udp = { settimeout = function() end, setpeername = function() end, close =
 package.preload["socket"] = function() return { bind = function() return server end, udp = function() return udp end } end
 
 -- ---- run
+function settle(n)                                        -- a few real seconds of frames: module sent, answered, detected
+  for _ = 1, n or 3 do clock = clock + 1; cb.onSimulationFrame() end
+end
 local function boot()
   M.reset(); sent_udp, replies, inbox = {}, {}, {}
   dofile("dcs_hook/skibodcs_hook.lua")
   assert(cb and cb.onSimulationFrame and cb.onSimulationStart, "callbacks must be registered via DCS.setUserCallbacks")
   cb.onSimulationStart()
   M.add(2, 0, M.group({ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } }, 5))
+  settle()
 end
 
 for _, order in ipairs{ false, true } do
@@ -113,7 +132,7 @@ for _, order in ipairs{ false, true } do
   inbox[1] = '{"id":"w1","type":"wingman","intent":"weapons_free","params":{}}'
   inbox[2] = '{"id":"w2","type":"wingman","intent":"barrel_roll","params":{"who":"wingman"}}'
   inbox[3] = '{"id":"w3","type":"cockpit","intent":"x","params":{}}'
-  cb.onSimulationFrame()
+  settle(4)
   eq(#replies, 3)
   local function by_id(id) for _, r in ipairs(replies) do if r:find('"id":"' .. id .. '"', 1, true) then return r end end end
   eq(by_id("w1"), '{"detail":"weapons free","id":"w1","ok":true}\n')            -- answers may arrive in any order; the id matches them
@@ -123,19 +142,21 @@ for _, order in ipairs{ false, true } do
 end
 swapped = false
 
--- an injection that fails at onSimulationStart (mission environment not ready) is retried by the poll loop, and logged once
+-- injection refused by the control layer is retried every half second and logged once; a_do_script runs async, so loading takes frames
 do
   M.reset(); sent_udp, replies, inbox = {}, {}, {}
-  fail_next = 2; logs = {}
+  fail_next = 2; logs = {}; sandbox_queue = {}
   dofile("dcs_hook/skibodcs_hook.lua")
-  cb.onSimulationStart()                                   -- injection attempt 1 fails
+  cb.onSimulationStart()
   assert(not SKIBO, "module must not be loaded yet")
-  clock = clock + 2; cb.onSimulationFrame()                -- poll: attempt 2 fails (same error: not logged again)
-  assert(not SKIBO)
-  clock = clock + 2; cb.onSimulationFrame()                -- poll: attempt 3 succeeds
+  settle(1); assert(not SKIBO)                             -- attempt 1 refused
+  settle(1); assert(not SKIBO)                             -- attempt 2 refused (same error: not logged again)
+  settle(1)                                                -- sent; the sandbox executes it at the end of this frame
   assert(SKIBO and SKIBO.version, "retry must load the module")
-  local fails = 0; for _, l in ipairs(logs) do if l:find("inject failed") then fails = fails + 1 end end
+  settle(2)
+  local fails = 0; for _, l in ipairs(logs) do if l:find("not ready to inject") then fails = fails + 1 end end
   eq(fails, 1, "the same failure is logged once")
+  assert(table.concat(logs, "\n"):find("flags are read via"), "detected once the sandbox answered")
 end
 
 -- a sandbox answer that arrives on a LATER frame is still delivered; one that never arrives is reported, not faked
@@ -143,17 +164,17 @@ do
   boot()
   defer_run = true
   inbox[1] = '{"id":"d1","type":"wingman","intent":"weapons_free","params":{}}'
-  cb.onSimulationFrame()
+  settle(1)
   eq(#replies, 0, "no answer yet, so no claim of success")
   local run = deferred; deferred = nil; defer_run = false
   assert(run, "the run call was issued")
-  env_for("mission").a_do_script(run)                           -- sandbox finally executes it
-  clock = clock + 0.2; cb.onSimulationFrame()
+  sandbox_queue[#sandbox_queue + 1] = run                  -- sandbox finally executes it (end of the next frame)
+  settle(2)
   eq(replies[#replies], '{"detail":"weapons free","id":"d1","ok":true}\n')
   boot()
   defer_run = true
   inbox[1] = '{"id":"d2","type":"wingman","intent":"weapons_free","params":{}}'
-  cb.onSimulationFrame()
+  settle(1)
   clock = clock + 4; cb.onSimulationFrame()
   assert(replies[#replies]:find('"ok":false') and replies[#replies]:find("no answer from the mission"), replies[#replies])
   defer_run = false
@@ -165,10 +186,11 @@ do
   local real = _G.world; world = nil                     -- sandbox without `world`: module load throws before the ready flag
   dofile("dcs_hook/skibodcs_hook.lua")
   cb.onSimulationStart()
+  settle(3)
   world = real
   assert(not SKIBO or M.flags["skibo_ready"] == nil, "not ready")
   local msg = table.concat(logs, "\n")
-  assert(msg:find("inject failed") and msg:find("Mission script error") and msg:find("only partly"), msg)
+  assert(msg:find("only partly") and msg:find("Mission script error"), msg)
 end
 
 -- every flag-reading route that exists on some build must be found by the probe; with none the failure names what was tried
@@ -176,24 +198,25 @@ local function try_world(cfg, expect)
   local saved = {}; for k, v in pairs(W) do saved[k] = v end
   for k, v in pairs(cfg) do W[k] = v end
   M.reset(); sent_udp, replies, inbox, logs = {}, {}, {}, {}
+  sandbox_queue = {}
   dofile("dcs_hook/skibodcs_hook.lua"); cb.onSimulationStart()
   M.add(2, 0, M.group({ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } }, 5))
   inbox[1] = '{"id":"z1","type":"wingman","intent":"weapons_free","params":{}}'
-  cb.onSimulationFrame()
+  settle(expect and 5 or 12)                               -- no working reader: the command waits 8 s for the module, then is refused
   local msg = table.concat(logs, "\n")
   if expect then
     assert(msg:find("flags are read via " .. expect, 1, true), msg)
     eq(replies[#replies], '{"detail":"weapons free","id":"z1","ok":true}\n')
   else
-    assert(msg:find("no flag reader could see the sandbox", 1, true) and msg:find("Tried:", 1, true), msg)
     assert(replies[#replies] and replies[#replies]:find("mission module not loaded"), tostring(replies[#replies]))
+    assert(not msg:find("flags are read via", 1, true), msg)
   end
   W = saved
 end
 try_world({}, "mission/a_get_flag_value")
 try_world({ a_get = false, mission_trigger = true }, "mission/trigger.misc.getUserFlag")
 try_world({ a_get = "a_get_flag" }, "mission/a_get_flag")
-try_world({ a_get = false, passthrough = true }, "mission/a_do_script return value")
+try_world({ a_get = false, passthrough = true, async = false }, "mission/a_do_script return value")
 try_world({ a_get = false, server = true }, "server/trigger.misc.getUserFlag")
 try_world({ a_get = false, scripting = true }, "scripting/trigger.misc.getUserFlag")
 try_world({ a_get = false }, nil)
@@ -206,7 +229,7 @@ do
   inbox[2] = '{"id":"m2","type":"load_mission","path":"/etc/passwd"}'
   inbox[3] = '{"id":"m3","type":"load_mission","path":"' .. WD .. 'Missions/../Scripts/x.miz"}'
   inbox[4] = '{"id":"m4","type":"load_mission","path":"' .. WD .. 'Missions/skibodcs/missing.miz"}'
-  cb.onSimulationFrame()
+  settle(1)
   eq(#replies, 4)
   assert(replies[1]:find('"ok":true') and replies[1]:find("loading a.miz"), replies[1])
   assert(replies[2]:find('"ok":false') and replies[2]:find("refused"), replies[2])
@@ -218,21 +241,23 @@ end
 -- structured params survive the trip: JSON params -> k=v string -> mission state -> option on the right ship
 boot()
 inbox[1] = '{"id":"p1","type":"wingman","intent":"formation","params":{"who":"wingman","shape":"wedge","spacing":"close"}}'
-cb.onSimulationFrame()
+settle(2)
 eq(replies[#replies], '{"detail":"wedge close","id":"p1","ok":true}\n')
 
 -- heartbeat is throttled (once per second of real time, not per frame)
 boot()
 local before = #sent_udp
 for i = 1, 200 do cb.onSimulationFrame() end
-eq(#sent_udp - before, 1, "one heartbeat for 200 frames at a fixed clock")
+eq(#sent_udp - before, 0, "no extra heartbeat for 200 frames at a fixed clock")
 clock = clock + 1.5; cb.onSimulationFrame()
-eq(#sent_udp - before, 2)
+eq(#sent_udp - before, 1, "one heartbeat once a real second has passed")
+for i = 1, 200 do cb.onSimulationFrame() end
+eq(#sent_udp - before, 1, "and still only one for the next 200 frames")
 
 -- events flow: mission buffer -> UDP + events.jsonl
 local unit = M.unit{ id = 60, name = "sam_site_1-1", group = "sam_site_1", type = "Kub", side = 1 }
 world.handlers[1]:onEvent{ id = world.event.S_EVENT_DEAD, initiator = unit }
-clock = clock + 2; cb.onSimulationFrame()
+settle(4)                                                  -- poll: flush queued (async) -> next poll reads the packet
 local got = false
 for _, s in ipairs(sent_udp) do if s:find('"kind":"dead"') and s:find('"group":"sam_site_1"') then got = true end end
 assert(got, "event forwarded over UDP")
