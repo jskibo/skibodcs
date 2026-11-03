@@ -7,7 +7,7 @@ import random
 
 from dcs import mapping
 
-from . import catalog
+from . import catalog, packages
 
 NM = 1852.0
 # Modules the app has cockpit data for, with the callsign they usually fly under.
@@ -16,7 +16,7 @@ AIRCRAFT = {
     "A-10C": ("A-10C Thunderbolt II", "Hawg"), "F-14B": ("F-14B Tomcat", "Tomcat"), "AH-64D_BLK_II": ("AH-64D Apache", "Gunslinger"),
     "F-4E-45MC": ("F-4E Phantom II", "Ghost"),
 }
-TASK_LABELS = {"SEAD": "SEAD (suppress air defences)", "CAS": "CAS (close air support)", "STRIKE": "Strike (ground attack)",
+TASK_LABELS = {"SEAD": "SEAD (suppress air defences)", "DEAD": "DEAD (destroy air defences)", "CAS": "CAS (close air support)", "STRIKE": "Strike (ground attack)",
                "CAP": "CAP (air patrol)"}
 SAM_LABELS = {"SA-2": "SA-2 (long range, old)", "SA-6": "SA-6 Kub (mobile)", "SA-8": "SA-8 Osa (short range)", "SA-10": "SA-10 / S-300 (long range)",
               "SA-11": "SA-11 Buk (capable)", "SA-13": "SA-13 (IR, short)", "SA-15": "SA-15 Tor (point defence)", "ZSU-23": "ZSU-23-4 Shilka (guns)"}
@@ -34,7 +34,7 @@ DEFAULTS = {
     "task": "random", "target_near": "", "target_bearing": "random", "target_distance": "random",
     "sam": "random", "sam_count": 2, "ground": "random", "air": "random", "skill": "High",
     "date": "2026-06-14", "time": "random", "clouds": "random", "wind_kt": "random", "wind_from": "random", "vis_km": "random",
-    "awacs": True, "tanker": True, "jtac": "auto", "title": "", "seed": None,
+    "awacs": True, "tanker": True, "jtac": "auto", "fighters": "auto", "sead_pkg": "auto", "title": "", "seed": None,
 }
 
 
@@ -63,7 +63,7 @@ def options(theater: str) -> dict:
             "tasks": [{"id": k, "label": v} for k, v in TASK_LABELS.items()],
             "sams": [{"id": k, "label": v} for k, v in SAM_LABELS.items()],
             "air": [{"id": k, "label": v} for k, v in AIR_LABELS.items()],
-            "times": list(TIMES), "clouds": CLOUDS}
+            "times": list(TIMES), "clouds": CLOUDS, "packages": packages.options()}
 
 
 def build_spec(form: dict, scn_id: str = "mission_001", rng: random.Random | None = None) -> tuple[dict, list[str]]:
@@ -83,7 +83,8 @@ def build_spec(form: dict, scn_id: str = "mission_001", rng: random.Random | Non
     if tab is None:
         raise KeyError(f"no airbase '{tgt_near}' on {th}")
 
-    task = f["task"] if f["task"] != "random" else rng.choice(["SEAD", "CAS", "STRIKE", "CAP"])
+    task = f["task"] if f["task"] != "random" else rng.choice(["SEAD", "DEAD", "CAS", "STRIKE", "CAP"])
+    dcs_task = "SEAD" if task == "DEAD" else task                       # DCS has no DEAD task: same aircraft task, different objective
     if f["task"] == "random":
         notes.append(f"task rolled: {task}")
     tb = _num(f["target_bearing"], 0, 360, rng, (0, 360))
@@ -118,17 +119,21 @@ def build_spec(form: dict, scn_id: str = "mission_001", rng: random.Random | Non
 
     # --- target & objectives
     target_id = None
-    if task == "SEAD":
+    if task in ("SEAD", "DEAD"):
         if not sam_ids:
-            sam_ids.append(add_group(rng.choice(["SA-6", "SA-11", "SA-2"]), (0, 2))); notes.append("SEAD needs a SAM: one was added")
+            sam_ids.append(add_group(rng.choice(["SA-6", "SA-11", "SA-2"]), (0, 2))); notes.append(f"{task} needs a SAM: one was added")
         target_id = sam_ids[0]
     elif task in ("CAS", "STRIKE"):
         if not gnd_ids:
             gnd_ids.append(add_group("ARMOR_PLATOON", (0, 2))); notes.append(f"{task} needs ground targets: an armor platoon was added")
         target_id = gnd_ids[0]
-    objectives = ([{"id": "o1", "type": "destroy", "target_group": target_id, "priority": "primary"},
-                   {"id": "o2", "type": "survive", "target_group": "player", "priority": "secondary"}] if target_id
-                  else [{"id": "o1", "type": "survive", "target_group": "player", "priority": "primary"}])
+    if task == "DEAD":                                                    # destroy EVERY air-defence site, not just the first
+        objectives = [{"id": f"o{i}", "type": "destroy", "target_group": g, "priority": "primary"} for i, g in enumerate(sam_ids, 1)]
+        objectives.append({"id": f"o{len(sam_ids) + 1}", "type": "survive", "target_group": "player", "priority": "secondary"})
+    else:
+        objectives = ([{"id": "o1", "type": "destroy", "target_group": target_id, "priority": "primary"},
+                       {"id": "o2", "type": "survive", "target_group": "player", "priority": "secondary"}] if target_id
+                      else [{"id": "o1", "type": "survive", "target_group": "player", "priority": "primary"}])
 
     # --- route
     sdx, sdy = sp.x - tp.x, sp.y - tp.y
@@ -172,20 +177,24 @@ def build_spec(form: dict, scn_id: str = "mission_001", rng: random.Random | Non
     if f["awacs"]: support["awacs"] = {"callsign": "Overlord", "freq_mhz": 251.0}
     if f["tanker"]: support["tanker"] = {"callsign": "Texaco", "freq_mhz": 270.0, "tacan": "40X"}
     if jtac: support["jtac"] = {"callsign": "Axeman", "freq_mhz": 138.0}
-    what = {"SEAD": "air defence site", "CAS": "enemy force engaging friendly troops", "STRIKE": "enemy ground force", "CAP": "airspace"}[task]
+    support_flights, pnotes = packages.resolve(str(f["fighters"]), str(f["sead_pkg"]), task, bool(sam_ids), start_name, f["start_type"])
+    notes += pnotes
+    what = {"SEAD": "air defence site", "DEAD": "air defence network", "CAS": "enemy force engaging friendly troops", "STRIKE": "enemy ground force", "CAP": "airspace"}[task]
     threats = sorted({g["template"] for g in groups}) + ([f"{red_air[0]['aircraft']} x{red_air[0]['count']}"] if red_air else [])
     title = f["title"] or (f"{task} near {tgt_near}" if task != "CAP" else f"CAP out of {start_name}")
     spec = {
         "meta": {"id": scn_id, "title": title, "theater": th, "date": f["date"], "start_time": start_time},
         "weather": weather,
-        "player": [{"callsign": callsign, "aircraft": f["aircraft"], "count": count, "task": task, "start_airbase": start_name,
+        "player": [{"callsign": callsign, "aircraft": f["aircraft"], "count": count, "task": dcs_task, "start_airbase": start_name,
                     "start_type": f["start_type"], "route": route}],
-        "objectives": objectives, "red": {"groups": groups, "air": red_air}, "blue_support": support,
+        "objectives": objectives, "red": {"groups": groups, "air": red_air}, "blue_support": support, "support_flights": support_flights,
         "comms": {"flight_freq_mhz": 305.0, "tower_freq_mhz": 131.0},
         "briefing": {
             "situation": f"Enemy forces are active near {tgt_near}." if task != "CAP" else f"Enemy fighters are probing the airspace near {start_name}.",
-            "mission": f"{task}: destroy {target_id} ({what})." if target_id else "Defend the airspace and engage hostile aircraft.",
-            "execution": f"{f['start_type'].capitalize()} start at {start_name}, route via the IP to the target area, egress and land at {start_name}.",
+            "mission": (f"DEAD: destroy every air-defence site: {', '.join(sam_ids)}." if task == "DEAD" else f"{task}: destroy {target_id} ({what})." if target_id else "Defend the airspace and engage hostile aircraft."),
+            "execution": f"{f['start_type'].capitalize()} start at {start_name}, route via the IP to the target area, egress and land at {start_name}."
+                         + (" Friendly package: " + "; ".join(f"{x['callsign']} ({'fighter cover' if x['role'] == 'cover' else 'SEAD package'}, {x['count']}x {x['aircraft']})"
+                                                              for x in support_flights) + "." if support_flights else ""),
             "threats": ", ".join(threats) or "None known", "roe": "Weapons tight until positive identification."},
     }
     return spec, notes

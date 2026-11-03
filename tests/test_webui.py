@@ -38,7 +38,7 @@ def test_page_and_options(app):
     st, ctype, data = app.handle("GET", "/")
     assert st == 200 and b"Mission Builder" in data and b"/api/preview" in data
     st, o = call(app, "GET", "/api/options?theater=Caucasus")
-    assert st == 200 and "Batumi" in o["airbases"] and o["ollama"] is True and {t["id"] for t in o["tasks"]} == {"SEAD", "CAS", "STRIKE", "CAP"}
+    assert st == 200 and "Batumi" in o["airbases"] and o["ollama"] is True and {t["id"] for t in o["tasks"]} == {"SEAD", "DEAD", "CAS", "STRIKE", "CAP"}
     assert call(app, "GET", "/nope")[0] == 404
 
 

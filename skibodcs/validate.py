@@ -59,6 +59,10 @@ def validate(raw: dict | str) -> tuple[Scenario | None, list[str]]:
     for i, a in enumerate(sc.red.air):
         check_aircraft(f"red.air[{i}].aircraft", a.aircraft)
         check_anchor(f"red.air[{i}].spawn", a.spawn)
+    for i, sf in enumerate(sc.support_flights):
+        check_aircraft(f"support_flights[{i}].aircraft", sf.aircraft)
+        if sf.start_airbase and catalog.find_airbase(th, sf.start_airbase) is None:
+            errs.append(f"support_flights[{i}].start_airbase: no airbase '{sf.start_airbase}'. Closest: {catalog.suggest(sf.start_airbase, bases)}")
     ids = [g.id for g in sc.red.groups]
     if len(ids) != len(set(ids)):
         errs.append("red.groups: duplicate id")

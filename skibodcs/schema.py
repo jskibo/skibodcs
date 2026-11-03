@@ -111,6 +111,16 @@ class Briefing(BaseModel):
     roe: str = ""
 
 
+class SupportFlight(BaseModel):
+    """A friendly AI flight that flies with the player: fighter cover (patrols the target area) or a SEAD package (flies the route)."""
+    role: Literal["cover", "sead"]
+    aircraft: str
+    count: int = Field(2, ge=1, le=4)
+    start_airbase: Optional[str] = None          # default: the player's start base
+    delay_min: float = Field(0, ge=0, le=90)     # launch delay after mission start
+    callsign: str = ""
+
+
 class Scenario(BaseModel):
     meta: Meta
     weather: Weather = Weather()
@@ -122,6 +132,7 @@ class Scenario(BaseModel):
     dynamic_rules: list[DynamicRule] = []
     briefing: Briefing = Briefing()
     carry_over: list[str] = []
+    support_flights: list[SupportFlight] = []
 
     @model_validator(mode="after")
     def _refs(self):

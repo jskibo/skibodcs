@@ -14,7 +14,8 @@ def ok(form, seed=1):
 
 def test_explicit_choices_are_respected_exactly():
     sc, notes = ok({"task": "SEAD", "sam": "SA-6", "sam_count": 3, "ground": "none", "air": "none", "time": "night", "clouds": "overcast",
-                    "wind_kt": 12, "wind_from": 270, "vis_km": 15, "count": 4, "callsign": "Cobra", "start_type": "runway"})
+                    "wind_kt": 12, "wind_from": 270, "vis_km": 15, "count": 4, "callsign": "Cobra", "start_type": "runway",
+                    "fighters": "none", "sead_pkg": "none"})
     assert [g.template for g in sc.red.groups] == ["SA-6"] * 3 and sc.red.air == []
     assert sc.meta.start_time == "22:30" and sc.weather.clouds == "overcast" and sc.weather.wind_kt == 12 and sc.weather.wind_from_deg == 270
     f = sc.player[0]
@@ -81,7 +82,7 @@ def test_a_built_scenario_compiles(tmp_path):
 def test_options_for_the_ui():
     o = builder.options("Caucasus")
     assert "Batumi" in o["airbases"] and {a["id"] for a in o["aircraft"]} >= {"F-16C_50", "FA-18C_hornet", "A-10C_2"}
-    assert {t["id"] for t in o["tasks"]} == {"SEAD", "CAS", "STRIKE", "CAP"} and "SA-10" in {s["id"] for s in o["sams"]}
+    assert {t["id"] for t in o["tasks"]} == {"SEAD", "DEAD", "CAS", "STRIKE", "CAP"} and "SA-10" in {s["id"] for s in o["sams"]}
 
 
 def test_campaign_sortie_can_be_steered(tmp_path):
@@ -128,3 +129,60 @@ def test_dcs_folder_choice_prefers_the_one_actually_flown(tmp_path, monkeypatch)
     assert dp.pick_dcs_dir({"dcs_dir": str(a)}) == a                           # an explicit setting always wins
     monkeypatch.setattr(dp, "find_dcs_dirs", lambda: [])
     assert dp.pick_dcs_dir() is None
+
+
+def test_support_packages_follow_the_task_rules():
+    def pkg(task, **kw):
+        sc, notes = ok({"task": task, "sam": "SA-6", "sam_count": 2, "ground": "armor", "air": "none", **kw}, 7)
+        return {(x.role, x.aircraft, x.count) for x in sc.support_flights}, sc, notes
+    p, sc, _ = pkg("SEAD"); assert p == {("cover", "F-15C", 2)}                              # SEAD: fighters, no second SEAD
+    p, sc, _ = pkg("DEAD"); assert p == {("cover", "F-15C", 2)} and sc.player[0].task == "SEAD"
+    assert [o.target_group for o in sc.objectives if o.type == "destroy"] == ["sa6_1", "sa6_2"]  # DEAD: every SAM site is an objective
+    p, _, n = pkg("STRIKE"); assert p == {("cover", "F-15C", 2), ("sead", "F-16C_50", 2)} and any("SEAD package added" in x for x in n)
+    p, _, _ = pkg("CAS"); assert p == set()
+    p, _, _ = pkg("CAP"); assert p == set()
+    p, _, _ = pkg("STRIKE", sam="none"); assert p == {("cover", "F-15C", 2)}                  # nothing to suppress: no SEAD package
+    p, _, _ = pkg("CAS", fighters="f16_2", sead_pkg="f18_2"); assert p == {("cover", "F-16C_50", 2), ("sead", "FA-18C_hornet", 2)}   # explicit beats auto
+    p, _, _ = pkg("SEAD", fighters="none"); assert p == set()
+
+
+def test_package_launch_delays_follow_the_player_start():
+    from skibodcs import packages
+    assert packages.delay_min("cover", "cold") == 6.0 and packages.delay_min("sead", "cold") == 9.0
+    assert packages.delay_min("sead", "runway") == 0.0 and packages.delay_min("cover", "warm") == 0.0
+    sc, _ = ok({"task": "STRIKE", "sam": "SA-10", "start_type": "cold"}, 3)
+    d = {x.role: x.delay_min for x in sc.support_flights}
+    assert d["sead"] > d["cover"] > 0                                                         # SEAD leaves after the cover, both after mission start
+
+
+def test_support_flights_compile_into_the_mission(tmp_path):
+    import dcs
+    sc, _ = ok({"task": "STRIKE", "sam": "SA-6", "air": "none", "start_type": "cold"}, 5)
+    warns = compile_scenario(sc, tmp_path / "pkg.miz")
+    m = dcs.Mission(); m.load_file(str(tmp_path / "pkg.miz"))
+    groups = {g.name: g for c in m.coalition["blue"].countries.values() for g in c.plane_group}
+    assert {"Uzi 1", "Wolf 1"} <= set(groups)
+    assert len(groups["Uzi 1"].units) == 2 and groups["Uzi 1"].units[0].type == "F-15C" and groups["Uzi 1"].start_time == 360
+    assert groups["Wolf 1"].units[0].type == "F-16C_50" and groups["Wolf 1"].start_time == 540
+    assert str(groups["Wolf 1"].points[-1].type) == "Land" or "Land" in str(groups["Wolf 1"].points[-1].type)
+    assert not any(u.is_human() for u in groups["Uzi 1"].units)                              # AI, never a player slot
+
+
+def test_kneeboard_and_summary_show_the_package(tmp_path):
+    from skibodcs.kneeboard import make_kneeboards
+    from skibodcs.webui import App
+    sc, _ = ok({"task": "STRIKE", "sam": "SA-6"}, 5)
+    pages = make_kneeboards(sc, tmp_path)
+    assert len(pages["F-16C_50"]) == 9
+    s = App.summary(sc)
+    assert any("Uzi 1" in x and "Fighter cover" in x and "F-15C" in x for x in s["package"])
+    assert any("Wolf 1" in x and "SEAD package" in x for x in s["package"])
+
+
+def test_campaign_sorties_carry_packages_unless_declined(tmp_path):
+    from skibodcs import campaign as cg
+    camp = cg.Campaign.create(tmp_path / "c.db", "P", "Caucasus", "F-16C_50", "Batumi", sites=6, seed=3)
+    with_pk = camp.plan_deterministic(steer={"task": "STRIKE"})
+    assert {x.role for x in with_pk.support_flights} >= {"cover"}
+    assert camp.plan_deterministic(steer={"task": "STRIKE", "packages": "none"}).support_flights == []
+    assert camp.plan_deterministic(steer={"task": "CAS"}).support_flights == []

@@ -165,6 +165,16 @@ network (no password: trusted LAN only). The DCS folder used is `dcs_dir` in ski
 Fixed along the way: pydcs consumes parking slots on the terrain object, so a long-running process ran out of spots at Batumi after a few
 missions ("No free parking slot"); every mission now gets a fresh terrain. A failed campaign insert (duplicate name) no longer locks the database.
 
+## Friendly support packages (v1.1)
+Scenarios can carry AI flights that fly with you (`support_flights`: role `cover` or `sead`, aircraft, count, launch delay). The builder's
+**Your package** card sets them: Fighter cover (none / automatic / 2x or 4x F-15C, 2x F-16C, F/A-18C, F-14B) and SEAD package (none / automatic /
+2x or 4x F-16C, 2x F/A-18C). Automatic = SEAD and DEAD get fighters; Strike gets fighters AND SEAD (SEAD only when the target area has SAMs);
+CAS and CAP get nothing unless you choose. `DEAD` is a new task: same aircraft task as SEAD, but EVERY air-defence site is an objective.
+Campaign sorties get the same automatic packages (pass `packages: none` to decline). Cover patrols the target area (CAP task); the SEAD flight
+takes off warm and flies your route with a SEAD task and lands at the start base. AI flights are delayed by how long you need to start, taxi and
+take off (cold 12 min, warm 6, runway 1; cover leaves 6 min before you would be airborne, SEAD 3), so they arrive ahead of you.
+UNVERIFIED in the sim: that the AI cover/SEAD behave as intended (SEAD only engages emitters it detects; loadouts come from DCS's own default payloads).
+
 ## Safety rule (v0.7)
 Unconfirmed value + consequential control => the app says "Confirm <thing>? That value is unverified for this aircraft" and acts
 only on a spoken "confirm" within 10 s. Confirmed values (from ED's autostart data) run immediately.

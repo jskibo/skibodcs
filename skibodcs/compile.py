@@ -119,6 +119,34 @@ def compile_scenario(sc: Scenario, out_path: str | Path) -> list[str]:
     if sup.jtac:
         warnings.append("blue_support.jtac: no JTAC unit is spawned; the voice JTAC works from real contacts instead")
 
+    # --- friendly support flights (AI): fighter cover patrols the target area, SEAD flies the player's route
+    route = sc.player[0].route
+    tgt_wp = next((w for w in route if w.name in ("TGT", "CAP1")), route[len(route) // 2] if route else None)
+    tgt_pt = catalog.resolve_anchor(th, tgt_wp.at) if tgt_wp else base.position
+    for n, sf in enumerate(sc.support_flights, 1):
+        sab = base if not sf.start_airbase else next(v for k, v in terrain.airports.items() if k.lower() == sf.start_airbase.lower())
+        ac = catalog.aircraft_ids()[sf.aircraft]
+        name = sf.callsign or f"{'Uzi' if sf.role == 'cover' else 'Wolf'} {n}"
+        if sf.role == "cover":
+            p2 = mapping.Point(tgt_pt.x, tgt_pt.y + 20 * 1852, terrain)
+            fg = m.patrol_flight(blue, name, ac, sab, tgt_pt, p2, start_type=dcs.mission.StartType.Warm, speed=750,
+                                 altitude=7600, group_size=sf.count)
+            main = dcs.task.CAP
+        else:
+            fg = m.flight_group_from_airport(blue, name, ac, sab, dcs.task.SEAD, start_type=dcs.mission.StartType.Warm, group_size=sf.count)
+            fg.add_runway_waypoint(sab)
+            for w in route:
+                if w.name != "HOME":
+                    fg.add_waypoint(catalog.resolve_anchor(th, w.at), w.alt_ft * FT, 830, w.name)
+            fg.land_at(sab)
+            main = dcs.task.SEAD
+        fg.start_time = int(sf.delay_min * 60)
+        fg.set_frequency(sc.comms.flight_freq_mhz)
+        if ac.loadout(main):
+            fg.load_task_default_loadout(main)
+        else:
+            warnings.append(f"{name}: no default {main.name} loadout for {sf.aircraft} (pydcs reads payloads from a DCS install)")
+
     # --- not yet compiled
     if sc.dynamic_rules:
         warnings.append(f"{len(sc.dynamic_rules)} dynamic_rules kept in sidecar JSON only (runtime.lua step)")

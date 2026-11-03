@@ -117,7 +117,15 @@ dialog::backdrop{background:rgba(0,0,0,.7)}
     </div>
   </div>
 
-  <div class="card"><h2>5 &middot; Support</h2>
+  <div class="card"><h2>5 &middot; Your package (friendly AI flights)</h2>
+    <div class="grid">
+      <div><label for="fighters">Fighter cover</label><select id="fighters"></select></div>
+      <div><label for="sead_pkg">SEAD package</label><select id="sead_pkg"></select></div>
+    </div>
+    <div class="hint" style="margin-top:6px">Automatic: SEAD/DEAD get fighters; Strike gets fighters and SEAD (when the target area has SAMs). Cover patrols the target area; SEAD flies your route a few minutes ahead of you.</div>
+  </div>
+
+  <div class="card"><h2>6 &middot; Support</h2>
     <div class="row">
       <label class="check"><input type="checkbox" id="awacs" checked> AWACS</label>
       <label class="check"><input type="checkbox" id="tanker" checked> Tanker</label>
@@ -222,6 +230,8 @@ async function loadOptions(theater) {
   fill($("task"), OPT.tasks, "Random"); fill($("c_task"), OPT.tasks, "Random");
   fill($("sam"), [{id: "none", label: "None"}, ...OPT.sams], "Random");
   fill($("air"), OPT.air.filter(a => a.id !== "random"), "Random");
+  fill($("fighters"), OPT.packages.fighters); fill($("sead_pkg"), OPT.packages.sead);
+  $("fighters").value = "auto"; $("sead_pkg").value = "auto";
   const tm = OPT.times.map(t => ({id: t, label: t[0].toUpperCase() + t.slice(1)}));
   fill($("time"), tm, "Random"); fill($("c_time"), tm, "Random");
   const cl = OPT.clouds.map(c => ({id: c, label: c[0].toUpperCase() + c.slice(1)}));
@@ -250,7 +260,7 @@ function readForm(seed) {
     task: $("task").value, target_near: $("target_near").value, target_bearing: $("target_bearing").value, target_distance: val("target_distance"),
     sam: $("sam").value, sam_count: +$("sam_count").value, ground: $("ground").value, air: $("air").value, skill: $("skill").value,
     date: $("date").value, time: $("time").value, clouds: $("clouds").value, wind_kt: val("wind_kt"), wind_from: val("wind_from"), vis_km: val("vis_km"),
-    awacs: $("awacs").checked, tanker: $("tanker").checked, jtac: $("jtac").value === "auto" ? "auto" : $("jtac").value === "true", seed: seed ?? null};
+    fighters: $("fighters").value, sead_pkg: $("sead_pkg").value, awacs: $("awacs").checked, tanker: $("tanker").checked, jtac: $("jtac").value === "auto" ? "auto" : $("jtac").value === "true", seed: seed ?? null};
 }
 async function build(seed) {
   busy(true, "Building the mission and kneeboard pages..."); lastForm = readForm(seed);
@@ -275,7 +285,7 @@ function render(r) {
   $("result").innerHTML = `
     <h2 style="font-size:20px;text-transform:none;letter-spacing:0;color:var(--ink);margin-bottom:2px">${esc(s.title)}</h2>
     <div class="hint" style="margin-bottom:10px">${esc(s.when)}Z &middot; ${esc(s.theater)}</div>${camp}${notes}
-    <div class="kv"><b>Flight</b><div>${esc(s.flight)}</div><b>Weather</b><div>${esc(s.weather)}</div><b>Support</b><div>${esc(s.support.join(", ") || "none")}</div></div>
+    <div class="kv"><b>Flight</b><div>${esc(s.flight)}</div><b>Package</b><div>${s.package.length ? s.package.map(esc).join("<br>") : "none"}</div><b>Weather</b><div>${esc(s.weather)}</div><b>Support</b><div>${esc(s.support.join(", ") || "none")}</div></div>
     <div class="row" style="margin:14px 0 6px"><button class="btn good" id="install">Install into DCS</button>
       <button class="btn ghost" id="launch" disabled title="Install first. DCS must already be running a mission.">Start it in DCS now</button></div>
     <div class="hint" id="instMsg"></div>

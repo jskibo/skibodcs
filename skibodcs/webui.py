@@ -13,7 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import builder, catalog, deploy as dp
+from . import builder, catalog, deploy as dp, packages
 from .campaign import Campaign, events_path
 from .compile import compile_scenario
 from .doctor import _tcp_open
@@ -89,6 +89,8 @@ class App:
             "objectives": [f"[{o.priority}] {o.type} {o.target_group or ''}".strip() for o in sc.objectives],
             "weather": f"{sc.weather.clouds}, wind {int(sc.weather.wind_from_deg):03d}/{int(sc.weather.wind_kt)} kt, vis {int(sc.weather.vis_km)} km",
             "support": [k for k, v in sc.blue_support.model_dump().items() if v],
+            "package": [f"{sf.callsign or sf.role}: {packages.ROLE_LABEL[sf.role]}, {sf.count}x {sf.aircraft}, launches "
+                        + (f"{sf.delay_min:g} min after start" if sf.delay_min else "at start") for sf in sc.support_flights],
             "loadout": [f"Station {n}: {name}" for n, name in loadout_rows(f)],
             "briefing": sc.briefing.model_dump()}
 

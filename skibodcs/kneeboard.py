@@ -218,7 +218,14 @@ def _flight_page(sc: Scenario, f) -> Image.Image:
         rows.append((i, f"{f.callsign} 1-{i}", roles.get(i, ""), same))
     y = _rows(d, 100, rows, [28, 110, 340, 560], 24, 14)
     y += 10
-    d.text((28, y), f"Flight freq {sc.comms.flight_freq_mhz:.3f}   Start {f.start_airbase} ({f.start_type})", font=_f(22), fill=INK); y += 50
+    d.text((28, y), f"Flight freq {sc.comms.flight_freq_mhz:.3f}   Start {f.start_airbase} ({f.start_type})", font=_f(22), fill=INK); y += 46
+    if sc.support_flights:
+        from . import packages as pk
+        d.text((28, y), "PACKAGE (friendly AI)", font=_f(24), fill=ACC); y += 36
+        prow = [("Callsign", "Role", "Aircraft", "Launch")]
+        for sf in sc.support_flights:
+            prow.append((sf.callsign or sf.role, pk.ROLE_LABEL[sf.role], f"{sf.count}x {sf.aircraft}", f"+{sf.delay_min:g} min" if sf.delay_min else "at start"))
+        y = _rows(d, y, prow, [28, 170, 400, 620], 21, 12) + 14
     d.text((28, y), "VOICE (push-to-talk, plain speech works too)", font=_f(24), fill=ACC); y += 40
     for h in VOICE_HINTS:
         y = _wrap(d, y, "- " + h, 22, 56)

@@ -152,6 +152,9 @@ class Campaign:
             base = tgt if tgt is not None else {"bearing": rng.randrange(360), "distance_nm": 70}
             red_air = [{"task": "CAP", "aircraft": "MiG-29S", "count": 2,
                         "spawn": {"near": near, "bearing": base["bearing"], "distance_nm": min(base["distance_nm"] + 30, 150)}}]
+        from . import packages
+        pk, _pnotes = packages.resolve("none" if steer.get("packages") == "none" else "auto", "none" if steer.get("packages") == "none" else "auto",
+                                       task, any(g["template"] in SAM for g in groups), near, "cold")
         what = {"SEAD": "air defence site", "CAS": "armour concentration", "STRIKE": "ground force", "CAP": "airspace"}[task]
         tdesc = f"{tgt['id']} ({tgt['template']})" if tgt is not None else "the assigned CAP area"
         d = dt.date.fromisoformat(c["current_date"])
@@ -161,7 +164,7 @@ class Campaign:
             "weather": weather,
             "player": [{"callsign": c["callsign"], "aircraft": c["aircraft"], "count": size, "task": task if task != "CAP" else "CAP",
                         "start_airbase": near, "start_type": "cold", "route": route}],
-            "objectives": objectives, "red": {"groups": groups, "air": red_air},
+            "objectives": objectives, "red": {"groups": groups, "air": red_air}, "support_flights": pk,
             "blue_support": {"awacs": {"callsign": "Overlord", "freq_mhz": 251.0},
                              "tanker": {"callsign": "Texaco", "freq_mhz": 270.0, "tacan": "40X"},
                              **({"jtac": {"callsign": "Axeman", "freq_mhz": 138.0}} if task in ("CAS", "STRIKE") else {})},
