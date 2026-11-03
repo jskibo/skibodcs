@@ -361,3 +361,19 @@ def test_second_start_request_needs_a_spoken_confirm():
     stop = Router(FakeLLM(json.dumps({"commands": [{"domain": "sequence", "intent": "autostop"}]})), load_table(AF), jworld(), clock=lambda: t[0])
     stop.started = True
     assert stop.handle("shut it down").sequence == ["autostop"] and stop.started is False       # after a shutdown a new start is fine
+
+
+def test_keyboard_push_to_talk_reads_the_key_state():
+    import sys, types
+    from skibodcs.voice.audio import PTTRecorder
+    pressed = {"right ctrl": False}
+    fake = types.ModuleType("keyboard"); fake.is_pressed = lambda k: pressed.get(k, False)
+    sys.modules["keyboard"] = fake
+    try:
+        p = PTTRecorder(key="right ctrl")
+        assert p._held() is False
+        pressed["right ctrl"] = True
+        assert p._held() is True
+        assert not hasattr(p, "js"), "keyboard mode must not touch pygame/joysticks (none exist on a remote PC)"
+    finally:
+        del sys.modules["keyboard"]

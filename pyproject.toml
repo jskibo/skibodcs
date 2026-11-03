@@ -6,7 +6,7 @@ requires-python = ">=3.11"
 dependencies = ["pydcs", "pydantic>=2", "pyproj", "pillow"]
 
 [project.optional-dependencies]
-voice = ["faster-whisper", "sounddevice", "soundfile", "numpy", "pygame"]
+voice = ["faster-whisper", "sounddevice", "soundfile", "numpy", "pygame", "piper-tts", "keyboard"]
 
 [project.scripts]
 skibodcs = "skibodcs.cli:main"

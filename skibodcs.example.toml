@@ -26,5 +26,8 @@ compute_type = "int8"
 model = "C:/piper/en_US-lessac-medium.onnx"
 
 [ptt]
+# Joystick button: run `skibodcs buttons` and press yours.
 joystick_index = 0
 button = 0
+# No joystick? Hold a keyboard key instead (remove the two lines above and uncomment this; needs `pip install keyboard`):
+# key = "right ctrl"

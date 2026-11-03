@@ -119,14 +119,22 @@ def play_wav(wav: bytes):
 
 
 class PTTRecorder:
-    """Records while a joystick button (or key) is held. Needs sounddevice + pygame."""
-    def __init__(self, joystick_index: int = 0, button: int = 0, samplerate: int = 16000):
-        import pygame
-        pygame.init(); pygame.joystick.init()
-        self.js = pygame.joystick.Joystick(joystick_index); self.js.init()
-        self.button, self.sr, self.pg = button, samplerate, pygame
+    """Records while push-to-talk is held. Either a joystick button (pygame) or a keyboard key (the `keyboard` package, global:
+    it works while DCS has focus). Pass key="right ctrl" for the keyboard; otherwise joystick_index / button are used."""
+    def __init__(self, joystick_index: int = 0, button: int = 0, samplerate: int = 16000, key: str | None = None):
+        self.sr, self.key = samplerate, key
+        if key:
+            import keyboard                                           # pip install keyboard
+            self.kb = keyboard
+        else:
+            import pygame
+            pygame.init(); pygame.joystick.init()
+            self.js = pygame.joystick.Joystick(joystick_index); self.js.init()
+            self.button, self.pg = button, pygame
 
     def _held(self) -> bool:
+        if self.key:
+            return bool(self.kb.is_pressed(self.key))
         self.pg.event.pump()
         return bool(self.js.get_button(self.button))
 
