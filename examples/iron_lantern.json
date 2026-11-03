@@ -1,0 +1,38 @@
+{
+  "meta": {"id": "scn_0042", "title": "Operation Iron Lantern", "theater": "Caucasus",
+           "date": "2026-06-14", "start_time": "06:30", "campaign_id": "camp_01", "sequence": 3},
+  "weather": {"clouds": "scattered", "wind_kt": 8, "wind_from_deg": 250, "vis_km": 30, "qnh_mmhg": 761},
+  "player": [{
+    "callsign": "Viper", "aircraft": "F-16C_50", "count": 2, "task": "SEAD",
+    "start_airbase": "Batumi", "start_type": "cold",
+    "route": [
+      {"name": "IP", "at": {"near": "Kutaisi", "bearing": 270, "distance_nm": 45}, "alt_ft": 20000, "speed_kt": 420},
+      {"name": "TGT", "at": {"near": "Kutaisi", "bearing": 0, "distance_nm": 20}, "alt_ft": 18000, "speed_kt": 450}
+    ]
+  }],
+  "objectives": [
+    {"id": "o1", "type": "destroy", "target_group": "sam_site_1", "priority": "primary"},
+    {"id": "o2", "type": "survive", "target_group": "player", "priority": "secondary"}
+  ],
+  "red": {
+    "groups": [
+      {"id": "sam_site_1", "template": "SA-6", "position": {"near": "Kutaisi", "bearing": 0, "distance_nm": 22}, "heading": 180, "skill": "High"},
+      {"id": "escort_armor", "template": "ARMOR_PLATOON", "position": {"near": "Kutaisi", "bearing": 10, "distance_nm": 24}, "heading": 90}
+    ],
+    "air": [{"task": "CAP", "aircraft": "MiG-29S", "count": 2, "spawn": {"near": "Kutaisi", "bearing": 45, "distance_nm": 30}}]
+  },
+  "blue_support": {
+    "awacs": {"callsign": "Overlord", "freq_mhz": 251.0},
+    "tanker": {"callsign": "Texaco", "freq_mhz": 270.0, "tacan": "40X"},
+    "jtac": {"callsign": "Axeman", "freq_mhz": 138.0}
+  },
+  "comms": {"flight_freq_mhz": 305.0, "tower_freq_mhz": 131.0},
+  "dynamic_rules": [{"when": "o1.complete", "then": "spawn:reinforcement_wave", "delay_min": 10}],
+  "briefing": {
+    "situation": "Georgian-based SA-6 battery near Kutaisi threatens coalition air operations.",
+    "mission": "Suppress and destroy the SA-6 site before the follow-on strike package arrives.",
+    "execution": "Cold start Batumi, route via IP, engage with HARM, egress south.",
+    "threats": "SA-6 battery, armor escort, MiG-29 CAP possible.",
+    "roe": "Weapons tight until positive ID."
+  }
+}
