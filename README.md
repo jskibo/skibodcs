@@ -6,9 +6,12 @@ Piper in the build sandbox. Python is tested with fakes; the Lua is tested under
 semantics, like DCS) against mocked DCS APIs (tests/lua).
 
 ## Setup (sim PC, Windows)
-    py -m venv .venv && .venv\Scripts\activate
+    cd $HOME\skibodcs                                  (PowerShell 5 has no `&&`: one command per line)
+    py -m venv .venv
+    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned   (once, so the venv can activate)
+    .venv\Scripts\Activate.ps1
     pip install pydcs pyproj "pydantic>=2" pytest
-    pip install -e .[voice]
+    pip install -e ".[voice]"
     pytest                         (Lua tests are skipped unless LUAJIT=path\to\luajit.exe is set)
     skibodcs install               (add --dcs-dir "C:\Users\you\Saved Games\DCS.openbeta" if both exist)
 `install` copies the Hook, mission module and Export module into Saved Games\DCS\Scripts and adds

@@ -1,7 +1,7 @@
 [project]
 name = "skibodcs"
-version = "0.7.0"
-description = "Local-LLM scenario builder for DCS World (step 1: spec -> validate -> .miz)"
+version = "0.9.0"
+description = "Voice-controlled DCS companion: natural-language comms, cockpit and wingman control, mission and campaign builder"
 requires-python = ">=3.11"
 dependencies = ["pydcs", "pydantic>=2", "pyproj"]
 
