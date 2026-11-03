@@ -389,5 +389,6 @@ function S.drain()
   return out
 end
 
+S.loaded = true                                        -- set only when every line above ran
 trigger.action.setUserFlag("skibo_ready", 5)          -- the Hook checks this to know the module really loaded
 return "skibodcs mission module " .. S.version

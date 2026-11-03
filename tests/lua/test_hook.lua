@@ -20,21 +20,33 @@ local fail_next = 0
 -- scripting sandbox (= this test's globals), reachable only through a_do_script(). a_do_script returns nothing (several DCS
 -- builds return an empty string), so the Hook must use the flag mailbox.
 local hidden = { world = true, coalition = true, AI = true, Group = true, timer = true }
-local mission_state = setmetatable({}, { __index = function(_, k) if hidden[k] then return nil end return _G[k] end })
+-- Which flag-reading routes exist differs per DCS build. Default = the author's install: no `trigger` in the 'mission' control state.
+W = { mission_trigger = false, a_get = "a_get_flag_value", passthrough = false, server = false, scripting = false }
+local function env_for(state)
+  local e = setmetatable({}, { __index = function(_, k)
+    if hidden[k] then return nil end
+    if k == "trigger" and state == "mission" and not W.mission_trigger then return nil end
+    return _G[k] end })
+  if state == "mission" then
+    if W.a_get then e[W.a_get] = function(n) return M.flags[n] or 0 end end
+    e.a_do_script = function(code)
+      if defer_run and code:find("SKIBO.run", 1, true) then deferred = code; return end      -- sandbox call completes later / never
+      local f, err = loadstring(code)
+      if not f then sandbox_errors[#sandbox_errors + 1] = err; return end
+      local ok, r = pcall(f)
+      if not ok then sandbox_errors[#sandbox_errors + 1] = tostring(r); return end
+      if W.passthrough then return r end                   -- most builds: return values are NOT passed back
+    end
+  end
+  return e
+end
 sandbox_errors = {}
 defer_run, deferred = false, nil
-mission_state.a_do_script = function(code)
-  if defer_run and code:find("SKIBO.run", 1, true) then deferred = code; return end      -- sandbox call completes on a later frame / never
-  local f, err = loadstring(code)
-  if not f then sandbox_errors[#sandbox_errors + 1] = err; return end
-  local ok, e = pcall(f)
-  if not ok then sandbox_errors[#sandbox_errors + 1] = tostring(e) end
-end
 function net.dostring_in(state, code)
-  assert(state == "mission")
+  if state ~= "mission" and not W[state] then return "invalid state name", false end
   if fail_next > 0 then fail_next = fail_next - 1; return "boom: control layer not ready", false end
   local f, err = loadstring(code); if not f then return err, false end
-  setfenv(f, mission_state)
+  setfenv(f, env_for(state))
   local ok, r = pcall(f)
   if swapped then return ok, tostring(r) end      -- opposite return order
   return tostring(r), ok
@@ -135,7 +147,7 @@ do
   eq(#replies, 0, "no answer yet, so no claim of success")
   local run = deferred; deferred = nil; defer_run = false
   assert(run, "the run call was issued")
-  mission_state.a_do_script(run)                           -- sandbox finally executes it
+  env_for("mission").a_do_script(run)                           -- sandbox finally executes it
   clock = clock + 0.2; cb.onSimulationFrame()
   eq(replies[#replies], '{"detail":"weapons free","id":"d1","ok":true}\n')
   boot()
@@ -156,8 +168,35 @@ do
   world = real
   assert(not SKIBO or M.flags["skibo_ready"] == nil, "not ready")
   local msg = table.concat(logs, "\n")
-  assert(msg:find("inject failed") and msg:find("Mission script error"), msg)
+  assert(msg:find("inject failed") and msg:find("Mission script error") and msg:find("only partly"), msg)
 end
+
+-- every flag-reading route that exists on some build must be found by the probe; with none the failure names what was tried
+local function try_world(cfg, expect)
+  local saved = {}; for k, v in pairs(W) do saved[k] = v end
+  for k, v in pairs(cfg) do W[k] = v end
+  M.reset(); sent_udp, replies, inbox, logs = {}, {}, {}, {}
+  dofile("dcs_hook/skibodcs_hook.lua"); cb.onSimulationStart()
+  M.add(2, 0, M.group({ M.unit{ id = 1, player = "Skibo" }, M.unit{ id = 2 } }, 5))
+  inbox[1] = '{"id":"z1","type":"wingman","intent":"weapons_free","params":{}}'
+  cb.onSimulationFrame()
+  local msg = table.concat(logs, "\n")
+  if expect then
+    assert(msg:find("flags are read via " .. expect, 1, true), msg)
+    eq(replies[#replies], '{"detail":"weapons free","id":"z1","ok":true}\n')
+  else
+    assert(msg:find("no flag reader could see the sandbox", 1, true) and msg:find("Tried:", 1, true), msg)
+    assert(replies[#replies] and replies[#replies]:find("mission module not loaded"), tostring(replies[#replies]))
+  end
+  W = saved
+end
+try_world({}, "mission/a_get_flag_value")
+try_world({ a_get = false, mission_trigger = true }, "mission/trigger.misc.getUserFlag")
+try_world({ a_get = "a_get_flag" }, "mission/a_get_flag")
+try_world({ a_get = false, passthrough = true }, "mission/a_do_script return value")
+try_world({ a_get = false, server = true }, "server/trigger.misc.getUserFlag")
+try_world({ a_get = false, scripting = true }, "scripting/trigger.misc.getUserFlag")
+try_world({ a_get = false }, nil)
 
 -- load_mission: accepted only for existing .miz files under <writedir>/Missions; everything else is refused, nothing loaded
 do

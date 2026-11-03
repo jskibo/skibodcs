@@ -22,12 +22,13 @@ local MODULE = lfs.writedir() .. "Scripts/skibodcs_mission.lua"
 local EVENTS = lfs.writedir() .. "skibodcs/events.jsonl"
 
 -- net.dostring_in returns (result, success); tolerate the opposite order just in case.
-local function in_mission(code)
-  local a, b = net.dostring_in("mission", code)
+local function in_state(state, code)
+  local a, b = net.dostring_in(state, code)
   if type(a) == "boolean" then a, b = b, a end
   if b == false then return nil, tostring(a) end
   return tostring(a or "")
 end
+local function in_mission(code) return in_state("mission", code) end
 
 -- The 'mission' state is a control layer: `world`, `coalition`, `AI` do NOT exist there. Code that needs them is run in the
 -- mission scripting sandbox with a_do_script(); answers come back through mission user flags (see skibodcs_mission.lua).
@@ -39,8 +40,24 @@ local function long_bracket(code)                     -- a Lua long string liter
 end
 
 local NF = 24
-local function read_flags_code(prefix)               -- Lua source (for the 'mission' state) returning "seq,f1,...,f24"
-  return string.format('local t = {} for i = 0, %d do t[#t + 1] = trigger.misc.getUserFlag("skibo_%s_" .. i) end return table.concat(t, ",")', NF, prefix)
+-- How to READ mission flags back is not the same on every DCS build: on the author's install `trigger` does not exist in the
+-- 'mission' control state (real log), so several readers are probed against a known flag and the first that works is used.
+local READ_BODY = 'local t = {} for i = 0, %d do t[#t + 1] = %s("skibo_%s_" .. i) end return table.concat(t, ",")'
+local function body(getter) return function(prefix) return string.format(READ_BODY, NF, getter, prefix) end end
+local READERS = {
+  { name = "mission/trigger.misc.getUserFlag", state = "mission", code = body("trigger.misc.getUserFlag") },
+  { name = "mission/a_get_flag_value", state = "mission", code = body("a_get_flag_value") },
+  { name = "mission/a_get_flag", state = "mission", code = body("a_get_flag") },
+  { name = "mission/a_do_script return value", state = "mission",
+    code = function(prefix) return "return a_do_script(" .. long_bracket(string.format(READ_BODY, NF, "trigger.misc.getUserFlag", prefix)) .. ")" end },
+  { name = "server/trigger.misc.getUserFlag", state = "server", code = body("trigger.misc.getUserFlag") },
+  { name = "scripting/trigger.misc.getUserFlag", state = "scripting", code = body("trigger.misc.getUserFlag") },
+}
+local reader                                         -- the READERS entry that works on this install (nil until probed)
+
+local function read_mailbox(prefix)
+  if not reader then return nil, "no working flag reader" end
+  return in_state(reader.state, reader.code(prefix))
 end
 
 local function decode_flags(str)                     -- "seq,f1..f24" -> seq, text
@@ -60,17 +77,37 @@ local function decode_flags(str)                     -- "seq,f1..f24" -> seq, te
 end
 
 local last_inject_err
+local function select_reader()
+  local notes = {}
+  for _, rd in ipairs(READERS) do
+    local r, err = in_state(rd.state, rd.code("probe"))
+    local seq, text = decode_flags(r)
+    if r and seq == 7 and text == "hello" then reader = rd; return true, rd.name end
+    if r and seq == 7 and text == "partial" then
+      return false, "the module loaded only partly inside the sandbox: look for 'Mission script error' lines just above in dcs.log"
+    end
+    notes[#notes + 1] = rd.name .. " -> " .. (err and ("error: " .. err:sub(1, 70)) or ("read " .. tostring(r):sub(1, 30)))
+  end
+  return false, table.concat(notes, " | ")
+end
+
 local function inject_module()
   local f = io.open(MODULE, "r")
   if not f then log("missing " .. MODULE); return end
   local code = f:read("*a"); f:close()
-  local r, err = in_mission("a_do_script(" .. long_bracket(code) .. ") return trigger.misc.getUserFlag('skibo_ready')")
-  local ok = r and (tonumber(r) or 0) >= 5
+  local _, err = in_mission("a_do_script(" .. long_bracket(code) .. ")")
+  if not err then _, err = in_mission("a_do_script(" .. long_bracket("SKIBO.put('probe', 7, SKIBO.loaded and 'hello' or 'partial')") .. ")") end
+  local ok, how = false, err
+  if not err then ok, how = select_reader() end
   if ok then
-    mission_loaded = true; last_inject_err = nil; log("mission module loaded in the scripting sandbox")
+    mission_loaded = true; last_inject_err = nil
+    log("mission module loaded in the scripting sandbox; flags are read via " .. how)
   else
-    local why = err or ("module not ready (flag=" .. tostring(r) .. "); look for 'Mission script error' lines just above in dcs.log")
-    if why ~= last_inject_err then last_inject_err = why; log("inject failed (will retry every poll): " .. tostring(why)) end
+    local why = how or "unknown"
+    if not err and not why:find("only partly", 1, true) then
+      why = "no flag reader could see the sandbox (module probably failed inside it: look for 'Mission script error' lines above). Tried: " .. why
+    end
+    if why ~= last_inject_err then last_inject_err = why; log("inject failed (will retry every poll): " .. why) end
   end
 end
 
@@ -145,7 +182,7 @@ local function service_commands(now)
       if err then reply({ id = c.id, ok = false, detail = "dostring failed: " .. err }); pending = nil end
     end
     if pending then
-      local r = in_mission(read_flags_code("res"))
+      local r = read_mailbox("res")
       local seq, text = decode_flags(r)
       if seq == pending.seq then
         local status, detail = tostring(text):match("^(%a+):(.*)$")
@@ -189,7 +226,8 @@ local function poll_events()
   if not mission_loaded then inject_module() end       -- the sandbox can be incomplete at onSimulationStart
   if not mission_loaded then return end
   local call = string.format("SKIBO.flush(%s)", ack_next and tostring(ack_next) or "nil")
-  local r, err = in_mission("a_do_script(" .. long_bracket(call) .. ") " .. read_flags_code("ev"))
+  in_mission("a_do_script(" .. long_bracket(call) .. ")")
+  local r = read_mailbox("ev")
   if r then
     local seq, text = decode_flags(r)
     if seq and seq > last_ev_seq and text and text ~= "" then
@@ -212,6 +250,7 @@ local cb = {}
 
 function cb.onSimulationStart()
   mission_loaded = false
+  reader = nil
   cmd_queue, pending, last_ev_seq, ack_next = {}, nil, 0, nil
   safe(ensure_sockets)
   safe(inject_module)

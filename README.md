@@ -21,7 +21,7 @@ removes everything cleanly).
 ## Four places code runs (corrected in v0.9.1 after the first real log)
 `net.dostring_in('mission', ...)` does NOT reach the scripting sandbox: that state is a control layer without `world`, `coalition`
 or `AI` (real log: "attempt to index global 'world' (a nil value)"). The Hook now injects skibodcs_mission.lua with `a_do_script()`
-and the two sides exchange text through mission USER FLAGS (4 characters per flag, `skibo_res_*` for command answers,
+and the two sides exchange text through mission USER FLAGS (read back by whichever of six routes works on your build: the Hook probes them at start and logs the winner, or lists what failed) (4 characters per flag, `skibo_res_*` for command answers,
 `skibo_ev_*` for events, `skibo_ready` = module loaded), because a_do_script's return value is broken on some DCS builds.
 Commands wait up to 3 real seconds for their answer and say so when none arrives (a PAUSED mission does not run scripts:
 unpause first). Newer DCS builds can require `net.allow_dostring_in` in autoexec.cfg for hooks; dostring_in already ran on
