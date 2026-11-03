@@ -75,6 +75,8 @@ class Router:
         self.index, self.clock = index, clock
         self._seq = 0
         self.pending: tuple[list, str, float] | None = None
+        self.pending_seq: tuple[str, float] | None = None       # a start request waiting for a spoken "confirm"
+        self.started = False                                    # a start sequence was already issued in this session
         self.schema = intent_schema(table.action_names(), table.all_values())
         self._covered = {(a.device, a.command) for a in table.actions.values()}
 
@@ -133,6 +135,18 @@ class Router:
         if self.pending and now > self.pending[2]:
             self.pending = None
         t = self._norm(text)
+        if self.pending_seq and now > self.pending_seq[1]:
+            self.pending_seq = None
+        if self.pending_seq:
+            intent, _ = self.pending_seq
+            self.pending_seq = None
+            if CONFIRM.match(t):
+                r.sequence.append(intent); r.source = "fast"
+                r.speech.append("Confirmed, running the start sequence again.")
+                return r
+            if CANCEL.match(t):
+                r.source = "fast"; r.speech.append("Cancelled.")
+                return r
         if self.pending:
             cmds, label, _ = self.pending
             self.pending = None
@@ -181,6 +195,14 @@ class Router:
             return
         if c.domain == "sequence":
             if c.intent in SEQUENCE_INTENTS:
+                if c.intent in ("autostart", "ready_to_taxi"):
+                    if self.started:                     # replaying ED's start over a running aircraft can undo it (throttle to OFF...)
+                        self.pending_seq = (c.intent, self.clock() + CONFIRM_SECONDS * 3)
+                        r.speech.append("The aircraft was already started this session. Running the start sequence again can shut it down. Say confirm.")
+                        return
+                    self.started = True
+                elif c.intent == "autostop":
+                    self.started = False
                 r.sequence.append(c.intent)
             else:
                 r.notes.append(f"unknown sequence '{c.intent}'")

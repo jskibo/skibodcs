@@ -343,3 +343,21 @@ def test_piper_command_line_uses_flags_both_piper_generations_accept(tmp_path):
         import pytest as _p
         with _p.raises(RuntimeError, match="no such voice"):
             t.synthesize("x")
+
+
+def test_second_start_request_needs_a_spoken_confirm():
+    t = [1000.0]
+    seq = json.dumps({"commands": [{"domain": "sequence", "intent": "ready_to_taxi"}]})
+    r = Router(FakeLLM(seq), load_table(AF), jworld(), clock=lambda: t[0])
+    first = r.handle("get ready to taxi")
+    assert first.sequence == ["ready_to_taxi"] and not first.speech
+    again = r.handle("ready to taxi")                                         # already started: never replay silently
+    assert again.sequence == [] and "already started" in again.speech[0]
+    assert r.handle("confirm").sequence == ["ready_to_taxi"]
+    r.handle("ready to taxi")
+    assert r.handle("negative").sequence == [] and r.pending_seq is None
+    r.handle("ready to taxi"); t[0] += 60                                      # an unanswered question lapses, it does not linger
+    assert r.handle("confirm").sequence == []
+    stop = Router(FakeLLM(json.dumps({"commands": [{"domain": "sequence", "intent": "autostop"}]})), load_table(AF), jworld(), clock=lambda: t[0])
+    stop.started = True
+    assert stop.handle("shut it down").sequence == ["autostop"] and stop.started is False       # after a shutdown a new start is fine
