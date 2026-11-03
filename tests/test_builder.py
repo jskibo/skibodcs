@@ -186,3 +186,15 @@ def test_campaign_sorties_carry_packages_unless_declined(tmp_path):
     assert {x.role for x in with_pk.support_flights} >= {"cover"}
     assert camp.plan_deterministic(steer={"task": "STRIKE", "packages": "none"}).support_flights == []
     assert camp.plan_deterministic(steer={"task": "CAS"}).support_flights == []
+
+
+def test_phantom_is_offered_in_every_package_slot(tmp_path):
+    from skibodcs import packages
+    assert {"f4e_2", "f4e_4"} <= set(packages.FIGHTERS) and {"f4e_2", "f4e_4"} <= set(packages.SEADS)
+    o = packages.options()
+    assert any("F-4E" in x["label"] for x in o["fighters"]) and any("F-4E" in x["label"] for x in o["sead"])
+    sc, _ = ok({"task": "STRIKE", "sam": "SA-6", "fighters": "f4e_2", "sead_pkg": "f4e_4"}, 8)
+    got = {(x.role, x.aircraft, x.count) for x in sc.support_flights}
+    assert got == {("cover", "F-4E-45MC", 2), ("sead", "F-4E-45MC", 4)}
+    compile_scenario(sc, tmp_path / "phantom.miz")                                       # the Phantom builds as an AI flight
+    assert (tmp_path / "phantom.miz").exists()

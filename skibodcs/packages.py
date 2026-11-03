@@ -10,8 +10,10 @@ from __future__ import annotations
 
 # key -> (aircraft id, count, label)
 FIGHTERS = {"f15c_2": ("F-15C", 2, "2x F-15C Eagle"), "f15c_4": ("F-15C", 4, "4x F-15C Eagle"), "f16_2": ("F-16C_50", 2, "2x F-16C Viper"),
-            "f18_2": ("FA-18C_hornet", 2, "2x F/A-18C Hornet"), "f14_2": ("F-14B", 2, "2x F-14B Tomcat")}
-SEADS = {"f16_2": ("F-16C_50", 2, "2x F-16C (HARM)"), "f16_4": ("F-16C_50", 4, "4x F-16C (HARM)"), "f18_2": ("FA-18C_hornet", 2, "2x F/A-18C (HARM)")}
+            "f18_2": ("FA-18C_hornet", 2, "2x F/A-18C Hornet"), "f14_2": ("F-14B", 2, "2x F-14B Tomcat"),
+            "f4e_2": ("F-4E-45MC", 2, "2x F-4E Phantom"), "f4e_4": ("F-4E-45MC", 4, "4x F-4E Phantom")}
+SEADS = {"f16_2": ("F-16C_50", 2, "2x F-16C (HARM)"), "f16_4": ("F-16C_50", 4, "4x F-16C (HARM)"), "f18_2": ("FA-18C_hornet", 2, "2x F/A-18C (HARM)"),
+         "f4e_2": ("F-4E-45MC", 2, "2x F-4E Phantom (Shrike)"), "f4e_4": ("F-4E-45MC", 4, "4x F-4E Phantom (Shrike)")}
 CALLSIGN = {"cover": "Uzi", "sead": "Wolf"}
 ROLE_LABEL = {"cover": "Fighter cover", "sead": "SEAD package"}
 GROUND_MIN = {"cold": 12.0, "warm": 6.0, "runway": 1.0}          # start + taxi + takeoff, before the player is airborne
