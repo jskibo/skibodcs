@@ -35,6 +35,8 @@ def main(argv=None):
     cp.add_argument("--launch", action="store_true", help="after planning, ask the Hook to load the mission (DCS must be running a mission)")
     cp.add_argument("--llm", action="store_true", help="plan with the local LLM instead of the built-in generator")
     cp.add_argument("--model", default="qwen3:30b-a3b"); cp.add_argument("--host", default="http://localhost:11434")
+    dr = sub.add_parser("doctor", help="check the DCS link: Export (14500) and Hook (14510) ports, and the skibodcs lines in dcs.log")
+    dr.add_argument("--dcs-dir"); dr.add_argument("--lines", type=int, default=12)
     la = sub.add_parser("launch", help="ask the running DCS (via the Hook) to load a .miz from Saved Games\\DCS\\Missions")
     la.add_argument("miz"); la.add_argument("--port", type=int, default=14510)
     k = sub.add_parser("kneeboard", help="spec.json -> kneeboard PNG pages (mission, route, briefing, threats, map, data card)")
@@ -82,6 +84,11 @@ def main(argv=None):
         for item in a.kneeboard:
             ac, png = item.split("=", 1); kb.setdefault(ac, []).append(Path(png))
         print(*dp.deploy_mission(dcs, Path(a.miz), kb), sep="\n  "); return 0
+    if a.cmd == "doctor":
+        from . import deploy as dp
+        from .doctor import diagnose
+        d = Path(a.dcs_dir) if a.dcs_dir else (dp.find_dcs_dirs() or [None])[0]
+        print(diagnose(d, a.lines)); return 0
     if a.cmd == "launch":
         from .voice.link import HookClient
         ok, detail = HookClient(port=a.port).load_mission(a.miz)

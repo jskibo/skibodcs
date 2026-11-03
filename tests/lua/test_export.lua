@@ -23,4 +23,31 @@ assert(replies[1] == "ARG,362,1.0000\n", tostring(replies[1]))
 assert(replies[2] == "ARG,999,nil\n", tostring(replies[2]))
 assert(#clicks == 1 and clicks[1][2] == 3001 and clicks[1][3] == 1.0, "click dispatched")
 assert(#ic == 2 and ic[1][1] == 311 and ic[1][2] == nil and ic[2][1] == 2004 and ic[2][2] == -1.0, "iCommand passthrough")
+
+-- LuaSocket is put on the search path, and a missing LuaSocket / busy port is LOGGED instead of silently killing the module
+assert(package.path:find("./LuaSocket/?.lua", 1, true) and package.cpath:find("./LuaSocket/?.dll", 1, true), "LuaSocket paths added")
+do
+  local logged = {}
+  log = { INFO = 1, write = function(_, _, m) logged[#logged + 1] = m end }
+  package.loaded["socket"] = nil
+  package.preload["socket"] = function() error("module 'socket' not found") end
+  LuaExportStart = nil
+  dofile("dcs_hook/skibodcs_export.lua")
+  LuaExportStart(); LuaExportBeforeNextFrame(); LuaExportActivityNextEvent(0)   -- must not throw
+  assert(table.concat(logged, "\n"):find("LuaSocket not found"), table.concat(logged, "\n"))
+  logged = {}
+  package.loaded["socket"] = nil
+  package.preload["socket"] = function() return { bind = function() return nil, "address already in use" end, udp = function() return udp end } end
+  LuaExportStart = nil
+  dofile("dcs_hook/skibodcs_export.lua")
+  LuaExportStart()
+  assert(table.concat(logged, "\n"):find("cannot listen on TCP 14500: address already in use"), table.concat(logged, "\n"))
+  logged = {}
+  package.loaded["socket"] = nil
+  package.preload["socket"] = function() return { bind = function() return server end, udp = function() return udp end } end
+  LuaExportStart = nil
+  dofile("dcs_hook/skibodcs_export.lua")
+  LuaExportStart()
+  assert(table.concat(logged, "\n"):find("ready: telemetry UDP 14501, cockpit commands TCP 14500"), table.concat(logged, "\n"))
+end
 print("EXPORT LUA OK")

@@ -15,17 +15,37 @@ local TELEMETRY_PORT, COMMAND_PORT, HZ = 14501, 14500, 2
 local M2FT, MS2KT, RAD2DEG = 3.28084, 1.943844, 57.29578
 local MAX_OBJS = 120
 
-local socket = require("socket")
-local udp, server, client
+-- The Export environment does NOT put LuaSocket on the search path (the Hook state is set up the same way below). Without this the
+-- require threw, the module died silently inside pcall(dofile) and every cockpit command failed with "lost the link to DCS".
+package.path  = package.path  .. ";" .. lfs.currentdir() .. "/LuaSocket/?.lua"
+package.cpath = package.cpath .. ";" .. lfs.currentdir() .. "/LuaSocket/?.dll"
 
-local function safe(f, ...) local ok, r = pcall(f, ...); if ok then return r end end
+local function elog(msg) pcall(function() log.write("SKIBODCS", log.INFO, "skibodcs export: " .. tostring(msg)) end) end
+
+local ok_s, socket = pcall(require, "socket")
+if not ok_s then elog("LuaSocket not found, telemetry and cockpit commands are disabled: " .. tostring(socket)); socket = nil end
+local udp, server, client
+local bound_logged
+
+local function safe(f, ...)
+  local ok, r = pcall(f, ...)
+  if ok then return r end
+  elog("error: " .. tostring(r))
+end
 
 local function ensure_sockets()
+  if not socket then return end
   if not udp then
     udp = socket.udp(); udp:setpeername("127.0.0.1", TELEMETRY_PORT); udp:settimeout(0)
   end
   if not server then
-    server = socket.bind("127.0.0.1", COMMAND_PORT); if server then server:settimeout(0) end
+    local err
+    server, err = socket.bind("127.0.0.1", COMMAND_PORT)
+    if server then server:settimeout(0) elseif not bound_logged then elog("cannot listen on TCP " .. COMMAND_PORT .. ": " .. tostring(err)) end
+  end
+  if server and udp and not bound_logged then
+    bound_logged = true
+    elog("ready: telemetry UDP " .. TELEMETRY_PORT .. ", cockpit commands TCP " .. COMMAND_PORT)
   end
 end
 
