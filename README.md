@@ -10,7 +10,7 @@ semantics, like DCS) against mocked DCS APIs (tests/lua).
     py -m venv .venv
     Set-ExecutionPolicy -Scope CurrentUser RemoteSigned   (once, so the venv can activate)
     .venv\Scripts\Activate.ps1
-    pip install pydcs pyproj "pydantic>=2" pytest
+    pip install pydcs pyproj "pydantic>=2" pillow pytest
     pip install -e ".[voice]"
     pytest                         (Lua tests are skipped unless LUAJIT=path\to\luajit.exe is set)
     skibodcs install               (add --dcs-dir "C:\Users\you\Saved Games\DCS.openbeta" if both exist)
